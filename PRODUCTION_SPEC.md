@@ -153,9 +153,10 @@ afterwards.
 - **Heavy work happens once.** It goes in `physics.py`, which writes `.npz` files; `construct()` only loads them.
   `construct()` runs once per render piece, so keep its setup under about 2 s.
 - **CPU budget on the shared server.** Use `nice -n 5`. Previews run at most 2 Manim processes at a time (the
-  default `PAR=2`). The final render uses `WORKERS=3` (the episode's `render.sh` default). Physics runs
-  single-threaded numpy and stays under about 5 CPU-minutes; for anything heavier, use JAX on a free GPU (check
-  `nvidia-smi`). Never run long multi-core CPU jobs.
+  default `PAR=2`). The final render uses `WORKERS=6` by default; use 3 when several episodes render at once.
+  Physics runs single-threaded numpy and stays under about 5 CPU-minutes. Anything heavier uses JAX:
+  `make physics` puts it on the least-busy GPU, and without a GPU it downloads the data bundle. Never run long
+  multi-core CPU jobs.
 - `common/o5common.py` API:
   - timing: `Chapter` (`S`, `E`, `at`, `show_tag`, `finish`, `live_image`, `static_image`, `sweep_image`)
   - cards: `series_title`, `next_card`, `code_card`, `caption`, `boxed`

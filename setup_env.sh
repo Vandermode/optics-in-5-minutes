@@ -34,6 +34,14 @@ PKG_CONFIG_PATH=$P/lib/pkgconfig CFLAGS="-I$P/include" LDFLAGS="-Wl,-rpath,$P/li
   "$PY" -m pip install --no-binary manimpango "manimpango==0.7.0"
 "$PY" -m pip install "manim==0.22.0"
 
+# 2b. fastest physics: CUDA JAX when an NVIDIA GPU is present (E02/E06/E07/E09/E10 then compute in about a minute each)
+if command -v nvidia-smi >/dev/null && nvidia-smi -L >/dev/null 2>&1; then
+  echo "== NVIDIA GPU found: installing CUDA-enabled JAX"
+  "$PY" -m pip install -U "jax[cuda12]==0.8.0"
+else
+  echo "== no NVIDIA GPU: physics that needs one is downloaded instead (set O5_DATA_URL, see config.local.sh.example)"
+fi
+
 # 3. speech models (Kokoro-82M, Whisper small.en) into .models/
 if [[ "${1:-}" != "--no-models" ]]; then
   "$PY" common/fetch_models.py

@@ -6,3 +6,7 @@
 # O5_FFPROBE=/usr/bin/ffprobe
 # Speech models somewhere other than <repo>/.models:
 # O5_MODELS=$HOME/models/optics5min
+# Where the precomputed physics data bundles live (used when this machine has no usable GPU), one of:
+# O5_DATA_URL=gh:<owner>/<repo>@season1-data                          # GitHub release, private ones too (gh CLI)
+# O5_DATA_URL=https://github.com/<owner>/<repo>/releases/download/season1-data   # public release
+# O5_DATA_URL=file:///shared/optics5min/data                           # a shared folder

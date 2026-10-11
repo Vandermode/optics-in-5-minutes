@@ -37,6 +37,6 @@ reports what is missing.
 ../common/audio.sh .                    # narration.json -> audio + subtitles
 python physics.py
 ./preview.sh Ch2Foo                     # 960x540@15 previews, 2 processes; prints LATE lines; warms .cache/Tex
-./render.sh --skip-audio                # 1080p60, WORKERS=3 by default in episode wrappers
+./render.sh --skip-audio                # 1080p60, WORKERS=6 by default
 python ../common/verify.py .
 ```

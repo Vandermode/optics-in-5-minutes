@@ -30,8 +30,8 @@ Setup is in `README.md`. The quality bar is in `PRODUCTION_SPEC.md`. Every scene
    - Run `make preview E=E0N` for all chapters, not only the edited one.
    - Fix any `LATE` line and any animation that no longer matches its sentence. Scenes sync to segment ids with
      `self.at(S("id") + offset)`, so usually only offsets and run times need adjusting in `scenes.py`.
-4. Run `make render E=E0N && make verify E=E0N`. All counts must be OK, and seam-scan jumps must be intended
-   transitions. Look at `.verify/sheet_*.png`.
+4. Run `make episode E=E0N`. It re-renders and verifies, but does not recompute physics. All counts must be OK, and
+   seam-scan jumps must be intended transitions. Look at `.verify/sheet_*.png`.
 5. Commit `narration.json`, `audio/timing.json`, `audio/words.json`, `subtitles.*` and any `scenes.py` changes.
    Put the verify summary in the pull request.
 
@@ -70,7 +70,13 @@ Season 2 candidates are listed in `OUTLINE.md` §6.
 ```bash
 make release E=E03          # dist/e03_…_1080p.mp4, _1080p_softsubs.mp4, _720p.mp4 (slow-preset re-encode)
 gh release create season1-v1 dist/*.mp4 --title "Season 1" --notes "…"   # attach to a GitHub Release
+make pack-data              # dist/data/<slug>_data.tar.gz for every episode (the computed physics, ~200 MB total)
+gh release create season1-data dist/data/*.tar.gz --title "Season 1 physics data" --notes "for O5_DATA_URL"
 ```
+
+Collaborators without a GPU then set `O5_DATA_URL=gh:<owner>/<repo>@season1-data` in `config.local.sh`. `make` then
+downloads the JAX-heavy episodes' data instead of spending up to an hour per episode on the CPU. Re-pack and re-upload
+a bundle whenever that episode's `physics.py` changes.
 
 Release assets live outside the git history, with a 2 GB limit per file. For review, an unlisted YouTube or Vimeo
 link (Vimeo allows comments at a timestamp) or a shared drive folder is often easier; for E01 the release copies are

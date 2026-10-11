@@ -4,7 +4,8 @@
 # System requirements that conda does not provide (see README "Setup"): a C compiler (gcc / Xcode command-line tools),
 # a LaTeX distribution with dvisvgm, and FFmpeg built with libass for burned-in subtitles (conda-forge's ffmpeg has no
 # libass; Ubuntu `apt install ffmpeg` and Homebrew `brew install ffmpeg` do).
-# GPU (optional, only speeds up some physics.py): pip install -U "jax[cuda12]==0.8.0" inside the environment.
+# GPU: setup_env.sh adds CUDA JAX (jax[cuda12]==0.8.0) when it finds an NVIDIA GPU; without one, the GPU-heavy physics
+# data are downloaded as release bundles (O5_DATA_URL) instead of recomputed.
 name: optics5min
 channels:
   - conda-forge

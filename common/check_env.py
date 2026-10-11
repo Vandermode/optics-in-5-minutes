@@ -62,12 +62,17 @@ for name in ("kokoro-v1.0.onnx", "voices-v1.0.bin"):
 hf = os.path.join(o5env.HF_HOME, "hub", "models--Systran--faster-whisper-small.en")
 line(os.path.isdir(hf), f"Whisper small.en cache {hf}", "python common/fetch_models.py   (or: make models)")
 
-try:
-    import jax
-    devs = [d.platform for d in jax.devices()]
-    print(f"INFO    jax devices: {devs}" + ("" if "gpu" in devs else "  (CPU only: physics.py works, some are slower; "
-                                                                      "GPU: pip install -U 'jax[cuda12]==0.8.0')"))
-except Exception:  # noqa: BLE001
-    pass
+import run_physics  # noqa: E402
+
+gpu, cuda = run_physics.pick_gpu(), run_physics.jax_has_cuda()
+if gpu is not None and cuda:
+    print(f"OK      physics on GPU (least busy now: GPU {gpu}, CUDA-enabled JAX)")
+elif os.environ.get("O5_DATA_URL"):
+    print(f"OK      no usable GPU; GPU-heavy physics data will be downloaded from {os.environ['O5_DATA_URL']}")
+else:
+    line(False, "fast physics route: no usable GPU" + (" (CUDA JAX missing)" if gpu is not None else "")
+         + " and no O5_DATA_URL", "set O5_DATA_URL to the release with the data bundles (config.local.sh), or install "
+         "CUDA JAX: pip install -U 'jax[cuda12]==0.8.0'. Without either, E02 physics takes about an hour on the CPU.",
+         warn=True)
 print("\nall required checks passed" if not bad else f"\n{bad} required item(s) missing")
 sys.exit(1 if bad else 0)

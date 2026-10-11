@@ -53,27 +53,38 @@ make check-env              # lists anything still missing, with a hint for each
 ## Building
 
 ```bash
-make episode E=E03          # physics -> narration -> render -> verify, about 5–15 min
+make episode E=E03          # data -> narration -> render -> verify; skips every step that is already up to date
 make preview E=E03 CH=Ch3Abbe     # low-res previews of chosen chapters, for layout work
 make release E=E03          # compact copies in dist/ for sharing (about half the size)
-make help                   # all targets
+make help                   # all targets (FORCE=1 reruns a step even if it is up to date)
 ```
 
-Measured on a fresh clone: `make episode E=E01` takes about 7 minutes with `WORKERS=6`. The rebuilt film matches
-the original (51–67 dB PSNR), and the regenerated timing and subtitles are byte-identical. Most `physics.py` runs
-take seconds to a couple of minutes. Without a GPU, a few take longer (8 CPU cores):
+Builds always take the fastest route:
 
-| Episode | `physics.py` on CPU |
-|---|---|
-| E02 | about 50 min |
-| E06 | about 12 min |
-| E07, E10 | about 5 min |
+- **Incremental.** Each step is a file target, so it reruns only when its inputs changed.
+  - Physics reruns when `physics.py` changes.
+  - Narration reruns when `narration.json` changes; only the edited sentences are re-synthesised, and the Whisper
+    check is skipped when the timing comes out identical.
+  - The render reruns when the scenes, data, audio or renderer change.
 
-With `jax[cuda12]` each takes 1–2 minutes. `physics.py` only needs re-running when the physics changes, not for
-narration edits.
+  A narration edit therefore never recomputes physics.
+- **Physics on a GPU, or not at all.** `physics.py` files that only use numpy run locally, in seconds to two
+  minutes. The JAX ones (E02, E06, E07, E09, E10) run on the least-busy NVIDIA GPU; `setup_env.sh` installs CUDA
+  JAX when it sees one. Measured on an A100: E02 54 s, E06 63 s, E07 60 s, E09 30 s, and E10 170 s (mostly its
+  single-core sparse solver). Each uses about one CPU core. On a machine without a GPU, their precomputed data are
+  downloaded from the release (`O5_DATA_URL` in `config.local.sh`, bundles made with `make pack-data`). Computing
+  them on the CPU is the last resort (8 cores):
 
-`E` takes a folder name or just its prefix. Renders run on `WORKERS` processes (default 3; `make render E=E03
-WORKERS=6`).
+  | Episode | `physics.py` on CPU |
+  |---|---|
+  | E02 | about 50 min |
+  | E06 | about 12 min |
+  | E07, E10 | about 5 min |
+
+- **Parallel render.** It uses `WORKERS` processes (default 6; keep at most about 8 on a shared server).
+
+Measured on a fresh clone: `make episode E=E01` takes about 7 minutes. The rebuilt film matches the original (51–67
+dB PSNR), and the regenerated timing and subtitles are byte-identical. `E` takes a folder name or just its prefix.
 
 ## Layout
 

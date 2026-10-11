@@ -9,7 +9,7 @@ if [ -f "$O5_ROOT/config.local.sh" ]; then
 fi
 : "${O5_PY:=python}"                     # python of the optics5min environment (conda activate optics5min)
 export O5_PY
-for _v in O5_MODELS O5_KOKORO_DIR O5_HF_HOME O5_FFMPEG O5_FFPROBE O5_FONTS_DIR; do
+for _v in O5_MODELS O5_KOKORO_DIR O5_HF_HOME O5_FFMPEG O5_FFPROBE O5_FONTS_DIR O5_DATA_URL; do
   [ -n "${!_v:-}" ] && export "${_v?}"
 done
 unset _v
