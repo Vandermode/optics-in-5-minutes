@@ -1,0 +1,97 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:04.86,Default,,0,0,0,,{\fad(120,120)}Shine a laser through a tiny slide with the letter F on it.
+Dialogue: 0,0:00:04.93,0:00:09.03,Default,,0,0,0,,{\fad(120,120)}On a far wall, you don't see an F. You see streaks and fringes.
+Dialogue: 0,0:00:09.10,0:00:11.73,Default,,0,0,0,,{\fad(120,120)}That pattern is the Fourier transform of the F,
+Dialogue: 0,0:00:11.77,0:00:14.07,Default,,0,0,0,,{\fad(120,120)}computed by the light itself.
+Dialogue: 0,0:00:14.14,0:00:15.97,Default,,0,0,0,,{\fad(120,120)}Put a lens right behind the slide,
+Dialogue: 0,0:00:16.01,0:00:19.73,Default,,0,0,0,,{\fad(120,120)}and the same pattern appears just one focal length away.
+Dialogue: 0,0:00:19.80,0:00:22.85,Default,,0,0,0,,{\fad(120,120)}Why does light compute Fourier transforms, for free?
+Dialogue: 0,0:00:24.67,0:00:29.07,Default,,0,0,0,,{\fad(120,120)}Remember episode one: any field is a sum of plane waves,
+Dialogue: 0,0:00:29.11,0:00:33.49,Default,,0,0,0,,{\fad(120,120)}each heading in its own direction, sin θ = kx/k.
+Dialogue: 0,0:00:33.56,0:00:37.49,Default,,0,0,0,,{\fad(120,120)}Their amplitudes form the field's spectrum: its Fourier transform.
+Dialogue: 0,0:00:37.56,0:00:40.19,Default,,0,0,0,,{\fad(120,120)}Up close behind a slit, the waves still overlap,
+Dialogue: 0,0:00:40.23,0:00:42.03,Default,,0,0,0,,{\fad(120,120)}and you mostly see a shadow.
+Dialogue: 0,0:00:42.10,0:00:44.63,Default,,0,0,0,,{\fad(120,120)}Now step back, a thousand times farther.
+Dialogue: 0,0:00:44.70,0:00:48.78,Default,,0,0,0,,{\fad(120,120)}Each plane wave travels in a straight line. So far away,
+Dialogue: 0,0:00:48.82,0:00:53.67,Default,,0,0,0,,{\fad(120,120)}the directions come apart: direction θ lands at x = z tan θ.
+Dialogue: 0,0:00:54.34,0:00:56.90,Default,,0,0,0,,{\fad(120,120)}So the pattern on the wall is the spectrum itself,
+Dialogue: 0,0:00:56.94,0:01:00.71,Default,,0,0,0,,{\fad(120,120)}spread out in space. This is Fraunhofer diffraction.
+Dialogue: 0,0:01:00.78,0:01:05.38,Default,,0,0,0,,{\fad(120,120)}How far is far? The pattern grows like zλ/D,
+Dialogue: 0,0:01:05.42,0:01:10.38,Default,,0,0,0,,{\fad(120,120)}and it must dwarf the slit width D: z ≫ D²/λ.
+Dialogue: 0,0:01:11.20,0:01:14.10,Default,,0,0,0,,{\fad(120,120)}But why a Fourier transform? Follow the light from
+Dialogue: 0,0:01:14.14,0:01:18.06,Default,,0,0,0,,{\fad(120,120)}a point x′ on the slide to a point x on the wall.
+Dialogue: 0,0:01:18.13,0:01:20.66,Default,,0,0,0,,{\fad(120,120)}For small angles, the path length is
+Dialogue: 0,0:01:20.70,0:01:25.39,Default,,0,0,0,,{\fad(120,120)}nearly a parabola: z + (x − x′)²/2z.
+Dialogue: 0,0:01:25.46,0:01:28.51,Default,,0,0,0,,{\fad(120,120)}The wall adds up waves from every point of the slide,
+Dialogue: 0,0:01:28.55,0:01:31.04,Default,,0,0,0,,{\fad(120,120)}each with phase k times that path.
+Dialogue: 0,0:01:31.11,0:01:33.93,Default,,0,0,0,,{\fad(120,120)}Expand the square. The x² term is a curved
+Dialogue: 0,0:01:33.97,0:01:36.83,Default,,0,0,0,,{\fad(120,120)}phase on the wall that brightness can't see.
+Dialogue: 0,0:01:36.90,0:01:40.07,Default,,0,0,0,,{\fad(120,120)}The cross term is exactly the Fourier kernel:
+Dialogue: 0,0:01:40.11,0:01:45.87,Default,,0,0,0,,{\fad(120,120)}position x on the wall picks out the frequency kx = k·x/z.
+Dialogue: 0,0:01:45.94,0:01:48.46,Default,,0,0,0,,{\fad(120,120)}The x′² term is a chirp across the slide:
+Dialogue: 0,0:01:48.50,0:01:50.99,Default,,0,0,0,,{\fad(120,120)}its wiggles speed up toward the edges.
+Dialogue: 0,0:01:51.03,0:01:56.14,Default,,0,0,0,,{\fad(120,120)}Far away it flattens to one, leaving a pure Fourier transform.
+Dialogue: 0,0:01:56.21,0:01:59.35,Default,,0,0,0,,{\fad(120,120)}Closer in, the chirp scrambles it. Could we cancel it?
+Dialogue: 0,0:02:00.17,0:02:03.01,Default,,0,0,0,,{\fad(120,120)}A lens is glass that's thicker in the middle,
+Dialogue: 0,0:02:03.05,0:02:05.45,Default,,0,0,0,,{\fad(120,120)}so it delays the centre most.
+Dialogue: 0,0:02:05.49,0:02:10.46,Default,,0,0,0,,{\fad(120,120)}That's a phase e^(−ikx²/2f): an opposite chirp.
+Dialogue: 0,0:02:10.53,0:02:13.45,Default,,0,0,0,,{\fad(120,120)}Watch a flat wave pass through. It leaves curved,
+Dialogue: 0,0:02:13.49,0:02:17.84,Default,,0,0,0,,{\fad(120,120)}and converges to a point one focal length f behind the lens.
+Dialogue: 0,0:02:17.91,0:02:23.02,Default,,0,0,0,,{\fad(120,120)}Tilt the wave, and the focus slides sideways, to x = f tan θ.
+Dialogue: 0,0:02:23.89,0:02:28.42,Default,,0,0,0,,{\fad(120,120)}Three directions, three separate spots. A lens sorts light by direction.
+Dialogue: 0,0:02:28.49,0:02:30.84,Default,,0,0,0,,{\fad(120,120)}A slit sends out a whole spectrum of directions,
+Dialogue: 0,0:02:30.88,0:02:34.99,Default,,0,0,0,,{\fad(120,120)}so its spectrum appears in the focal plane, not at infinity.
+Dialogue: 0,0:02:35.06,0:02:37.35,Default,,0,0,0,,{\fad(120,120)}In the math, the lens's chirp exactly
+Dialogue: 0,0:02:37.39,0:02:40.69,Default,,0,0,0,,{\fad(120,120)}cancels the slide's chirp when z = f.
+Dialogue: 0,0:02:40.76,0:02:43.62,Default,,0,0,0,,{\fad(120,120)}Move the slide one focal length in front of the lens,
+Dialogue: 0,0:02:43.66,0:02:48.10,Default,,0,0,0,,{\fad(120,120)}and even the curved phase vanishes: an exact Fourier transform.
+Dialogue: 0,0:02:48.92,0:02:52.23,Default,,0,0,0,,{\fad(120,120)}Now add a second lens, one more focal length on.
+Dialogue: 0,0:02:52.27,0:02:55.68,Default,,0,0,0,,{\fad(120,120)}It transforms the spectrum again, and the picture comes back.
+Dialogue: 0,0:02:55.75,0:02:58.68,Default,,0,0,0,,{\fad(120,120)}Upside down! Two Fourier transforms don't
+Dialogue: 0,0:02:58.72,0:03:01.66,Default,,0,0,0,,{\fad(120,120)}undo each other: they mirror x into −x.
+Dialogue: 0,0:03:01.73,0:03:05.47,Default,,0,0,0,,{\fad(120,120)}This is the 4f system. The middle plane holds the spectrum,
+Dialogue: 0,0:03:05.51,0:03:10.41,Default,,0,0,0,,{\fad(120,120)}sorted by direction, so a mask there edits it, frequency by frequency.
+Dialogue: 0,0:03:10.48,0:03:14.26,Default,,0,0,0,,{\fad(120,120)}A pinhole keeps only the low frequencies, and the image blurs.
+Dialogue: 0,0:03:14.33,0:03:16.71,Default,,0,0,0,,{\fad(120,120)}A small dot that blocks the centre keeps only
+Dialogue: 0,0:03:16.75,0:03:19.94,Default,,0,0,0,,{\fad(120,120)}the high frequencies, so just the edges survive.
+Dialogue: 0,0:03:20.76,0:03:22.77,Default,,0,0,0,,{\fad(120,120)}Now a harder case: a living cell.
+Dialogue: 0,0:03:22.81,0:03:26.38,Default,,0,0,0,,{\fad(120,120)}It's nearly transparent; it only delays the light a little.
+Dialogue: 0,0:03:26.45,0:03:30.31,Default,,0,0,0,,{\fad(120,120)}At each point, the light is a big arrow plus a tiny one at 90°,
+Dialogue: 0,0:03:30.35,0:03:34.54,Default,,0,0,0,,{\fad(120,120)}so its length barely changes. The camera sees nothing.
+Dialogue: 0,0:03:34.61,0:03:36.71,Default,,0,0,0,,{\fad(120,120)}The big arrow is light that went straight through,
+Dialogue: 0,0:03:36.75,0:03:40.43,Default,,0,0,0,,{\fad(120,120)}and the first lens focuses it all into the central spot.
+Dialogue: 0,0:03:40.50,0:03:43.31,Default,,0,0,0,,{\fad(120,120)}So delay just that spot by a quarter wave.
+Dialogue: 0,0:03:44.18,0:03:46.79,Default,,0,0,0,,{\fad(120,120)}Now the arrows line up, and the cell appears.
+Dialogue: 0,0:03:46.86,0:03:52.33,Default,,0,0,0,,{\fad(120,120)}That's Frits Zernike's phase contrast microscope, the 1953 Nobel Prize.
+Dialogue: 0,0:03:53.15,0:03:56.27,Default,,0,0,0,,{\fad(120,120)}On a computer, you can choose from three propagators.
+Dialogue: 0,0:03:56.34,0:04:00.50,Default,,0,0,0,,{\fad(120,120)}The angular spectrum method from episode one: FFT, multiply,
+Dialogue: 0,0:04:00.54,0:04:06.36,Default,,0,0,0,,{\fad(120,120)}inverse FFT. Exact, on the same grid as the input, and best up close.
+Dialogue: 0,0:04:06.43,0:04:12.59,Default,,0,0,0,,{\fad(120,120)}Single-FFT Fresnel: multiply by the chirp, then one FFT.
+Dialogue: 0,0:04:12.63,0:04:15.56,Default,,0,0,0,,{\fad(120,120)}The output grid stretches with distance,
+Dialogue: 0,0:04:15.60,0:04:19.34,Default,,0,0,0,,{\fad(120,120)}Δx′ = λz/NΔx, so it's best far away.
+Dialogue: 0,0:04:19.41,0:04:23.20,Default,,0,0,0,,{\fad(120,120)}And Fraunhofer: drop the chirp, and it's just one FFT.
+Dialogue: 0,0:04:23.27,0:04:26.96,Default,,0,0,0,,{\fad(120,120)}The catch: chirps. Once a chirp's wiggles get shorter than two samples,
+Dialogue: 0,0:04:27.00,0:04:30.71,Default,,0,0,0,,{\fad(120,120)}the samples trace a false, slower wave: aliasing.
+Dialogue: 0,0:04:30.78,0:04:34.13,Default,,0,0,0,,{\fad(120,120)}The angular spectrum chirp speeds up as z grows,
+Dialogue: 0,0:04:34.17,0:04:37.00,Default,,0,0,0,,{\fad(120,120)}while the Fresnel chirp slows down.
+Dialogue: 0,0:04:37.04,0:04:40.39,Default,,0,0,0,,{\fad(120,120)}They trade places at zc = NΔx²/λ:
+Dialogue: 0,0:04:40.43,0:04:44.00,Default,,0,0,0,,{\fad(120,120)}angular spectrum below it, Fresnel above.
+Dialogue: 0,0:04:44.82,0:04:49.39,Default,,0,0,0,,{\fad(120,120)}Far away, or at a lens's focus, each direction lands on its own spot,
+Dialogue: 0,0:04:49.43,0:04:51.54,Default,,0,0,0,,{\fad(120,120)}so light lays out its own spectrum.
+Dialogue: 0,0:04:51.61,0:04:53.46,Default,,0,0,0,,{\fad(120,120)}A second lens brings the picture back,
+Dialogue: 0,0:04:53.50,0:04:55.67,Default,,0,0,0,,{\fad(120,120)}with a mask in between to edit it.
+Dialogue: 0,0:04:55.74,0:04:58.39,Default,,0,0,0,,{\fad(120,120)}Where it breaks: our shortcut assumed small angles.
+Dialogue: 0,0:04:58.43,0:05:02.63,Default,,0,0,0,,{\fad(120,120)}For steep ones, use the exact kz from episode one.
+Dialogue: 0,0:05:02.70,0:05:07.19,Default,,0,0,0,,{\fad(120,120)}And a real lens is finite: it only catches directions up to some angle.
+Dialogue: 0,0:05:07.23,0:05:10.10,Default,,0,0,0,,{\fad(120,120)}That cutoff is why every image is blurry.

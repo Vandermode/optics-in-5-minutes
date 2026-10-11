@@ -1,0 +1,98 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:02.85,Default,,0,0,0,,{\fad(120,120)}Shine a laser through a narrow slit,
+Dialogue: 0,0:00:02.89,0:00:06.59,Default,,0,0,0,,{\fad(120,120)}and a pattern of bright and dark bands appears on the wall.
+Dialogue: 0,0:00:06.66,0:00:08.19,Default,,0,0,0,,{\fad(120,120)}How does light spread out like that?
+Dialogue: 0,0:00:08.23,0:00:11.98,Default,,0,0,0,,{\fad(120,120)}And how can we compute exactly what it looks like at any distance?
+Dialogue: 0,0:00:12.05,0:00:13.79,Default,,0,0,0,,{\fad(120,120)}There is a beautifully simple answer,
+Dialogue: 0,0:00:13.83,0:00:15.98,Default,,0,0,0,,{\fad(120,120)}called the angular spectrum method.
+Dialogue: 0,0:00:16.05,0:00:19.09,Default,,0,0,0,,{\fad(120,120)}By the end of this video you'll see exactly why it works,
+Dialogue: 0,0:00:19.13,0:00:22.70,Default,,0,0,0,,{\fad(120,120)}using nothing but calculus and a little linear algebra.
+Dialogue: 0,0:00:23.52,0:00:26.40,Default,,0,0,0,,{\fad(120,120)}Let's start with a single wave. Along a line,
+Dialogue: 0,0:00:26.44,0:00:29.37,Default,,0,0,0,,{\fad(120,120)}the light's field goes up and down like a cosine.
+Dialogue: 0,0:00:29.44,0:00:33.13,Default,,0,0,0,,{\fad(120,120)}The distance from one crest to the next is the wavelength, λ.
+Dialogue: 0,0:00:33.20,0:00:37.94,Default,,0,0,0,,{\fad(120,120)}It's often handier to use the wavenumber, k = 2π/λ.
+Dialogue: 0,0:00:38.01,0:00:40.85,Default,,0,0,0,,{\fad(120,120)}It tells you how fast the wave's phase turns:
+Dialogue: 0,0:00:40.89,0:00:43.37,Default,,0,0,0,,{\fad(120,120)}k radians for every unit of distance.
+Dialogue: 0,0:00:43.44,0:00:46.46,Default,,0,0,0,,{\fad(120,120)}Light of one colour has one wavelength, so one fixed k.
+Dialogue: 0,0:00:46.50,0:00:49.54,Default,,0,0,0,,{\fad(120,120)}Remember that: it's the key rule later on.
+Dialogue: 0,0:00:50.36,0:00:54.95,Default,,0,0,0,,{\fad(120,120)}Next, a trick that makes waves much easier: complex numbers as arrows.
+Dialogue: 0,0:00:55.02,0:01:00.35,Default,,0,0,0,,{\fad(120,120)}Euler's formula says e^(iθ) = cos θ + i sin θ:
+Dialogue: 0,0:01:00.39,0:01:03.78,Default,,0,0,0,,{\fad(120,120)}an arrow of length one, at angle θ.
+Dialogue: 0,0:01:03.85,0:01:05.68,Default,,0,0,0,,{\fad(120,120)}So at every point we draw an arrow.
+Dialogue: 0,0:01:05.72,0:01:09.51,Default,,0,0,0,,{\fad(120,120)}Its length is the amplitude, and its angle is the phase.
+Dialogue: 0,0:01:09.58,0:01:13.56,Default,,0,0,0,,{\fad(120,120)}The real light is just the arrow's shadow on the horizontal axis.
+Dialogue: 0,0:01:13.63,0:01:19.12,Default,,0,0,0,,{\fad(120,120)}The wave e^(ikx) is an arrow that turns steadily as you move along x.
+Dialogue: 0,0:01:19.19,0:01:21.48,Default,,0,0,0,,{\fad(120,120)}Here's the payoff: shifting the wave
+Dialogue: 0,0:01:21.52,0:01:24.03,Default,,0,0,0,,{\fad(120,120)}is the same as rotating every arrow,
+Dialogue: 0,0:01:24.07,0:01:26.92,Default,,0,0,0,,{\fad(120,120)}which means multiplying by e^(iφ).
+Dialogue: 0,0:01:27.74,0:01:32.10,Default,,0,0,0,,{\fad(120,120)}Now let the light live in a plane, with x across and z pointing forward.
+Dialogue: 0,0:01:32.17,0:01:38.26,Default,,0,0,0,,{\fad(120,120)}A plane wave, e^(i(kx·x + kz·z)), has straight, parallel crests.
+Dialogue: 0,0:01:38.33,0:01:41.38,Default,,0,0,0,,{\fad(120,120)}Its wave vector, with components kx and kz,
+Dialogue: 0,0:01:41.42,0:01:43.68,Default,,0,0,0,,{\fad(120,120)}points in the direction it travels.
+Dialogue: 0,0:01:43.75,0:01:47.76,Default,,0,0,0,,{\fad(120,120)}Which wave vectors are allowed? Light obeys the Helmholtz equation.
+Dialogue: 0,0:01:47.83,0:01:52.10,Default,,0,0,0,,{\fad(120,120)}Each derivative of an exponential just pulls down a factor,
+Dialogue: 0,0:01:52.14,0:01:57.41,Default,,0,0,0,,{\fad(120,120)}so plugging in the plane wave gives kx² + kz² = k².
+Dialogue: 0,0:01:57.48,0:02:03.24,Default,,0,0,0,,{\fad(120,120)}So the wave vector always ends on a circle of radius k.
+Dialogue: 0,0:02:03.28,0:02:07.09,Default,,0,0,0,,{\fad(120,120)}Choose kx, and kz is fixed: √(k² − kx²).
+Dialogue: 0,0:02:07.16,0:02:11.83,Default,,0,0,0,,{\fad(120,120)}And the tilt angle satisfies sin θ = kx / k.
+Dialogue: 0,0:02:12.65,0:02:16.07,Default,,0,0,0,,{\fad(120,120)}Here's the second key fact: the Helmholtz equation is linear.
+Dialogue: 0,0:02:16.11,0:02:19.50,Default,,0,0,0,,{\fad(120,120)}Add two solutions, and you get another solution.
+Dialogue: 0,0:02:19.57,0:02:21.47,Default,,0,0,0,,{\fad(120,120)}That should remind you of linear algebra:
+Dialogue: 0,0:02:21.51,0:02:24.21,Default,,0,0,0,,{\fad(120,120)}any vector is a sum of basis vectors,
+Dialogue: 0,0:02:24.25,0:02:27.06,Default,,0,0,0,,{\fad(120,120)}and a dot product finds each component.
+Dialogue: 0,0:02:27.13,0:02:30.44,Default,,0,0,0,,{\fad(120,120)}Functions are vectors too: sample a field at many points,
+Dialogue: 0,0:02:30.48,0:02:32.87,Default,,0,0,0,,{\fad(120,120)}and it's just a long list of numbers.
+Dialogue: 0,0:02:32.94,0:02:37.93,Default,,0,0,0,,{\fad(120,120)}A perfect basis for them is the set of waves e^(i·kx·x),
+Dialogue: 0,0:02:37.97,0:02:41.07,Default,,0,0,0,,{\fad(120,120)}one for every spatial frequency kx.
+Dialogue: 0,0:02:41.14,0:02:43.25,Default,,0,0,0,,{\fad(120,120)}The dot product of our field with each of
+Dialogue: 0,0:02:43.29,0:02:45.87,Default,,0,0,0,,{\fad(120,120)}these waves gives that wave's amplitude.
+Dialogue: 0,0:02:45.91,0:02:48.51,Default,,0,0,0,,{\fad(120,120)}That's exactly the Fourier transform.
+Dialogue: 0,0:02:48.58,0:02:51.74,Default,,0,0,0,,{\fad(120,120)}For a slit, the spectrum is large at low frequencies,
+Dialogue: 0,0:02:51.78,0:02:55.61,Default,,0,0,0,,{\fad(120,120)}with ripples at high frequencies that build the sharp edges.
+Dialogue: 0,0:02:56.43,0:02:59.72,Default,,0,0,0,,{\fad(120,120)}Now we can propagate. Each basis wave on the
+Dialogue: 0,0:02:59.76,0:03:03.56,Default,,0,0,0,,{\fad(120,120)}line z = 0 is the start of a tilted plane wave.
+Dialogue: 0,0:03:03.63,0:03:06.52,Default,,0,0,0,,{\fad(120,120)}Moving forward by z, it keeps its shape.
+Dialogue: 0,0:03:06.56,0:03:11.03,Default,,0,0,0,,{\fad(120,120)}It only gets multiplied by a phase, e^(i·kz·z).
+Dialogue: 0,0:03:11.10,0:03:12.53,Default,,0,0,0,,{\fad(120,120)}In linear-algebra language:
+Dialogue: 0,0:03:12.57,0:03:15.53,Default,,0,0,0,,{\fad(120,120)}plane waves are the eigenvectors of propagation,
+Dialogue: 0,0:03:15.57,0:03:19.01,Default,,0,0,0,,{\fad(120,120)}and these phase factors are the eigenvalues.
+Dialogue: 0,0:03:19.08,0:03:22.94,Default,,0,0,0,,{\fad(120,120)}In the basis of points, propagation mixes every point with every other.
+Dialogue: 0,0:03:22.98,0:03:27.06,Default,,0,0,0,,{\fad(120,120)}In the plane-wave basis, its matrix is diagonal.
+Dialogue: 0,0:03:27.13,0:03:30.27,Default,,0,0,0,,{\fad(120,120)}So we do what we'd do with any diagonalizable matrix:
+Dialogue: 0,0:03:30.31,0:03:35.06,Default,,0,0,0,,{\fad(120,120)}change basis, multiply by the eigenvalues, and change back.
+Dialogue: 0,0:03:35.88,0:03:39.78,Default,,0,0,0,,{\fad(120,120)}One twist: what if kx is bigger than k?
+Dialogue: 0,0:03:39.82,0:03:44.41,Default,,0,0,0,,{\fad(120,120)}Then k² − kx² is negative, and kz becomes imaginary.
+Dialogue: 0,0:03:44.48,0:03:47.26,Default,,0,0,0,,{\fad(120,120)}The phase factor turns into a decaying exponential:
+Dialogue: 0,0:03:47.30,0:03:51.40,Default,,0,0,0,,{\fad(120,120)}these evanescent waves fade away within about a wavelength.
+Dialogue: 0,0:03:51.47,0:03:54.89,Default,,0,0,0,,{\fad(120,120)}They carry the finest details, smaller than about half a wavelength,
+Dialogue: 0,0:03:54.93,0:03:59.60,Default,,0,0,0,,{\fad(120,120)}which is why ordinary light can't resolve them: the diffraction limit.
+Dialogue: 0,0:04:00.42,0:04:03.16,Default,,0,0,0,,{\fad(120,120)}On a computer, the whole method is three steps.
+Dialogue: 0,0:04:03.23,0:04:06.76,Default,,0,0,0,,{\fad(120,120)}One: sample the field and take its fast Fourier transform,
+Dialogue: 0,0:04:06.80,0:04:11.63,Default,,0,0,0,,{\fad(120,120)}the FFT, which changes basis in about N log N operations.
+Dialogue: 0,0:04:11.70,0:04:15.46,Default,,0,0,0,,{\fad(120,120)}Two: multiply each frequency by the
+Dialogue: 0,0:04:15.50,0:04:20.10,Default,,0,0,0,,{\fad(120,120)}transfer function, e^(iz√(k² − kx²)).
+Dialogue: 0,0:04:20.17,0:04:24.14,Default,,0,0,0,,{\fad(120,120)}Three: take the inverse FFT. That's the field at distance z.
+Dialogue: 0,0:04:24.21,0:04:27.63,Default,,0,0,0,,{\fad(120,120)}Two practical details: sample finer than half a wavelength,
+Dialogue: 0,0:04:27.67,0:04:31.09,Default,,0,0,0,,{\fad(120,120)}and pad with zeros, because the FFT treats
+Dialogue: 0,0:04:31.13,0:04:33.38,Default,,0,0,0,,{\fad(120,120)}the field as if it repeated forever.
+Dialogue: 0,0:04:33.45,0:04:35.80,Default,,0,0,0,,{\fad(120,120)}Here's a slit, computed exactly this way:
+Dialogue: 0,0:04:35.84,0:04:38.16,Default,,0,0,0,,{\fad(120,120)}a sharp shadow with ripples up close,
+Dialogue: 0,0:04:38.20,0:04:40.93,Default,,0,0,0,,{\fad(120,120)}spreading into a broad pattern far away.
+Dialogue: 0,0:04:41.00,0:04:42.80,Default,,0,0,0,,{\fad(120,120)}Give the starting field a curved phase,
+Dialogue: 0,0:04:42.84,0:04:46.60,Default,,0,0,0,,{\fad(120,120)}and the same three steps simulate a lens focusing light.
+Dialogue: 0,0:04:47.42,0:04:50.26,Default,,0,0,0,,{\fad(120,120)}Nothing was approximated, so this is exact for the
+Dialogue: 0,0:04:50.30,0:04:53.84,Default,,0,0,0,,{\fad(120,120)}scalar wave equation, at any distance and any angle.
+Dialogue: 0,0:04:53.91,0:04:55.41,Default,,0,0,0,,{\fad(120,120)}Break the field into plane waves,
+Dialogue: 0,0:04:55.45,0:04:59.30,Default,,0,0,0,,{\fad(120,120)}let each one advance its own phase, and add them back up.
+Dialogue: 0,0:04:59.37,0:05:04.28,Default,,0,0,0,,{\fad(120,120)}Two FFTs and one multiplication. That's the angular spectrum method.

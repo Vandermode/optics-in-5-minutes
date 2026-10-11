@@ -1,0 +1,306 @@
+{
+ "total": 311.401,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Here are tiny glowing beads, each one far smaller than the wavelength of light.",
+   "start": 0.9,
+   "end": 5.184
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Now look at them through a perfect microscope. Every bead has become a soft disc, wrapped in faint rings.",
+   "start": 5.504,
+   "end": 11.572
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "Push two beads closer than about 200 nanometres, and they merge into a single blob.",
+   "start": 11.892,
+   "end": 16.853
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "No lens maker can fix this. So why can't even a perfect lens make a perfect point?",
+   "start": 17.173,
+   "end": 22.211
+  },
+  {
+   "id": "s1",
+   "ch": 1,
+   "text": "First, what is an image? Think of any object as a crowd of tiny points of light.",
+   "start": 25.681,
+   "end": 30.333
+  },
+  {
+   "id": "s2",
+   "ch": 1,
+   "text": "A lens turns each point into the same small blur, called the point spread function, or PSF.",
+   "start": 30.653,
+   "end": 36.369
+  },
+  {
+   "id": "s3",
+   "ch": 1,
+   "text": "Each point stamps a copy of the PSF at its own position, scaled by its brightness. The beads glow independently, so the stamps simply add.",
+   "start": 36.689,
+   "end": 45.443
+  },
+  {
+   "id": "s4",
+   "ch": 1,
+   "text": "Adding up shifted copies like this is called a convolution. The image is the object, convolved with the PSF.",
+   "start": 45.763,
+   "end": 52.828
+  },
+  {
+   "id": "s5",
+   "ch": 1,
+   "text": "Now feed the blur a single wave, a pattern of stripes. Out comes the same wave, only fainter.",
+   "start": 53.148,
+   "end": 58.828
+  },
+  {
+   "id": "s6",
+   "ch": 1,
+   "text": "Just like propagation in episode one, waves are the eigenvectors of blurring. In the Fourier basis, convolution becomes multiplication.",
+   "start": 59.148,
+   "end": 67.695
+  },
+  {
+   "id": "s7",
+   "ch": 1,
+   "text": "Each spatial frequency kx just gets multiplied by one number: the transfer function, the Fourier transform of the PSF.",
+   "start": 68.015,
+   "end": 76.305
+  },
+  {
+   "id": "s8",
+   "ch": 1,
+   "text": "Notice how fine stripes fade much more than coarse ones.",
+   "start": 76.625,
+   "end": 79.52
+  },
+  {
+   "id": "p1",
+   "ch": 2,
+   "text": "So where does the PSF come from? Recall episode one: any light field is a sum of plane waves.",
+   "start": 80.59,
+   "end": 86.52
+  },
+  {
+   "id": "p2",
+   "ch": 2,
+   "text": "A point sends them out in every direction, each with its own kx = k sin \u03b8. Together they fill the k-circle.",
+   "start": 86.84,
+   "end": 94.741
+  },
+  {
+   "id": "p3",
+   "ch": 2,
+   "text": "But a lens has a finite opening. It only catches waves tilted less than some largest angle.",
+   "start": 95.061,
+   "end": 100.94
+  },
+  {
+   "id": "p4",
+   "ch": 2,
+   "text": "The sine of that angle is the numerical aperture, NA. On the k-circle, the lens keeps just a cap: kx up to k times NA.",
+   "start": 101.26,
+   "end": 109.505
+  },
+  {
+   "id": "p5",
+   "ch": 2,
+   "text": "Waves with kx beyond k are evanescent: they never even leave the object. So the lens is a hole in k-space, called the pupil.",
+   "start": 109.825,
+   "end": 118.08
+  },
+  {
+   "id": "p6",
+   "ch": 2,
+   "text": "Add up only the waves that pass through this hole, and you get the PSF. Watch what happens as the aperture opens.",
+   "start": 118.4,
+   "end": 125.201
+  },
+  {
+   "id": "p7",
+   "ch": 2,
+   "text": "The cap widens, and the spot shrinks. Its bright core, the Airy disc, has a radius of 0.61 \u03bb/NA.",
+   "start": 126.321,
+   "end": 134.332
+  },
+  {
+   "id": "p8",
+   "ch": 2,
+   "text": "And magnification can't save you: zooming in on the image only gives you a bigger blur.",
+   "start": 134.652,
+   "end": 139.626
+  },
+  {
+   "id": "a1",
+   "ch": 3,
+   "text": "In 1873, Ernst Abbe asked a sharper question: what is the finest grating a lens can image?",
+   "start": 140.696,
+   "end": 147.204
+  },
+  {
+   "id": "a2",
+   "ch": 3,
+   "text": "A grating of period d splits a plane wave into a straight beam and two first orders, tilted at sin \u03b8 = \u00b1\u03bb/d.",
+   "start": 147.524,
+   "end": 156.696
+  },
+  {
+   "id": "a3",
+   "ch": 3,
+   "text": "The lens must catch the straight beam and at least one first order: their interference rebuilds the stripes.",
+   "start": 157.016,
+   "end": 163.012
+  },
+  {
+   "id": "a4",
+   "ch": 3,
+   "text": "Now make the grating finer. The orders tilt further out, and once they leave the cap, the stripes are gone.",
+   "start": 163.332,
+   "end": 169.19
+  },
+  {
+   "id": "a5",
+   "ch": 3,
+   "text": "So with straight-on light, the finest period a lens can image is \u03bb/NA.",
+   "start": 169.51,
+   "end": 174.306
+  },
+  {
+   "id": "a6",
+   "ch": 3,
+   "text": "Abbe's trick: tilt the illumination, so the straight beam enters at one edge of the cap. Now a first order fits in at the other edge.",
+   "start": 174.626,
+   "end": 182.438
+  },
+  {
+   "id": "a7",
+   "ch": 3,
+   "text": "That doubles the reach, to a finest period of \u03bb/2NA. This is the diffraction limit.",
+   "start": 183.558,
+   "end": 189.31
+  },
+  {
+   "id": "c1",
+   "ch": 4,
+   "text": "Abbe's picture is for coherent light, like a laser, where fields add: the pupil cuts the field off sharply at k\u00b7NA.",
+   "start": 190.38,
+   "end": 198.011
+  },
+  {
+   "id": "c2",
+   "ch": 4,
+   "text": "Glowing beads are different: each emits with its own random, ever-changing phase, so intensities add, not fields.",
+   "start": 198.331,
+   "end": 205.325
+  },
+  {
+   "id": "c3",
+   "ch": 4,
+   "text": "Then the transfer function, called the OTF, is the overlap of the pupil with a shifted copy of itself.",
+   "start": 205.645,
+   "end": 211.858
+  },
+  {
+   "id": "c4",
+   "ch": 4,
+   "text": "Slide one copy across the other. The overlap shrinks smoothly, and only reaches zero at twice the coherent cutoff.",
+   "start": 212.178,
+   "end": 219.268
+  },
+  {
+   "id": "c5",
+   "ch": 4,
+   "text": "So incoherent light reaches twice as far in kx. But it isn't simply better: its contrast fades toward the cutoff.",
+   "start": 219.588,
+   "end": 226.924
+  },
+  {
+   "id": "c6",
+   "ch": 4,
+   "text": "Here's one test chart, imaged both ways. Coherent light rings at every edge; incoherent light is smooth, but its finest spokes wash out.",
+   "start": 227.244,
+   "end": 235.774
+  },
+  {
+   "id": "m1",
+   "ch": 5,
+   "text": "On a computer, imaging is the same three steps as in episode one: FFT, multiply by the OTF, inverse FFT.",
+   "start": 236.844,
+   "end": 245.522
+  },
+  {
+   "id": "m2",
+   "ch": 5,
+   "text": "So can we run it backwards? Take a blurred image with a little camera noise, and divide by the OTF.",
+   "start": 245.842,
+   "end": 251.859
+  },
+  {
+   "id": "m3",
+   "ch": 5,
+   "text": "Disaster. Wherever the OTF is tiny, the noise gets multiplied by thousands, and swamps everything.",
+   "start": 252.979,
+   "end": 259.62
+  },
+  {
+   "id": "m4",
+   "ch": 5,
+   "text": "The Wiener filter is the stable version. It divides where the signal beats the noise, and gently gives up where it doesn't.",
+   "start": 259.94,
+   "end": 266.894
+  },
+  {
+   "id": "m5",
+   "ch": 5,
+   "text": "But beyond the cutoff, the OTF is exactly zero. Those details never reached the camera, and no filter can bring them back.",
+   "start": 267.214,
+   "end": 274.789
+  },
+  {
+   "id": "m6",
+   "ch": 5,
+   "text": "Only prior knowledge or extra measurements can fill them in. And that's where computational imaging begins.",
+   "start": 275.109,
+   "end": 281.447
+  },
+  {
+   "id": "r1",
+   "ch": 6,
+   "text": "So here is the whole idea. Imaging is convolution with the PSF.",
+   "start": 282.517,
+   "end": 286.913
+  },
+  {
+   "id": "r2",
+   "ch": 6,
+   "text": "A lens only keeps directions with sin \u03b8 \u2264 NA, so details finer than about \u03bb/2NA never arrive.",
+   "start": 287.233,
+   "end": 294.801
+  },
+  {
+   "id": "r3",
+   "ch": 6,
+   "text": "One honest caveat: real lenses blur differently away from the centre, so the PSF slowly changes across the field.",
+   "start": 295.121,
+   "end": 302.489
+  },
+  {
+   "id": "r4",
+   "ch": 6,
+   "text": "And we saw that intensities add for glowing beads. But why? When does light interfere, and when doesn't it?",
+   "start": 302.809,
+   "end": 308.801
+  }
+ ]
+}

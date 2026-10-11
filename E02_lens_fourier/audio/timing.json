@@ -1,0 +1,334 @@
+{
+ "total": 312.45,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Shine a laser through a tiny slide with the letter F on it.",
+   "start": 0.9,
+   "end": 4.619
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "On a far wall, you don't see an F. You see streaks and fringes.",
+   "start": 4.939,
+   "end": 8.789
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "That pattern is the Fourier transform of the F, computed by the light itself.",
+   "start": 9.109,
+   "end": 13.828
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "Put a lens right behind the slide, and the same pattern appears just one focal length away.",
+   "start": 14.148,
+   "end": 19.488
+  },
+  {
+   "id": "h5",
+   "ch": 0,
+   "text": "Why does light compute Fourier transforms, for free?",
+   "start": 19.808,
+   "end": 22.605
+  },
+  {
+   "id": "f1",
+   "ch": 1,
+   "text": "Remember episode one: any field is a sum of plane waves, each heading in its own direction, sin \u03b8 = kx/k.",
+   "start": 24.675,
+   "end": 33.241
+  },
+  {
+   "id": "f2",
+   "ch": 1,
+   "text": "Their amplitudes form the field's spectrum: its Fourier transform.",
+   "start": 33.561,
+   "end": 37.249
+  },
+  {
+   "id": "f3",
+   "ch": 1,
+   "text": "Up close behind a slit, the waves still overlap, and you mostly see a shadow.",
+   "start": 37.569,
+   "end": 41.783
+  },
+  {
+   "id": "f4",
+   "ch": 1,
+   "text": "Now step back, a thousand times farther.",
+   "start": 42.103,
+   "end": 44.382
+  },
+  {
+   "id": "f5",
+   "ch": 1,
+   "text": "Each plane wave travels in a straight line. So far away, the directions come apart: direction \u03b8 lands at x = z tan \u03b8.",
+   "start": 44.702,
+   "end": 53.427
+  },
+  {
+   "id": "f6",
+   "ch": 1,
+   "text": "So the pattern on the wall is the spectrum itself, spread out in space. This is Fraunhofer diffraction.",
+   "start": 54.347,
+   "end": 60.46
+  },
+  {
+   "id": "f7",
+   "ch": 1,
+   "text": "How far is far? The pattern grows like z\u03bb/D, and it must dwarf the slit width D: z \u226b D\u00b2/\u03bb.",
+   "start": 60.78,
+   "end": 70.138
+  },
+  {
+   "id": "p1",
+   "ch": 2,
+   "text": "But why a Fourier transform? Follow the light from a point x\u2032 on the slide to a point x on the wall.",
+   "start": 71.208,
+   "end": 77.814
+  },
+  {
+   "id": "p2",
+   "ch": 2,
+   "text": "For small angles, the path length is nearly a parabola: z + (x \u2212 x\u2032)\u00b2/2z.",
+   "start": 78.134,
+   "end": 85.144
+  },
+  {
+   "id": "p3",
+   "ch": 2,
+   "text": "The wall adds up waves from every point of the slide, each with phase k times that path.",
+   "start": 85.464,
+   "end": 90.799
+  },
+  {
+   "id": "p4",
+   "ch": 2,
+   "text": "Expand the square. The x\u00b2 term is a curved phase on the wall that brightness can't see.",
+   "start": 91.119,
+   "end": 96.583
+  },
+  {
+   "id": "p5",
+   "ch": 2,
+   "text": "The cross term is exactly the Fourier kernel: position x on the wall picks out the frequency kx = k\u00b7x/z.",
+   "start": 96.903,
+   "end": 105.624
+  },
+  {
+   "id": "p6",
+   "ch": 2,
+   "text": "The x\u2032\u00b2 term is a chirp across the slide: its wiggles speed up toward the edges. Far away it flattens to one, leaving a pure Fourier transform.",
+   "start": 105.944,
+   "end": 115.896
+  },
+  {
+   "id": "p7",
+   "ch": 2,
+   "text": "Closer in, the chirp scrambles it. Could we cancel it?",
+   "start": 116.216,
+   "end": 119.1
+  },
+  {
+   "id": "l1",
+   "ch": 3,
+   "text": "A lens is glass that's thicker in the middle, so it delays the centre most. That's a phase e^(\u2212ikx\u00b2/2f): an opposite chirp.",
+   "start": 120.17,
+   "end": 130.214
+  },
+  {
+   "id": "l2",
+   "ch": 3,
+   "text": "Watch a flat wave pass through. It leaves curved, and converges to a point one focal length f behind the lens.",
+   "start": 130.534,
+   "end": 137.591
+  },
+  {
+   "id": "l3",
+   "ch": 3,
+   "text": "Tilt the wave, and the focus slides sideways, to x = f tan \u03b8.",
+   "start": 137.911,
+   "end": 142.776
+  },
+  {
+   "id": "l4",
+   "ch": 3,
+   "text": "Three directions, three separate spots. A lens sorts light by direction.",
+   "start": 143.896,
+   "end": 148.171
+  },
+  {
+   "id": "l5",
+   "ch": 3,
+   "text": "A slit sends out a whole spectrum of directions, so its spectrum appears in the focal plane, not at infinity.",
+   "start": 148.491,
+   "end": 154.747
+  },
+  {
+   "id": "l6",
+   "ch": 3,
+   "text": "In the math, the lens's chirp exactly cancels the slide's chirp when z = f.",
+   "start": 155.067,
+   "end": 160.441
+  },
+  {
+   "id": "l7",
+   "ch": 3,
+   "text": "Move the slide one focal length in front of the lens, and even the curved phase vanishes: an exact Fourier transform.",
+   "start": 160.761,
+   "end": 167.852
+  },
+  {
+   "id": "m1",
+   "ch": 4,
+   "text": "Now add a second lens, one more focal length on. It transforms the spectrum again, and the picture comes back.",
+   "start": 168.922,
+   "end": 175.439
+  },
+  {
+   "id": "m2",
+   "ch": 4,
+   "text": "Upside down! Two Fourier transforms don't undo each other: they mirror x into \u2212x.",
+   "start": 175.759,
+   "end": 181.419
+  },
+  {
+   "id": "m3",
+   "ch": 4,
+   "text": "This is the 4f system. The middle plane holds the spectrum, sorted by direction, so a mask there edits it, frequency by frequency.",
+   "start": 181.739,
+   "end": 190.166
+  },
+  {
+   "id": "m4",
+   "ch": 4,
+   "text": "A pinhole keeps only the low frequencies, and the image blurs.",
+   "start": 190.486,
+   "end": 194.017
+  },
+  {
+   "id": "m5",
+   "ch": 4,
+   "text": "A small dot that blocks the centre keeps only the high frequencies, so just the edges survive.",
+   "start": 194.337,
+   "end": 199.699
+  },
+  {
+   "id": "z1",
+   "ch": 5,
+   "text": "Now a harder case: a living cell. It's nearly transparent; it only delays the light a little.",
+   "start": 200.769,
+   "end": 206.132
+  },
+  {
+   "id": "z2",
+   "ch": 5,
+   "text": "At each point, the light is a big arrow plus a tiny one at 90\u00b0, so its length barely changes. The camera sees nothing.",
+   "start": 206.452,
+   "end": 214.293
+  },
+  {
+   "id": "z3",
+   "ch": 5,
+   "text": "The big arrow is light that went straight through, and the first lens focuses it all into the central spot.",
+   "start": 214.613,
+   "end": 220.188
+  },
+  {
+   "id": "z4",
+   "ch": 5,
+   "text": "So delay just that spot by a quarter wave.",
+   "start": 220.508,
+   "end": 223.062
+  },
+  {
+   "id": "z5",
+   "ch": 5,
+   "text": "Now the arrows line up, and the cell appears.",
+   "start": 224.182,
+   "end": 226.543
+  },
+  {
+   "id": "z6",
+   "ch": 5,
+   "text": "That's Frits Zernike's phase contrast microscope, the 1953 Nobel Prize.",
+   "start": 226.864,
+   "end": 232.089
+  },
+  {
+   "id": "c1",
+   "ch": 6,
+   "text": "On a computer, you can choose from three propagators.",
+   "start": 233.159,
+   "end": 236.024
+  },
+  {
+   "id": "c2",
+   "ch": 6,
+   "text": "The angular spectrum method from episode one: FFT, multiply, inverse FFT. Exact, on the same grid as the input, and best up close.",
+   "start": 236.344,
+   "end": 246.113
+  },
+  {
+   "id": "c3",
+   "ch": 6,
+   "text": "Single-FFT Fresnel: multiply by the chirp, then one FFT. The output grid stretches with distance, \u0394x\u2032 = \u03bbz/N\u0394x, so it's best far away.",
+   "start": 246.433,
+   "end": 259.092
+  },
+  {
+   "id": "c4",
+   "ch": 6,
+   "text": "And Fraunhofer: drop the chirp, and it's just one FFT.",
+   "start": 259.412,
+   "end": 262.958
+  },
+  {
+   "id": "c5",
+   "ch": 6,
+   "text": "The catch: chirps. Once a chirp's wiggles get shorter than two samples, the samples trace a false, slower wave: aliasing.",
+   "start": 263.278,
+   "end": 270.46
+  },
+  {
+   "id": "c6",
+   "ch": 6,
+   "text": "The angular spectrum chirp speeds up as z grows, while the Fresnel chirp slows down. They trade places at zc = N\u0394x\u00b2/\u03bb: angular spectrum below it, Fresnel above.",
+   "start": 270.78,
+   "end": 283.758
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "Far away, or at a lens's focus, each direction lands on its own spot, so light lays out its own spectrum.",
+   "start": 284.828,
+   "end": 291.293
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "A second lens brings the picture back, with a mask in between to edit it.",
+   "start": 291.613,
+   "end": 295.428
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "Where it breaks: our shortcut assumed small angles. For steep ones, use the exact kz from episode one.",
+   "start": 295.748,
+   "end": 302.387
+  },
+  {
+   "id": "r4",
+   "ch": 7,
+   "text": "And a real lens is finite: it only catches directions up to some angle. That cutoff is why every image is blurry.",
+   "start": 302.707,
+   "end": 309.85
+  }
+ ]
+}

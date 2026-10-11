@@ -1,0 +1,306 @@
+{
+ "total": 306.278,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Light can be trapped. Glass fibres carry it under oceans, and photonic chips route it through wires half a micron wide.",
+   "start": 0.9,
+   "end": 8.18
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "This ring, a few microns across, sorts colours. Send in several, and most pass straight by\u2026",
+   "start": 8.5,
+   "end": 13.867
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "\u2026but one colour drops into the ring, circles it, and leaves through the other wire.",
+   "start": 14.187,
+   "end": 18.378
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "How do you trap light in a wire? And why do only certain colours fit?",
+   "start": 18.698,
+   "end": 22.323
+  },
+  {
+   "id": "m1",
+   "ch": 1,
+   "text": "Start with a strip of glass, the core, surrounded by material of lower refractive index, the cladding.",
+   "start": 24.693,
+   "end": 30.827
+  },
+  {
+   "id": "m2",
+   "ch": 1,
+   "text": "A ray that meets the wall at a shallow angle can't escape. It's totally reflected, and zigzags along the core.",
+   "start": 31.147,
+   "end": 37.727
+  },
+  {
+   "id": "m3",
+   "ch": 1,
+   "text": "But light is a wave. The zigzag is really two plane waves crossing: one heading up, one heading down.",
+   "start": 38.047,
+   "end": 44.364
+  },
+  {
+   "id": "m4",
+   "ch": 1,
+   "text": "Together they form a standing wave across the core, which travels along it.",
+   "start": 44.684,
+   "end": 48.734
+  },
+  {
+   "id": "m5",
+   "ch": 1,
+   "text": "But not every angle works. Follow the wave up across the core and back: it must return in step with itself, or the bounces cancel.",
+   "start": 49.054,
+   "end": 57.18
+  },
+  {
+   "id": "m6",
+   "ch": 1,
+   "text": "So the round-trip phase must be a whole number of turns, 2\u03c0m. Slide the angle, and only a few angles click into place.",
+   "start": 57.5,
+   "end": 64.929
+  },
+  {
+   "id": "m7",
+   "ch": 1,
+   "text": "These are the modes. Each keeps its shape as it travels, with tails that fade into the cladding: evanescent waves.",
+   "start": 65.249,
+   "end": 71.655
+  },
+  {
+   "id": "e1",
+   "ch": 2,
+   "text": "There's a cleaner way to find modes, with linear algebra.",
+   "start": 72.725,
+   "end": 75.748
+  },
+  {
+   "id": "e2",
+   "ch": 2,
+   "text": "A mode is a shape E(x) that travels as e^(i\u03b2z). Put that into the wave equation, and out comes an eigenvalue problem.",
+   "start": 76.068,
+   "end": 84.693
+  },
+  {
+   "id": "e3",
+   "ch": 2,
+   "text": "Sample x on a grid. The second derivative becomes a tridiagonal matrix, and the index profile adds to its diagonal.",
+   "start": 85.013,
+   "end": 92.983
+  },
+  {
+   "id": "e4",
+   "ch": 2,
+   "text": "Its eigenvectors are the mode shapes. Its eigenvalues give each mode's propagation constant, \u03b2.",
+   "start": 93.303,
+   "end": 99.667
+  },
+  {
+   "id": "e5",
+   "ch": 2,
+   "text": "And each effective index, \u03b2/k\u2080, lies between the cladding and core indices.",
+   "start": 99.987,
+   "end": 105.538
+  },
+  {
+   "id": "e6",
+   "ch": 2,
+   "text": "Any input is a sum of modes, each advancing its own phase. It's the angular spectrum method from episode one, with modes in place of plane waves.",
+   "start": 105.858,
+   "end": 115.044
+  },
+  {
+   "id": "e7",
+   "ch": 2,
+   "text": "Launch an off-centre spot into a wide guide. The modes beat into a kaleidoscope, then fall back in step, and the spot reappears.",
+   "start": 115.364,
+   "end": 123.354
+  },
+  {
+   "id": "c1",
+   "ch": 3,
+   "text": "Now place two identical guides side by side, so close that their tails overlap, and launch light into one.",
+   "start": 124.424,
+   "end": 130.874
+  },
+  {
+   "id": "c2",
+   "ch": 3,
+   "text": "It drifts across into the other guide, then comes back, again and again.",
+   "start": 131.194,
+   "end": 135.069
+  },
+  {
+   "id": "c3",
+   "ch": 3,
+   "text": "Why? The pair has modes of its own: one symmetric, one antisymmetric, with propagation constants \u03b2 + \u03ba and \u03b2 \u2212 \u03ba.",
+   "start": 135.389,
+   "end": 144.456
+  },
+  {
+   "id": "c4",
+   "ch": 3,
+   "text": "Light in one guide is the sum of the two. One slowly falls behind, and after a distance \u03c0/2\u03ba it has flipped sign: now the sum sits in the other guide.",
+   "start": 144.776,
+   "end": 155.154
+  },
+  {
+   "id": "c5",
+   "ch": 3,
+   "text": "In the basis of the two guides, that's a 2\u00d72 rotation: amplitude cos \u03baz in one, i sin \u03baz in the other.",
+   "start": 155.474,
+   "end": 163.84
+  },
+  {
+   "id": "c6",
+   "ch": 3,
+   "text": "Stop halfway and you have a 50:50 splitter, the building block of interferometers, switches and optical processors.",
+   "start": 164.16,
+   "end": 171.272
+  },
+  {
+   "id": "r1",
+   "ch": 4,
+   "text": "To store light, bend a guide into a ring beside a straight one. On every pass, a little light leaks across into the ring.",
+   "start": 172.342,
+   "end": 179.252
+  },
+  {
+   "id": "r2",
+   "ch": 4,
+   "text": "Each round trip adds another copy, rotated by the round-trip phase, and a little weaker than the last.",
+   "start": 179.572,
+   "end": 185.342
+  },
+  {
+   "id": "r3",
+   "ch": 4,
+   "text": "Off resonance, the copies curl into a small spiral, and mostly cancel.",
+   "start": 185.662,
+   "end": 189.987
+  },
+  {
+   "id": "r4",
+   "ch": 4,
+   "text": "On resonance, when the ring fits a whole number of wavelengths, they line up into one long arrow. The light piles up.",
+   "start": 190.307,
+   "end": 196.884
+  },
+  {
+   "id": "r5",
+   "ch": 4,
+   "text": "Sweep the colour, and the stored light spikes at evenly spaced resonances. That's what the ring in the opening did.",
+   "start": 198.004,
+   "end": 204.324
+  },
+  {
+   "id": "q1",
+   "ch": 5,
+   "text": "How sharp is each spike? That's set by loss: the more round trips the light survives, the narrower the peak.",
+   "start": 205.394,
+   "end": 211.265
+  },
+  {
+   "id": "q2",
+   "ch": 5,
+   "text": "We measure it with the quality factor: the wavelength over the peak's width, Q = \u03bb/\u0394\u03bb. High Q means light stays stored for a long time.",
+   "start": 211.585,
+   "end": 221.246
+  },
+  {
+   "id": "q3",
+   "ch": 5,
+   "text": "Now watch the light that goes straight past. It meets the light leaking back out of the ring, which on resonance comes out flipped.",
+   "start": 221.566,
+   "end": 228.553
+  },
+  {
+   "id": "q4",
+   "ch": 5,
+   "text": "So the through port dims. When the ring leaks out exactly as fast as it loses light inside, the two cancel completely: critical coupling.",
+   "start": 228.873,
+   "end": 237.061
+  },
+  {
+   "id": "q5",
+   "ch": 5,
+   "text": "Couple more weakly, or more strongly, and the dip gets shallower.",
+   "start": 237.981,
+   "end": 241.333
+  },
+  {
+   "id": "a1",
+   "ch": 6,
+   "text": "On a computer, each idea takes just a few lines.",
+   "start": 242.403,
+   "end": 245.36
+  },
+  {
+   "id": "a2",
+   "ch": 6,
+   "text": "Modes: build the tridiagonal matrix and call an eigenvalue solver. Make the window wide enough for the tails, or its edges squeeze the modes.",
+   "start": 245.68,
+   "end": 254.661
+  },
+  {
+   "id": "a3",
+   "ch": 6,
+   "text": "Propagation: the beam propagation method, BPM. It alternates two steps: diffraction, an FFT as in episode one, and refraction, a thin phase screen.",
+   "start": 254.981,
+   "end": 265.869
+  },
+  {
+   "id": "a4",
+   "ch": 6,
+   "text": "Repeat, slice after slice. That's how the coupler was computed.",
+   "start": 266.189,
+   "end": 269.723
+  },
+  {
+   "id": "a5",
+   "ch": 6,
+   "text": "Resonators: add up the round trips, a geometric series, in one line.",
+   "start": 270.043,
+   "end": 274.43
+  },
+  {
+   "id": "a6",
+   "ch": 6,
+   "text": "The catch: BPM only marches forward, at gentle angles. Fine for couplers, but wrong for tight bends and reflections.",
+   "start": 274.75,
+   "end": 282.539
+  },
+  {
+   "id": "z1",
+   "ch": 7,
+   "text": "Trapped light settles into modes, the eigenvectors of the cross-section. A resonator stores light where round trips add in phase.",
+   "start": 283.609,
+   "end": 291.135
+  },
+  {
+   "id": "z2",
+   "ch": 7,
+   "text": "But these shortcuts assume gentle, forward-going light. Sharp bends, gratings and nanostructures break that, and then you need Maxwell's equations themselves.",
+   "start": 291.455,
+   "end": 301.118
+  },
+  {
+   "id": "z3",
+   "ch": 7,
+   "text": "How does a computer solve them? Next time.",
+   "start": 301.438,
+   "end": 303.678
+  }
+ ]
+}

@@ -1,0 +1,364 @@
+1
+00:00:00,900 --> 00:00:03,180
+Put living cells under a microscope,
+
+2
+00:00:03,220 --> 00:00:06,888
+and a camera sees almost nothing: they're nearly transparent.
+
+3
+00:00:06,958 --> 00:00:09,085
+Yet the light that went through them changed a lot.
+
+4
+00:00:09,125 --> 00:00:12,787
+Not in brightness, but in phase: the cells delayed it.
+
+5
+00:00:12,857 --> 00:00:15,800
+So how do you photograph something a camera can't see?
+
+6
+00:00:15,870 --> 00:00:17,014
+That's the phase problem.
+
+7
+00:00:17,054 --> 00:00:20,573
+Its solutions are holography and phase retrieval.
+
+8
+00:00:21,393 --> 00:00:25,625
+Remember: at each point, light is an arrow, a complex number.
+
+9
+00:00:25,665 --> 00:00:28,778
+Its length is the amplitude, its angle the phase.
+
+10
+00:00:28,848 --> 00:00:31,921
+A cell slows light down slightly. Where it's thicker,
+
+11
+00:00:31,961 --> 00:00:35,391
+the light falls further behind, so its arrow turns further.
+
+12
+00:00:35,461 --> 00:00:38,661
+But a camera can't record arrows. It records brightness,
+
+13
+00:00:38,701 --> 00:00:41,832
+the squared length |U|², and throws every angle away.
+
+14
+00:00:41,902 --> 00:00:44,427
+Why not measure the angle? Every arrow spins:
+
+15
+00:00:44,467 --> 00:00:47,956
+green light oscillates 600 trillion times a second,
+
+16
+00:00:47,996 --> 00:00:50,427
+far too fast for any detector.
+
+17
+00:00:50,497 --> 00:00:54,167
+So for a transparent object, all the information sits in the phase,
+
+18
+00:00:54,207 --> 00:00:56,598
+the very part the camera loses.
+
+19
+00:00:58,218 --> 00:01:03,066
+Dennis Gabor's idea, in 1948: add a known reference wave, R.
+
+20
+00:01:03,106 --> 00:01:07,417
+It spins in step with U, so the angle between them holds still.
+
+21
+00:01:07,487 --> 00:01:10,027
+The camera sees the length of the sum, U + R.
+
+22
+00:01:10,067 --> 00:01:13,652
+Change U's phase, and that length grows and shrinks.
+
+23
+00:01:13,722 --> 00:01:15,975
+The phase is now written in brightness.
+
+24
+00:01:16,845 --> 00:01:21,020
+Expanding the square gives four terms. The two cross terms,
+
+25
+00:01:21,060 --> 00:01:24,744
+UR* and U*R, contain U itself, phase and all.
+
+26
+00:01:24,814 --> 00:01:27,817
+With the reference straight on, as in Gabor's setup,
+
+27
+00:01:27,857 --> 00:01:30,200
+all four terms pile up in one place,
+
+28
+00:01:30,240 --> 00:01:32,754
+and the twin, U*, spoils the picture.
+
+29
+00:01:32,824 --> 00:01:36,404
+In 1962, Leith and Upatnieks tilted the reference.
+
+30
+00:01:36,444 --> 00:01:40,196
+Now the camera records fine stripes, called fringes.
+
+31
+00:01:40,266 --> 00:01:44,633
+A tilt is a shift in spatial frequency. So in the spectrum,
+
+32
+00:01:44,673 --> 00:01:48,009
+UR* slides to one side, and its twin to the other.
+
+33
+00:01:48,829 --> 00:01:51,564
+Here's a computed off-axis hologram of our cells.
+
+34
+00:01:51,604 --> 00:01:55,338
+Take its Fourier transform, and three islands appear.
+
+35
+00:01:55,408 --> 00:01:57,552
+The middle island holds |U|² and |R|².
+
+36
+00:01:57,592 --> 00:02:02,585
+On either side sits one cross term: UR*, and its twin.
+
+37
+00:02:02,655 --> 00:02:05,923
+They mustn't overlap. The middle one is twice as wide,
+
+38
+00:02:05,963 --> 00:02:08,113
+so the tilt's frequency must be at least
+
+39
+00:02:08,153 --> 00:02:10,192
+three times the object's bandwidth.
+
+40
+00:02:10,262 --> 00:02:14,188
+Now crop one island, move it to the centre, and transform back.
+
+41
+00:02:14,858 --> 00:02:16,561
+Out comes the full complex field:
+
+42
+00:02:16,601 --> 00:02:20,052
+brightness shows amplitude, and colour shows phase.
+
+43
+00:02:20,122 --> 00:02:22,567
+We recorded this hologram out of focus.
+
+44
+00:02:22,607 --> 00:02:24,655
+But with the whole field in hand,
+
+45
+00:02:24,695 --> 00:02:28,802
+the angular spectrum method from episode one can propagate it anywhere.
+
+46
+00:02:28,872 --> 00:02:31,692
+Sweep the distance, and the cells snap into focus,
+
+47
+00:02:31,732 --> 00:02:34,111
+long after the picture was taken.
+
+48
+00:02:35,731 --> 00:02:37,618
+What if there's no reference, only brightness?
+
+49
+00:02:37,658 --> 00:02:40,282
+Then you lean on what you already know.
+
+50
+00:02:40,352 --> 00:02:43,051
+Here, light passes through a window of known shape,
+
+51
+00:02:43,091 --> 00:02:44,953
+and the sample is transparent.
+
+52
+00:02:44,993 --> 00:02:48,236
+So in this plane, every arrow's length is known.
+
+53
+00:02:48,306 --> 00:02:51,910
+A lens shows the far field, and a camera there gives its lengths too.
+
+54
+00:02:51,950 --> 00:02:54,991
+Lengths in both planes, angles in neither.
+
+55
+00:02:55,061 --> 00:02:57,730
+The Gerchberg–Saxton algorithm starts from random
+
+56
+00:02:57,770 --> 00:03:01,725
+angles and goes back and forth with Fourier transforms.
+
+57
+00:03:01,795 --> 00:03:05,698
+In each plane, it keeps the angles, but swaps in the lengths it knows.
+
+58
+00:03:05,768 --> 00:03:07,990
+Each swap puts the guess on one constraint.
+
+59
+00:03:08,030 --> 00:03:12,886
+Bouncing between them, it homes in on a field that satisfies both.
+
+60
+00:03:12,956 --> 00:03:16,409
+Watch the error fall, as the cells emerge from the noise.
+
+61
+00:03:17,279 --> 00:03:22,346
+The far field alone has blind spots: a shifted copy, a flipped twin,
+
+62
+00:03:22,386 --> 00:03:25,585
+or a constant phase gives exactly the same brightness.
+
+63
+00:03:25,655 --> 00:03:28,135
+Our lopsided window rules out the first two.
+
+64
+00:03:28,175 --> 00:03:30,146
+More diverse data helps too:
+
+65
+00:03:30,186 --> 00:03:34,607
+several distances, or the overlapping scans of ptychography.
+
+66
+00:03:35,427 --> 00:03:37,666
+Now run it backwards. Instead of measuring
+
+67
+00:03:37,706 --> 00:03:40,470
+a far field, ask for one: say, a λ.
+
+68
+00:03:40,540 --> 00:03:42,189
+The mask can only change phase,
+
+69
+00:03:42,229 --> 00:03:45,584
+like a liquid-crystal screen or an etched glass plate.
+
+70
+00:03:45,624 --> 00:03:48,968
+Same loop, with the target in place of the measurement.
+
+71
+00:03:49,038 --> 00:03:53,251
+Watch the mask's phase scramble, and the far field snap into the target.
+
+72
+00:03:53,921 --> 00:03:57,166
+The grain is speckle. The target fixes only brightness,
+
+73
+00:03:57,206 --> 00:03:59,787
+so the far-field phase comes out random,
+
+74
+00:03:59,827 --> 00:04:03,802
+and nearby points interfere with each other, as in episode four.
+
+75
+00:04:03,872 --> 00:04:06,735
+Modern designs often use gradient descent instead,
+
+76
+00:04:06,775 --> 00:04:09,060
+which we'll meet in episode ten.
+
+77
+00:04:09,880 --> 00:04:12,961
+On a computer, each idea is just a few lines.
+
+78
+00:04:13,031 --> 00:04:16,394
+Holography: FFT the hologram, crop the island,
+
+79
+00:04:16,434 --> 00:04:20,944
+inverse FFT, then refocus with the angular spectrum method.
+
+80
+00:04:21,014 --> 00:04:25,530
+Retrieval and design: a loop of FFTs that swaps in what you know.
+
+81
+00:04:25,600 --> 00:04:28,768
+Two pitfalls. Every fringe needs at least two pixels,
+
+82
+00:04:28,808 --> 00:04:32,979
+or the island runs off the edge of the spectrum and wraps around.
+
+83
+00:04:33,049 --> 00:04:37,417
+So off-axis holography spends part of the camera's pixels on fringes.
+
+84
+00:04:37,487 --> 00:04:38,984
+And Gerchberg–Saxton can stall.
+
+85
+00:04:39,024 --> 00:04:43,155
+Restart it from new random angles, or switch to gradients.
+
+86
+00:04:43,975 --> 00:04:47,374
+Cameras lose phase. Interference writes it into fringes,
+
+87
+00:04:47,414 --> 00:04:51,119
+and constraints let a computer recover it, or design it.
+
+88
+00:04:51,189 --> 00:04:53,502
+Where does it break? Holography needs steady,
+
+89
+00:04:53,542 --> 00:04:56,958
+coherent light, and retrieval needs diverse data.
+
+90
+00:04:57,028 --> 00:04:58,992
+We just designed a phase mask on a computer.
+
+91
+00:04:59,032 --> 00:05:02,536
+How do you build one, and what does "thin" really mean?
+

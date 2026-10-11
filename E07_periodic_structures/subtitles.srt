@@ -1,0 +1,360 @@
+1
+00:00:00,900 --> 00:00:03,114
+Shine white light on a surface with fine,
+
+2
+00:00:03,154 --> 00:00:07,349
+regular grooves, like a CD, and it fans out into rainbows.
+
+3
+00:00:07,419 --> 00:00:11,098
+Stack thin, clear layers, like those in a morpho butterfly's wing,
+
+4
+00:00:11,138 --> 00:00:13,537
+and they reflect one vivid colour.
+
+5
+00:00:13,607 --> 00:00:15,914
+No pigment anywhere. So how can mere
+
+6
+00:00:15,954 --> 00:00:18,176
+structure pick a direction, and a colour?
+
+7
+00:00:18,246 --> 00:00:20,974
+It all comes down to one idea: symmetry.
+
+8
+00:00:21,794 --> 00:00:24,003
+Start with the simplest structure:
+
+9
+00:00:24,043 --> 00:00:26,996
+a flat boundary, with glass below and air above.
+
+10
+00:00:27,066 --> 00:00:32,030
+Remember from episode one: a plane wave's tilt is set by kx,
+
+11
+00:00:32,070 --> 00:00:36,633
+its frequency along x. Then sin θ = kx/k.
+
+12
+00:00:36,703 --> 00:00:40,188
+In glass the wavelength shrinks, so k grows to n·k0,
+
+13
+00:00:40,228 --> 00:00:45,632
+where n is the refractive index. Each medium gets its own circle.
+
+14
+00:00:45,702 --> 00:00:47,353
+The field can't jump at the boundary,
+
+15
+00:00:47,393 --> 00:00:49,843
+so the crests on both sides must meet.
+
+16
+00:00:49,883 --> 00:00:54,345
+Both waves share one kx: it's conserved, like momentum.
+
+17
+00:00:54,415 --> 00:00:57,838
+In k-space, a shared kx is one vertical line.
+
+18
+00:00:57,878 --> 00:00:59,421
+Where it crosses each circle,
+
+19
+00:00:59,461 --> 00:01:04,139
+you read off each wave's direction. That's Snell's law, in one picture.
+
+20
+00:01:04,209 --> 00:01:07,939
+Now tilt the incoming wave further. The line slides outward,
+
+21
+00:01:07,979 --> 00:01:10,751
+and soon it misses the air circle completely.
+
+22
+00:01:11,521 --> 00:01:15,194
+No wave in air has that kx, so all the light reflects,
+
+23
+00:01:15,234 --> 00:01:19,794
+leaving only an evanescent tail. That's total internal reflection.
+
+24
+00:01:20,614 --> 00:01:24,522
+Now give the boundary a pattern that repeats every Λ,
+
+25
+00:01:24,562 --> 00:01:27,205
+the period. That's a grating.
+
+26
+00:01:27,275 --> 00:01:31,536
+Anything that repeats like this is a Fourier series:
+
+27
+00:01:31,576 --> 00:01:36,972
+a sum of waves e^(imKx), where K = 2π/Λ.
+
+28
+00:01:37,042 --> 00:01:40,567
+Passing through the grating multiplies the light by these waves,
+
+29
+00:01:40,607 --> 00:01:43,940
+and each one shifts kx by mK.
+
+30
+00:01:44,010 --> 00:01:47,833
+So kx is now conserved only up to multiples of K.
+
+31
+00:01:47,873 --> 00:01:52,614
+In k-space: copies of the line, spaced by K.
+
+32
+00:01:52,684 --> 00:01:54,805
+Each copy that crosses the circle is a
+
+33
+00:01:54,845 --> 00:01:57,393
+beam that can leave: a diffraction order.
+
+34
+00:01:57,463 --> 00:02:01,507
+Colour sets the circle. Red light has a smaller circle than blue,
+
+35
+00:02:01,547 --> 00:02:05,085
+so the same K bends red the most: a rainbow.
+
+36
+00:02:05,155 --> 00:02:07,403
+Now shrink the period. K grows,
+
+37
+00:02:07,443 --> 00:02:10,495
+and the orders leave the circle, one by one.
+
+38
+00:02:11,365 --> 00:02:14,578
+Below one wavelength, only the zeroth order survives,
+
+39
+00:02:14,618 --> 00:02:18,933
+and the grating acts like a uniform film with an in-between index.
+
+40
+00:02:18,973 --> 00:02:21,058
+That's where metasurfaces live.
+
+41
+00:02:21,878 --> 00:02:24,938
+Now let the structure repeat along the direction light travels:
+
+42
+00:02:24,978 --> 00:02:28,213
+a stack of layers, repeating every period.
+
+43
+00:02:28,283 --> 00:02:30,631
+Shift it by one period and nothing changes.
+
+44
+00:02:30,671 --> 00:02:33,436
+So the waves inside can only gain a
+
+45
+00:02:33,476 --> 00:02:36,112
+fixed phase from one period to the next.
+
+46
+00:02:36,182 --> 00:02:40,852
+These are Bloch waves: e^(iκz) times a function that repeats.
+
+47
+00:02:40,892 --> 00:02:44,780
+A full turn of phase per period is invisible,
+
+48
+00:02:44,820 --> 00:02:47,713
+so κ only matters up to multiples of K.
+
+49
+00:02:47,783 --> 00:02:49,688
+Plot frequency, ω, against κ.
+
+50
+00:02:49,728 --> 00:02:53,084
+With no contrast, light follows a straight line,
+
+51
+00:02:53,124 --> 00:02:57,320
+and its copies, shifted by K, are the same waves.
+
+52
+00:02:57,390 --> 00:03:00,971
+The copies cross at the zone edge, where λ = 2nΛ.
+
+53
+00:03:01,011 --> 00:03:06,439
+That's the Bragg condition: reflections from every layer add up in step.
+
+54
+00:03:06,509 --> 00:03:10,252
+Now turn up the index contrast, Δn. Watch the crossing:
+
+55
+00:03:10,292 --> 00:03:14,253
+the forward and backward waves couple, and the bands pull apart.
+
+56
+00:03:15,123 --> 00:03:17,791
+A gap opens: a band of frequencies where
+
+57
+00:03:17,831 --> 00:03:19,836
+no wave can travel through the stack.
+
+58
+00:03:19,906 --> 00:03:22,909
+Light there dies off within a few layers, so it all reflects.
+
+59
+00:03:22,949 --> 00:03:27,545
+Ten pairs make a nearly perfect mirror for one band of colours.
+
+60
+00:03:28,365 --> 00:03:31,730
+How do you compute a real grating, with thick ridges?
+
+61
+00:03:31,770 --> 00:03:36,711
+Rigorous coupled-wave analysis, RCWA, puts all of this together.
+
+62
+00:03:36,781 --> 00:03:39,742
+Thanks to the period, the field in any layer is just
+
+63
+00:03:39,782 --> 00:03:42,746
+a list of amplitudes, one per diffraction order.
+
+64
+00:03:42,816 --> 00:03:47,414
+In a uniform layer, each order travels alone, picking up its own phase,
+
+65
+00:03:47,454 --> 00:03:52,216
+e^(ikz z). The matrix is diagonal, as in episode one.
+
+66
+00:03:52,286 --> 00:03:55,334
+In a grating layer, the Fourier coefficients of ε couple
+
+67
+00:03:55,374 --> 00:03:58,885
+each order to the others, and the matrix fills in.
+
+68
+00:03:58,955 --> 00:04:03,039
+Diagonalize it: the eigenvectors are the layer's Bloch modes,
+
+69
+00:04:03,079 --> 00:04:05,251
+and the eigenvalues give their kz.
+
+70
+00:04:05,321 --> 00:04:09,392
+Advance each mode's phase, match the fields at every interface,
+
+71
+00:04:09,432 --> 00:04:11,957
+and chain the layers with scattering matrices.
+
+72
+00:04:11,997 --> 00:04:15,675
+They never contain growing exponentials, so they stay stable.
+
+73
+00:04:16,495 --> 00:04:20,780
+On a computer, RCWA takes four lines: expand ε,
+
+74
+00:04:20,820 --> 00:04:24,445
+build the matrix, diagonalize, chain the layers.
+
+75
+00:04:24,515 --> 00:04:27,587
+The pitfall is truncation: keep enough orders,
+
+76
+00:04:27,627 --> 00:04:30,175
+and check that the answer converges.
+
+77
+00:04:30,215 --> 00:04:33,688
+For the other polarization, use Li's factorization rules.
+
+78
+00:04:33,758 --> 00:04:37,332
+The payoff: sweep the ridge width of a sub-wavelength grating,
+
+79
+00:04:37,372 --> 00:04:40,445
+and record the phase of the light passing straight through.
+
+80
+00:04:40,915 --> 00:04:42,766
+That's a metasurface's unit-cell library.
+
+81
+00:04:42,806 --> 00:04:45,193
+Pick the width for each phase you need,
+
+82
+00:04:45,233 --> 00:04:48,195
+and you have a flat lens, cell by cell.
+
+83
+00:04:49,015 --> 00:04:54,407
+Symmetry fixes momentum. Flat interfaces conserve kx.
+
+84
+00:04:54,447 --> 00:04:59,120
+Periodic ones conserve it only up to multiples of K = 2π/Λ,
+
+85
+00:04:59,160 --> 00:05:01,657
+and where copies meet, gaps open.
+
+86
+00:05:01,727 --> 00:05:05,610
+Where it breaks: RCWA needs true periodicity,
+
+87
+00:05:05,650 --> 00:05:09,513
+and a metasurface lens only borrows it locally, cell by cell.
+
+88
+00:05:09,583 --> 00:05:12,233
+Total internal reflection traps light in a slab,
+
+89
+00:05:12,273 --> 00:05:14,299
+and Bragg mirrors trap it between them.
+
+90
+00:05:14,339 --> 00:05:17,085
+So how do we guide light, and store it?
+

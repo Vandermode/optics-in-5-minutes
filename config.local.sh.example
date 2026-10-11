@@ -1,0 +1,8 @@
+# Copy to config.local.sh (gitignored) and uncomment what this machine needs. Sourced by common/env.sh.
+# Python of the optics5min environment, so `make` works without activating it:
+# O5_PY=$HOME/micromamba/envs/optics5min/bin/python
+# FFmpeg with libass, if the environment's ffmpeg lacks the `ass` filter (make check-env tells you):
+# O5_FFMPEG=/usr/bin/ffmpeg
+# O5_FFPROBE=/usr/bin/ffprobe
+# Speech models somewhere other than <repo>/.models:
+# O5_MODELS=$HOME/models/optics5min

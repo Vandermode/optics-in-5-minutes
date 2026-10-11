@@ -1,0 +1,265 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "This glass lens is about nine microns thick. This patterned plate is just one micron thick.",
+   "say": "This glass lens is about nine microns thick. This patterned plate is just one micron thick."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Shine green light through both, and they focus it to exactly the same spot.",
+   "say": "Shine green light through both, and they focus it to exactly the same spot."
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "But in white light, the glass lens still makes one sharp focus, while the plate smears the colours along its axis.",
+   "say": "But in white light, the glass lens still makes one sharp focus, while the plate smears the colours along its axis."
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "How can one micron of glass do a thick lens's job? And what's the catch?",
+   "say": "How can one micron of glass do a thick lens's job? And what's the catch?"
+  },
+  {
+   "id": "d1",
+   "ch": 1,
+   "text": "Inside glass, light slows down to c/n, where n, the refractive index, is about 1.5.",
+   "say": "Inside glass, light slows down, to c over en, where en, the refractive index, is about one point five."
+  },
+  {
+   "id": "d2",
+   "ch": 1,
+   "text": "Follow two paths, one through a block of glass of height h, one through air. In the glass, the crests bunch up and fall behind.",
+   "say": "Follow two paths: one through a block of glass of height aitch, one through air. In the glass, the crests bunch up, and fall behind."
+  },
+  {
+   "id": "d3",
+   "ch": 1,
+   "text": "The glass path lags by (n − 1)h: a phase delay φ = k₀(n − 1)h, where k₀ = 2π/λ.",
+   "say": "The glass path lags by en minus one, times aitch: a phase delay, phi equals kay naught, times en minus one, times aitch, where kay naught is two pi over lambda."
+  },
+  {
+   "id": "d4",
+   "ch": 1,
+   "text": "If the glass is thin, each point is simply delayed on its own: the outgoing field is the incoming one, times e^(iφ(x)).",
+   "say": "If the glass is thin, each point is simply delayed on its own: the outgoing field is the incoming one, times e to the i phi of ex."
+  },
+  {
+   "id": "d5",
+   "ch": 1,
+   "text": "That's the thin element approximation, TEA. Make the glass thickest in the middle, and a flat wave leaves curved, converging to a focus.",
+   "say": "That's the thin element approximation, T, E, A. Make the glass thickest in the middle, and a flat wave leaves curved, converging to a focus."
+  },
+  {
+   "id": "d6",
+   "ch": 1,
+   "text": "It's the simplest, fastest rung on a ladder of models. Remember its one assumption: every point on its own.",
+   "say": "It's the simplest, fastest rung on a ladder of models. Remember its one assumption: every point, on its own."
+  },
+  {
+   "id": "w1",
+   "ch": 2,
+   "text": "Now the key trick. Phase is an angle, so a delay of one full turn, 2π, changes nothing: every crest lands where the next one was.",
+   "say": "Now the key trick. Phase is an angle, so a delay of one full turn, two pi, changes nothing: every crest lands where the next one was."
+  },
+  {
+   "id": "w2",
+   "ch": 2,
+   "text": "In glass, one full turn of delay takes a height of λ/(n − 1). For green light, that's about 1.1 microns.",
+   "say": "In glass, one full turn of delay takes a height of lambda over en minus one. For green light, that's about one point one microns."
+  },
+  {
+   "id": "w3",
+   "ch": 2,
+   "text": "So slice the lens into slabs of exactly that height.",
+   "say": "So slice the lens into slabs of exactly that height."
+  },
+  {
+   "id": "w4",
+   "ch": 2,
+   "text": "Each full slab only adds whole turns. It changes nothing, so throw it away.",
+   "say": "Each full slab only adds whole turns. It changes nothing, so throw it away."
+  },
+  {
+   "id": "w5",
+   "ch": 2,
+   "pause_after": 0.9,
+   "text": "Keep just the curved remainders, and let them drop onto the base.",
+   "say": "Keep just the curved remainders, and let them drop onto the base."
+  },
+  {
+   "id": "w6",
+   "ch": 2,
+   "text": "What's left is a kinoform: rings called Fresnel zones, about one micron thick.",
+   "say": "What's left is a kin-oh-form: rings called Fresnel zones, about one micron thick."
+  },
+  {
+   "id": "w7",
+   "ch": 2,
+   "text": "The zones narrow toward the edge, where light must bend most steeply. There, they're only a few wavelengths wide.",
+   "say": "The zones narrow toward the edge, where light must bend most steeply. There, they're only a few wavelengths wide."
+  },
+  {
+   "id": "w8",
+   "ch": 2,
+   "text": "At the design wavelength, the kinoform multiplies the light by exactly the same e^(iφ). So it focuses to exactly the same spot.",
+   "say": "At the design wavelength, the kin-oh-form multiplies the light by exactly the same factor, e to the i phi. So it focuses to exactly the same spot."
+  },
+  {
+   "id": "s1",
+   "ch": 3,
+   "text": "Real fabrication often makes just N discrete heights, so each zone becomes a staircase.",
+   "say": "Real fabrication often makes just N discrete heights, so each zone becomes a staircase."
+  },
+  {
+   "id": "s2",
+   "ch": 3,
+   "text": "Each zone works like a tooth of a grating. A perfect ramp sends all the light into one diffraction order: the one aimed at the focus.",
+   "say": "Each zone works like a tooth of a grating. A perfect ramp sends all the light into one diffraction order: the one aimed at the focus."
+  },
+  {
+   "id": "s3",
+   "ch": 3,
+   "text": "Steps leak light into other orders, and that light misses the focus.",
+   "say": "Steps leak light into other orders, and that light misses the focus."
+  },
+  {
+   "id": "s4",
+   "ch": 3,
+   "text": "How much? At each point, draw an arrow for the gap between its phase and the perfect ramp, then add the arrows head to tail.",
+   "say": "How much? At each point, draw an arrow for the gap between its phase and the perfect ramp, then add the arrows, head to tail."
+  },
+  {
+   "id": "s5",
+   "ch": 3,
+   "pause_after": 0.6,
+   "text": "For the ramp, they all line up. But each step holds its phase while the ramp keeps turning, so the chain curls, and its end-to-end arrow is shorter.",
+   "say": "For the ramp, they all line up. But each step holds its phase while the ramp keeps turning, so the chain curls, and its end to end arrow is shorter."
+  },
+  {
+   "id": "s6",
+   "ch": 3,
+   "text": "Its squared length is the share of light in the focus: η = sinc²(1/N). That's 41% for two levels, 81% for four, 95% for eight, 99% for sixteen.",
+   "say": "Its squared length is the share of light in the focus: eta equals sink squared, of one over N. That's forty one percent for two levels, eighty one for four, ninety five for eight, and ninety nine for sixteen."
+  },
+  {
+   "id": "c1",
+   "ch": 4,
+   "text": "Now colour. A kinoform works by diffraction: its zones are fixed, and longer wavelengths bend more at each one.",
+   "say": "Now, colour. A kin-oh-form works by diffraction: its zones are fixed, and longer wavelengths bend more at each one."
+  },
+  {
+   "id": "c2",
+   "ch": 4,
+   "text": "So its focal length depends on colour, f = f₀λ₀/λ: red focuses closest, and blue farthest.",
+   "say": "So its focal length depends on colour: eff equals eff naught, lambda naught, over lambda. Red focuses closest, and blue, farthest."
+  },
+  {
+   "id": "c3",
+   "ch": 4,
+   "text": "A glass lens does the opposite, and far more gently: glass bends blue slightly more, so blue focuses a little closer.",
+   "say": "A glass lens does the opposite, and far more gently: glass bends blue slightly more, so blue focuses a little closer."
+  },
+  {
+   "id": "c4",
+   "ch": 4,
+   "text": "Opticians score this with the Abbe number: about +60 for common glass, but −3.45 for every diffractive lens.",
+   "say": "Opticians score this with the Ahbuh number: about plus sixty for common glass, but minus three point four five, for every diffractive lens."
+  },
+  {
+   "id": "c5",
+   "ch": 4,
+   "text": "Since the signs are opposite, a weak diffractive surface can cancel a glass lens's colour error. Or software can correct the colours afterwards.",
+   "say": "Since the signs are opposite, a weak diffractive surface can cancel a glass lens's colour error. Or software can correct the colours afterwards."
+  },
+  {
+   "id": "t1",
+   "ch": 5,
+   "text": "Now the deepest catch. The thin element approximation assumes every column of glass acts on its own. Is that true?",
+   "say": "Now the deepest catch. The thin element approximation assumes every column of glass acts on its own. Is that true?"
+  },
+  {
+   "id": "t2",
+   "ch": 5,
+   "pause_after": 0.6,
+   "text": "Zoom in on zones four wavelengths wide, with walls two wavelengths tall.",
+   "say": "Zoom in on zones four wavelengths wide, with walls two wavelengths tall."
+  },
+  {
+   "id": "t3",
+   "ch": 5,
+   "text": "Solve Maxwell's equations directly, and the clean picture breaks. Light crowds along the walls, shoots out in jets, and leaves shadows beside them.",
+   "say": "Solve Maxwell's equations directly, and the clean picture breaks. Light crowds along the walls, shoots out in jets, and leaves shadows beside them."
+  },
+  {
+   "id": "t4",
+   "ch": 5,
+   "text": "So less light reaches the focus: TEA promises all of it, but the full solution delivers about 70%.",
+   "say": "So less light reaches the focus: T, E, A, promises all of it, but the full solution delivers about seventy percent."
+  },
+  {
+   "id": "t5",
+   "ch": 5,
+   "text": "The narrower the zones, the bigger the gap. Only zones many wavelengths wide are safe.",
+   "say": "The narrower the zones, the bigger the gap. Only zones many wavelengths wide are safe."
+  },
+  {
+   "id": "t6",
+   "ch": 5,
+   "text": "Two ways out. Metasurfaces build the phase from pillars narrower than a wavelength, each one's delay computed from the full equations.",
+   "say": "Two ways out. Metasurfaces build the phase from pillars narrower than a wavelength, each one's delay computed from the full equations."
+  },
+  {
+   "id": "t7",
+   "ch": 5,
+   "text": "Or drop the shortcut, and simulate the whole element with a full-wave solver. That's Episode 9.",
+   "say": "Or drop the shortcut, and simulate the whole element with a full wave solver. That's episode nine."
+  },
+  {
+   "id": "a1",
+   "ch": 6,
+   "text": "On a computer, a flat lens takes two steps: multiply the field by e^(ik₀(n − 1)h), then propagate it with the angular spectrum method from Episode 1.",
+   "say": "On a computer, a flat lens takes two steps: multiply the field by e to the i, kay naught, en minus one, aitch. Then propagate it with the angular spectrum method, from episode one."
+  },
+  {
+   "id": "a2",
+   "ch": 6,
+   "text": "Three pitfalls: sample the finest zone with several points, wrap the heights, and simulate the profile you can really make, not the drawing.",
+   "say": "Three pitfalls: sample the finest zone with several points, wrap the heights, and simulate the profile you can really make, not the drawing."
+  },
+  {
+   "id": "a3",
+   "ch": 6,
+   "text": "Blur this profile by a quarter of a micron, and a quarter of the focused light is gone.",
+   "say": "Blur this profile by a quarter of a micron, and a quarter of the focused light is gone."
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "A thin element only delays light. Phase wraps at 2π, so a lens can be a micron thick, until “thin” stops being true.",
+   "say": "A thin element only delays light. Phase wraps at two pi, so a lens can be a micron thick, until thin stops being true."
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "The price: steps scatter light, colours split apart, and fine zones stop being thin.",
+   "say": "The price: steps scatter light, colours split apart, and fine zones stop being thin."
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "And a lens's outer zones look a lot like a grating. So next time: what does periodic structure do to light?",
+   "say": "And a lens's outer zones look a lot like a grating. So next time: what does periodic structure do to light?"
+  }
+ ]
+}

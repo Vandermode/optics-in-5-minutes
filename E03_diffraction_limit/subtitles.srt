@@ -1,0 +1,356 @@
+1
+00:00:00,900 --> 00:00:02,782
+Here are tiny glowing beads,
+
+2
+00:00:02,822 --> 00:00:05,434
+each one far smaller than the wavelength of light.
+
+3
+00:00:05,504 --> 00:00:07,577
+Now look at them through a perfect microscope.
+
+4
+00:00:07,617 --> 00:00:11,822
+Every bead has become a soft disc, wrapped in faint rings.
+
+5
+00:00:11,892 --> 00:00:14,568
+Push two beads closer than about 200 nanometres,
+
+6
+00:00:14,608 --> 00:00:17,103
+and they merge into a single blob.
+
+7
+00:00:17,173 --> 00:00:18,996
+No lens maker can fix this.
+
+8
+00:00:19,036 --> 00:00:22,461
+So why can't even a perfect lens make a perfect point?
+
+9
+00:00:25,681 --> 00:00:26,840
+First, what is an image?
+
+10
+00:00:26,880 --> 00:00:30,583
+Think of any object as a crowd of tiny points of light.
+
+11
+00:00:30,653 --> 00:00:33,293
+A lens turns each point into the same small blur,
+
+12
+00:00:33,333 --> 00:00:36,619
+called the point spread function, or PSF.
+
+13
+00:00:36,689 --> 00:00:40,243
+Each point stamps a copy of the PSF at its own position,
+
+14
+00:00:40,283 --> 00:00:41,870
+scaled by its brightness.
+
+15
+00:00:41,910 --> 00:00:45,693
+The beads glow independently, so the stamps simply add.
+
+16
+00:00:45,763 --> 00:00:48,700
+Adding up shifted copies like this is called a convolution.
+
+17
+00:00:48,740 --> 00:00:53,078
+The image is the object, convolved with the PSF.
+
+18
+00:00:53,148 --> 00:00:56,099
+Now feed the blur a single wave, a pattern of stripes.
+
+19
+00:00:56,139 --> 00:00:59,078
+Out comes the same wave, only fainter.
+
+20
+00:00:59,148 --> 00:01:01,521
+Just like propagation in episode one,
+
+21
+00:01:01,561 --> 00:01:04,384
+waves are the eigenvectors of blurring.
+
+22
+00:01:04,424 --> 00:01:07,945
+In the Fourier basis, convolution becomes multiplication.
+
+23
+00:01:08,015 --> 00:01:12,043
+Each spatial frequency kx just gets multiplied by one number:
+
+24
+00:01:12,083 --> 00:01:16,555
+the transfer function, the Fourier transform of the PSF.
+
+25
+00:01:16,625 --> 00:01:19,770
+Notice how fine stripes fade much more than coarse ones.
+
+26
+00:01:20,590 --> 00:01:24,156
+So where does the PSF come from? Recall episode one:
+
+27
+00:01:24,196 --> 00:01:26,770
+any light field is a sum of plane waves.
+
+28
+00:01:26,840 --> 00:01:29,257
+A point sends them out in every direction,
+
+29
+00:01:29,297 --> 00:01:34,991
+each with its own kx = k sin θ. Together they fill the k-circle.
+
+30
+00:01:35,061 --> 00:01:37,403
+But a lens has a finite opening.
+
+31
+00:01:37,443 --> 00:01:41,190
+It only catches waves tilted less than some largest angle.
+
+32
+00:01:41,260 --> 00:01:44,427
+The sine of that angle is the numerical aperture, NA.
+
+33
+00:01:44,467 --> 00:01:49,755
+On the k-circle, the lens keeps just a cap: kx up to k times NA.
+
+34
+00:01:49,825 --> 00:01:54,794
+Waves with kx beyond k are evanescent: they never even leave the object.
+
+35
+00:01:54,834 --> 00:01:58,330
+So the lens is a hole in k-space, called the pupil.
+
+36
+00:01:58,400 --> 00:02:00,840
+Add up only the waves that pass through this hole,
+
+37
+00:02:00,880 --> 00:02:05,451
+and you get the PSF. Watch what happens as the aperture opens.
+
+38
+00:02:06,321 --> 00:02:10,047
+The cap widens, and the spot shrinks. Its bright core,
+
+39
+00:02:10,087 --> 00:02:14,582
+the Airy disc, has a radius of 0.61 λ/NA.
+
+40
+00:02:14,652 --> 00:02:16,320
+And magnification can't save you:
+
+41
+00:02:16,360 --> 00:02:19,876
+zooming in on the image only gives you a bigger blur.
+
+42
+00:02:20,696 --> 00:02:24,151
+In 1873, Ernst Abbe asked a sharper question:
+
+43
+00:02:24,191 --> 00:02:27,454
+what is the finest grating a lens can image?
+
+44
+00:02:27,524 --> 00:02:32,126
+A grating of period d splits a plane wave into a straight
+
+45
+00:02:32,166 --> 00:02:36,946
+beam and two first orders, tilted at sin θ = ±λ/d.
+
+46
+00:02:37,016 --> 00:02:40,759
+The lens must catch the straight beam and at least one first order:
+
+47
+00:02:40,799 --> 00:02:43,262
+their interference rebuilds the stripes.
+
+48
+00:02:43,332 --> 00:02:46,709
+Now make the grating finer. The orders tilt further out,
+
+49
+00:02:46,749 --> 00:02:49,440
+and once they leave the cap, the stripes are gone.
+
+50
+00:02:49,510 --> 00:02:54,556
+So with straight-on light, the finest period a lens can image is λ/NA.
+
+51
+00:02:54,626 --> 00:02:56,279
+Abbe's trick: tilt the illumination,
+
+52
+00:02:56,319 --> 00:02:59,278
+so the straight beam enters at one edge of the cap.
+
+53
+00:02:59,318 --> 00:03:02,688
+Now a first order fits in at the other edge.
+
+54
+00:03:03,558 --> 00:03:06,909
+That doubles the reach, to a finest period of λ/2NA.
+
+55
+00:03:06,949 --> 00:03:09,560
+This is the diffraction limit.
+
+56
+00:03:10,380 --> 00:03:13,222
+Abbe's picture is for coherent light, like a laser,
+
+57
+00:03:13,262 --> 00:03:18,261
+where fields add: the pupil cuts the field off sharply at k·NA.
+
+58
+00:03:18,331 --> 00:03:21,710
+Glowing beads are different: each emits with its own random,
+
+59
+00:03:21,750 --> 00:03:25,575
+ever-changing phase, so intensities add, not fields.
+
+60
+00:03:25,645 --> 00:03:27,989
+Then the transfer function, called the OTF,
+
+61
+00:03:28,029 --> 00:03:32,108
+is the overlap of the pupil with a shifted copy of itself.
+
+62
+00:03:32,178 --> 00:03:35,963
+Slide one copy across the other. The overlap shrinks smoothly,
+
+63
+00:03:36,003 --> 00:03:39,518
+and only reaches zero at twice the coherent cutoff.
+
+64
+00:03:39,588 --> 00:03:42,883
+So incoherent light reaches twice as far in kx.
+
+65
+00:03:42,923 --> 00:03:47,174
+But it isn't simply better: its contrast fades toward the cutoff.
+
+66
+00:03:47,244 --> 00:03:49,543
+Here's one test chart, imaged both ways.
+
+67
+00:03:49,583 --> 00:03:51,835
+Coherent light rings at every edge;
+
+68
+00:03:51,875 --> 00:03:56,024
+incoherent light is smooth, but its finest spokes wash out.
+
+69
+00:03:56,844 --> 00:04:01,388
+On a computer, imaging is the same three steps as in episode one:
+
+70
+00:04:01,428 --> 00:04:05,772
+FFT, multiply by the OTF, inverse FFT.
+
+71
+00:04:05,842 --> 00:04:08,426
+So can we run it backwards? Take a blurred image
+
+72
+00:04:08,466 --> 00:04:12,109
+with a little camera noise, and divide by the OTF.
+
+73
+00:04:12,979 --> 00:04:15,631
+Disaster. Wherever the OTF is tiny,
+
+74
+00:04:15,671 --> 00:04:19,870
+the noise gets multiplied by thousands, and swamps everything.
+
+75
+00:04:19,940 --> 00:04:22,280
+The Wiener filter is the stable version.
+
+76
+00:04:22,320 --> 00:04:25,305
+It divides where the signal beats the noise,
+
+77
+00:04:25,345 --> 00:04:27,144
+and gently gives up where it doesn't.
+
+78
+00:04:27,214 --> 00:04:30,608
+But beyond the cutoff, the OTF is exactly zero.
+
+79
+00:04:30,648 --> 00:04:33,053
+Those details never reached the camera,
+
+80
+00:04:33,093 --> 00:04:35,039
+and no filter can bring them back.
+
+81
+00:04:35,109 --> 00:04:38,839
+Only prior knowledge or extra measurements can fill them in.
+
+82
+00:04:38,879 --> 00:04:41,697
+And that's where computational imaging begins.
+
+83
+00:04:42,517 --> 00:04:47,163
+So here is the whole idea. Imaging is convolution with the PSF.
+
+84
+00:04:47,233 --> 00:04:51,157
+A lens only keeps directions with sin θ ≤ NA,
+
+85
+00:04:51,197 --> 00:04:55,051
+so details finer than about λ/2NA never arrive.
+
+86
+00:04:55,121 --> 00:04:59,153
+One honest caveat: real lenses blur differently away from the centre,
+
+87
+00:04:59,193 --> 00:05:02,739
+so the PSF slowly changes across the field.
+
+88
+00:05:02,809 --> 00:05:05,256
+And we saw that intensities add for glowing beads.
+
+89
+00:05:05,296 --> 00:05:09,051
+But why? When does light interfere, and when doesn't it?
+

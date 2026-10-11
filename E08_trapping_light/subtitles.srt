@@ -1,0 +1,348 @@
+1
+00:00:00,900 --> 00:00:04,070
+Light can be trapped. Glass fibres carry it under oceans,
+
+2
+00:00:04,110 --> 00:00:08,430
+and photonic chips route it through wires half a micron wide.
+
+3
+00:00:08,500 --> 00:00:10,987
+This ring, a few microns across, sorts colours.
+
+4
+00:00:11,027 --> 00:00:14,117
+Send in several, and most pass straight by…
+
+5
+00:00:14,187 --> 00:00:15,871
+…but one colour drops into the ring,
+
+6
+00:00:15,911 --> 00:00:18,628
+circles it, and leaves through the other wire.
+
+7
+00:00:18,698 --> 00:00:22,573
+How do you trap light in a wire? And why do only certain colours fit?
+
+8
+00:00:24,693 --> 00:00:26,699
+Start with a strip of glass, the core,
+
+9
+00:00:26,739 --> 00:00:31,077
+surrounded by material of lower refractive index, the cladding.
+
+10
+00:00:31,147 --> 00:00:34,531
+A ray that meets the wall at a shallow angle can't escape.
+
+11
+00:00:34,571 --> 00:00:37,977
+It's totally reflected, and zigzags along the core.
+
+12
+00:00:38,047 --> 00:00:42,475
+But light is a wave. The zigzag is really two plane waves crossing:
+
+13
+00:00:42,515 --> 00:00:44,614
+one heading up, one heading down.
+
+14
+00:00:44,684 --> 00:00:47,199
+Together they form a standing wave across the core,
+
+15
+00:00:47,239 --> 00:00:48,984
+which travels along it.
+
+16
+00:00:49,054 --> 00:00:53,761
+But not every angle works. Follow the wave up across the core and back:
+
+17
+00:00:53,801 --> 00:00:57,430
+it must return in step with itself, or the bounces cancel.
+
+18
+00:00:57,500 --> 00:01:00,816
+So the round-trip phase must be a whole number of turns,
+
+19
+00:01:00,856 --> 00:01:05,179
+2πm. Slide the angle, and only a few angles click into place.
+
+20
+00:01:05,249 --> 00:01:08,425
+These are the modes. Each keeps its shape as it travels,
+
+21
+00:01:08,465 --> 00:01:11,905
+with tails that fade into the cladding: evanescent waves.
+
+22
+00:01:12,725 --> 00:01:15,998
+There's a cleaner way to find modes, with linear algebra.
+
+23
+00:01:16,068 --> 00:01:19,950
+A mode is a shape E(x) that travels as e^(iβz).
+
+24
+00:01:19,990 --> 00:01:24,943
+Put that into the wave equation, and out comes an eigenvalue problem.
+
+25
+00:01:25,013 --> 00:01:29,801
+Sample x on a grid. The second derivative becomes a tridiagonal matrix,
+
+26
+00:01:29,841 --> 00:01:33,233
+and the index profile adds to its diagonal.
+
+27
+00:01:33,303 --> 00:01:35,587
+Its eigenvectors are the mode shapes.
+
+28
+00:01:35,627 --> 00:01:39,917
+Its eigenvalues give each mode's propagation constant, β.
+
+29
+00:01:39,987 --> 00:01:42,370
+And each effective index, β/k₀,
+
+30
+00:01:42,410 --> 00:01:45,788
+lies between the cladding and core indices.
+
+31
+00:01:45,858 --> 00:01:50,309
+Any input is a sum of modes, each advancing its own phase.
+
+32
+00:01:50,349 --> 00:01:53,196
+It's the angular spectrum method from episode one,
+
+33
+00:01:53,236 --> 00:01:55,294
+with modes in place of plane waves.
+
+34
+00:01:55,364 --> 00:01:58,494
+Launch an off-centre spot into a wide guide.
+
+35
+00:01:58,534 --> 00:02:00,311
+The modes beat into a kaleidoscope,
+
+36
+00:02:00,351 --> 00:02:03,604
+then fall back in step, and the spot reappears.
+
+37
+00:02:04,424 --> 00:02:07,248
+Now place two identical guides side by side,
+
+38
+00:02:07,288 --> 00:02:11,124
+so close that their tails overlap, and launch light into one.
+
+39
+00:02:11,194 --> 00:02:15,319
+It drifts across into the other guide, then comes back, again and again.
+
+40
+00:02:15,389 --> 00:02:19,470
+Why? The pair has modes of its own: one symmetric,
+
+41
+00:02:19,510 --> 00:02:24,706
+one antisymmetric, with propagation constants β + κ and β − κ.
+
+42
+00:02:24,776 --> 00:02:29,394
+Light in one guide is the sum of the two. One slowly falls behind,
+
+43
+00:02:29,434 --> 00:02:32,333
+and after a distance π/2κ it has flipped sign:
+
+44
+00:02:32,373 --> 00:02:35,404
+now the sum sits in the other guide.
+
+45
+00:02:35,474 --> 00:02:39,436
+In the basis of the two guides, that's a 2×2 rotation:
+
+46
+00:02:39,476 --> 00:02:44,090
+amplitude cos κz in one, i sin κz in the other.
+
+47
+00:02:44,160 --> 00:02:46,853
+Stop halfway and you have a 50:50 splitter,
+
+48
+00:02:46,893 --> 00:02:51,522
+the building block of interferometers, switches and optical processors.
+
+49
+00:02:52,342 --> 00:02:56,342
+To store light, bend a guide into a ring beside a straight one.
+
+50
+00:02:56,382 --> 00:02:59,502
+On every pass, a little light leaks across into the ring.
+
+51
+00:02:59,572 --> 00:03:01,306
+Each round trip adds another copy,
+
+52
+00:03:01,346 --> 00:03:05,592
+rotated by the round-trip phase, and a little weaker than the last.
+
+53
+00:03:05,662 --> 00:03:10,237
+Off resonance, the copies curl into a small spiral, and mostly cancel.
+
+54
+00:03:10,307 --> 00:03:12,924
+On resonance, when the ring fits a whole number of wavelengths,
+
+55
+00:03:12,964 --> 00:03:17,134
+they line up into one long arrow. The light piles up.
+
+56
+00:03:18,004 --> 00:03:19,845
+Sweep the colour, and the stored light
+
+57
+00:03:19,885 --> 00:03:21,778
+spikes at evenly spaced resonances.
+
+58
+00:03:21,818 --> 00:03:24,574
+That's what the ring in the opening did.
+
+59
+00:03:25,394 --> 00:03:27,826
+How sharp is each spike? That's set by loss:
+
+60
+00:03:27,866 --> 00:03:31,515
+the more round trips the light survives, the narrower the peak.
+
+61
+00:03:31,585 --> 00:03:33,797
+We measure it with the quality factor:
+
+62
+00:03:33,837 --> 00:03:36,404
+the wavelength over the peak's width,
+
+63
+00:03:36,444 --> 00:03:41,496
+Q = λ/Δλ. High Q means light stays stored for a long time.
+
+64
+00:03:41,566 --> 00:03:43,710
+Now watch the light that goes straight past.
+
+65
+00:03:43,750 --> 00:03:46,235
+It meets the light leaking back out of the ring,
+
+66
+00:03:46,275 --> 00:03:48,803
+which on resonance comes out flipped.
+
+67
+00:03:48,873 --> 00:03:51,434
+So the through port dims. When the ring leaks
+
+68
+00:03:51,474 --> 00:03:54,383
+out exactly as fast as it loses light inside,
+
+69
+00:03:54,423 --> 00:03:57,311
+the two cancel completely: critical coupling.
+
+70
+00:03:57,981 --> 00:04:01,583
+Couple more weakly, or more strongly, and the dip gets shallower.
+
+71
+00:04:02,403 --> 00:04:05,610
+On a computer, each idea takes just a few lines.
+
+72
+00:04:05,680 --> 00:04:10,746
+Modes: build the tridiagonal matrix and call an eigenvalue solver.
+
+73
+00:04:10,786 --> 00:04:13,396
+Make the window wide enough for the tails,
+
+74
+00:04:13,436 --> 00:04:14,911
+or its edges squeeze the modes.
+
+75
+00:04:14,981 --> 00:04:20,448
+Propagation: the beam propagation method, BPM. It alternates two steps:
+
+76
+00:04:20,488 --> 00:04:23,637
+diffraction, an FFT as in episode one,
+
+77
+00:04:23,677 --> 00:04:26,119
+and refraction, a thin phase screen.
+
+78
+00:04:26,189 --> 00:04:29,973
+Repeat, slice after slice. That's how the coupler was computed.
+
+79
+00:04:30,043 --> 00:04:34,680
+Resonators: add up the round trips, a geometric series, in one line.
+
+80
+00:04:34,750 --> 00:04:38,683
+The catch: BPM only marches forward, at gentle angles.
+
+81
+00:04:38,723 --> 00:04:42,789
+Fine for couplers, but wrong for tight bends and reflections.
+
+82
+00:04:43,609 --> 00:04:47,469
+Trapped light settles into modes, the eigenvectors of the cross-section.
+
+83
+00:04:47,509 --> 00:04:51,385
+A resonator stores light where round trips add in phase.
+
+84
+00:04:51,455 --> 00:04:55,844
+But these shortcuts assume gentle, forward-going light. Sharp bends,
+
+85
+00:04:55,884 --> 00:04:58,113
+gratings and nanostructures break that,
+
+86
+00:04:58,153 --> 00:05:01,368
+and then you need Maxwell's equations themselves.
+
+87
+00:05:01,438 --> 00:05:03,928
+How does a computer solve them? Next time.
+

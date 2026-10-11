@@ -1,0 +1,306 @@
+{
+ "total": 315.344,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Watch a pulse of light, just a few wave cycles long, race along a silicon wire toward a tiny ring.",
+   "start": 0.9,
+   "end": 7.025
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Some of it hops into the ring, circles around and around, and leaks back out a little on every lap.",
+   "start": 7.345,
+   "end": 13.015
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "Every model so far was an approximation. This is Maxwell's equations themselves, solved on a grid. How?",
+   "start": 13.335,
+   "end": 20.054
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "It's called finite-difference time-domain, FDTD, and it rests on two ideas: leapfrogging fields, and a border made of complex numbers.",
+   "start": 20.374,
+   "end": 29.232
+  },
+  {
+   "id": "m1",
+   "ch": 1,
+   "text": "In two dimensions, the electric field E points straight out of the screen, and the magnetic field H lies flat in the plane.",
+   "start": 30.302,
+   "end": 37.401
+  },
+  {
+   "id": "m2",
+   "ch": 1,
+   "text": "Maxwell's equations then say two things: a changing H is driven by the curl of E, and a changing E by the curl of H.",
+   "start": 37.721,
+   "end": 45.713
+  },
+  {
+   "id": "m3",
+   "ch": 1,
+   "text": "The curl measures swirl: how much a field circulates around each point.",
+   "start": 46.033,
+   "end": 49.877
+  },
+  {
+   "id": "m4",
+   "ch": 1,
+   "text": "Watch a bump of E. Its slopes make H start to circulate around it.",
+   "start": 50.197,
+   "end": 54.042
+  },
+  {
+   "id": "m5",
+   "ch": 1,
+   "text": "That swirling H lowers E in the middle and raises it around the edge. The bump spreads into a ring: a wave that pushes itself along.",
+   "start": 54.362,
+   "end": 62.389
+  },
+  {
+   "id": "m6",
+   "ch": 1,
+   "text": "These rules contain only derivatives, which compare each point with its neighbours. Everything is local.",
+   "start": 62.709,
+   "end": 68.624
+  },
+  {
+   "id": "y1",
+   "ch": 2,
+   "text": "On a computer, sample the fields on a grid, and replace each derivative by a difference of neighbours.",
+   "start": 69.694,
+   "end": 75.257
+  },
+  {
+   "id": "y2",
+   "ch": 2,
+   "text": "But that difference, divided by the spacing, gives the slope best at the midpoint between the samples, not at either end.",
+   "start": 75.577,
+   "end": 82.155
+  },
+  {
+   "id": "y3",
+   "ch": 2,
+   "text": "So in 1966, Kane Yee put H exactly at those midpoints: half a cell away from E.",
+   "start": 82.475,
+   "end": 88.439
+  },
+  {
+   "id": "y4",
+   "ch": 2,
+   "text": "Time gets the same trick: E lives on whole time steps, and H on the half steps in between.",
+   "start": 88.759,
+   "end": 94.274
+  },
+  {
+   "id": "y5",
+   "ch": 2,
+   "text": "The algorithm is a leapfrog. Use the curl of E to update H, then the curl of H to update E, and repeat.",
+   "start": 94.594,
+   "end": 101.443
+  },
+  {
+   "id": "y6",
+   "ch": 2,
+   "text": "Here it is in 1D, with real numbers: each new value uses only its two neighbours, yet the pulse marches on.",
+   "start": 101.763,
+   "end": 108.622
+  },
+  {
+   "id": "y7",
+   "ch": 2,
+   "text": "Matter is just one number per cell, the permittivity \u03b5. Any shape you can paint on the grid, you can simulate.",
+   "start": 108.942,
+   "end": 115.572
+  },
+  {
+   "id": "c1",
+   "ch": 3,
+   "text": "The grid has two rules of its own. First, a speed limit: each step, news travels only to neighbouring cells, so it spreads in a diamond.",
+   "start": 116.642,
+   "end": 124.906
+  },
+  {
+   "id": "c2",
+   "ch": 3,
+   "text": "Light spreads in a circle, which must fit inside the diamond: in 2D, c \u0394t \u2264 \u0394x/\u221a2. This is the Courant limit.",
+   "start": 125.226,
+   "end": 134.486
+  },
+  {
+   "id": "c3",
+   "ch": 3,
+   "text": "Break it by just six percent, and the computed field explodes.",
+   "start": 134.806,
+   "end": 138.227
+  },
+  {
+   "id": "c4",
+   "ch": 3,
+   "text": "Second, the grid distorts waves. Recall the k-circle: in free space, all directions share one wavelength.",
+   "start": 139.147,
+   "end": 145.654
+  },
+  {
+   "id": "c5",
+   "ch": 3,
+   "text": "On the grid, the circle bulges, most along the axes: short waves travel too slowly, slowest along the grid lines.",
+   "start": 145.974,
+   "end": 153.395
+  },
+  {
+   "id": "c6",
+   "ch": 3,
+   "text": "A pulse becomes a squarish ring, trailed by ripples. The fix: ten to twenty cells per wavelength, or more.",
+   "start": 153.715,
+   "end": 160.305
+  },
+  {
+   "id": "b1",
+   "ch": 4,
+   "text": "Now the hardest part: the grid must end somewhere, but real light just keeps going.",
+   "start": 161.375,
+   "end": 166.041
+  },
+  {
+   "id": "b2",
+   "ch": 4,
+   "text": "If the grid simply stops, its edge acts as a mirror, and the echo ruins the answer.",
+   "start": 166.361,
+   "end": 171.316
+  },
+  {
+   "id": "b3",
+   "ch": 4,
+   "text": "So add a layer that absorbs? A sudden change of material reflects too, right at its edge.",
+   "start": 171.636,
+   "end": 177.052
+  },
+  {
+   "id": "b4",
+   "ch": 4,
+   "text": "A gentler layer must be thick and expensive. We need an absorber that light cannot see.",
+   "start": 177.372,
+   "end": 182.44
+  },
+  {
+   "id": "p1",
+   "ch": 5,
+   "text": "The trick, found in 1994 by B\u00e9renger, and by Chew and Weedon, is to change not the material, but the coordinates.",
+   "start": 184.31,
+   "end": 191.797
+  },
+  {
+   "id": "p2",
+   "ch": 5,
+   "text": "Inside the border, let the position x pick up an imaginary part that grows with depth: x + (i/\u03c9)\u222b\u03c3 dx.",
+   "start": 192.117,
+   "end": 201.031
+  },
+  {
+   "id": "p3",
+   "ch": 5,
+   "text": "A wave e^(ikx) at this complex position keeps its wavelength, but gains a factor e^(\u2212(k/\u03c9)\u222b\u03c3 dx): it dies away.",
+   "start": 201.351,
+   "end": 212.719
+  },
+  {
+   "id": "p4",
+   "ch": 5,
+   "text": "These are the same Maxwell equations in stretched coordinates, so the border matches perfectly: no echo, at any angle or frequency.",
+   "start": 213.039,
+   "end": 221.229
+  },
+  {
+   "id": "p5",
+   "ch": 5,
+   "text": "This is the perfectly matched layer, or PML. Side by side: the wall echoes, the lossy layer echoes, the PML stays silent.",
+   "start": 221.549,
+   "end": 230.263
+  },
+  {
+   "id": "p6",
+   "ch": 5,
+   "text": "On a grid, a tiny echo remains, so \u03c3 ramps up smoothly. Grazing and evanescent waves are the hardest to absorb.",
+   "start": 230.583,
+   "end": 238.19
+  },
+  {
+   "id": "a1",
+   "ch": 6,
+   "text": "In code, the whole method is four lines inside a time loop.",
+   "start": 239.26,
+   "end": 242.567
+  },
+  {
+   "id": "a2",
+   "ch": 6,
+   "text": "Update H from the curl of E. Update E from the curl of H. Absorb in the PML. Add the source.",
+   "start": 242.887,
+   "end": 249.14
+  },
+  {
+   "id": "a3",
+   "ch": 6,
+   "text": "Send in one short pulse, record what comes back, and a Fourier transform in time gives every wavelength from a single run.",
+   "start": 249.46,
+   "end": 256.533
+  },
+  {
+   "id": "a4",
+   "ch": 6,
+   "text": "For a Bragg mirror, a stack of alternating layers, the whole reflection spectrum lands right on the exact answer.",
+   "start": 256.853,
+   "end": 263.341
+  },
+  {
+   "id": "a5",
+   "ch": 6,
+   "text": "The price: every cell is updated at every step. A small 2D run takes seconds; a large 3D device, minutes to hours on GPUs.",
+   "start": 263.661,
+   "end": 272.852
+  },
+  {
+   "id": "a6",
+   "ch": 6,
+   "text": "And it sees what simpler models miss: on this fine glass relief, the thin-element model sends 96% of the light one way. FDTD, with shadows and light trapped in the ridges, finds 57%.",
+   "start": 273.172,
+   "end": 286.418
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "FDTD isn't exact either: it converges as cells shrink, curves become staircases, and the PML adds a small error.",
+   "start": 287.488,
+   "end": 295.907
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "But the core idea is simple. E updates H, and H updates E, one neighbour at a time.",
+   "start": 296.227,
+   "end": 301.592
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "A layer of complex-stretched space absorbs whatever leaves.",
+   "start": 301.912,
+   "end": 305.429
+  },
+  {
+   "id": "r4",
+   "ch": 7,
+   "text": "Now we can simulate almost anything. What we really want is the reverse: say what the light should do, and get the structure.",
+   "start": 305.749,
+   "end": 312.744
+  }
+ ]
+}

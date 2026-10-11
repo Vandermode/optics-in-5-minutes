@@ -1,0 +1,99 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:04.07,Default,,0,0,0,,{\fad(120,120)}Light can be trapped. Glass fibres carry it under oceans,
+Dialogue: 0,0:00:04.11,0:00:08.43,Default,,0,0,0,,{\fad(120,120)}and photonic chips route it through wires half a micron wide.
+Dialogue: 0,0:00:08.50,0:00:10.98,Default,,0,0,0,,{\fad(120,120)}This ring, a few microns across, sorts colours.
+Dialogue: 0,0:00:11.02,0:00:14.11,Default,,0,0,0,,{\fad(120,120)}Send in several, and most pass straight by…
+Dialogue: 0,0:00:14.18,0:00:15.87,Default,,0,0,0,,{\fad(120,120)}…but one colour drops into the ring,
+Dialogue: 0,0:00:15.91,0:00:18.62,Default,,0,0,0,,{\fad(120,120)}circles it, and leaves through the other wire.
+Dialogue: 0,0:00:18.69,0:00:22.57,Default,,0,0,0,,{\fad(120,120)}How do you trap light in a wire? And why do only certain colours fit?
+Dialogue: 0,0:00:24.69,0:00:26.69,Default,,0,0,0,,{\fad(120,120)}Start with a strip of glass, the core,
+Dialogue: 0,0:00:26.73,0:00:31.07,Default,,0,0,0,,{\fad(120,120)}surrounded by material of lower refractive index, the cladding.
+Dialogue: 0,0:00:31.14,0:00:34.53,Default,,0,0,0,,{\fad(120,120)}A ray that meets the wall at a shallow angle can't escape.
+Dialogue: 0,0:00:34.57,0:00:37.97,Default,,0,0,0,,{\fad(120,120)}It's totally reflected, and zigzags along the core.
+Dialogue: 0,0:00:38.04,0:00:42.47,Default,,0,0,0,,{\fad(120,120)}But light is a wave. The zigzag is really two plane waves crossing:
+Dialogue: 0,0:00:42.51,0:00:44.61,Default,,0,0,0,,{\fad(120,120)}one heading up, one heading down.
+Dialogue: 0,0:00:44.68,0:00:47.19,Default,,0,0,0,,{\fad(120,120)}Together they form a standing wave across the core,
+Dialogue: 0,0:00:47.23,0:00:48.98,Default,,0,0,0,,{\fad(120,120)}which travels along it.
+Dialogue: 0,0:00:49.05,0:00:53.76,Default,,0,0,0,,{\fad(120,120)}But not every angle works. Follow the wave up across the core and back:
+Dialogue: 0,0:00:53.80,0:00:57.43,Default,,0,0,0,,{\fad(120,120)}it must return in step with itself, or the bounces cancel.
+Dialogue: 0,0:00:57.50,0:01:00.81,Default,,0,0,0,,{\fad(120,120)}So the round-trip phase must be a whole number of turns,
+Dialogue: 0,0:01:00.85,0:01:05.17,Default,,0,0,0,,{\fad(120,120)}2πm. Slide the angle, and only a few angles click into place.
+Dialogue: 0,0:01:05.24,0:01:08.42,Default,,0,0,0,,{\fad(120,120)}These are the modes. Each keeps its shape as it travels,
+Dialogue: 0,0:01:08.46,0:01:11.90,Default,,0,0,0,,{\fad(120,120)}with tails that fade into the cladding: evanescent waves.
+Dialogue: 0,0:01:12.72,0:01:15.99,Default,,0,0,0,,{\fad(120,120)}There's a cleaner way to find modes, with linear algebra.
+Dialogue: 0,0:01:16.06,0:01:19.95,Default,,0,0,0,,{\fad(120,120)}A mode is a shape E(x) that travels as e^(iβz).
+Dialogue: 0,0:01:19.99,0:01:24.94,Default,,0,0,0,,{\fad(120,120)}Put that into the wave equation, and out comes an eigenvalue problem.
+Dialogue: 0,0:01:25.01,0:01:29.80,Default,,0,0,0,,{\fad(120,120)}Sample x on a grid. The second derivative becomes a tridiagonal matrix,
+Dialogue: 0,0:01:29.84,0:01:33.23,Default,,0,0,0,,{\fad(120,120)}and the index profile adds to its diagonal.
+Dialogue: 0,0:01:33.30,0:01:35.58,Default,,0,0,0,,{\fad(120,120)}Its eigenvectors are the mode shapes.
+Dialogue: 0,0:01:35.62,0:01:39.91,Default,,0,0,0,,{\fad(120,120)}Its eigenvalues give each mode's propagation constant, β.
+Dialogue: 0,0:01:39.98,0:01:42.37,Default,,0,0,0,,{\fad(120,120)}And each effective index, β/k₀,
+Dialogue: 0,0:01:42.41,0:01:45.78,Default,,0,0,0,,{\fad(120,120)}lies between the cladding and core indices.
+Dialogue: 0,0:01:45.85,0:01:50.30,Default,,0,0,0,,{\fad(120,120)}Any input is a sum of modes, each advancing its own phase.
+Dialogue: 0,0:01:50.34,0:01:53.19,Default,,0,0,0,,{\fad(120,120)}It's the angular spectrum method from episode one,
+Dialogue: 0,0:01:53.23,0:01:55.29,Default,,0,0,0,,{\fad(120,120)}with modes in place of plane waves.
+Dialogue: 0,0:01:55.36,0:01:58.49,Default,,0,0,0,,{\fad(120,120)}Launch an off-centre spot into a wide guide.
+Dialogue: 0,0:01:58.53,0:02:00.31,Default,,0,0,0,,{\fad(120,120)}The modes beat into a kaleidoscope,
+Dialogue: 0,0:02:00.35,0:02:03.60,Default,,0,0,0,,{\fad(120,120)}then fall back in step, and the spot reappears.
+Dialogue: 0,0:02:04.42,0:02:07.24,Default,,0,0,0,,{\fad(120,120)}Now place two identical guides side by side,
+Dialogue: 0,0:02:07.28,0:02:11.12,Default,,0,0,0,,{\fad(120,120)}so close that their tails overlap, and launch light into one.
+Dialogue: 0,0:02:11.19,0:02:15.31,Default,,0,0,0,,{\fad(120,120)}It drifts across into the other guide, then comes back, again and again.
+Dialogue: 0,0:02:15.38,0:02:19.47,Default,,0,0,0,,{\fad(120,120)}Why? The pair has modes of its own: one symmetric,
+Dialogue: 0,0:02:19.51,0:02:24.70,Default,,0,0,0,,{\fad(120,120)}one antisymmetric, with propagation constants β + κ and β − κ.
+Dialogue: 0,0:02:24.77,0:02:29.39,Default,,0,0,0,,{\fad(120,120)}Light in one guide is the sum of the two. One slowly falls behind,
+Dialogue: 0,0:02:29.43,0:02:32.33,Default,,0,0,0,,{\fad(120,120)}and after a distance π/2κ it has flipped sign:
+Dialogue: 0,0:02:32.37,0:02:35.40,Default,,0,0,0,,{\fad(120,120)}now the sum sits in the other guide.
+Dialogue: 0,0:02:35.47,0:02:39.43,Default,,0,0,0,,{\fad(120,120)}In the basis of the two guides, that's a 2×2 rotation:
+Dialogue: 0,0:02:39.47,0:02:44.09,Default,,0,0,0,,{\fad(120,120)}amplitude cos κz in one, i sin κz in the other.
+Dialogue: 0,0:02:44.16,0:02:46.85,Default,,0,0,0,,{\fad(120,120)}Stop halfway and you have a 50:50 splitter,
+Dialogue: 0,0:02:46.89,0:02:51.52,Default,,0,0,0,,{\fad(120,120)}the building block of interferometers, switches and optical processors.
+Dialogue: 0,0:02:52.34,0:02:56.34,Default,,0,0,0,,{\fad(120,120)}To store light, bend a guide into a ring beside a straight one.
+Dialogue: 0,0:02:56.38,0:02:59.50,Default,,0,0,0,,{\fad(120,120)}On every pass, a little light leaks across into the ring.
+Dialogue: 0,0:02:59.57,0:03:01.30,Default,,0,0,0,,{\fad(120,120)}Each round trip adds another copy,
+Dialogue: 0,0:03:01.34,0:03:05.59,Default,,0,0,0,,{\fad(120,120)}rotated by the round-trip phase, and a little weaker than the last.
+Dialogue: 0,0:03:05.66,0:03:10.23,Default,,0,0,0,,{\fad(120,120)}Off resonance, the copies curl into a small spiral, and mostly cancel.
+Dialogue: 0,0:03:10.30,0:03:12.92,Default,,0,0,0,,{\fad(120,120)}On resonance, when the ring fits a whole number of wavelengths,
+Dialogue: 0,0:03:12.96,0:03:17.13,Default,,0,0,0,,{\fad(120,120)}they line up into one long arrow. The light piles up.
+Dialogue: 0,0:03:18.00,0:03:19.84,Default,,0,0,0,,{\fad(120,120)}Sweep the colour, and the stored light
+Dialogue: 0,0:03:19.88,0:03:21.77,Default,,0,0,0,,{\fad(120,120)}spikes at evenly spaced resonances.
+Dialogue: 0,0:03:21.81,0:03:24.57,Default,,0,0,0,,{\fad(120,120)}That's what the ring in the opening did.
+Dialogue: 0,0:03:25.39,0:03:27.82,Default,,0,0,0,,{\fad(120,120)}How sharp is each spike? That's set by loss:
+Dialogue: 0,0:03:27.86,0:03:31.51,Default,,0,0,0,,{\fad(120,120)}the more round trips the light survives, the narrower the peak.
+Dialogue: 0,0:03:31.58,0:03:33.79,Default,,0,0,0,,{\fad(120,120)}We measure it with the quality factor:
+Dialogue: 0,0:03:33.83,0:03:36.40,Default,,0,0,0,,{\fad(120,120)}the wavelength over the peak's width,
+Dialogue: 0,0:03:36.44,0:03:41.49,Default,,0,0,0,,{\fad(120,120)}Q = λ/Δλ. High Q means light stays stored for a long time.
+Dialogue: 0,0:03:41.56,0:03:43.71,Default,,0,0,0,,{\fad(120,120)}Now watch the light that goes straight past.
+Dialogue: 0,0:03:43.75,0:03:46.23,Default,,0,0,0,,{\fad(120,120)}It meets the light leaking back out of the ring,
+Dialogue: 0,0:03:46.27,0:03:48.80,Default,,0,0,0,,{\fad(120,120)}which on resonance comes out flipped.
+Dialogue: 0,0:03:48.87,0:03:51.43,Default,,0,0,0,,{\fad(120,120)}So the through port dims. When the ring leaks
+Dialogue: 0,0:03:51.47,0:03:54.38,Default,,0,0,0,,{\fad(120,120)}out exactly as fast as it loses light inside,
+Dialogue: 0,0:03:54.42,0:03:57.31,Default,,0,0,0,,{\fad(120,120)}the two cancel completely: critical coupling.
+Dialogue: 0,0:03:57.98,0:04:01.58,Default,,0,0,0,,{\fad(120,120)}Couple more weakly, or more strongly, and the dip gets shallower.
+Dialogue: 0,0:04:02.40,0:04:05.61,Default,,0,0,0,,{\fad(120,120)}On a computer, each idea takes just a few lines.
+Dialogue: 0,0:04:05.68,0:04:10.74,Default,,0,0,0,,{\fad(120,120)}Modes: build the tridiagonal matrix and call an eigenvalue solver.
+Dialogue: 0,0:04:10.78,0:04:13.39,Default,,0,0,0,,{\fad(120,120)}Make the window wide enough for the tails,
+Dialogue: 0,0:04:13.43,0:04:14.91,Default,,0,0,0,,{\fad(120,120)}or its edges squeeze the modes.
+Dialogue: 0,0:04:14.98,0:04:20.44,Default,,0,0,0,,{\fad(120,120)}Propagation: the beam propagation method, BPM. It alternates two steps:
+Dialogue: 0,0:04:20.48,0:04:23.63,Default,,0,0,0,,{\fad(120,120)}diffraction, an FFT as in episode one,
+Dialogue: 0,0:04:23.67,0:04:26.11,Default,,0,0,0,,{\fad(120,120)}and refraction, a thin phase screen.
+Dialogue: 0,0:04:26.18,0:04:29.97,Default,,0,0,0,,{\fad(120,120)}Repeat, slice after slice. That's how the coupler was computed.
+Dialogue: 0,0:04:30.04,0:04:34.68,Default,,0,0,0,,{\fad(120,120)}Resonators: add up the round trips, a geometric series, in one line.
+Dialogue: 0,0:04:34.75,0:04:38.68,Default,,0,0,0,,{\fad(120,120)}The catch: BPM only marches forward, at gentle angles.
+Dialogue: 0,0:04:38.72,0:04:42.78,Default,,0,0,0,,{\fad(120,120)}Fine for couplers, but wrong for tight bends and reflections.
+Dialogue: 0,0:04:43.60,0:04:47.46,Default,,0,0,0,,{\fad(120,120)}Trapped light settles into modes, the eigenvectors of the cross-section.
+Dialogue: 0,0:04:47.50,0:04:51.38,Default,,0,0,0,,{\fad(120,120)}A resonator stores light where round trips add in phase.
+Dialogue: 0,0:04:51.45,0:04:55.84,Default,,0,0,0,,{\fad(120,120)}But these shortcuts assume gentle, forward-going light. Sharp bends,
+Dialogue: 0,0:04:55.88,0:04:58.11,Default,,0,0,0,,{\fad(120,120)}gratings and nanostructures break that,
+Dialogue: 0,0:04:58.15,0:05:01.36,Default,,0,0,0,,{\fad(120,120)}and then you need Maxwell's equations themselves.
+Dialogue: 0,0:05:01.43,0:05:03.92,Default,,0,0,0,,{\fad(120,120)}How does a computer solve them? Next time.

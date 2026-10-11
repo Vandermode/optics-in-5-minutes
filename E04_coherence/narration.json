@@ -1,0 +1,289 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Shine a laser on a wall, and the spot sparkles with grainy speckle. An LED's spot is smooth.",
+   "say": "Shine a laser on a wall, and the spot sparkles with grainy speckle. An L E D's spot is smooth."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Through two slits, the laser paints crisp fringes. The LED paints none, unless it first shines through a tiny pinhole.",
+   "say": "Through two slits, the laser paints crisp fringes. The L E D paints none, unless it first shines through a tiny pinhole."
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "What does a laser have, that an LED doesn't? In a word: coherence.",
+   "say": "What does a laser have, that an L E D doesn't? In a word: coherence."
+  },
+  {
+   "id": "c1",
+   "ch": 1,
+   "text": "At any point, a light wave is an arrow, a complex number. Its length is the amplitude, its angle the phase.",
+   "say": "At any point, a light wave is an arrow, a complex number. Its length is the amplitude, its angle, the phase."
+  },
+  {
+   "id": "c2",
+   "ch": 1,
+   "text": "It spins hundreds of trillions of times a second, too fast for any camera, which records only its squared length: the intensity.",
+   "say": "It spins hundreds of trillions of times a second, too fast for any camera, which records only its squared length: the intensity."
+  },
+  {
+   "id": "c3",
+   "ch": 1,
+   "text": "Where two waves meet, their arrows add. They spin together, so only the angle between them matters: Δφ.",
+   "say": "Where two waves meet, their arrows add. They spin together, so only the angle between them matters: delta phi."
+  },
+  {
+   "id": "c4",
+   "ch": 1,
+   "text": "Squaring the sum gives both intensities, plus a cross term that depends on Δφ: interference.",
+   "say": "Squaring the sum gives both intensities, plus a cross term that depends on delta phi: interference."
+  },
+  {
+   "id": "c5",
+   "ch": 1,
+   "text": "Move across a screen, and Δφ grows steadily, so the cross term paints fringes.",
+   "say": "Move across a screen, and delta phi grows steadily, so the cross term paints fringes."
+  },
+  {
+   "id": "c6",
+   "ch": 1,
+   "text": "Now let one wave's phase jitter randomly, faster than the camera can follow. The fringes dance.",
+   "say": "Now let one wave's phase jitter randomly, faster than the camera can follow. The fringes dance."
+  },
+  {
+   "id": "c7",
+   "ch": 1,
+   "text": "On average, the cross term vanishes, so the intensities add.",
+   "say": "On average, the cross term vanishes, so the intensities add.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "c8",
+   "ch": 1,
+   "text": "The visibility measures what's left: one for perfect fringes, zero for none.",
+   "say": "The visibility measures what's left: one for perfect fringes, zero for none."
+  },
+  {
+   "id": "t1",
+   "ch": 2,
+   "text": "Why would phases wander? One reason is colour. Split a beam, and delay one copy by a path difference, ΔL.",
+   "say": "Why would phases wander? One reason is colour. Split a beam, and delay one copy by a path difference, delta L."
+  },
+  {
+   "id": "t2",
+   "ch": 2,
+   "text": "With a single colour, the fringes go on forever.",
+   "say": "With a single colour, the fringes go on forever."
+  },
+  {
+   "id": "t3",
+   "ch": 2,
+   "text": "But each colour has its own spacing. At zero delay they agree; further out, they drift apart.",
+   "say": "But each colour has its own spacing. At zero delay they agree; further out, they drift apart."
+  },
+  {
+   "id": "t4",
+   "ch": 2,
+   "text": "Add a whole spectrum, and fringes survive only near zero delay. That window is the coherence length, roughly λ²/Δλ.",
+   "say": "Add a whole spectrum, and fringes survive only near zero delay. That window is the coherence length, roughly lambda squared over delta lambda."
+  },
+  {
+   "id": "t5",
+   "ch": 2,
+   "text": "In fact, the envelope is the Fourier transform of the spectrum: narrow spectrum, long coherence.",
+   "say": "In fact, the envelope is the Fourier transform of the spectrum: narrow spectrum, long coherence."
+  },
+  {
+   "id": "t6",
+   "ch": 2,
+   "text": "A good laser: centimetres to kilometres. An LED: about ten microns. Sunlight: about one micron.",
+   "say": "A good laser: centimetres to kilometres. An L E D: about ten microns. Sunlight: about one micron."
+  },
+  {
+   "id": "s1",
+   "ch": 3,
+   "text": "Colour isn't the whole story. A laser behaves like a single point of light; an LED is a crowd of independent points.",
+   "say": "Colour isn't the whole story. A laser behaves like a single point of light; an L E D is a crowd of independent points."
+  },
+  {
+   "id": "s2",
+   "ch": 3,
+   "text": "Move one point off centre. Its light reaches the slits tilted, and the tilt shifts its fringes sideways.",
+   "say": "Move one point off center. Its light reaches the slits tilted, and the tilt shifts its fringes sideways."
+  },
+  {
+   "id": "s3",
+   "ch": 3,
+   "text": "Different points have unrelated phases, so their intensities add. The camera sees a sum of shifted copies.",
+   "say": "Different points have unrelated phases, so their intensities add. The camera sees a sum of shifted copies."
+  },
+  {
+   "id": "s4",
+   "ch": 3,
+   "text": "Watch as the source grows: the copies spread out and fill in each other's dark bands, until the sum is flat grey.",
+   "say": "Watch as the source grows: the copies spread out, and fill in each other's dark bands, until the sum is flat grey.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "s5",
+   "ch": 3,
+   "text": "Fringes vanish once the source's angular size reaches about λ over the slit separation.",
+   "say": "Fringes vanish once the source's angular size reaches about lambda over the slit separation."
+  },
+  {
+   "id": "s6",
+   "ch": 3,
+   "text": "A tiny pinhole brings them back. So does distance: a giant star, far away, looks tiny.",
+   "say": "A tiny pinhole brings them back. So does distance: a giant star, far away, looks tiny."
+  },
+  {
+   "id": "s7",
+   "ch": 3,
+   "text": "How visibility fades as the slits move apart is the Fourier transform of the source's shape: the van Cittert–Zernike theorem.",
+   "say": "How visibility fades as the slits move apart, is the Fourier transform of the source's shape: the van Sittert Zernike theorem."
+  },
+  {
+   "id": "s8",
+   "ch": 3,
+   "text": "In 1920, Michelson spread two mirrors apart until a star's fringes vanished, and measured the size of Betelgeuse.",
+   "say": "In nineteen twenty, Michaelson spread two mirrors apart until a star's fringes vanished, and measured the size of Beetlejuice."
+  },
+  {
+   "id": "p1",
+   "ch": 4,
+   "text": "Coherence has a dark side. A wall is rough on the scale of a wavelength.",
+   "say": "Coherence has a dark side. A wall is rough, on the scale of a wavelength."
+  },
+  {
+   "id": "p2",
+   "ch": 4,
+   "text": "At each pixel, light arrives from every bump with a random phase, and the arrows add up like a random walk.",
+   "say": "At each pixel, light arrives from every bump with a random phase, and the arrows add up like a random walk."
+  },
+  {
+   "id": "p3",
+   "ch": 4,
+   "text": "Sometimes they cancel, sometimes they line up: dark and bright grains called speckle.",
+   "say": "Sometimes they cancel, sometimes they line up: dark and bright grains, called speckle."
+  },
+  {
+   "id": "p4",
+   "ch": 4,
+   "text": "Its contrast, the standard deviation over the mean, is exactly one.",
+   "say": "Its contrast, the standard deviation over the mean, is exactly one."
+  },
+  {
+   "id": "p5",
+   "ch": 4,
+   "text": "Each grain is about λ/NA across: the numerical aperture, NA, is the sine of the widest angle collected.",
+   "say": "Each grain is about lambda over N A across. The numerical aperture, N A, is the sine of the widest angle collected."
+  },
+  {
+   "id": "p6",
+   "ch": 4,
+   "text": "Average N independent patterns, and the contrast falls as 1/√N. An LED's many colours and points do just that.",
+   "say": "Average en independent patterns, and the contrast falls as one over root en. An L E D's many colours and points do just that."
+  },
+  {
+   "id": "m1",
+   "ch": 5,
+   "text": "How do we compute with partially coherent light? Record, for every pair of points, how well their fields keep in step.",
+   "say": "How do we compute with partially coherent light? Record, for every pair of points, how well their fields keep in step."
+  },
+  {
+   "id": "m2",
+   "ch": 5,
+   "text": "That's the mutual intensity, J: the average of the field at x₁ times the conjugate field at x₂. Its diagonal is the intensity.",
+   "say": "That's the mutual intensity, jay: the average of the field at ex one, times the conjugate field at ex two. Its diagonal is the intensity."
+  },
+  {
+   "id": "m3",
+   "ch": 5,
+   "text": "Off the diagonal, it says how strongly two points would interfere through a double slit.",
+   "say": "Off the diagonal, it says how strongly two points would interfere, through a double slit."
+  },
+  {
+   "id": "m4",
+   "ch": 5,
+   "text": "Swapping the points conjugates J, so it's a Hermitian matrix, and it can be diagonalized.",
+   "say": "Swapping the points conjugates jay, so it's a Hermitian matrix, and it can be diagonalized."
+  },
+  {
+   "id": "m5",
+   "ch": 5,
+   "text": "Its eigenvectors are coherent modes, each perfectly coherent, and its eigenvalues are their powers.",
+   "say": "Its eigenvectors are coherent modes, each perfectly coherent, and its eigenvalues are their powers."
+  },
+  {
+   "id": "m6",
+   "ch": 5,
+   "text": "So partially coherent light is a sum of independent coherent fields, whose intensities add.",
+   "say": "So partially coherent light is a sum of independent coherent fields, whose intensities add.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "m7",
+   "ch": 5,
+   "text": "A laser needs one mode. The bigger the source, the more modes it takes.",
+   "say": "A laser needs one mode. The bigger the source, the more modes it takes."
+  },
+  {
+   "id": "k1",
+   "ch": 6,
+   "text": "On a computer, that gives three recipes. Coherent light: propagate the field, then square it.",
+   "say": "On a computer, that gives three recipes. Coherent light: propagate the field, then square it."
+  },
+  {
+   "id": "k2",
+   "ch": 6,
+   "text": "Incoherent light: add intensities, often with a convolution. Partially coherent light: propagate a few modes, and add their intensities.",
+   "say": "Incoherent light: add intensities, often with a convolution. Partially coherent light: propagate a few modes, and add their intensities."
+  },
+  {
+   "id": "k3",
+   "ch": 6,
+   "text": "Here's a diffractive element lit by a laser. Its far-field pattern is crisp, but speckled.",
+   "say": "Here's a diffractive element, lit by a laser. Its far field pattern is crisp, but speckled."
+  },
+  {
+   "id": "k4",
+   "ch": 6,
+   "text": "With an LED, each source point tilts the light, shifting the pattern, and each colour stretches it. The sum is blurred, but smooth.",
+   "say": "With an L E D, each source point tilts the light, shifting the pattern, and each colour stretches it. The sum is blurred, but smooth."
+  },
+  {
+   "id": "k5",
+   "ch": 6,
+   "text": "At large angles, this simple blur stops being exact, but a few coherent modes are often enough.",
+   "say": "At large angles, this simple blur stops being exact, but a few coherent modes are often enough."
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "So, when does light interfere? Fields add when their phases stay in step. When phases wander, intensities add.",
+   "say": "So, when does light interfere? Fields add when their phases stay in step. When phases wander, intensities add."
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "And partially coherent light is a sum of coherent patterns.",
+   "say": "And partially coherent light is a sum of coherent patterns."
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "Next time: coherence lets us do what a camera can't, and record the phase of light.",
+   "say": "Next time: coherence lets us do what a camera can't, and record the phase of light."
+  }
+ ]
+}

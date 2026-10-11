@@ -1,0 +1,270 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Watch a pulse of light, just a few wave cycles long, race along a silicon wire toward a tiny ring.",
+   "say": "Watch a pulse of light, just a few wave cycles long, race along a silicon wire toward a tiny ring."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Some of it hops into the ring, circles around and around, and leaks back out a little on every lap.",
+   "say": "Some of it hops into the ring, circles around and around, and leaks back out, a little on every lap."
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "Every model so far was an approximation. This is Maxwell's equations themselves, solved on a grid. How?",
+   "say": "Every model so far was an approximation. This is Maxwell's equations themselves, solved on a grid. How?"
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "It's called finite-difference time-domain, FDTD, and it rests on two ideas: leapfrogging fields, and a border made of complex numbers.",
+   "say": "It's called finite difference time domain, F D T D, and it rests on two ideas: leapfrogging fields, and a border made of complex numbers."
+  },
+  {
+   "id": "m1",
+   "ch": 1,
+   "text": "In two dimensions, the electric field E points straight out of the screen, and the magnetic field H lies flat in the plane.",
+   "say": "In two dimensions, the electric field, E, points straight out of the screen, and the magnetic field, H, lies flat in the plane."
+  },
+  {
+   "id": "m2",
+   "ch": 1,
+   "text": "Maxwell's equations then say two things: a changing H is driven by the curl of E, and a changing E by the curl of H.",
+   "say": "Maxwell's equations then say two things. A changing H is driven by the curl of E, and a changing E, by the curl of H."
+  },
+  {
+   "id": "m3",
+   "ch": 1,
+   "text": "The curl measures swirl: how much a field circulates around each point.",
+   "say": "The curl measures swirl: how much a field circulates around each point."
+  },
+  {
+   "id": "m4",
+   "ch": 1,
+   "text": "Watch a bump of E. Its slopes make H start to circulate around it.",
+   "say": "Watch a bump of E. Its slopes make H start to circulate around it."
+  },
+  {
+   "id": "m5",
+   "ch": 1,
+   "text": "That swirling H lowers E in the middle and raises it around the edge. The bump spreads into a ring: a wave that pushes itself along.",
+   "say": "That swirling H lowers E in the middle, and raises it around the edge. The bump spreads into a ring: a wave that pushes itself along."
+  },
+  {
+   "id": "m6",
+   "ch": 1,
+   "text": "These rules contain only derivatives, which compare each point with its neighbours. Everything is local.",
+   "say": "These rules contain only derivatives, which compare each point with its neighbours. Everything is local."
+  },
+  {
+   "id": "y1",
+   "ch": 2,
+   "text": "On a computer, sample the fields on a grid, and replace each derivative by a difference of neighbours.",
+   "say": "On a computer, sample the fields on a grid, and replace each derivative by a difference of neighbours."
+  },
+  {
+   "id": "y2",
+   "ch": 2,
+   "text": "But that difference, divided by the spacing, gives the slope best at the midpoint between the samples, not at either end.",
+   "say": "But that difference, divided by the spacing, gives the slope best at the midpoint between the samples, not at either end."
+  },
+  {
+   "id": "y3",
+   "ch": 2,
+   "text": "So in 1966, Kane Yee put H exactly at those midpoints: half a cell away from E.",
+   "say": "So in nineteen sixty-six, Kane Yee put H exactly at those midpoints: half a cell away from E."
+  },
+  {
+   "id": "y4",
+   "ch": 2,
+   "text": "Time gets the same trick: E lives on whole time steps, and H on the half steps in between.",
+   "say": "Time gets the same trick. E lives on whole time steps, and H, on the half steps in between."
+  },
+  {
+   "id": "y5",
+   "ch": 2,
+   "text": "The algorithm is a leapfrog. Use the curl of E to update H, then the curl of H to update E, and repeat.",
+   "say": "The algorithm is a leapfrog. Use the curl of E to update H, then the curl of H to update E, and repeat."
+  },
+  {
+   "id": "y6",
+   "ch": 2,
+   "text": "Here it is in 1D, with real numbers: each new value uses only its two neighbours, yet the pulse marches on.",
+   "say": "Here it is in one D, with real numbers. Each new value uses only its two neighbours, yet the pulse marches on."
+  },
+  {
+   "id": "y7",
+   "ch": 2,
+   "text": "Matter is just one number per cell, the permittivity ε. Any shape you can paint on the grid, you can simulate.",
+   "say": "Matter is just one number per cell, the permittivity, epsilon. Any shape you can paint on the grid, you can simulate."
+  },
+  {
+   "id": "c1",
+   "ch": 3,
+   "text": "The grid has two rules of its own. First, a speed limit: each step, news travels only to neighbouring cells, so it spreads in a diamond.",
+   "say": "The grid has two rules of its own. First, a speed limit. Each step, news travels only to neighbouring cells, so it spreads in a diamond."
+  },
+  {
+   "id": "c2",
+   "ch": 3,
+   "text": "Light spreads in a circle, which must fit inside the diamond: in 2D, c Δt ≤ Δx/√2. This is the Courant limit.",
+   "say": "Light spreads in a circle, which must fit inside the diamond. In two D, see delta tee, at most delta ex over root two. This is the Koo-rahnt limit."
+  },
+  {
+   "id": "c3",
+   "ch": 3,
+   "text": "Break it by just six percent, and the computed field explodes.",
+   "say": "Break it by just six percent, and the computed field explodes.",
+   "pause_after": 0.6
+  },
+  {
+   "id": "c4",
+   "ch": 3,
+   "text": "Second, the grid distorts waves. Recall the k-circle: in free space, all directions share one wavelength.",
+   "say": "Second, the grid distorts waves. Recall the kay circle: in free space, all directions share one wavelength."
+  },
+  {
+   "id": "c5",
+   "ch": 3,
+   "text": "On the grid, the circle bulges, most along the axes: short waves travel too slowly, slowest along the grid lines.",
+   "say": "On the grid, the circle bulges, most along the axes. Short waves travel too slowly, and slowest along the grid lines."
+  },
+  {
+   "id": "c6",
+   "ch": 3,
+   "text": "A pulse becomes a squarish ring, trailed by ripples. The fix: ten to twenty cells per wavelength, or more.",
+   "say": "A pulse becomes a squarish ring, trailed by ripples. The fix: ten to twenty cells per wavelength, or more."
+  },
+  {
+   "id": "b1",
+   "ch": 4,
+   "text": "Now the hardest part: the grid must end somewhere, but real light just keeps going.",
+   "say": "Now the hardest part. The grid must end somewhere, but real light just keeps going."
+  },
+  {
+   "id": "b2",
+   "ch": 4,
+   "text": "If the grid simply stops, its edge acts as a mirror, and the echo ruins the answer.",
+   "say": "If the grid simply stops, its edge acts as a mirror, and the echo ruins the answer."
+  },
+  {
+   "id": "b3",
+   "ch": 4,
+   "text": "So add a layer that absorbs? A sudden change of material reflects too, right at its edge.",
+   "say": "So, add a layer that absorbs? A sudden change of material reflects too, right at its edge."
+  },
+  {
+   "id": "b4",
+   "ch": 4,
+   "text": "A gentler layer must be thick and expensive. We need an absorber that light cannot see.",
+   "say": "A gentler layer must be thick, and expensive. We need an absorber that light cannot see.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "p1",
+   "ch": 5,
+   "text": "The trick, found in 1994 by Bérenger, and by Chew and Weedon, is to change not the material, but the coordinates.",
+   "say": "The trick, found in nineteen ninety-four by Berranjay, and by Chew and Weedon, is to change not the material, but the coordinates."
+  },
+  {
+   "id": "p2",
+   "ch": 5,
+   "text": "Inside the border, let the position x pick up an imaginary part that grows with depth: x + (i/ω)∫σ dx.",
+   "say": "Inside the border, let the position ex pick up an imaginary part that grows with depth: ex, plus i over omega, times the integral of sigma."
+  },
+  {
+   "id": "p3",
+   "ch": 5,
+   "text": "A wave e^(ikx) at this complex position keeps its wavelength, but gains a factor e^(−(k/ω)∫σ dx): it dies away.",
+   "say": "A wave, e to the i kay ex, at this complex position keeps its wavelength, but gains a factor, e to the minus kay over omega, times the integral of sigma. It dies away."
+  },
+  {
+   "id": "p4",
+   "ch": 5,
+   "text": "These are the same Maxwell equations in stretched coordinates, so the border matches perfectly: no echo, at any angle or frequency.",
+   "say": "These are the same Maxwell equations, in stretched coordinates, so the border matches perfectly. No echo, at any angle, or frequency."
+  },
+  {
+   "id": "p5",
+   "ch": 5,
+   "text": "This is the perfectly matched layer, or PML. Side by side: the wall echoes, the lossy layer echoes, the PML stays silent.",
+   "say": "This is the perfectly matched layer, or P M L. Side by side: the wall echoes, the lossy layer echoes, the P M L stays silent."
+  },
+  {
+   "id": "p6",
+   "ch": 5,
+   "text": "On a grid, a tiny echo remains, so σ ramps up smoothly. Grazing and evanescent waves are the hardest to absorb.",
+   "say": "On a grid, a tiny echo remains, so sigma ramps up smoothly. Grazing and evanescent waves are the hardest to absorb."
+  },
+  {
+   "id": "a1",
+   "ch": 6,
+   "text": "In code, the whole method is four lines inside a time loop.",
+   "say": "In code, the whole method is four lines inside a time loop."
+  },
+  {
+   "id": "a2",
+   "ch": 6,
+   "text": "Update H from the curl of E. Update E from the curl of H. Absorb in the PML. Add the source.",
+   "say": "Update H from the curl of E. Update E from the curl of H. Absorb in the P M L. Add the source."
+  },
+  {
+   "id": "a3",
+   "ch": 6,
+   "text": "Send in one short pulse, record what comes back, and a Fourier transform in time gives every wavelength from a single run.",
+   "say": "Send in one short pulse, record what comes back, and a Fourier-transform in time gives every wavelength, from a single run."
+  },
+  {
+   "id": "a4",
+   "ch": 6,
+   "text": "For a Bragg mirror, a stack of alternating layers, the whole reflection spectrum lands right on the exact answer.",
+   "say": "For a Bragg mirror, a stack of alternating layers, the whole reflection spectrum lands right on the exact answer."
+  },
+  {
+   "id": "a5",
+   "ch": 6,
+   "text": "The price: every cell is updated at every step. A small 2D run takes seconds; a large 3D device, minutes to hours on GPUs.",
+   "say": "The price: every cell is updated, at every step. A small two D run takes seconds. A large three D device, minutes to hours on G P U's."
+  },
+  {
+   "id": "a6",
+   "ch": 6,
+   "text": "And it sees what simpler models miss: on this fine glass relief, the thin-element model sends 96% of the light one way. FDTD, with shadows and light trapped in the ridges, finds 57%.",
+   "say": "And it sees what simpler models miss. On this fine glass relief, the thin element model sends ninety-six percent of the light one way. F D T D, with shadows, and light trapped in the ridges, finds fifty-seven."
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "FDTD isn't exact either: it converges as cells shrink, curves become staircases, and the PML adds a small error.",
+   "say": "F D T D isn't exact either. It converges as cells shrink, curves become staircases, and the P M L adds a small error."
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "But the core idea is simple. E updates H, and H updates E, one neighbour at a time.",
+   "say": "But the core idea is simple. E updates H, and H updates E, one neighbour at a time."
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "A layer of complex-stretched space absorbs whatever leaves.",
+   "say": "A layer of complex, stretched space absorbs whatever leaves."
+  },
+  {
+   "id": "r4",
+   "ch": 7,
+   "text": "Now we can simulate almost anything. What we really want is the reverse: say what the light should do, and get the structure.",
+   "say": "Now we can simulate almost anything. What we really want is the reverse: say what the light should do, and get the structure."
+  }
+ ]
+}

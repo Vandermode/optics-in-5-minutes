@@ -1,0 +1,29 @@
+# One environment for everything: Manim scenes, Kokoro TTS + Whisper check, physics (numpy/scipy/JAX), verification.
+# Do not create it directly: run ./setup_env.sh, which creates this environment and then compiles ManimPango 0.7
+# (needed by manim 0.22; no binary wheel or conda-forge build exists) against the environment's own pango.
+# System requirements that conda does not provide (see README "Setup"): a C compiler (gcc / Xcode command-line tools),
+# a LaTeX distribution with dvisvgm, and FFmpeg built with libass for burned-in subtitles (conda-forge's ffmpeg has no
+# libass; Ubuntu `apt install ffmpeg` and Homebrew `brew install ffmpeg` do).
+# GPU (optional, only speeds up some physics.py): pip install -U "jax[cuda12]==0.8.0" inside the environment.
+name: optics5min
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - numpy=2.4
+  - scipy=1.16
+  - pillow=11.3
+  - pycairo=1.27
+  - cairo
+  - pango
+  - fontconfig
+  - pkg-config              # setup_env.sh builds ManimPango against this environment's pango
+  - pysoundfile
+  - make
+  - pip
+  - pip:                    # manimpango==0.7.0 and manim==0.22.0 are installed by setup_env.sh
+      - kokoro-onnx==0.6.1
+      - onnxruntime==1.31.0
+      - faster-whisper==1.2.1
+      - jax==0.8.0

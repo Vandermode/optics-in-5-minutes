@@ -1,0 +1,368 @@
+1
+00:00:00,900 --> 00:00:04,088
+Light travels along a silicon wire, a waveguide,
+
+2
+00:00:04,128 --> 00:00:06,537
+and we want to split it evenly into two.
+
+3
+00:00:06,607 --> 00:00:08,463
+A person would draw a smooth fork.
+
+4
+00:00:08,503 --> 00:00:13,500
+Squeezed into this small box, it delivers only 86% of the light.
+
+5
+00:00:13,570 --> 00:00:16,126
+A computer drew this instead: a strange,
+
+6
+00:00:16,166 --> 00:00:21,347
+organic pattern in the same box. It delivers 99.8%.
+
+7
+00:00:21,417 --> 00:00:24,404
+How does a computer invent shapes no human would draw?
+
+8
+00:00:24,474 --> 00:00:28,084
+The trick is to run light backward. It's called the adjoint method.
+
+9
+00:00:28,904 --> 00:00:33,964
+First, turn design into numbers: each pixel of the box gets a value p,
+
+10
+00:00:34,004 --> 00:00:36,496
+from 0 for glass to 1 for silicon.
+
+11
+00:00:36,566 --> 00:00:39,232
+A merit, F(p), scores the device:
+
+12
+00:00:39,272 --> 00:00:42,569
+the fraction of light that reaches the two outputs.
+
+13
+00:00:42,639 --> 00:00:46,076
+Picture F as a landscape over all possible designs.
+
+14
+00:00:46,116 --> 00:00:49,771
+To improve, walk uphill, along the gradient.
+
+15
+00:00:49,841 --> 00:00:52,830
+The obvious way to find it: nudge one pixel,
+
+16
+00:00:52,870 --> 00:00:56,733
+rerun the whole simulation, and see how F changes.
+
+17
+00:00:56,803 --> 00:00:58,299
+That's one simulation per pixel:
+
+18
+00:00:58,339 --> 00:01:02,645
+four thousand for this little box, and millions for a metalens.
+
+19
+00:01:02,715 --> 00:01:05,294
+With a million pixels and a minute per simulation,
+
+20
+00:01:05,334 --> 00:01:07,765
+one step uphill would take two years.
+
+21
+00:01:08,585 --> 00:01:11,320
+Here's the way out. At one frequency,
+
+22
+00:01:11,360 --> 00:01:16,457
+a wave simulation on a grid is one big linear system: A x = b.
+
+23
+00:01:16,527 --> 00:01:19,477
+b is the source, x is the field everywhere,
+
+24
+00:01:19,517 --> 00:01:23,150
+and the matrix A holds the material, so it depends on p.
+
+25
+00:01:23,220 --> 00:01:26,683
+Differentiate both sides with respect to one pixel,
+
+26
+00:01:26,723 --> 00:01:28,694
+and solve for how the field changes.
+
+27
+00:01:28,764 --> 00:01:31,184
+The merit's slope becomes a chain of three factors:
+
+28
+00:01:31,224 --> 00:01:35,135
+a row, the inverse of A, and one column per pixel.
+
+29
+00:01:35,205 --> 00:01:39,089
+Multiply right to left, and every column costs a solve with A:
+
+30
+00:01:39,129 --> 00:01:41,661
+one simulation per pixel, again.
+
+31
+00:01:42,531 --> 00:01:47,108
+But multiply left to right! The row times A⁻¹ is a single vector,
+
+32
+00:01:47,148 --> 00:01:50,043
+λ, and it takes just one extra solve.
+
+33
+00:01:50,113 --> 00:01:52,525
+Then each pixel's slope is a cheap product:
+
+34
+00:01:52,565 --> 00:01:57,005
+two simulations give the whole gradient, however many pixels there are.
+
+35
+00:01:57,825 --> 00:02:01,151
+So what is λ, physically? Light obeys reciprocity:
+
+36
+00:02:01,191 --> 00:02:05,381
+swap a source and a detector, and the signal stays the same.
+
+37
+00:02:05,451 --> 00:02:10,106
+In matrix terms, Aᵀ = A. So λ comes from the same simulation,
+
+38
+00:02:10,145 --> 00:02:14,581
+with the source moved to the outputs: light sent backward.
+
+39
+00:02:14,651 --> 00:02:17,798
+Nudge one pixel, and it scatters a tiny wavelet,
+
+40
+00:02:17,838 --> 00:02:20,528
+with a strength set by the forward light hitting it.
+
+41
+00:02:20,598 --> 00:02:23,967
+The backward field there tells how that wavelet reaches the outputs,
+
+42
+00:02:24,007 --> 00:02:27,528
+and whether it arrives in step with the light already there.
+
+43
+00:02:27,598 --> 00:02:31,358
+So each pixel's slope is the forward field times the adjoint field:
+
+44
+00:02:31,398 --> 00:02:34,859
+the sensitivity map, for every pixel at once.
+
+45
+00:02:34,929 --> 00:02:36,949
+Update every pixel, simulate again,
+
+46
+00:02:36,989 --> 00:02:39,944
+and repeat. Watch the device take shape.
+
+47
+00:02:40,814 --> 00:02:43,965
+Light run backward tells every pixel what to do.
+
+48
+00:02:44,785 --> 00:02:47,288
+You don't even need to derive adjoints by hand.
+
+49
+00:02:47,328 --> 00:02:51,538
+Take a phase mask, then episode one's free-space propagation.
+
+50
+00:02:51,608 --> 00:02:54,531
+It's a chain: multiply by the mask, FFT,
+
+51
+00:02:54,571 --> 00:02:59,495
+multiply by the transfer function H, inverse FFT, then square.
+
+52
+00:02:59,565 --> 00:03:02,401
+Automatic differentiation, the engine of deep learning,
+
+53
+00:03:02,441 --> 00:03:07,310
+runs the chain backward: FFTs become inverse FFTs,
+
+54
+00:03:07,350 --> 00:03:09,983
+and H becomes its conjugate.
+
+55
+00:03:10,853 --> 00:03:14,878
+For propagating waves, conjugating H just flips the sign of z.
+
+56
+00:03:14,918 --> 00:03:18,191
+The backward pass really does send light backward.
+
+57
+00:03:18,261 --> 00:03:21,505
+Now gradient descent shapes the mask to project any picture.
+
+58
+00:03:21,545 --> 00:03:24,916
+Watch the image sharpen as the error falls.
+
+59
+00:03:24,986 --> 00:03:28,531
+Episode five's Gerchberg–Saxton loop was a clever heuristic;
+
+60
+00:03:28,571 --> 00:03:32,310
+gradients make it an optimization with any goal.
+
+61
+00:03:33,130 --> 00:03:36,858
+Now go further: design the optics and the software together.
+
+62
+00:03:36,928 --> 00:03:40,128
+A camera records a scene through our optics, adding noise;
+
+63
+00:03:40,168 --> 00:03:44,668
+then an algorithm, here episode three's Wiener filter, sharpens it.
+
+64
+00:03:44,738 --> 00:03:46,256
+Compare the result with the truth,
+
+65
+00:03:46,296 --> 00:03:48,364
+and send the gradient back through everything:
+
+66
+00:03:48,404 --> 00:03:52,171
+the filter, the noise, the light, into the optics.
+
+67
+00:03:52,241 --> 00:03:54,472
+Ask for sharp images at every depth.
+
+68
+00:03:54,512 --> 00:03:57,224
+An ordinary lens is sharp only in focus;
+
+69
+00:03:57,264 --> 00:04:01,718
+elsewhere, its point-spread function, the PSF, blurs.
+
+70
+00:04:01,788 --> 00:04:04,066
+The learned optics gives up a perfect focus
+
+71
+00:04:04,106 --> 00:04:07,378
+for a PSF that hardly changes with depth,
+
+72
+00:04:07,418 --> 00:04:09,781
+which the filter can undo everywhere.
+
+73
+00:04:10,601 --> 00:04:12,860
+In code, it's a three-line loop: simulate,
+
+74
+00:04:12,900 --> 00:04:15,936
+take the gradient, step, a few hundred times.
+
+75
+00:04:16,006 --> 00:04:21,033
+Real devices add rules: each pixel must be all silicon or all glass,
+
+76
+00:04:21,073 --> 00:04:23,673
+with no feature too small to fabricate.
+
+77
+00:04:23,743 --> 00:04:26,694
+The landscape has many hills, so different starting guesses
+
+78
+00:04:26,734 --> 00:04:30,887
+climb to different designs: all good, none guaranteed best.
+
+79
+00:04:30,957 --> 00:04:33,696
+And the optimizer exploits every error in its model:
+
+80
+00:04:33,736 --> 00:04:36,589
+this lens shines in a cheap simulation,
+
+81
+00:04:36,629 --> 00:04:39,585
+but loses half its light in a careful one.
+
+82
+00:04:39,655 --> 00:04:42,419
+So inverse design needs models fast enough to run
+
+83
+00:04:42,459 --> 00:04:45,554
+thousands of times, and accurate enough to trust.
+
+84
+00:04:46,374 --> 00:04:48,828
+One forward and one backward simulation
+
+85
+00:04:48,868 --> 00:04:51,640
+give the gradient for every pixel at once.
+
+86
+00:04:51,710 --> 00:04:54,369
+And that completes our season: plane waves,
+
+87
+00:04:54,409 --> 00:04:57,412
+lenses as Fourier transforms, the diffraction limit,
+
+88
+00:04:57,452 --> 00:05:00,898
+coherence, phase, flat optics, periodic structures,
+
+89
+00:05:00,938 --> 00:05:04,203
+trapped light, Maxwell on a grid, and design.
+
+90
+00:05:04,273 --> 00:05:05,963
+Ten ideas, one thread.
+
+91
+00:05:06,633 --> 00:05:09,659
+Light is linear: in the right basis, the physics is simple;
+
+92
+00:05:09,699 --> 00:05:12,486
+run it backward, and the design is too.
+

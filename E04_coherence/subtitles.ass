@@ -1,0 +1,102 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:03.63,Default,,0,0,0,,{\fad(120,120)}Shine a laser on a wall, and the spot sparkles
+Dialogue: 0,0:00:03.67,0:00:07.42,Default,,0,0,0,,{\fad(120,120)}with grainy speckle. An LED's spot is smooth.
+Dialogue: 0,0:00:07.49,0:00:09.79,Default,,0,0,0,,{\fad(120,120)}Through two slits, the laser paints crisp fringes.
+Dialogue: 0,0:00:09.83,0:00:14.88,Default,,0,0,0,,{\fad(120,120)}The LED paints none, unless it first shines through a tiny pinhole.
+Dialogue: 0,0:00:14.95,0:00:19.17,Default,,0,0,0,,{\fad(120,120)}What does a laser have, that an LED doesn't? In a word: coherence.
+Dialogue: 0,0:00:19.99,0:00:23.51,Default,,0,0,0,,{\fad(120,120)}At any point, a light wave is an arrow, a complex number.
+Dialogue: 0,0:00:23.55,0:00:26.81,Default,,0,0,0,,{\fad(120,120)}Its length is the amplitude, its angle the phase.
+Dialogue: 0,0:00:26.88,0:00:29.43,Default,,0,0,0,,{\fad(120,120)}It spins hundreds of trillions of times a second,
+Dialogue: 0,0:00:29.47,0:00:31.02,Default,,0,0,0,,{\fad(120,120)}too fast for any camera,
+Dialogue: 0,0:00:31.06,0:00:34.64,Default,,0,0,0,,{\fad(120,120)}which records only its squared length: the intensity.
+Dialogue: 0,0:00:34.71,0:00:38.20,Default,,0,0,0,,{\fad(120,120)}Where two waves meet, their arrows add. They spin together,
+Dialogue: 0,0:00:38.24,0:00:41.08,Default,,0,0,0,,{\fad(120,120)}so only the angle between them matters: Δφ.
+Dialogue: 0,0:00:41.15,0:00:43.70,Default,,0,0,0,,{\fad(120,120)}Squaring the sum gives both intensities,
+Dialogue: 0,0:00:43.74,0:00:47.44,Default,,0,0,0,,{\fad(120,120)}plus a cross term that depends on Δφ: interference.
+Dialogue: 0,0:00:47.51,0:00:50.00,Default,,0,0,0,,{\fad(120,120)}Move across a screen, and Δφ grows steadily,
+Dialogue: 0,0:00:50.04,0:00:52.64,Default,,0,0,0,,{\fad(120,120)}so the cross term paints fringes.
+Dialogue: 0,0:00:52.71,0:00:54.81,Default,,0,0,0,,{\fad(120,120)}Now let one wave's phase jitter randomly,
+Dialogue: 0,0:00:54.85,0:00:58.48,Default,,0,0,0,,{\fad(120,120)}faster than the camera can follow. The fringes dance.
+Dialogue: 0,0:00:58.55,0:01:02.13,Default,,0,0,0,,{\fad(120,120)}On average, the cross term vanishes, so the intensities add.
+Dialogue: 0,0:01:03.00,0:01:04.48,Default,,0,0,0,,{\fad(120,120)}The visibility measures what's left:
+Dialogue: 0,0:01:04.52,0:01:07.72,Default,,0,0,0,,{\fad(120,120)}one for perfect fringes, zero for none.
+Dialogue: 0,0:01:08.54,0:01:11.23,Default,,0,0,0,,{\fad(120,120)}Why would phases wander? One reason is colour.
+Dialogue: 0,0:01:11.27,0:01:15.43,Default,,0,0,0,,{\fad(120,120)}Split a beam, and delay one copy by a path difference, ΔL.
+Dialogue: 0,0:01:15.50,0:01:18.42,Default,,0,0,0,,{\fad(120,120)}With a single colour, the fringes go on forever.
+Dialogue: 0,0:01:18.49,0:01:20.64,Default,,0,0,0,,{\fad(120,120)}But each colour has its own spacing.
+Dialogue: 0,0:01:20.68,0:01:24.28,Default,,0,0,0,,{\fad(120,120)}At zero delay they agree; further out, they drift apart.
+Dialogue: 0,0:01:24.35,0:01:29.76,Default,,0,0,0,,{\fad(120,120)}Add a whole spectrum, and fringes survive only near zero delay.
+Dialogue: 0,0:01:29.80,0:01:33.53,Default,,0,0,0,,{\fad(120,120)}That window is the coherence length, roughly λ²/Δλ.
+Dialogue: 0,0:01:33.60,0:01:36.94,Default,,0,0,0,,{\fad(120,120)}In fact, the envelope is the Fourier transform of the spectrum:
+Dialogue: 0,0:01:36.98,0:01:39.80,Default,,0,0,0,,{\fad(120,120)}narrow spectrum, long coherence.
+Dialogue: 0,0:01:39.87,0:01:43.02,Default,,0,0,0,,{\fad(120,120)}A good laser: centimetres to kilometres. An LED:
+Dialogue: 0,0:01:43.06,0:01:47.32,Default,,0,0,0,,{\fad(120,120)}about ten microns. Sunlight: about one micron.
+Dialogue: 0,0:01:48.14,0:01:50.32,Default,,0,0,0,,{\fad(120,120)}Colour isn't the whole story.
+Dialogue: 0,0:01:50.36,0:01:53.03,Default,,0,0,0,,{\fad(120,120)}A laser behaves like a single point of light;
+Dialogue: 0,0:01:53.07,0:01:56.14,Default,,0,0,0,,{\fad(120,120)}an LED is a crowd of independent points.
+Dialogue: 0,0:01:56.21,0:01:59.66,Default,,0,0,0,,{\fad(120,120)}Move one point off centre. Its light reaches the slits tilted,
+Dialogue: 0,0:01:59.70,0:02:02.66,Default,,0,0,0,,{\fad(120,120)}and the tilt shifts its fringes sideways.
+Dialogue: 0,0:02:02.73,0:02:04.53,Default,,0,0,0,,{\fad(120,120)}Different points have unrelated phases,
+Dialogue: 0,0:02:04.57,0:02:09.18,Default,,0,0,0,,{\fad(120,120)}so their intensities add. The camera sees a sum of shifted copies.
+Dialogue: 0,0:02:09.25,0:02:12.64,Default,,0,0,0,,{\fad(120,120)}Watch as the source grows: the copies spread out and fill
+Dialogue: 0,0:02:12.68,0:02:16.09,Default,,0,0,0,,{\fad(120,120)}in each other's dark bands, until the sum is flat grey.
+Dialogue: 0,0:02:16.96,0:02:20.19,Default,,0,0,0,,{\fad(120,120)}Fringes vanish once the source's angular size
+Dialogue: 0,0:02:20.23,0:02:22.90,Default,,0,0,0,,{\fad(120,120)}reaches about λ over the slit separation.
+Dialogue: 0,0:02:22.97,0:02:25.63,Default,,0,0,0,,{\fad(120,120)}A tiny pinhole brings them back. So does distance:
+Dialogue: 0,0:02:25.67,0:02:28.89,Default,,0,0,0,,{\fad(120,120)}a giant star, far away, looks tiny.
+Dialogue: 0,0:02:28.96,0:02:32.59,Default,,0,0,0,,{\fad(120,120)}How visibility fades as the slits move apart is the Fourier
+Dialogue: 0,0:02:32.63,0:02:36.72,Default,,0,0,0,,{\fad(120,120)}transform of the source's shape: the van Cittert–Zernike theorem.
+Dialogue: 0,0:02:36.79,0:02:39.43,Default,,0,0,0,,{\fad(120,120)}In 1920, Michelson spread two mirrors
+Dialogue: 0,0:02:39.47,0:02:41.83,Default,,0,0,0,,{\fad(120,120)}apart until a star's fringes vanished,
+Dialogue: 0,0:02:41.87,0:02:44.30,Default,,0,0,0,,{\fad(120,120)}and measured the size of Betelgeuse.
+Dialogue: 0,0:02:45.12,0:02:49.61,Default,,0,0,0,,{\fad(120,120)}Coherence has a dark side. A wall is rough on the scale of a wavelength.
+Dialogue: 0,0:02:49.68,0:02:53.29,Default,,0,0,0,,{\fad(120,120)}At each pixel, light arrives from every bump with a random phase,
+Dialogue: 0,0:02:53.33,0:02:56.27,Default,,0,0,0,,{\fad(120,120)}and the arrows add up like a random walk.
+Dialogue: 0,0:02:56.34,0:02:58.67,Default,,0,0,0,,{\fad(120,120)}Sometimes they cancel, sometimes they line up:
+Dialogue: 0,0:02:58.71,0:03:01.30,Default,,0,0,0,,{\fad(120,120)}dark and bright grains called speckle.
+Dialogue: 0,0:03:01.37,0:03:05.74,Default,,0,0,0,,{\fad(120,120)}Its contrast, the standard deviation over the mean, is exactly one.
+Dialogue: 0,0:03:05.81,0:03:09.95,Default,,0,0,0,,{\fad(120,120)}Each grain is about λ/NA across: the numerical aperture,
+Dialogue: 0,0:03:09.99,0:03:13.54,Default,,0,0,0,,{\fad(120,120)}NA, is the sine of the widest angle collected.
+Dialogue: 0,0:03:13.61,0:03:17.99,Default,,0,0,0,,{\fad(120,120)}Average N independent patterns, and the contrast falls as 1/√N.
+Dialogue: 0,0:03:18.03,0:03:21.81,Default,,0,0,0,,{\fad(120,120)}An LED's many colours and points do just that.
+Dialogue: 0,0:03:22.63,0:03:25.59,Default,,0,0,0,,{\fad(120,120)}How do we compute with partially coherent light? Record,
+Dialogue: 0,0:03:25.63,0:03:29.42,Default,,0,0,0,,{\fad(120,120)}for every pair of points, how well their fields keep in step.
+Dialogue: 0,0:03:29.49,0:03:33.97,Default,,0,0,0,,{\fad(120,120)}That's the mutual intensity, J: the average of the field at x₁
+Dialogue: 0,0:03:34.01,0:03:39.12,Default,,0,0,0,,{\fad(120,120)}times the conjugate field at x₂. Its diagonal is the intensity.
+Dialogue: 0,0:03:39.19,0:03:41.63,Default,,0,0,0,,{\fad(120,120)}Off the diagonal, it says how strongly two
+Dialogue: 0,0:03:41.67,0:03:44.07,Default,,0,0,0,,{\fad(120,120)}points would interfere through a double slit.
+Dialogue: 0,0:03:44.14,0:03:46.00,Default,,0,0,0,,{\fad(120,120)}Swapping the points conjugates J,
+Dialogue: 0,0:03:46.04,0:03:49.81,Default,,0,0,0,,{\fad(120,120)}so it's a Hermitian matrix, and it can be diagonalized.
+Dialogue: 0,0:03:49.88,0:03:51.88,Default,,0,0,0,,{\fad(120,120)}Its eigenvectors are coherent modes,
+Dialogue: 0,0:03:51.92,0:03:56.39,Default,,0,0,0,,{\fad(120,120)}each perfectly coherent, and its eigenvalues are their powers.
+Dialogue: 0,0:03:56.46,0:03:59.43,Default,,0,0,0,,{\fad(120,120)}So partially coherent light is a sum of independent
+Dialogue: 0,0:03:59.47,0:04:02.28,Default,,0,0,0,,{\fad(120,120)}coherent fields, whose intensities add.
+Dialogue: 0,0:04:03.15,0:04:07.41,Default,,0,0,0,,{\fad(120,120)}A laser needs one mode. The bigger the source, the more modes it takes.
+Dialogue: 0,0:04:08.23,0:04:10.32,Default,,0,0,0,,{\fad(120,120)}On a computer, that gives three recipes.
+Dialogue: 0,0:04:10.36,0:04:13.85,Default,,0,0,0,,{\fad(120,120)}Coherent light: propagate the field, then square it.
+Dialogue: 0,0:04:13.92,0:04:17.35,Default,,0,0,0,,{\fad(120,120)}Incoherent light: add intensities, often with a convolution.
+Dialogue: 0,0:04:17.39,0:04:19.28,Default,,0,0,0,,{\fad(120,120)}Partially coherent light:
+Dialogue: 0,0:04:19.32,0:04:22.46,Default,,0,0,0,,{\fad(120,120)}propagate a few modes, and add their intensities.
+Dialogue: 0,0:04:22.53,0:04:24.76,Default,,0,0,0,,{\fad(120,120)}Here's a diffractive element lit by a laser.
+Dialogue: 0,0:04:24.80,0:04:28.17,Default,,0,0,0,,{\fad(120,120)}Its far-field pattern is crisp, but speckled.
+Dialogue: 0,0:04:28.24,0:04:32.12,Default,,0,0,0,,{\fad(120,120)}With an LED, each source point tilts the light, shifting the pattern,
+Dialogue: 0,0:04:32.16,0:04:36.16,Default,,0,0,0,,{\fad(120,120)}and each colour stretches it. The sum is blurred, but smooth.
+Dialogue: 0,0:04:36.23,0:04:39.49,Default,,0,0,0,,{\fad(120,120)}At large angles, this simple blur stops being exact,
+Dialogue: 0,0:04:39.53,0:04:42.27,Default,,0,0,0,,{\fad(120,120)}but a few coherent modes are often enough.
+Dialogue: 0,0:04:43.09,0:04:44.35,Default,,0,0,0,,{\fad(120,120)}So, when does light interfere?
+Dialogue: 0,0:04:44.39,0:04:47.24,Default,,0,0,0,,{\fad(120,120)}Fields add when their phases stay in step.
+Dialogue: 0,0:04:47.28,0:04:50.08,Default,,0,0,0,,{\fad(120,120)}When phases wander, intensities add.
+Dialogue: 0,0:04:50.15,0:04:53.75,Default,,0,0,0,,{\fad(120,120)}And partially coherent light is a sum of coherent patterns.
+Dialogue: 0,0:04:53.82,0:04:56.94,Default,,0,0,0,,{\fad(120,120)}Next time: coherence lets us do what a camera can't,
+Dialogue: 0,0:04:56.98,0:04:58.81,Default,,0,0,0,,{\fad(120,120)}and record the phase of light.

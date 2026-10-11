@@ -1,0 +1,344 @@
+1
+00:00:00,900 --> 00:00:02,852
+Shine a laser through a narrow slit,
+
+2
+00:00:02,892 --> 00:00:06,591
+and a pattern of bright and dark bands appears on the wall.
+
+3
+00:00:06,661 --> 00:00:08,193
+How does light spread out like that?
+
+4
+00:00:08,233 --> 00:00:11,988
+And how can we compute exactly what it looks like at any distance?
+
+5
+00:00:12,058 --> 00:00:13,794
+There is a beautifully simple answer,
+
+6
+00:00:13,834 --> 00:00:15,989
+called the angular spectrum method.
+
+7
+00:00:16,059 --> 00:00:19,090
+By the end of this video you'll see exactly why it works,
+
+8
+00:00:19,130 --> 00:00:22,705
+using nothing but calculus and a little linear algebra.
+
+9
+00:00:23,525 --> 00:00:26,402
+Let's start with a single wave. Along a line,
+
+10
+00:00:26,442 --> 00:00:29,375
+the light's field goes up and down like a cosine.
+
+11
+00:00:29,445 --> 00:00:33,131
+The distance from one crest to the next is the wavelength, λ.
+
+12
+00:00:33,201 --> 00:00:37,940
+It's often handier to use the wavenumber, k = 2π/λ.
+
+13
+00:00:38,010 --> 00:00:40,858
+It tells you how fast the wave's phase turns:
+
+14
+00:00:40,898 --> 00:00:43,378
+k radians for every unit of distance.
+
+15
+00:00:43,448 --> 00:00:46,469
+Light of one colour has one wavelength, so one fixed k.
+
+16
+00:00:46,509 --> 00:00:49,540
+Remember that: it's the key rule later on.
+
+17
+00:00:50,360 --> 00:00:54,953
+Next, a trick that makes waves much easier: complex numbers as arrows.
+
+18
+00:00:55,023 --> 00:01:00,352
+Euler's formula says e^(iθ) = cos θ + i sin θ:
+
+19
+00:01:00,392 --> 00:01:03,786
+an arrow of length one, at angle θ.
+
+20
+00:01:03,856 --> 00:01:05,688
+So at every point we draw an arrow.
+
+21
+00:01:05,728 --> 00:01:09,513
+Its length is the amplitude, and its angle is the phase.
+
+22
+00:01:09,583 --> 00:01:13,569
+The real light is just the arrow's shadow on the horizontal axis.
+
+23
+00:01:13,639 --> 00:01:19,126
+The wave e^(ikx) is an arrow that turns steadily as you move along x.
+
+24
+00:01:19,196 --> 00:01:21,486
+Here's the payoff: shifting the wave
+
+25
+00:01:21,526 --> 00:01:24,035
+is the same as rotating every arrow,
+
+26
+00:01:24,075 --> 00:01:26,923
+which means multiplying by e^(iφ).
+
+27
+00:01:27,743 --> 00:01:32,107
+Now let the light live in a plane, with x across and z pointing forward.
+
+28
+00:01:32,177 --> 00:01:38,269
+A plane wave, e^(i(kx·x + kz·z)), has straight, parallel crests.
+
+29
+00:01:38,339 --> 00:01:41,386
+Its wave vector, with components kx and kz,
+
+30
+00:01:41,426 --> 00:01:43,689
+points in the direction it travels.
+
+31
+00:01:43,759 --> 00:01:47,761
+Which wave vectors are allowed? Light obeys the Helmholtz equation.
+
+32
+00:01:47,831 --> 00:01:52,105
+Each derivative of an exponential just pulls down a factor,
+
+33
+00:01:52,145 --> 00:01:57,410
+so plugging in the plane wave gives kx² + kz² = k².
+
+34
+00:01:57,480 --> 00:02:03,241
+So the wave vector always ends on a circle of radius k.
+
+35
+00:02:03,281 --> 00:02:07,095
+Choose kx, and kz is fixed: √(k² − kx²).
+
+36
+00:02:07,165 --> 00:02:11,832
+And the tilt angle satisfies sin θ = kx / k.
+
+37
+00:02:12,652 --> 00:02:16,074
+Here's the second key fact: the Helmholtz equation is linear.
+
+38
+00:02:16,114 --> 00:02:19,500
+Add two solutions, and you get another solution.
+
+39
+00:02:19,570 --> 00:02:21,475
+That should remind you of linear algebra:
+
+40
+00:02:21,515 --> 00:02:24,211
+any vector is a sum of basis vectors,
+
+41
+00:02:24,251 --> 00:02:27,065
+and a dot product finds each component.
+
+42
+00:02:27,135 --> 00:02:30,440
+Functions are vectors too: sample a field at many points,
+
+43
+00:02:30,480 --> 00:02:32,873
+and it's just a long list of numbers.
+
+44
+00:02:32,943 --> 00:02:37,931
+A perfect basis for them is the set of waves e^(i·kx·x),
+
+45
+00:02:37,971 --> 00:02:41,070
+one for every spatial frequency kx.
+
+46
+00:02:41,140 --> 00:02:43,255
+The dot product of our field with each of
+
+47
+00:02:43,295 --> 00:02:45,875
+these waves gives that wave's amplitude.
+
+48
+00:02:45,915 --> 00:02:48,513
+That's exactly the Fourier transform.
+
+49
+00:02:48,583 --> 00:02:51,740
+For a slit, the spectrum is large at low frequencies,
+
+50
+00:02:51,780 --> 00:02:55,617
+with ripples at high frequencies that build the sharp edges.
+
+51
+00:02:56,437 --> 00:02:59,728
+Now we can propagate. Each basis wave on the
+
+52
+00:02:59,768 --> 00:03:03,561
+line z = 0 is the start of a tilted plane wave.
+
+53
+00:03:03,631 --> 00:03:06,527
+Moving forward by z, it keeps its shape.
+
+54
+00:03:06,567 --> 00:03:11,034
+It only gets multiplied by a phase, e^(i·kz·z).
+
+55
+00:03:11,104 --> 00:03:12,530
+In linear-algebra language:
+
+56
+00:03:12,570 --> 00:03:15,530
+plane waves are the eigenvectors of propagation,
+
+57
+00:03:15,570 --> 00:03:19,019
+and these phase factors are the eigenvalues.
+
+58
+00:03:19,089 --> 00:03:22,940
+In the basis of points, propagation mixes every point with every other.
+
+59
+00:03:22,980 --> 00:03:27,067
+In the plane-wave basis, its matrix is diagonal.
+
+60
+00:03:27,137 --> 00:03:30,279
+So we do what we'd do with any diagonalizable matrix:
+
+61
+00:03:30,319 --> 00:03:35,063
+change basis, multiply by the eigenvalues, and change back.
+
+62
+00:03:35,883 --> 00:03:39,783
+One twist: what if kx is bigger than k?
+
+63
+00:03:39,823 --> 00:03:44,416
+Then k² − kx² is negative, and kz becomes imaginary.
+
+64
+00:03:44,486 --> 00:03:47,261
+The phase factor turns into a decaying exponential:
+
+65
+00:03:47,301 --> 00:03:51,406
+these evanescent waves fade away within about a wavelength.
+
+66
+00:03:51,476 --> 00:03:54,893
+They carry the finest details, smaller than about half a wavelength,
+
+67
+00:03:54,933 --> 00:03:59,609
+which is why ordinary light can't resolve them: the diffraction limit.
+
+68
+00:04:00,429 --> 00:04:03,168
+On a computer, the whole method is three steps.
+
+69
+00:04:03,238 --> 00:04:06,769
+One: sample the field and take its fast Fourier transform,
+
+70
+00:04:06,809 --> 00:04:11,637
+the FFT, which changes basis in about N log N operations.
+
+71
+00:04:11,707 --> 00:04:15,463
+Two: multiply each frequency by the
+
+72
+00:04:15,503 --> 00:04:20,100
+transfer function, e^(iz√(k² − kx²)).
+
+73
+00:04:20,170 --> 00:04:24,140
+Three: take the inverse FFT. That's the field at distance z.
+
+74
+00:04:24,210 --> 00:04:27,630
+Two practical details: sample finer than half a wavelength,
+
+75
+00:04:27,670 --> 00:04:31,097
+and pad with zeros, because the FFT treats
+
+76
+00:04:31,137 --> 00:04:33,380
+the field as if it repeated forever.
+
+77
+00:04:33,450 --> 00:04:35,800
+Here's a slit, computed exactly this way:
+
+78
+00:04:35,840 --> 00:04:38,164
+a sharp shadow with ripples up close,
+
+79
+00:04:38,204 --> 00:04:40,937
+spreading into a broad pattern far away.
+
+80
+00:04:41,007 --> 00:04:42,800
+Give the starting field a curved phase,
+
+81
+00:04:42,840 --> 00:04:46,602
+and the same three steps simulate a lens focusing light.
+
+82
+00:04:47,422 --> 00:04:50,266
+Nothing was approximated, so this is exact for the
+
+83
+00:04:50,306 --> 00:04:53,846
+scalar wave equation, at any distance and any angle.
+
+84
+00:04:53,916 --> 00:04:55,415
+Break the field into plane waves,
+
+85
+00:04:55,455 --> 00:04:59,307
+let each one advance its own phase, and add them back up.
+
+86
+00:04:59,377 --> 00:05:04,282
+Two FFTs and one multiplication. That's the angular spectrum method.
+

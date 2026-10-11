@@ -1,0 +1,292 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Put living cells under a microscope, and a camera sees almost nothing: they're nearly transparent.",
+   "say": "Put living cells under a microscope, and a camera sees almost nothing. They're nearly transparent."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Yet the light that went through them changed a lot. Not in brightness, but in phase: the cells delayed it.",
+   "say": "Yet the light that went through them changed a lot. Not in brightness, but in phase: the cells delayed it."
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "So how do you photograph something a camera can't see?",
+   "say": "So how do you photograph something, a camera can't see?"
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "That's the phase problem. Its solutions are holography and phase retrieval.",
+   "say": "That's the phase problem. Its solutions are holography, and phase retrieval."
+  },
+  {
+   "id": "c1",
+   "ch": 1,
+   "text": "Remember: at each point, light is an arrow, a complex number. Its length is the amplitude, its angle the phase.",
+   "say": "Remember: at each point, light is an arrow, a complex number. Its length is the amplitude, and its angle is the phase."
+  },
+  {
+   "id": "c2",
+   "ch": 1,
+   "text": "A cell slows light down slightly. Where it's thicker, the light falls further behind, so its arrow turns further.",
+   "say": "A cell slows light down slightly. Where it's thicker, the light falls further behind, so its arrow turns further."
+  },
+  {
+   "id": "c3",
+   "ch": 1,
+   "text": "But a camera can't record arrows. It records brightness, the squared length |U|², and throws every angle away.",
+   "say": "But a camera can't record arrows. It records brightness, the squared length, and throws every angle away."
+  },
+  {
+   "id": "c4",
+   "ch": 1,
+   "text": "Why not measure the angle? Every arrow spins: green light oscillates 600 trillion times a second, far too fast for any detector.",
+   "say": "Why not measure the angle? Every arrow spins: green light oscillates six hundred trillion times a second, far too fast for any detector."
+  },
+  {
+   "id": "c5",
+   "ch": 1,
+   "pause_after": 0.8,
+   "text": "So for a transparent object, all the information sits in the phase, the very part the camera loses.",
+   "say": "So for a transparent object, all the information sits in the phase, the very part the camera loses."
+  },
+  {
+   "id": "r1",
+   "ch": 2,
+   "text": "Dennis Gabor's idea, in 1948: add a known reference wave, R. It spins in step with U, so the angle between them holds still.",
+   "say": "Dennis Gah-bor's idea, in nineteen forty-eight: add a known reference wave, R. It spins in step with U, so the angle between them holds still."
+  },
+  {
+   "id": "r2",
+   "ch": 2,
+   "text": "The camera sees the length of the sum, U + R. Change U's phase, and that length grows and shrinks.",
+   "say": "The camera sees the length of the sum, U plus R. Change U's phase, and that length grows and shrinks."
+  },
+  {
+   "id": "r3",
+   "ch": 2,
+   "pause_after": 0.8,
+   "text": "The phase is now written in brightness.",
+   "say": "The phase is now written in brightness."
+  },
+  {
+   "id": "r4",
+   "ch": 2,
+   "text": "Expanding the square gives four terms. The two cross terms, UR* and U*R, contain U itself, phase and all.",
+   "say": "Expanding the square gives four terms. The two cross terms, U R star, and U star R, contain U itself, phase and all."
+  },
+  {
+   "id": "r5",
+   "ch": 2,
+   "text": "With the reference straight on, as in Gabor's setup, all four terms pile up in one place, and the twin, U*, spoils the picture.",
+   "say": "With the reference straight on, as in Gah-bor's setup, all four terms pile up in one place, and the twin, U star, spoils the picture."
+  },
+  {
+   "id": "r6",
+   "ch": 2,
+   "text": "In 1962, Leith and Upatnieks tilted the reference. Now the camera records fine stripes, called fringes.",
+   "say": "In nineteen sixty-two, Leith and Oo-pat-nieks tilted the reference. Now the camera records fine stripes, called fringes."
+  },
+  {
+   "id": "r7",
+   "ch": 2,
+   "text": "A tilt is a shift in spatial frequency. So in the spectrum, UR* slides to one side, and its twin to the other.",
+   "say": "A tilt is a shift in spatial frequency. So in the spectrum, U R star slides to one side, and its twin to the other."
+  },
+  {
+   "id": "s1",
+   "ch": 3,
+   "text": "Here's a computed off-axis hologram of our cells. Take its Fourier transform, and three islands appear.",
+   "say": "Here's a computed off-axis hologram of our cells. Take its Fourier transform, and three islands appear."
+  },
+  {
+   "id": "s2",
+   "ch": 3,
+   "text": "The middle island holds |U|² and |R|². On either side sits one cross term: UR*, and its twin.",
+   "say": "The middle island holds U squared and R squared. On either side sits one cross term: U R star, and its twin."
+  },
+  {
+   "id": "s3",
+   "ch": 3,
+   "text": "They mustn't overlap. The middle one is twice as wide, so the tilt's frequency must be at least three times the object's bandwidth.",
+   "say": "They mustn't overlap. The middle one is twice as wide, so the tilt's frequency must be at least three times the object's bandwidth."
+  },
+  {
+   "id": "s4",
+   "ch": 3,
+   "text": "Now crop one island, move it to the centre, and transform back.",
+   "say": "Now crop one island, move it to the centre, and transform back.",
+   "pause_after": 0.6
+  },
+  {
+   "id": "s5",
+   "ch": 3,
+   "text": "Out comes the full complex field: brightness shows amplitude, and colour shows phase.",
+   "say": "Out comes the full complex field: brightness shows amplitude, and colour shows phase."
+  },
+  {
+   "id": "s6",
+   "ch": 3,
+   "text": "We recorded this hologram out of focus. But with the whole field in hand, the angular spectrum method from episode one can propagate it anywhere.",
+   "say": "We recorded this hologram out of focus. But with the whole field in hand, the angular spectrum method from episode one can propagate it anywhere."
+  },
+  {
+   "id": "s7",
+   "ch": 3,
+   "pause_after": 0.8,
+   "text": "Sweep the distance, and the cells snap into focus, long after the picture was taken.",
+   "say": "Sweep the distance, and the cells snap into focus, long after the picture was taken."
+  },
+  {
+   "id": "g1",
+   "ch": 4,
+   "text": "What if there's no reference, only brightness? Then you lean on what you already know.",
+   "say": "What if there's no reference, only brightness? Then you lean on what you already know."
+  },
+  {
+   "id": "g2",
+   "ch": 4,
+   "text": "Here, light passes through a window of known shape, and the sample is transparent. So in this plane, every arrow's length is known.",
+   "say": "Here, light passes through a window of known shape, and the sample is transparent. So in this plane, every arrow's length is known."
+  },
+  {
+   "id": "g3",
+   "ch": 4,
+   "text": "A lens shows the far field, and a camera there gives its lengths too. Lengths in both planes, angles in neither.",
+   "say": "A lens shows the far field, and a camera there gives its lengths too. Lengths in both planes, angles in neither."
+  },
+  {
+   "id": "g4",
+   "ch": 4,
+   "text": "The Gerchberg–Saxton algorithm starts from random angles and goes back and forth with Fourier transforms.",
+   "say": "The Gherchberg Saxton algorithm starts from random angles, and goes back and forth with Fourier transforms."
+  },
+  {
+   "id": "g5",
+   "ch": 4,
+   "text": "In each plane, it keeps the angles, but swaps in the lengths it knows.",
+   "say": "In each plane, it keeps the angles, but swaps in the lengths it knows."
+  },
+  {
+   "id": "g6",
+   "ch": 4,
+   "text": "Each swap puts the guess on one constraint. Bouncing between them, it homes in on a field that satisfies both.",
+   "say": "Each swap puts the guess on one constraint. Bouncing between them, it homes in on a field that satisfies both."
+  },
+  {
+   "id": "g7",
+   "ch": 4,
+   "text": "Watch the error fall, as the cells emerge from the noise.",
+   "say": "Watch the error fall, as the cells emerge from the noise.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "g8",
+   "ch": 4,
+   "text": "The far field alone has blind spots: a shifted copy, a flipped twin, or a constant phase gives exactly the same brightness.",
+   "say": "The far field alone has blind spots: a shifted copy, a flipped twin, or a constant phase, gives exactly the same brightness."
+  },
+  {
+   "id": "g9",
+   "ch": 4,
+   "text": "Our lopsided window rules out the first two. More diverse data helps too: several distances, or the overlapping scans of ptychography.",
+   "say": "Our lopsided window rules out the first two. More diverse data helps too: several distances, or the overlapping scans of tie-kography."
+  },
+  {
+   "id": "d1",
+   "ch": 5,
+   "text": "Now run it backwards. Instead of measuring a far field, ask for one: say, a λ.",
+   "say": "Now run it backwards. Instead of measuring a far field, ask for one: say, a lambda."
+  },
+  {
+   "id": "d2",
+   "ch": 5,
+   "text": "The mask can only change phase, like a liquid-crystal screen or an etched glass plate. Same loop, with the target in place of the measurement.",
+   "say": "The mask can only change phase, like a liquid crystal screen, or an etched glass plate. Same loop, with the target in place of the measurement."
+  },
+  {
+   "id": "d3",
+   "ch": 5,
+   "text": "Watch the mask's phase scramble, and the far field snap into the target.",
+   "say": "Watch the mask's phase scramble, and the far field snap into the target.",
+   "pause_after": 0.6
+  },
+  {
+   "id": "d4",
+   "ch": 5,
+   "text": "The grain is speckle. The target fixes only brightness, so the far-field phase comes out random, and nearby points interfere with each other, as in episode four.",
+   "say": "The grain is speckle. The target fixes only brightness, so the far field phase comes out random, and nearby points interfere with each other, as in episode four."
+  },
+  {
+   "id": "d5",
+   "ch": 5,
+   "text": "Modern designs often use gradient descent instead, which we'll meet in episode ten.",
+   "say": "Modern designs often use gradient descent instead, which we'll meet in episode ten."
+  },
+  {
+   "id": "a1",
+   "ch": 6,
+   "text": "On a computer, each idea is just a few lines.",
+   "say": "On a computer, each idea is just a few lines."
+  },
+  {
+   "id": "a2",
+   "ch": 6,
+   "text": "Holography: FFT the hologram, crop the island, inverse FFT, then refocus with the angular spectrum method.",
+   "say": "Holography: F F T the hologram, crop the island, inverse F F T, then refocus with the angular spectrum method."
+  },
+  {
+   "id": "a3",
+   "ch": 6,
+   "text": "Retrieval and design: a loop of FFTs that swaps in what you know.",
+   "say": "Retrieval and design: a loop of F F Ts that swaps in what you know."
+  },
+  {
+   "id": "a4",
+   "ch": 6,
+   "text": "Two pitfalls. Every fringe needs at least two pixels, or the island runs off the edge of the spectrum and wraps around.",
+   "say": "Two pitfalls. Every fringe needs at least two pixels, or the island runs off the edge of the spectrum, and wraps around."
+  },
+  {
+   "id": "a4b",
+   "ch": 6,
+   "text": "So off-axis holography spends part of the camera's pixels on fringes.",
+   "say": "So off-axis holography spends part of the camera's pixels on fringes."
+  },
+  {
+   "id": "a5",
+   "ch": 6,
+   "text": "And Gerchberg–Saxton can stall. Restart it from new random angles, or switch to gradients.",
+   "say": "And Gherchberg Saxton can stall. Restart it from new random angles, or switch to gradients."
+  },
+  {
+   "id": "e1",
+   "ch": 7,
+   "text": "Cameras lose phase. Interference writes it into fringes, and constraints let a computer recover it, or design it.",
+   "say": "Cameras lose phase. Interference writes it into fringes, and constraints let a computer recover it, or design it."
+  },
+  {
+   "id": "e2",
+   "ch": 7,
+   "text": "Where does it break? Holography needs steady, coherent light, and retrieval needs diverse data.",
+   "say": "Where does it break? Holography needs steady, coherent light, and retrieval needs diverse data."
+  },
+  {
+   "id": "e3",
+   "ch": 7,
+   "text": "We just designed a phase mask on a computer. How do you build one, and what does \"thin\" really mean?",
+   "say": "We just designed a phase mask on a computer. How do you build one? And what does thin really mean?"
+  }
+ ]
+}

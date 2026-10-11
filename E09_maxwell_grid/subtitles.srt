@@ -1,0 +1,352 @@
+1
+00:00:00,900 --> 00:00:04,238
+Watch a pulse of light, just a few wave cycles long,
+
+2
+00:00:04,278 --> 00:00:07,275
+race along a silicon wire toward a tiny ring.
+
+3
+00:00:07,345 --> 00:00:10,292
+Some of it hops into the ring, circles around and around,
+
+4
+00:00:10,332 --> 00:00:13,265
+and leaks back out a little on every lap.
+
+5
+00:00:13,335 --> 00:00:15,439
+Every model so far was an approximation.
+
+6
+00:00:15,479 --> 00:00:20,304
+This is Maxwell's equations themselves, solved on a grid. How?
+
+7
+00:00:20,374 --> 00:00:22,249
+It's called finite-difference time-domain,
+
+8
+00:00:22,289 --> 00:00:25,510
+FDTD, and it rests on two ideas:
+
+9
+00:00:25,550 --> 00:00:29,482
+leapfrogging fields, and a border made of complex numbers.
+
+10
+00:00:30,302 --> 00:00:32,591
+In two dimensions, the electric field
+
+11
+00:00:32,631 --> 00:00:34,154
+E points straight out of the screen,
+
+12
+00:00:34,194 --> 00:00:37,651
+and the magnetic field H lies flat in the plane.
+
+13
+00:00:37,721 --> 00:00:39,718
+Maxwell's equations then say two things:
+
+14
+00:00:39,758 --> 00:00:42,846
+a changing H is driven by the curl of E,
+
+15
+00:00:42,886 --> 00:00:45,963
+and a changing E by the curl of H.
+
+16
+00:00:46,033 --> 00:00:50,127
+The curl measures swirl: how much a field circulates around each point.
+
+17
+00:00:50,197 --> 00:00:54,292
+Watch a bump of E. Its slopes make H start to circulate around it.
+
+18
+00:00:54,362 --> 00:00:58,571
+That swirling H lowers E in the middle and raises it around the edge.
+
+19
+00:00:58,611 --> 00:01:02,639
+The bump spreads into a ring: a wave that pushes itself along.
+
+20
+00:01:02,709 --> 00:01:04,599
+These rules contain only derivatives,
+
+21
+00:01:04,639 --> 00:01:08,874
+which compare each point with its neighbours. Everything is local.
+
+22
+00:01:09,694 --> 00:01:12,354
+On a computer, sample the fields on a grid,
+
+23
+00:01:12,394 --> 00:01:15,507
+and replace each derivative by a difference of neighbours.
+
+24
+00:01:15,577 --> 00:01:17,664
+But that difference, divided by the spacing,
+
+25
+00:01:17,704 --> 00:01:19,848
+gives the slope best at the midpoint
+
+26
+00:01:19,888 --> 00:01:22,405
+between the samples, not at either end.
+
+27
+00:01:22,475 --> 00:01:26,478
+So in 1966, Kane Yee put H exactly at those midpoints:
+
+28
+00:01:26,518 --> 00:01:28,689
+half a cell away from E.
+
+29
+00:01:28,759 --> 00:01:31,980
+Time gets the same trick: E lives on whole time steps,
+
+30
+00:01:32,020 --> 00:01:34,524
+and H on the half steps in between.
+
+31
+00:01:34,594 --> 00:01:38,384
+The algorithm is a leapfrog. Use the curl of E to update H,
+
+32
+00:01:38,424 --> 00:01:41,693
+then the curl of H to update E, and repeat.
+
+33
+00:01:41,763 --> 00:01:44,034
+Here it is in 1D, with real numbers:
+
+34
+00:01:44,074 --> 00:01:48,872
+each new value uses only its two neighbours, yet the pulse marches on.
+
+35
+00:01:48,942 --> 00:01:52,072
+Matter is just one number per cell, the permittivity ε.
+
+36
+00:01:52,112 --> 00:01:55,822
+Any shape you can paint on the grid, you can simulate.
+
+37
+00:01:56,642 --> 00:02:01,290
+The grid has two rules of its own. First, a speed limit: each step,
+
+38
+00:02:01,330 --> 00:02:05,156
+news travels only to neighbouring cells, so it spreads in a diamond.
+
+39
+00:02:05,226 --> 00:02:10,211
+Light spreads in a circle, which must fit inside the diamond:
+
+40
+00:02:10,251 --> 00:02:14,736
+in 2D, c Δt ≤ Δx/√2. This is the Courant limit.
+
+41
+00:02:14,806 --> 00:02:18,477
+Break it by just six percent, and the computed field explodes.
+
+42
+00:02:19,147 --> 00:02:23,049
+Second, the grid distorts waves. Recall the k-circle:
+
+43
+00:02:23,089 --> 00:02:25,904
+in free space, all directions share one wavelength.
+
+44
+00:02:25,974 --> 00:02:29,273
+On the grid, the circle bulges, most along the axes:
+
+45
+00:02:29,313 --> 00:02:33,645
+short waves travel too slowly, slowest along the grid lines.
+
+46
+00:02:33,715 --> 00:02:36,240
+A pulse becomes a squarish ring, trailed by ripples.
+
+47
+00:02:36,280 --> 00:02:40,555
+The fix: ten to twenty cells per wavelength, or more.
+
+48
+00:02:41,375 --> 00:02:44,297
+Now the hardest part: the grid must end somewhere,
+
+49
+00:02:44,337 --> 00:02:46,291
+but real light just keeps going.
+
+50
+00:02:46,361 --> 00:02:49,441
+If the grid simply stops, its edge acts as a mirror,
+
+51
+00:02:49,481 --> 00:02:51,566
+and the echo ruins the answer.
+
+52
+00:02:51,636 --> 00:02:53,379
+So add a layer that absorbs?
+
+53
+00:02:53,419 --> 00:02:57,302
+A sudden change of material reflects too, right at its edge.
+
+54
+00:02:57,372 --> 00:02:59,727
+A gentler layer must be thick and expensive.
+
+55
+00:02:59,767 --> 00:03:02,690
+We need an absorber that light cannot see.
+
+56
+00:03:04,310 --> 00:03:09,361
+The trick, found in 1994 by Bérenger, and by Chew and Weedon,
+
+57
+00:03:09,401 --> 00:03:12,047
+is to change not the material, but the coordinates.
+
+58
+00:03:12,117 --> 00:03:15,817
+Inside the border, let the position x pick up an
+
+59
+00:03:15,857 --> 00:03:21,281
+imaginary part that grows with depth: x + (i/ω)∫σ dx.
+
+60
+00:03:21,351 --> 00:03:27,270
+A wave e^(ikx) at this complex position keeps its wavelength,
+
+61
+00:03:27,310 --> 00:03:32,969
+but gains a factor e^(−(k/ω)∫σ dx): it dies away.
+
+62
+00:03:33,039 --> 00:03:36,089
+These are the same Maxwell equations in stretched coordinates,
+
+63
+00:03:36,129 --> 00:03:41,479
+so the border matches perfectly: no echo, at any angle or frequency.
+
+64
+00:03:41,549 --> 00:03:45,767
+This is the perfectly matched layer, or PML. Side by side:
+
+65
+00:03:45,807 --> 00:03:50,513
+the wall echoes, the lossy layer echoes, the PML stays silent.
+
+66
+00:03:50,583 --> 00:03:54,357
+On a grid, a tiny echo remains, so σ ramps up smoothly.
+
+67
+00:03:54,397 --> 00:03:58,440
+Grazing and evanescent waves are the hardest to absorb.
+
+68
+00:03:59,260 --> 00:04:02,817
+In code, the whole method is four lines inside a time loop.
+
+69
+00:04:02,887 --> 00:04:06,725
+Update H from the curl of E. Update E from the curl of H.
+
+70
+00:04:06,765 --> 00:04:09,390
+Absorb in the PML. Add the source.
+
+71
+00:04:09,460 --> 00:04:12,390
+Send in one short pulse, record what comes back,
+
+72
+00:04:12,430 --> 00:04:14,542
+and a Fourier transform in time gives
+
+73
+00:04:14,582 --> 00:04:16,783
+every wavelength from a single run.
+
+74
+00:04:16,853 --> 00:04:19,447
+For a Bragg mirror, a stack of alternating layers,
+
+75
+00:04:19,487 --> 00:04:23,591
+the whole reflection spectrum lands right on the exact answer.
+
+76
+00:04:23,661 --> 00:04:26,197
+The price: every cell is updated at every step.
+
+77
+00:04:26,237 --> 00:04:28,741
+A small 2D run takes seconds;
+
+78
+00:04:28,781 --> 00:04:33,102
+a large 3D device, minutes to hours on GPUs.
+
+79
+00:04:33,172 --> 00:04:36,951
+And it sees what simpler models miss: on this fine glass relief,
+
+80
+00:04:36,991 --> 00:04:42,267
+the thin-element model sends 96% of the light one way. FDTD,
+
+81
+00:04:42,307 --> 00:04:46,668
+with shadows and light trapped in the ridges, finds 57%.
+
+82
+00:04:47,488 --> 00:04:51,756
+FDTD isn't exact either: it converges as cells shrink,
+
+83
+00:04:51,796 --> 00:04:56,157
+curves become staircases, and the PML adds a small error.
+
+84
+00:04:56,227 --> 00:04:59,027
+But the core idea is simple. E updates H,
+
+85
+00:04:59,067 --> 00:05:01,842
+and H updates E, one neighbour at a time.
+
+86
+00:05:01,912 --> 00:05:05,679
+A layer of complex-stretched space absorbs whatever leaves.
+
+87
+00:05:05,749 --> 00:05:09,782
+Now we can simulate almost anything. What we really want is the reverse:
+
+88
+00:05:09,822 --> 00:05:12,994
+say what the light should do, and get the structure.
+

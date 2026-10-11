@@ -1,0 +1,352 @@
+1
+00:00:00,900 --> 00:00:03,864
+This glass lens is about nine microns thick.
+
+2
+00:00:03,904 --> 00:00:06,743
+This patterned plate is just one micron thick.
+
+3
+00:00:06,813 --> 00:00:08,192
+Shine green light through both,
+
+4
+00:00:08,232 --> 00:00:11,256
+and they focus it to exactly the same spot.
+
+5
+00:00:11,326 --> 00:00:14,749
+But in white light, the glass lens still makes one sharp focus,
+
+6
+00:00:14,789 --> 00:00:18,052
+while the plate smears the colours along its axis.
+
+7
+00:00:18,122 --> 00:00:22,483
+How can one micron of glass do a thick lens's job? And what's the catch?
+
+8
+00:00:23,303 --> 00:00:25,780
+Inside glass, light slows down to c/n,
+
+9
+00:00:25,820 --> 00:00:29,963
+where n, the refractive index, is about 1.5.
+
+10
+00:00:30,033 --> 00:00:33,128
+Follow two paths, one through a block of glass of height h,
+
+11
+00:00:33,168 --> 00:00:37,549
+one through air. In the glass, the crests bunch up and fall behind.
+
+12
+00:00:37,619 --> 00:00:41,761
+The glass path lags by (n − 1)h:
+
+13
+00:00:41,801 --> 00:00:48,545
+a phase delay φ = k₀(n − 1)h, where k₀ = 2π/λ.
+
+14
+00:00:48,615 --> 00:00:52,732
+If the glass is thin, each point is simply delayed on its own:
+
+15
+00:00:52,772 --> 00:00:57,381
+the outgoing field is the incoming one, times e^(iφ(x)).
+
+16
+00:00:57,451 --> 00:00:58,922
+That's the thin element approximation,
+
+17
+00:00:58,962 --> 00:01:02,287
+TEA. Make the glass thickest in the middle,
+
+18
+00:01:02,327 --> 00:01:06,349
+and a flat wave leaves curved, converging to a focus.
+
+19
+00:01:06,419 --> 00:01:09,295
+It's the simplest, fastest rung on a ladder of models.
+
+20
+00:01:09,335 --> 00:01:13,062
+Remember its one assumption: every point on its own.
+
+21
+00:01:13,882 --> 00:01:18,858
+Now the key trick. Phase is an angle, so a delay of one full turn,
+
+22
+00:01:18,898 --> 00:01:22,634
+2π, changes nothing: every crest lands where the next one was.
+
+23
+00:01:22,704 --> 00:01:26,507
+In glass, one full turn of delay takes a height of λ/(n − 1).
+
+24
+00:01:26,547 --> 00:01:30,864
+For green light, that's about 1.1 microns.
+
+25
+00:01:30,934 --> 00:01:34,116
+So slice the lens into slabs of exactly that height.
+
+26
+00:01:34,186 --> 00:01:36,305
+Each full slab only adds whole turns.
+
+27
+00:01:36,345 --> 00:01:38,963
+It changes nothing, so throw it away.
+
+28
+00:01:39,033 --> 00:01:42,510
+Keep just the curved remainders, and let them drop onto the base.
+
+29
+00:01:43,480 --> 00:01:45,420
+What's left is a kinoform:
+
+30
+00:01:45,460 --> 00:01:48,855
+rings called Fresnel zones, about one micron thick.
+
+31
+00:01:48,925 --> 00:01:52,841
+The zones narrow toward the edge, where light must bend most steeply.
+
+32
+00:01:52,881 --> 00:01:55,590
+There, they're only a few wavelengths wide.
+
+33
+00:01:55,660 --> 00:01:58,027
+At the design wavelength, the kinoform
+
+34
+00:01:58,067 --> 00:02:01,706
+multiplies the light by exactly the same e^(iφ).
+
+35
+00:02:01,746 --> 00:02:05,241
+So it focuses to exactly the same spot.
+
+36
+00:02:06,061 --> 00:02:09,609
+Real fabrication often makes just N discrete heights,
+
+37
+00:02:09,649 --> 00:02:11,687
+so each zone becomes a staircase.
+
+38
+00:02:11,757 --> 00:02:14,737
+Each zone works like a tooth of a grating.
+
+39
+00:02:14,777 --> 00:02:17,786
+A perfect ramp sends all the light into one diffraction order:
+
+40
+00:02:17,826 --> 00:02:19,727
+the one aimed at the focus.
+
+41
+00:02:19,797 --> 00:02:23,789
+Steps leak light into other orders, and that light misses the focus.
+
+42
+00:02:23,859 --> 00:02:27,414
+How much? At each point, draw an arrow for the gap between its
+
+43
+00:02:27,454 --> 00:02:31,120
+phase and the perfect ramp, then add the arrows head to tail.
+
+44
+00:02:31,190 --> 00:02:32,780
+For the ramp, they all line up.
+
+45
+00:02:32,820 --> 00:02:36,084
+But each step holds its phase while the ramp keeps turning,
+
+46
+00:02:36,124 --> 00:02:39,662
+so the chain curls, and its end-to-end arrow is shorter.
+
+47
+00:02:40,332 --> 00:02:44,761
+Its squared length is the share of light in the focus: η = sinc²(1/N).
+
+48
+00:02:44,801 --> 00:02:53,404
+That's 41% for two levels, 81% for four, 95% for eight, 99% for sixteen.
+
+49
+00:02:54,224 --> 00:02:57,147
+Now colour. A kinoform works by diffraction:
+
+50
+00:02:57,187 --> 00:03:01,450
+its zones are fixed, and longer wavelengths bend more at each one.
+
+51
+00:03:01,520 --> 00:03:05,173
+So its focal length depends on colour,
+
+52
+00:03:05,213 --> 00:03:10,534
+f = f₀λ₀/λ: red focuses closest, and blue farthest.
+
+53
+00:03:10,604 --> 00:03:13,408
+A glass lens does the opposite, and far more gently:
+
+54
+00:03:13,448 --> 00:03:17,981
+glass bends blue slightly more, so blue focuses a little closer.
+
+55
+00:03:18,051 --> 00:03:20,671
+Opticians score this with the Abbe number:
+
+56
+00:03:20,711 --> 00:03:26,878
+about +60 for common glass, but −3.45 for every diffractive lens.
+
+57
+00:03:26,948 --> 00:03:28,160
+Since the signs are opposite,
+
+58
+00:03:28,200 --> 00:03:32,703
+a weak diffractive surface can cancel a glass lens's colour error.
+
+59
+00:03:32,743 --> 00:03:35,826
+Or software can correct the colours afterwards.
+
+60
+00:03:36,646 --> 00:03:39,601
+Now the deepest catch. The thin element approximation
+
+61
+00:03:39,641 --> 00:03:43,989
+assumes every column of glass acts on its own. Is that true?
+
+62
+00:03:44,059 --> 00:03:48,555
+Zoom in on zones four wavelengths wide, with walls two wavelengths tall.
+
+63
+00:03:49,225 --> 00:03:52,755
+Solve Maxwell's equations directly, and the clean picture breaks.
+
+64
+00:03:52,795 --> 00:03:56,250
+Light crowds along the walls, shoots out in jets,
+
+65
+00:03:56,290 --> 00:03:58,248
+and leaves shadows beside them.
+
+66
+00:03:58,318 --> 00:04:03,016
+So less light reaches the focus: TEA promises all of it,
+
+67
+00:04:03,056 --> 00:04:06,096
+but the full solution delivers about 70%.
+
+68
+00:04:06,166 --> 00:04:08,567
+The narrower the zones, the bigger the gap.
+
+69
+00:04:08,607 --> 00:04:11,424
+Only zones many wavelengths wide are safe.
+
+70
+00:04:11,494 --> 00:04:14,318
+Two ways out. Metasurfaces build the phase
+
+71
+00:04:14,358 --> 00:04:16,421
+from pillars narrower than a wavelength,
+
+72
+00:04:16,461 --> 00:04:19,795
+each one's delay computed from the full equations.
+
+73
+00:04:19,865 --> 00:04:22,182
+Or drop the shortcut, and simulate the whole
+
+74
+00:04:22,222 --> 00:04:25,757
+element with a full-wave solver. That's Episode 9.
+
+75
+00:04:26,577 --> 00:04:29,776
+On a computer, a flat lens takes two steps:
+
+76
+00:04:29,816 --> 00:04:33,154
+multiply the field by e^(ik₀(n − 1)h),
+
+77
+00:04:33,194 --> 00:04:38,185
+then propagate it with the angular spectrum method from Episode 1.
+
+78
+00:04:38,255 --> 00:04:40,788
+Three pitfalls: sample the finest zone
+
+79
+00:04:40,828 --> 00:04:42,831
+with several points, wrap the heights,
+
+80
+00:04:42,871 --> 00:04:46,626
+and simulate the profile you can really make, not the drawing.
+
+81
+00:04:46,696 --> 00:04:48,862
+Blur this profile by a quarter of a micron,
+
+82
+00:04:48,902 --> 00:04:51,668
+and a quarter of the focused light is gone.
+
+83
+00:04:52,488 --> 00:04:55,957
+A thin element only delays light. Phase wraps at 2π,
+
+84
+00:04:55,997 --> 00:05:00,406
+so a lens can be a micron thick, until “thin” stops being true.
+
+85
+00:05:00,476 --> 00:05:02,123
+The price: steps scatter light,
+
+86
+00:05:02,163 --> 00:05:05,663
+colours split apart, and fine zones stop being thin.
+
+87
+00:05:05,733 --> 00:05:08,867
+And a lens's outer zones look a lot like a grating.
+
+88
+00:05:08,907 --> 00:05:12,451
+So next time: what does periodic structure do to light?
+

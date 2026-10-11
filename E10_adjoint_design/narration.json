@@ -1,0 +1,284 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Light travels along a silicon wire, a waveguide, and we want to split it evenly into two.",
+   "say": "Light travels along a silicon wire, a waveguide, and we want to split it evenly into two."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "A person would draw a smooth fork. Squeezed into this small box, it delivers only 86% of the light.",
+   "say": "A person would draw a smooth fork. Squeezed into this small box, it delivers only eighty-six percent of the light."
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "A computer drew this instead: a strange, organic pattern in the same box. It delivers 99.8%.",
+   "say": "A computer drew this instead: a strange, organic pattern, in the same box. It delivers ninety-nine point eight percent."
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "How does a computer invent shapes no human would draw?",
+   "say": "How does a computer invent shapes no human would draw?"
+  },
+  {
+   "id": "h5",
+   "ch": 0,
+   "text": "The trick is to run light backward. It's called the adjoint method.",
+   "say": "The trick is to run light backward. It's called the adjoint method."
+  },
+  {
+   "id": "l1",
+   "ch": 1,
+   "text": "First, turn design into numbers: each pixel of the box gets a value p, from 0 for glass to 1 for silicon.",
+   "say": "First, turn design into numbers. Each pixel of the box gets a value, pee, from zero for glass, to one for silicon."
+  },
+  {
+   "id": "l2",
+   "ch": 1,
+   "text": "A merit, F(p), scores the device: the fraction of light that reaches the two outputs.",
+   "say": "A merit, eff of pee, scores the device: the fraction of light that reaches the two outputs."
+  },
+  {
+   "id": "l3",
+   "ch": 1,
+   "text": "Picture F as a landscape over all possible designs. To improve, walk uphill, along the gradient.",
+   "say": "Picture eff as a landscape, over all possible designs. To improve, walk uphill, along the gradient."
+  },
+  {
+   "id": "l4",
+   "ch": 1,
+   "text": "The obvious way to find it: nudge one pixel, rerun the whole simulation, and see how F changes.",
+   "say": "The obvious way to find it: nudge one pixel, rerun the whole simulation, and see how eff changes."
+  },
+  {
+   "id": "l5",
+   "ch": 1,
+   "text": "That's one simulation per pixel: four thousand for this little box, and millions for a metalens.",
+   "say": "That's one simulation per pixel: four thousand for this little box, and millions for a metalens."
+  },
+  {
+   "id": "l6",
+   "ch": 1,
+   "text": "With a million pixels and a minute per simulation, one step uphill would take two years.",
+   "say": "With a million pixels, and a minute per simulation, one step uphill would take two years."
+  },
+  {
+   "id": "a1",
+   "ch": 2,
+   "text": "Here's the way out. At one frequency, a wave simulation on a grid is one big linear system: A x = b.",
+   "say": "Here's the way out. At one frequency, a wave simulation on a grid is one big linear system: Eigh times ex, equals bee."
+  },
+  {
+   "id": "a2",
+   "ch": 2,
+   "text": "b is the source, x is the field everywhere, and the matrix A holds the material, so it depends on p.",
+   "say": "Bee is the source, ex is the field everywhere, and the matrix, Eigh, holds the material, so it depends on pee."
+  },
+  {
+   "id": "a3",
+   "ch": 2,
+   "text": "Differentiate both sides with respect to one pixel, and solve for how the field changes.",
+   "say": "Differentiate both sides with respect to one pixel, and solve for how the field changes."
+  },
+  {
+   "id": "a4",
+   "ch": 2,
+   "text": "The merit's slope becomes a chain of three factors: a row, the inverse of A, and one column per pixel.",
+   "say": "The merit's slope becomes a chain of three factors: a row, the inverse of Eigh, and one column per pixel."
+  },
+  {
+   "id": "a5",
+   "ch": 2,
+   "pause_after": 0.8,
+   "text": "Multiply right to left, and every column costs a solve with A: one simulation per pixel, again.",
+   "say": "Multiply right to left, and every column costs a solve with Eigh: one simulation per pixel, again."
+  },
+  {
+   "id": "a6",
+   "ch": 2,
+   "text": "But multiply left to right! The row times A⁻¹ is a single vector, λ, and it takes just one extra solve.",
+   "say": "But multiply left to right! The row, times Eigh inverse, is a single vector, lambda, and it takes just one extra solve."
+  },
+  {
+   "id": "a7",
+   "ch": 2,
+   "text": "Then each pixel's slope is a cheap product: two simulations give the whole gradient, however many pixels there are.",
+   "say": "Then each pixel's slope is a cheap product. Two simulations give the whole gradient, however many pixels there are."
+  },
+  {
+   "id": "b1",
+   "ch": 3,
+   "text": "So what is λ, physically? Light obeys reciprocity: swap a source and a detector, and the signal stays the same.",
+   "say": "So what is lambda, physically? Light obeys reciprocity: swap a source and a detector, and the signal stays the same."
+  },
+  {
+   "id": "b2",
+   "ch": 3,
+   "text": "In matrix terms, Aᵀ = A. So λ comes from the same simulation, with the source moved to the outputs: light sent backward.",
+   "say": "In matrix terms, Eigh transpose equals Eigh. So lambda comes from the same simulation, with the source moved to the outputs: light, sent backward."
+  },
+  {
+   "id": "b3",
+   "ch": 3,
+   "text": "Nudge one pixel, and it scatters a tiny wavelet, with a strength set by the forward light hitting it.",
+   "say": "Nudge one pixel, and it scatters a tiny wavelet, with a strength set by the forward light hitting it."
+  },
+  {
+   "id": "b4",
+   "ch": 3,
+   "text": "The backward field there tells how that wavelet reaches the outputs, and whether it arrives in step with the light already there.",
+   "say": "The backward field there tells how that wavelet reaches the outputs, and whether it arrives in step with the light already there."
+  },
+  {
+   "id": "b5",
+   "ch": 3,
+   "text": "So each pixel's slope is the forward field times the adjoint field: the sensitivity map, for every pixel at once.",
+   "say": "So each pixel's slope is the forward field, times the adjoint field: the sensitivity map, for every pixel at once."
+  },
+  {
+   "id": "b6",
+   "ch": 3,
+   "pause_after": 0.8,
+   "text": "Update every pixel, simulate again, and repeat. Watch the device take shape.",
+   "say": "Update every pixel, simulate again, and repeat. Watch the device take shape."
+  },
+  {
+   "id": "b7",
+   "ch": 3,
+   "text": "Light run backward tells every pixel what to do.",
+   "say": "Light, run backward, tells every pixel what to do."
+  },
+  {
+   "id": "d1",
+   "ch": 4,
+   "text": "You don't even need to derive adjoints by hand. Take a phase mask, then episode one's free-space propagation.",
+   "say": "You don't even need to derive adjoints by hand. Take a phase mask, then episode one's free space propagation."
+  },
+  {
+   "id": "d2",
+   "ch": 4,
+   "text": "It's a chain: multiply by the mask, FFT, multiply by the transfer function H, inverse FFT, then square.",
+   "say": "It's a chain: multiply by the mask, F F T, multiply by the transfer function, aitch, inverse F F T, then square."
+  },
+  {
+   "id": "d3",
+   "ch": 4,
+   "pause_after": 0.8,
+   "text": "Automatic differentiation, the engine of deep learning, runs the chain backward: FFTs become inverse FFTs, and H becomes its conjugate.",
+   "say": "Automatic differentiation, the engine of deep learning, runs the chain backward. F F Ts become inverse F F Ts, and aitch becomes its conjugate."
+  },
+  {
+   "id": "d4",
+   "ch": 4,
+   "text": "For propagating waves, conjugating H just flips the sign of z. The backward pass really does send light backward.",
+   "say": "For propagating waves, conjugating aitch just flips the sign of zee. The backward pass really does send light backward."
+  },
+  {
+   "id": "d5",
+   "ch": 4,
+   "text": "Now gradient descent shapes the mask to project any picture. Watch the image sharpen as the error falls.",
+   "say": "Now gradient descent shapes the mask to project any picture. Watch the image sharpen, as the error falls."
+  },
+  {
+   "id": "d6",
+   "ch": 4,
+   "text": "Episode five's Gerchberg–Saxton loop was a clever heuristic; gradients make it an optimization with any goal.",
+   "say": "Episode five's Gurkberg Saxton loop was a clever heuristic. Gradients make it an optimization, with any goal."
+  },
+  {
+   "id": "e1",
+   "ch": 5,
+   "text": "Now go further: design the optics and the software together.",
+   "say": "Now go further, and design the optics and the software together."
+  },
+  {
+   "id": "e2",
+   "ch": 5,
+   "text": "A camera records a scene through our optics, adding noise; then an algorithm, here episode three's Wiener filter, sharpens it.",
+   "say": "A camera records a scene through our optics, adding noise. Then an algorithm, here episode three's Wiener filter, sharpens it."
+  },
+  {
+   "id": "e3",
+   "ch": 5,
+   "text": "Compare the result with the truth, and send the gradient back through everything: the filter, the noise, the light, into the optics.",
+   "say": "Compare the result with the truth, and send the gradient back through everything: the filter, the noise, the light, into the optics."
+  },
+  {
+   "id": "e4",
+   "ch": 5,
+   "text": "Ask for sharp images at every depth. An ordinary lens is sharp only in focus; elsewhere, its point-spread function, the PSF, blurs.",
+   "say": "Ask for sharp images at every depth. An ordinary lens is sharp only in focus. Elsewhere, its point spread function, the P S F, blurs."
+  },
+  {
+   "id": "e5",
+   "ch": 5,
+   "text": "The learned optics gives up a perfect focus for a PSF that hardly changes with depth, which the filter can undo everywhere.",
+   "say": "The learned optics gives up a perfect focus, for a P S F that hardly changes with depth, which the filter can undo everywhere."
+  },
+  {
+   "id": "c1",
+   "ch": 6,
+   "text": "In code, it's a three-line loop: simulate, take the gradient, step, a few hundred times.",
+   "say": "In code, it's a three line loop: simulate, take the gradient, step. A few hundred times."
+  },
+  {
+   "id": "c2",
+   "ch": 6,
+   "text": "Real devices add rules: each pixel must be all silicon or all glass, with no feature too small to fabricate.",
+   "say": "Real devices add rules. Each pixel must be all silicon or all glass, with no feature too small to fabricate."
+  },
+  {
+   "id": "c3",
+   "ch": 6,
+   "text": "The landscape has many hills, so different starting guesses climb to different designs: all good, none guaranteed best.",
+   "say": "The landscape has many hills, so different starting guesses climb to different designs: all good, none guaranteed best."
+  },
+  {
+   "id": "c4",
+   "ch": 6,
+   "text": "And the optimizer exploits every error in its model: this lens shines in a cheap simulation, but loses half its light in a careful one.",
+   "say": "And the optimizer exploits every error in its model. This lens shines in a cheap simulation, but loses half its light in a careful one."
+  },
+  {
+   "id": "c5",
+   "ch": 6,
+   "text": "So inverse design needs models fast enough to run thousands of times, and accurate enough to trust.",
+   "say": "So inverse design needs models fast enough to run thousands of times, and accurate enough to trust."
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "One forward and one backward simulation give the gradient for every pixel at once.",
+   "say": "One forward and one backward simulation give the gradient for every pixel at once."
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "And that completes our season: plane waves, lenses as Fourier transforms, the diffraction limit, coherence, phase, flat optics, periodic structures, trapped light, Maxwell on a grid, and design.",
+   "say": "And that completes our season: plane waves, lenses as Fourier transforms, the diffraction limit, coherence, phase, flat optics, periodic structures, trapped light, Maxwell on a grid, and design."
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "pause_after": 0.6,
+   "text": "Ten ideas, one thread.",
+   "say": "Ten ideas, one thread."
+  },
+  {
+   "id": "r4",
+   "ch": 7,
+   "text": "Light is linear: in the right basis, the physics is simple; run it backward, and the design is too.",
+   "say": "Light is linear. In the right basis, the physics is simple. Run it backward, and the design is too."
+  }
+ ]
+}

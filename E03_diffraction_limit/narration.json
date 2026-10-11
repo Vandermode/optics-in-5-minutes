@@ -1,0 +1,272 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Here are tiny glowing beads, each one far smaller than the wavelength of light.",
+   "say": "Here are tiny glowing beads, each one far smaller than the wavelength of light."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Now look at them through a perfect microscope. Every bead has become a soft disc, wrapped in faint rings.",
+   "say": "Now look at them through a perfect microscope. Every bead has become a soft disc, wrapped in faint rings."
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "Push two beads closer than about 200 nanometres, and they merge into a single blob.",
+   "say": "Push two beads closer than about two hundred nanometres, and they merge into a single blob."
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "No lens maker can fix this. So why can't even a perfect lens make a perfect point?",
+   "say": "No lens maker can fix this. So why can't even a perfect lens, make a perfect point?",
+   "pause_after": 2.4
+  },
+  {
+   "id": "s1",
+   "ch": 1,
+   "text": "First, what is an image? Think of any object as a crowd of tiny points of light.",
+   "say": "First, what is an image? Think of any object as a crowd of tiny points of light."
+  },
+  {
+   "id": "s2",
+   "ch": 1,
+   "text": "A lens turns each point into the same small blur, called the point spread function, or PSF.",
+   "say": "A lens turns each point into the same small blur, called the point spread function, or P S F."
+  },
+  {
+   "id": "s3",
+   "ch": 1,
+   "text": "Each point stamps a copy of the PSF at its own position, scaled by its brightness. The beads glow independently, so the stamps simply add.",
+   "say": "Each point stamps a copy of the P S F at its own position, scaled by its brightness. The beads glow independently, so the stamps simply add."
+  },
+  {
+   "id": "s4",
+   "ch": 1,
+   "text": "Adding up shifted copies like this is called a convolution. The image is the object, convolved with the PSF.",
+   "say": "Adding up shifted copies like this is called a convolution. The image is the object, convolved with the P S F."
+  },
+  {
+   "id": "s5",
+   "ch": 1,
+   "text": "Now feed the blur a single wave, a pattern of stripes. Out comes the same wave, only fainter.",
+   "say": "Now feed the blur a single wave, a pattern of stripes. Out comes the same wave, only fainter."
+  },
+  {
+   "id": "s6",
+   "ch": 1,
+   "text": "Just like propagation in episode one, waves are the eigenvectors of blurring. In the Fourier basis, convolution becomes multiplication.",
+   "say": "Just like propagation in episode one, waves are the eigenvectors of blurring. In the Fourier basis, convolution becomes multiplication."
+  },
+  {
+   "id": "s7",
+   "ch": 1,
+   "text": "Each spatial frequency kx just gets multiplied by one number: the transfer function, the Fourier transform of the PSF.",
+   "say": "Each spatial frequency, kay ex, just gets multiplied by one number: the transfer function, the Fourier transform of the P S F."
+  },
+  {
+   "id": "s8",
+   "ch": 1,
+   "text": "Notice how fine stripes fade much more than coarse ones.",
+   "say": "Notice how fine stripes fade much more than coarse ones."
+  },
+  {
+   "id": "p1",
+   "ch": 2,
+   "text": "So where does the PSF come from? Recall episode one: any light field is a sum of plane waves.",
+   "say": "So where does the P S F come from? Recall episode one: any light field is a sum of plane waves."
+  },
+  {
+   "id": "p2",
+   "ch": 2,
+   "text": "A point sends them out in every direction, each with its own kx = k sin θ. Together they fill the k-circle.",
+   "say": "A point sends them out in every direction, each with its own kay ex, equal to kay sine theta. Together, they fill the kay circle."
+  },
+  {
+   "id": "p3",
+   "ch": 2,
+   "text": "But a lens has a finite opening. It only catches waves tilted less than some largest angle.",
+   "say": "But a lens has a finite opening. It only catches waves tilted less than some largest angle."
+  },
+  {
+   "id": "p4",
+   "ch": 2,
+   "text": "The sine of that angle is the numerical aperture, NA. On the k-circle, the lens keeps just a cap: kx up to k times NA.",
+   "say": "The sine of that angle is the numerical aperture, N.A. On the kay circle, the lens keeps just a cap: kay ex up to kay times NA."
+  },
+  {
+   "id": "p5",
+   "ch": 2,
+   "text": "Waves with kx beyond k are evanescent: they never even leave the object. So the lens is a hole in k-space, called the pupil.",
+   "say": "Waves with kay ex beyond kay are evanescent: they never even leave the object. So the lens is a hole in kay space, called the pupil."
+  },
+  {
+   "id": "p6",
+   "ch": 2,
+   "text": "Add up only the waves that pass through this hole, and you get the PSF. Watch what happens as the aperture opens.",
+   "say": "Add up only the waves that pass through this hole, and you get the P S F. Watch what happens as the aperture opens.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "p7",
+   "ch": 2,
+   "text": "The cap widens, and the spot shrinks. Its bright core, the Airy disc, has a radius of 0.61 λ/NA.",
+   "say": "The cap widens, and the spot shrinks. Its bright core, the Airy disc, has a radius of zero point six one, lambda over NA."
+  },
+  {
+   "id": "p8",
+   "ch": 2,
+   "text": "And magnification can't save you: zooming in on the image only gives you a bigger blur.",
+   "say": "And magnification can't save you: zooming in on the image only gives you a bigger blur."
+  },
+  {
+   "id": "a1",
+   "ch": 3,
+   "text": "In 1873, Ernst Abbe asked a sharper question: what is the finest grating a lens can image?",
+   "say": "In eighteen seventy three, Ernst Ahbuh asked a sharper question: what is the finest grating a lens can image?"
+  },
+  {
+   "id": "a2",
+   "ch": 3,
+   "text": "A grating of period d splits a plane wave into a straight beam and two first orders, tilted at sin θ = ±λ/d.",
+   "say": "A grating of period dee splits a plane wave into a straight beam, and two first orders, tilted at sine theta equals plus or minus lambda over dee."
+  },
+  {
+   "id": "a3",
+   "ch": 3,
+   "text": "The lens must catch the straight beam and at least one first order: their interference rebuilds the stripes.",
+   "say": "The lens must catch the straight beam, and at least one first order: their interference rebuilds the stripes."
+  },
+  {
+   "id": "a4",
+   "ch": 3,
+   "text": "Now make the grating finer. The orders tilt further out, and once they leave the cap, the stripes are gone.",
+   "say": "Now make the grating finer. The orders tilt further out, and once they leave the cap, the stripes are gone."
+  },
+  {
+   "id": "a5",
+   "ch": 3,
+   "text": "So with straight-on light, the finest period a lens can image is λ/NA.",
+   "say": "So with straight on light, the finest period a lens can image is lambda over NA."
+  },
+  {
+   "id": "a6",
+   "ch": 3,
+   "text": "Abbe's trick: tilt the illumination, so the straight beam enters at one edge of the cap. Now a first order fits in at the other edge.",
+   "say": "Ahbuh's trick: tilt the illumination, so the straight beam enters at one edge of the cap. Now a first order fits in, at the other edge.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "a7",
+   "ch": 3,
+   "text": "That doubles the reach, to a finest period of λ/2NA. This is the diffraction limit.",
+   "say": "That doubles the reach, to a finest period of lambda over two NA. This is the diffraction limit."
+  },
+  {
+   "id": "c1",
+   "ch": 4,
+   "text": "Abbe's picture is for coherent light, like a laser, where fields add: the pupil cuts the field off sharply at k·NA.",
+   "say": "Ahbuh's picture is for coherent light, like a laser, where fields add: the pupil cuts the field off sharply, at kay times NA."
+  },
+  {
+   "id": "c2",
+   "ch": 4,
+   "text": "Glowing beads are different: each emits with its own random, ever-changing phase, so intensities add, not fields.",
+   "say": "Glowing beads are different: each emits with its own random, ever changing phase, so intensities add, not fields."
+  },
+  {
+   "id": "c3",
+   "ch": 4,
+   "text": "Then the transfer function, called the OTF, is the overlap of the pupil with a shifted copy of itself.",
+   "say": "Then the transfer function, called the O T F, is the overlap of the pupil with a shifted copy of itself."
+  },
+  {
+   "id": "c4",
+   "ch": 4,
+   "text": "Slide one copy across the other. The overlap shrinks smoothly, and only reaches zero at twice the coherent cutoff.",
+   "say": "Slide one copy across the other. The overlap shrinks smoothly, and only reaches zero at twice the coherent cutoff."
+  },
+  {
+   "id": "c5",
+   "ch": 4,
+   "text": "So incoherent light reaches twice as far in kx. But it isn't simply better: its contrast fades toward the cutoff.",
+   "say": "So incoherent light reaches twice as far in kay ex. But it isn't simply better: its contrast fades toward the cutoff."
+  },
+  {
+   "id": "c6",
+   "ch": 4,
+   "text": "Here's one test chart, imaged both ways. Coherent light rings at every edge; incoherent light is smooth, but its finest spokes wash out.",
+   "say": "Here's one test chart, imaged both ways. Coherent light rings at every edge. Incoherent light is smooth, but its finest spokes wash out."
+  },
+  {
+   "id": "m1",
+   "ch": 5,
+   "text": "On a computer, imaging is the same three steps as in episode one: FFT, multiply by the OTF, inverse FFT.",
+   "say": "On a computer, imaging is the same three steps as in episode one: F F T, multiply by the O T F, and inverse F F T."
+  },
+  {
+   "id": "m2",
+   "ch": 5,
+   "text": "So can we run it backwards? Take a blurred image with a little camera noise, and divide by the OTF.",
+   "say": "So can we run it backwards? Take a blurred image with a little camera noise, and divide by the O T F.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "m3",
+   "ch": 5,
+   "text": "Disaster. Wherever the OTF is tiny, the noise gets multiplied by thousands, and swamps everything.",
+   "say": "Disaster. Wherever the O T F is tiny, the noise gets multiplied by thousands, and swamps everything."
+  },
+  {
+   "id": "m4",
+   "ch": 5,
+   "text": "The Wiener filter is the stable version. It divides where the signal beats the noise, and gently gives up where it doesn't.",
+   "say": "The Wiener filter is the stable version. It divides where the signal beats the noise, and gently gives up where it doesn't."
+  },
+  {
+   "id": "m5",
+   "ch": 5,
+   "text": "But beyond the cutoff, the OTF is exactly zero. Those details never reached the camera, and no filter can bring them back.",
+   "say": "But beyond the cutoff, the O T F is exactly zero. Those details never reached the camera, and no filter can bring them back."
+  },
+  {
+   "id": "m6",
+   "ch": 5,
+   "text": "Only prior knowledge or extra measurements can fill them in. And that's where computational imaging begins.",
+   "say": "Only prior knowledge, or extra measurements, can fill them in. And that's where computational imaging begins."
+  },
+  {
+   "id": "r1",
+   "ch": 6,
+   "text": "So here is the whole idea. Imaging is convolution with the PSF.",
+   "say": "So here is the whole idea. Imaging is convolution with the P S F."
+  },
+  {
+   "id": "r2",
+   "ch": 6,
+   "text": "A lens only keeps directions with sin θ ≤ NA, so details finer than about λ/2NA never arrive.",
+   "say": "A lens only keeps directions with sine theta up to NA, so details finer than about lambda over two NA never arrive."
+  },
+  {
+   "id": "r3",
+   "ch": 6,
+   "text": "One honest caveat: real lenses blur differently away from the centre, so the PSF slowly changes across the field.",
+   "say": "One honest caveat: real lenses blur differently away from the centre, so the P S F slowly changes across the field."
+  },
+  {
+   "id": "r4",
+   "ch": 6,
+   "text": "And we saw that intensities add for glowing beads. But why? When does light interfere, and when doesn't it?",
+   "say": "And we saw that intensities add for glowing beads. But why? When does light interfere, and when doesn't it?"
+  }
+ ]
+}

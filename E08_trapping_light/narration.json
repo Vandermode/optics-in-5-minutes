@@ -1,0 +1,271 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Light can be trapped. Glass fibres carry it under oceans, and photonic chips route it through wires half a micron wide.",
+   "say": "Light can be trapped. Glass fibres carry it under oceans, and photonic chips route it through wires, half a micron wide."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "This ring, a few microns across, sorts colours. Send in several, and most pass straight by…",
+   "say": "This ring, a few microns across, sorts colours. Send in several, and most pass straight by."
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "…but one colour drops into the ring, circles it, and leaves through the other wire.",
+   "say": "But one colour drops into the ring, circles it, and leaves through the other wire."
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "How do you trap light in a wire? And why do only certain colours fit?",
+   "say": "How do you trap light in a wire? And why do only certain colours fit?",
+   "pause_after": 1.3
+  },
+  {
+   "id": "m1",
+   "ch": 1,
+   "text": "Start with a strip of glass, the core, surrounded by material of lower refractive index, the cladding.",
+   "say": "Start with a strip of glass, the core, surrounded by material of lower refractive index: the cladding."
+  },
+  {
+   "id": "m2",
+   "ch": 1,
+   "text": "A ray that meets the wall at a shallow angle can't escape. It's totally reflected, and zigzags along the core.",
+   "say": "A ray that meets the wall at a shallow angle can't escape. It's totally reflected, and zigzags along the core."
+  },
+  {
+   "id": "m3",
+   "ch": 1,
+   "text": "But light is a wave. The zigzag is really two plane waves crossing: one heading up, one heading down.",
+   "say": "But light is a wave. The zigzag is really two plane waves crossing: one heading up, and one heading down."
+  },
+  {
+   "id": "m4",
+   "ch": 1,
+   "text": "Together they form a standing wave across the core, which travels along it.",
+   "say": "Together, they form a standing wave across the core, which travels along it."
+  },
+  {
+   "id": "m5",
+   "ch": 1,
+   "text": "But not every angle works. Follow the wave up across the core and back: it must return in step with itself, or the bounces cancel.",
+   "say": "But not every angle works. Follow the wave up across the core and back. It must return in step with itself, or the bounces cancel."
+  },
+  {
+   "id": "m6",
+   "ch": 1,
+   "text": "So the round-trip phase must be a whole number of turns, 2πm. Slide the angle, and only a few angles click into place.",
+   "say": "So the round trip phase must be a whole number of turns: two pi em. Slide the angle, and only a few angles click into place."
+  },
+  {
+   "id": "m7",
+   "ch": 1,
+   "text": "These are the modes. Each keeps its shape as it travels, with tails that fade into the cladding: evanescent waves.",
+   "say": "These are the modes. Each keeps its shape as it travels, with tails that fade into the cladding: evanescent waves."
+  },
+  {
+   "id": "e1",
+   "ch": 2,
+   "text": "There's a cleaner way to find modes, with linear algebra.",
+   "say": "There's a cleaner way to find modes, with linear algebra."
+  },
+  {
+   "id": "e2",
+   "ch": 2,
+   "text": "A mode is a shape E(x) that travels as e^(iβz). Put that into the wave equation, and out comes an eigenvalue problem.",
+   "say": "A mode is a shape, E of ex, that travels as, e to the i beta zee. Put that into the wave equation, and out comes an eigenvalue problem."
+  },
+  {
+   "id": "e3",
+   "ch": 2,
+   "text": "Sample x on a grid. The second derivative becomes a tridiagonal matrix, and the index profile adds to its diagonal.",
+   "say": "Sample ex on a grid. The second derivative becomes a tri-diagonal matrix, and the index profile adds to its diagonal."
+  },
+  {
+   "id": "e4",
+   "ch": 2,
+   "text": "Its eigenvectors are the mode shapes. Its eigenvalues give each mode's propagation constant, β.",
+   "say": "Its eigenvectors are the mode shapes. Its eigenvalues give each mode's propagation constant, beta."
+  },
+  {
+   "id": "e5",
+   "ch": 2,
+   "text": "And each effective index, β/k₀, lies between the cladding and core indices.",
+   "say": "And each effective index, beta over kay zero, lies between the cladding and core indices."
+  },
+  {
+   "id": "e6",
+   "ch": 2,
+   "text": "Any input is a sum of modes, each advancing its own phase. It's the angular spectrum method from episode one, with modes in place of plane waves.",
+   "say": "Any input is a sum of modes, each advancing its own phase. It's the angular spectrum method from episode one, with modes in place of plane waves."
+  },
+  {
+   "id": "e7",
+   "ch": 2,
+   "text": "Launch an off-centre spot into a wide guide. The modes beat into a kaleidoscope, then fall back in step, and the spot reappears.",
+   "say": "Launch an off-centre spot into a wide guide. The modes beat into a kaleidoscope, then fall back in step, and the spot reappears."
+  },
+  {
+   "id": "c1",
+   "ch": 3,
+   "text": "Now place two identical guides side by side, so close that their tails overlap, and launch light into one.",
+   "say": "Now place two identical guides side by side, so close that their tails overlap, and launch light into one."
+  },
+  {
+   "id": "c2",
+   "ch": 3,
+   "text": "It drifts across into the other guide, then comes back, again and again.",
+   "say": "It drifts across into the other guide, then comes back, again and again."
+  },
+  {
+   "id": "c3",
+   "ch": 3,
+   "text": "Why? The pair has modes of its own: one symmetric, one antisymmetric, with propagation constants β + κ and β − κ.",
+   "say": "Why? The pair has modes of its own: one symmetric, one antisymmetric, with propagation constants beta plus kappa, and beta minus kappa."
+  },
+  {
+   "id": "c4",
+   "ch": 3,
+   "text": "Light in one guide is the sum of the two. One slowly falls behind, and after a distance π/2κ it has flipped sign: now the sum sits in the other guide.",
+   "say": "Light in one guide is the sum of the two. One slowly falls behind, and after a distance, pi over two kappa, it has flipped sign. Now the sum sits in the other guide."
+  },
+  {
+   "id": "c5",
+   "ch": 3,
+   "text": "In the basis of the two guides, that's a 2×2 rotation: amplitude cos κz in one, i sin κz in the other.",
+   "say": "In the basis of the two guides, that's a two by two rotation: amplitude cosine kappa zee in one, and i sine kappa zee in the other."
+  },
+  {
+   "id": "c6",
+   "ch": 3,
+   "text": "Stop halfway and you have a 50:50 splitter, the building block of interferometers, switches and optical processors.",
+   "say": "Stop halfway, and you have a fifty-fifty splitter: the building block of interferometers, switches, and optical processors."
+  },
+  {
+   "id": "r1",
+   "ch": 4,
+   "text": "To store light, bend a guide into a ring beside a straight one. On every pass, a little light leaks across into the ring.",
+   "say": "To store light, bend a guide into a ring, beside a straight one. On every pass, a little light leaks across into the ring."
+  },
+  {
+   "id": "r2",
+   "ch": 4,
+   "text": "Each round trip adds another copy, rotated by the round-trip phase, and a little weaker than the last.",
+   "say": "Each round trip adds another copy, rotated by the round trip phase, and a little weaker than the last."
+  },
+  {
+   "id": "r3",
+   "ch": 4,
+   "text": "Off resonance, the copies curl into a small spiral, and mostly cancel.",
+   "say": "Off resonance, the copies curl into a small spiral, and mostly cancel."
+  },
+  {
+   "id": "r4",
+   "ch": 4,
+   "text": "On resonance, when the ring fits a whole number of wavelengths, they line up into one long arrow. The light piles up.",
+   "say": "On resonance, when the ring fits a whole number of wavelengths, they line up into one long arrow. The light piles up.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "r5",
+   "ch": 4,
+   "text": "Sweep the colour, and the stored light spikes at evenly spaced resonances. That's what the ring in the opening did.",
+   "say": "Sweep the colour, and the stored light spikes at evenly spaced resonances. That's what the ring in the opening did."
+  },
+  {
+   "id": "q1",
+   "ch": 5,
+   "text": "How sharp is each spike? That's set by loss: the more round trips the light survives, the narrower the peak.",
+   "say": "How sharp is each spike? That's set by loss. The more round trips the light survives, the narrower the peak."
+  },
+  {
+   "id": "q2",
+   "ch": 5,
+   "text": "We measure it with the quality factor: the wavelength over the peak's width, Q = λ/Δλ. High Q means light stays stored for a long time.",
+   "say": "We measure it with the quality factor: the wavelength over the peak's width, Q equals lambda over delta lambda. A high Q means light stays stored for a long time."
+  },
+  {
+   "id": "q3",
+   "ch": 5,
+   "text": "Now watch the light that goes straight past. It meets the light leaking back out of the ring, which on resonance comes out flipped.",
+   "say": "Now watch the light that goes straight past. It meets the light leaking back out of the ring, which, on resonance, comes out flipped."
+  },
+  {
+   "id": "q4",
+   "ch": 5,
+   "text": "So the through port dims. When the ring leaks out exactly as fast as it loses light inside, the two cancel completely: critical coupling.",
+   "say": "So the through port dims. When the ring leaks out exactly as fast as it loses light inside, the two cancel completely: critical coupling.",
+   "pause_after": 0.6
+  },
+  {
+   "id": "q5",
+   "ch": 5,
+   "text": "Couple more weakly, or more strongly, and the dip gets shallower.",
+   "say": "Couple more weakly, or more strongly, and the dip gets shallower."
+  },
+  {
+   "id": "a1",
+   "ch": 6,
+   "text": "On a computer, each idea takes just a few lines.",
+   "say": "On a computer, each idea takes just a few lines."
+  },
+  {
+   "id": "a2",
+   "ch": 6,
+   "text": "Modes: build the tridiagonal matrix and call an eigenvalue solver. Make the window wide enough for the tails, or its edges squeeze the modes.",
+   "say": "Modes: build the tri-diagonal matrix, and call an eigenvalue solver. Make the window wide enough for the tails, or its edges squeeze the modes."
+  },
+  {
+   "id": "a3",
+   "ch": 6,
+   "text": "Propagation: the beam propagation method, BPM. It alternates two steps: diffraction, an FFT as in episode one, and refraction, a thin phase screen.",
+   "say": "Propagation: the beam propagation method, B P M. It alternates two steps: diffraction, an F F T, as in episode one. And refraction: a thin phase screen."
+  },
+  {
+   "id": "a4",
+   "ch": 6,
+   "text": "Repeat, slice after slice. That's how the coupler was computed.",
+   "say": "Repeat, slice after slice. That's how the coupler was computed."
+  },
+  {
+   "id": "a5",
+   "ch": 6,
+   "text": "Resonators: add up the round trips, a geometric series, in one line.",
+   "say": "Resonators: add up the round trips, a geometric series, in one line."
+  },
+  {
+   "id": "a6",
+   "ch": 6,
+   "text": "The catch: BPM only marches forward, at gentle angles. Fine for couplers, but wrong for tight bends and reflections.",
+   "say": "The catch: B P M only marches forward, at gentle angles. Fine for couplers, but wrong for tight bends, and reflections."
+  },
+  {
+   "id": "z1",
+   "ch": 7,
+   "text": "Trapped light settles into modes, the eigenvectors of the cross-section. A resonator stores light where round trips add in phase.",
+   "say": "Trapped light settles into modes, the eigenvectors of the cross section. A resonator stores light where round trips add in phase."
+  },
+  {
+   "id": "z2",
+   "ch": 7,
+   "text": "But these shortcuts assume gentle, forward-going light. Sharp bends, gratings and nanostructures break that, and then you need Maxwell's equations themselves.",
+   "say": "But these shortcuts assume gentle, forward going light. Sharp bends, gratings, and nanostructures break that, and then you need Maxwell's equations themselves."
+  },
+  {
+   "id": "z3",
+   "ch": 7,
+   "text": "How does a computer solve them? Next time.",
+   "say": "How does a computer solve them? Next time."
+  }
+ ]
+}

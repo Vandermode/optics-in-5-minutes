@@ -1,0 +1,100 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:04.23,Default,,0,0,0,,{\fad(120,120)}Watch a pulse of light, just a few wave cycles long,
+Dialogue: 0,0:00:04.27,0:00:07.27,Default,,0,0,0,,{\fad(120,120)}race along a silicon wire toward a tiny ring.
+Dialogue: 0,0:00:07.34,0:00:10.29,Default,,0,0,0,,{\fad(120,120)}Some of it hops into the ring, circles around and around,
+Dialogue: 0,0:00:10.33,0:00:13.26,Default,,0,0,0,,{\fad(120,120)}and leaks back out a little on every lap.
+Dialogue: 0,0:00:13.33,0:00:15.43,Default,,0,0,0,,{\fad(120,120)}Every model so far was an approximation.
+Dialogue: 0,0:00:15.47,0:00:20.30,Default,,0,0,0,,{\fad(120,120)}This is Maxwell's equations themselves, solved on a grid. How?
+Dialogue: 0,0:00:20.37,0:00:22.24,Default,,0,0,0,,{\fad(120,120)}It's called finite-difference time-domain,
+Dialogue: 0,0:00:22.28,0:00:25.51,Default,,0,0,0,,{\fad(120,120)}FDTD, and it rests on two ideas:
+Dialogue: 0,0:00:25.55,0:00:29.48,Default,,0,0,0,,{\fad(120,120)}leapfrogging fields, and a border made of complex numbers.
+Dialogue: 0,0:00:30.30,0:00:32.59,Default,,0,0,0,,{\fad(120,120)}In two dimensions, the electric field
+Dialogue: 0,0:00:32.63,0:00:34.15,Default,,0,0,0,,{\fad(120,120)}E points straight out of the screen,
+Dialogue: 0,0:00:34.19,0:00:37.65,Default,,0,0,0,,{\fad(120,120)}and the magnetic field H lies flat in the plane.
+Dialogue: 0,0:00:37.72,0:00:39.71,Default,,0,0,0,,{\fad(120,120)}Maxwell's equations then say two things:
+Dialogue: 0,0:00:39.75,0:00:42.84,Default,,0,0,0,,{\fad(120,120)}a changing H is driven by the curl of E,
+Dialogue: 0,0:00:42.88,0:00:45.96,Default,,0,0,0,,{\fad(120,120)}and a changing E by the curl of H.
+Dialogue: 0,0:00:46.03,0:00:50.12,Default,,0,0,0,,{\fad(120,120)}The curl measures swirl: how much a field circulates around each point.
+Dialogue: 0,0:00:50.19,0:00:54.29,Default,,0,0,0,,{\fad(120,120)}Watch a bump of E. Its slopes make H start to circulate around it.
+Dialogue: 0,0:00:54.36,0:00:58.57,Default,,0,0,0,,{\fad(120,120)}That swirling H lowers E in the middle and raises it around the edge.
+Dialogue: 0,0:00:58.61,0:01:02.63,Default,,0,0,0,,{\fad(120,120)}The bump spreads into a ring: a wave that pushes itself along.
+Dialogue: 0,0:01:02.70,0:01:04.59,Default,,0,0,0,,{\fad(120,120)}These rules contain only derivatives,
+Dialogue: 0,0:01:04.63,0:01:08.87,Default,,0,0,0,,{\fad(120,120)}which compare each point with its neighbours. Everything is local.
+Dialogue: 0,0:01:09.69,0:01:12.35,Default,,0,0,0,,{\fad(120,120)}On a computer, sample the fields on a grid,
+Dialogue: 0,0:01:12.39,0:01:15.50,Default,,0,0,0,,{\fad(120,120)}and replace each derivative by a difference of neighbours.
+Dialogue: 0,0:01:15.57,0:01:17.66,Default,,0,0,0,,{\fad(120,120)}But that difference, divided by the spacing,
+Dialogue: 0,0:01:17.70,0:01:19.84,Default,,0,0,0,,{\fad(120,120)}gives the slope best at the midpoint
+Dialogue: 0,0:01:19.88,0:01:22.40,Default,,0,0,0,,{\fad(120,120)}between the samples, not at either end.
+Dialogue: 0,0:01:22.47,0:01:26.47,Default,,0,0,0,,{\fad(120,120)}So in 1966, Kane Yee put H exactly at those midpoints:
+Dialogue: 0,0:01:26.51,0:01:28.68,Default,,0,0,0,,{\fad(120,120)}half a cell away from E.
+Dialogue: 0,0:01:28.75,0:01:31.98,Default,,0,0,0,,{\fad(120,120)}Time gets the same trick: E lives on whole time steps,
+Dialogue: 0,0:01:32.02,0:01:34.52,Default,,0,0,0,,{\fad(120,120)}and H on the half steps in between.
+Dialogue: 0,0:01:34.59,0:01:38.38,Default,,0,0,0,,{\fad(120,120)}The algorithm is a leapfrog. Use the curl of E to update H,
+Dialogue: 0,0:01:38.42,0:01:41.69,Default,,0,0,0,,{\fad(120,120)}then the curl of H to update E, and repeat.
+Dialogue: 0,0:01:41.76,0:01:44.03,Default,,0,0,0,,{\fad(120,120)}Here it is in 1D, with real numbers:
+Dialogue: 0,0:01:44.07,0:01:48.87,Default,,0,0,0,,{\fad(120,120)}each new value uses only its two neighbours, yet the pulse marches on.
+Dialogue: 0,0:01:48.94,0:01:52.07,Default,,0,0,0,,{\fad(120,120)}Matter is just one number per cell, the permittivity ε.
+Dialogue: 0,0:01:52.11,0:01:55.82,Default,,0,0,0,,{\fad(120,120)}Any shape you can paint on the grid, you can simulate.
+Dialogue: 0,0:01:56.64,0:02:01.29,Default,,0,0,0,,{\fad(120,120)}The grid has two rules of its own. First, a speed limit: each step,
+Dialogue: 0,0:02:01.33,0:02:05.15,Default,,0,0,0,,{\fad(120,120)}news travels only to neighbouring cells, so it spreads in a diamond.
+Dialogue: 0,0:02:05.22,0:02:10.21,Default,,0,0,0,,{\fad(120,120)}Light spreads in a circle, which must fit inside the diamond:
+Dialogue: 0,0:02:10.25,0:02:14.73,Default,,0,0,0,,{\fad(120,120)}in 2D, c Δt ≤ Δx/√2. This is the Courant limit.
+Dialogue: 0,0:02:14.80,0:02:18.47,Default,,0,0,0,,{\fad(120,120)}Break it by just six percent, and the computed field explodes.
+Dialogue: 0,0:02:19.14,0:02:23.04,Default,,0,0,0,,{\fad(120,120)}Second, the grid distorts waves. Recall the k-circle:
+Dialogue: 0,0:02:23.08,0:02:25.90,Default,,0,0,0,,{\fad(120,120)}in free space, all directions share one wavelength.
+Dialogue: 0,0:02:25.97,0:02:29.27,Default,,0,0,0,,{\fad(120,120)}On the grid, the circle bulges, most along the axes:
+Dialogue: 0,0:02:29.31,0:02:33.64,Default,,0,0,0,,{\fad(120,120)}short waves travel too slowly, slowest along the grid lines.
+Dialogue: 0,0:02:33.71,0:02:36.24,Default,,0,0,0,,{\fad(120,120)}A pulse becomes a squarish ring, trailed by ripples.
+Dialogue: 0,0:02:36.28,0:02:40.55,Default,,0,0,0,,{\fad(120,120)}The fix: ten to twenty cells per wavelength, or more.
+Dialogue: 0,0:02:41.37,0:02:44.29,Default,,0,0,0,,{\fad(120,120)}Now the hardest part: the grid must end somewhere,
+Dialogue: 0,0:02:44.33,0:02:46.29,Default,,0,0,0,,{\fad(120,120)}but real light just keeps going.
+Dialogue: 0,0:02:46.36,0:02:49.44,Default,,0,0,0,,{\fad(120,120)}If the grid simply stops, its edge acts as a mirror,
+Dialogue: 0,0:02:49.48,0:02:51.56,Default,,0,0,0,,{\fad(120,120)}and the echo ruins the answer.
+Dialogue: 0,0:02:51.63,0:02:53.37,Default,,0,0,0,,{\fad(120,120)}So add a layer that absorbs?
+Dialogue: 0,0:02:53.41,0:02:57.30,Default,,0,0,0,,{\fad(120,120)}A sudden change of material reflects too, right at its edge.
+Dialogue: 0,0:02:57.37,0:02:59.72,Default,,0,0,0,,{\fad(120,120)}A gentler layer must be thick and expensive.
+Dialogue: 0,0:02:59.76,0:03:02.69,Default,,0,0,0,,{\fad(120,120)}We need an absorber that light cannot see.
+Dialogue: 0,0:03:04.31,0:03:09.36,Default,,0,0,0,,{\fad(120,120)}The trick, found in 1994 by Bérenger, and by Chew and Weedon,
+Dialogue: 0,0:03:09.40,0:03:12.04,Default,,0,0,0,,{\fad(120,120)}is to change not the material, but the coordinates.
+Dialogue: 0,0:03:12.11,0:03:15.81,Default,,0,0,0,,{\fad(120,120)}Inside the border, let the position x pick up an
+Dialogue: 0,0:03:15.85,0:03:21.28,Default,,0,0,0,,{\fad(120,120)}imaginary part that grows with depth: x + (i/ω)∫σ dx.
+Dialogue: 0,0:03:21.35,0:03:27.27,Default,,0,0,0,,{\fad(120,120)}A wave e^(ikx) at this complex position keeps its wavelength,
+Dialogue: 0,0:03:27.31,0:03:32.96,Default,,0,0,0,,{\fad(120,120)}but gains a factor e^(−(k/ω)∫σ dx): it dies away.
+Dialogue: 0,0:03:33.03,0:03:36.08,Default,,0,0,0,,{\fad(120,120)}These are the same Maxwell equations in stretched coordinates,
+Dialogue: 0,0:03:36.12,0:03:41.47,Default,,0,0,0,,{\fad(120,120)}so the border matches perfectly: no echo, at any angle or frequency.
+Dialogue: 0,0:03:41.54,0:03:45.76,Default,,0,0,0,,{\fad(120,120)}This is the perfectly matched layer, or PML. Side by side:
+Dialogue: 0,0:03:45.80,0:03:50.51,Default,,0,0,0,,{\fad(120,120)}the wall echoes, the lossy layer echoes, the PML stays silent.
+Dialogue: 0,0:03:50.58,0:03:54.35,Default,,0,0,0,,{\fad(120,120)}On a grid, a tiny echo remains, so σ ramps up smoothly.
+Dialogue: 0,0:03:54.39,0:03:58.44,Default,,0,0,0,,{\fad(120,120)}Grazing and evanescent waves are the hardest to absorb.
+Dialogue: 0,0:03:59.26,0:04:02.81,Default,,0,0,0,,{\fad(120,120)}In code, the whole method is four lines inside a time loop.
+Dialogue: 0,0:04:02.88,0:04:06.72,Default,,0,0,0,,{\fad(120,120)}Update H from the curl of E. Update E from the curl of H.
+Dialogue: 0,0:04:06.76,0:04:09.39,Default,,0,0,0,,{\fad(120,120)}Absorb in the PML. Add the source.
+Dialogue: 0,0:04:09.46,0:04:12.39,Default,,0,0,0,,{\fad(120,120)}Send in one short pulse, record what comes back,
+Dialogue: 0,0:04:12.43,0:04:14.54,Default,,0,0,0,,{\fad(120,120)}and a Fourier transform in time gives
+Dialogue: 0,0:04:14.58,0:04:16.78,Default,,0,0,0,,{\fad(120,120)}every wavelength from a single run.
+Dialogue: 0,0:04:16.85,0:04:19.44,Default,,0,0,0,,{\fad(120,120)}For a Bragg mirror, a stack of alternating layers,
+Dialogue: 0,0:04:19.48,0:04:23.59,Default,,0,0,0,,{\fad(120,120)}the whole reflection spectrum lands right on the exact answer.
+Dialogue: 0,0:04:23.66,0:04:26.19,Default,,0,0,0,,{\fad(120,120)}The price: every cell is updated at every step.
+Dialogue: 0,0:04:26.23,0:04:28.74,Default,,0,0,0,,{\fad(120,120)}A small 2D run takes seconds;
+Dialogue: 0,0:04:28.78,0:04:33.10,Default,,0,0,0,,{\fad(120,120)}a large 3D device, minutes to hours on GPUs.
+Dialogue: 0,0:04:33.17,0:04:36.95,Default,,0,0,0,,{\fad(120,120)}And it sees what simpler models miss: on this fine glass relief,
+Dialogue: 0,0:04:36.99,0:04:42.26,Default,,0,0,0,,{\fad(120,120)}the thin-element model sends 96% of the light one way. FDTD,
+Dialogue: 0,0:04:42.30,0:04:46.66,Default,,0,0,0,,{\fad(120,120)}with shadows and light trapped in the ridges, finds 57%.
+Dialogue: 0,0:04:47.48,0:04:51.75,Default,,0,0,0,,{\fad(120,120)}FDTD isn't exact either: it converges as cells shrink,
+Dialogue: 0,0:04:51.79,0:04:56.15,Default,,0,0,0,,{\fad(120,120)}curves become staircases, and the PML adds a small error.
+Dialogue: 0,0:04:56.22,0:04:59.02,Default,,0,0,0,,{\fad(120,120)}But the core idea is simple. E updates H,
+Dialogue: 0,0:04:59.06,0:05:01.84,Default,,0,0,0,,{\fad(120,120)}and H updates E, one neighbour at a time.
+Dialogue: 0,0:05:01.91,0:05:05.67,Default,,0,0,0,,{\fad(120,120)}A layer of complex-stretched space absorbs whatever leaves.
+Dialogue: 0,0:05:05.74,0:05:09.78,Default,,0,0,0,,{\fad(120,120)}Now we can simulate almost anything. What we really want is the reverse:
+Dialogue: 0,0:05:09.82,0:05:12.99,Default,,0,0,0,,{\fad(120,120)}say what the light should do, and get the structure.

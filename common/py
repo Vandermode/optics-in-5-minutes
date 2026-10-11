@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Run the project's Python ($O5_PY from config.local.sh or the environment; default `python`):  common/py script.py ...
+source "$(dirname "$0")/env.sh"
+exec "$O5_PY" "$@"

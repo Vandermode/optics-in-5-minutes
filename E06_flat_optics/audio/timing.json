@@ -1,0 +1,299 @@
+{
+ "total": 314.801,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "This glass lens is about nine microns thick. This patterned plate is just one micron thick.",
+   "start": 0.9,
+   "end": 6.493
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Shine green light through both, and they focus it to exactly the same spot.",
+   "start": 6.813,
+   "end": 11.006
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "But in white light, the glass lens still makes one sharp focus, while the plate smears the colours along its axis.",
+   "start": 11.326,
+   "end": 17.802
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "How can one micron of glass do a thick lens's job? And what's the catch?",
+   "start": 18.122,
+   "end": 22.233
+  },
+  {
+   "id": "d1",
+   "ch": 1,
+   "text": "Inside glass, light slows down to c/n, where n, the refractive index, is about 1.5.",
+   "start": 23.303,
+   "end": 29.713
+  },
+  {
+   "id": "d2",
+   "ch": 1,
+   "text": "Follow two paths, one through a block of glass of height h, one through air. In the glass, the crests bunch up and fall behind.",
+   "start": 30.033,
+   "end": 37.299
+  },
+  {
+   "id": "d3",
+   "ch": 1,
+   "text": "The glass path lags by (n \u2212 1)h: a phase delay \u03c6 = k\u2080(n \u2212 1)h, where k\u2080 = 2\u03c0/\u03bb.",
+   "start": 37.619,
+   "end": 48.295
+  },
+  {
+   "id": "d4",
+   "ch": 1,
+   "text": "If the glass is thin, each point is simply delayed on its own: the outgoing field is the incoming one, times e^(i\u03c6(x)).",
+   "start": 48.615,
+   "end": 57.131
+  },
+  {
+   "id": "d5",
+   "ch": 1,
+   "text": "That's the thin element approximation, TEA. Make the glass thickest in the middle, and a flat wave leaves curved, converging to a focus.",
+   "start": 57.451,
+   "end": 66.099
+  },
+  {
+   "id": "d6",
+   "ch": 1,
+   "text": "It's the simplest, fastest rung on a ladder of models. Remember its one assumption: every point on its own.",
+   "start": 66.419,
+   "end": 72.812
+  },
+  {
+   "id": "w1",
+   "ch": 2,
+   "text": "Now the key trick. Phase is an angle, so a delay of one full turn, 2\u03c0, changes nothing: every crest lands where the next one was.",
+   "start": 73.882,
+   "end": 82.384
+  },
+  {
+   "id": "w2",
+   "ch": 2,
+   "text": "In glass, one full turn of delay takes a height of \u03bb/(n \u2212 1). For green light, that's about 1.1 microns.",
+   "start": 82.704,
+   "end": 90.614
+  },
+  {
+   "id": "w3",
+   "ch": 2,
+   "text": "So slice the lens into slabs of exactly that height.",
+   "start": 90.934,
+   "end": 93.866
+  },
+  {
+   "id": "w4",
+   "ch": 2,
+   "text": "Each full slab only adds whole turns. It changes nothing, so throw it away.",
+   "start": 94.186,
+   "end": 98.713
+  },
+  {
+   "id": "w5",
+   "ch": 2,
+   "text": "Keep just the curved remainders, and let them drop onto the base.",
+   "start": 99.033,
+   "end": 102.26
+  },
+  {
+   "id": "w6",
+   "ch": 2,
+   "text": "What's left is a kinoform: rings called Fresnel zones, about one micron thick.",
+   "start": 103.48,
+   "end": 108.605
+  },
+  {
+   "id": "w7",
+   "ch": 2,
+   "text": "The zones narrow toward the edge, where light must bend most steeply. There, they're only a few wavelengths wide.",
+   "start": 108.925,
+   "end": 115.34
+  },
+  {
+   "id": "w8",
+   "ch": 2,
+   "text": "At the design wavelength, the kinoform multiplies the light by exactly the same e^(i\u03c6). So it focuses to exactly the same spot.",
+   "start": 115.66,
+   "end": 124.991
+  },
+  {
+   "id": "s1",
+   "ch": 3,
+   "text": "Real fabrication often makes just N discrete heights, so each zone becomes a staircase.",
+   "start": 126.061,
+   "end": 131.437
+  },
+  {
+   "id": "s2",
+   "ch": 3,
+   "text": "Each zone works like a tooth of a grating. A perfect ramp sends all the light into one diffraction order: the one aimed at the focus.",
+   "start": 131.757,
+   "end": 139.477
+  },
+  {
+   "id": "s3",
+   "ch": 3,
+   "text": "Steps leak light into other orders, and that light misses the focus.",
+   "start": 139.797,
+   "end": 143.539
+  },
+  {
+   "id": "s4",
+   "ch": 3,
+   "text": "How much? At each point, draw an arrow for the gap between its phase and the perfect ramp, then add the arrows head to tail.",
+   "start": 143.859,
+   "end": 150.87
+  },
+  {
+   "id": "s5",
+   "ch": 3,
+   "text": "For the ramp, they all line up. But each step holds its phase while the ramp keeps turning, so the chain curls, and its end-to-end arrow is shorter.",
+   "start": 151.19,
+   "end": 159.412
+  },
+  {
+   "id": "s6",
+   "ch": 3,
+   "text": "Its squared length is the share of light in the focus: \u03b7 = sinc\u00b2(1/N). That's 41% for two levels, 81% for four, 95% for eight, 99% for sixteen.",
+   "start": 160.332,
+   "end": 173.154
+  },
+  {
+   "id": "c1",
+   "ch": 4,
+   "text": "Now colour. A kinoform works by diffraction: its zones are fixed, and longer wavelengths bend more at each one.",
+   "start": 174.224,
+   "end": 181.2
+  },
+  {
+   "id": "c2",
+   "ch": 4,
+   "text": "So its focal length depends on colour, f = f\u2080\u03bb\u2080/\u03bb: red focuses closest, and blue farthest.",
+   "start": 181.52,
+   "end": 190.284
+  },
+  {
+   "id": "c3",
+   "ch": 4,
+   "text": "A glass lens does the opposite, and far more gently: glass bends blue slightly more, so blue focuses a little closer.",
+   "start": 190.604,
+   "end": 197.731
+  },
+  {
+   "id": "c4",
+   "ch": 4,
+   "text": "Opticians score this with the Abbe number: about +60 for common glass, but \u22123.45 for every diffractive lens.",
+   "start": 198.051,
+   "end": 206.628
+  },
+  {
+   "id": "c5",
+   "ch": 4,
+   "text": "Since the signs are opposite, a weak diffractive surface can cancel a glass lens's colour error. Or software can correct the colours afterwards.",
+   "start": 206.948,
+   "end": 215.576
+  },
+  {
+   "id": "t1",
+   "ch": 5,
+   "text": "Now the deepest catch. The thin element approximation assumes every column of glass acts on its own. Is that true?",
+   "start": 216.646,
+   "end": 223.739
+  },
+  {
+   "id": "t2",
+   "ch": 5,
+   "text": "Zoom in on zones four wavelengths wide, with walls two wavelengths tall.",
+   "start": 224.059,
+   "end": 228.305
+  },
+  {
+   "id": "t3",
+   "ch": 5,
+   "text": "Solve Maxwell's equations directly, and the clean picture breaks. Light crowds along the walls, shoots out in jets, and leaves shadows beside them.",
+   "start": 229.225,
+   "end": 237.998
+  },
+  {
+   "id": "t4",
+   "ch": 5,
+   "text": "So less light reaches the focus: TEA promises all of it, but the full solution delivers about 70%.",
+   "start": 238.318,
+   "end": 245.846
+  },
+  {
+   "id": "t5",
+   "ch": 5,
+   "text": "The narrower the zones, the bigger the gap. Only zones many wavelengths wide are safe.",
+   "start": 246.166,
+   "end": 251.174
+  },
+  {
+   "id": "t6",
+   "ch": 5,
+   "text": "Two ways out. Metasurfaces build the phase from pillars narrower than a wavelength, each one's delay computed from the full equations.",
+   "start": 251.494,
+   "end": 259.545
+  },
+  {
+   "id": "t7",
+   "ch": 5,
+   "text": "Or drop the shortcut, and simulate the whole element with a full-wave solver. That's Episode 9.",
+   "start": 259.865,
+   "end": 265.507
+  },
+  {
+   "id": "a1",
+   "ch": 6,
+   "text": "On a computer, a flat lens takes two steps: multiply the field by e^(ik\u2080(n \u2212 1)h), then propagate it with the angular spectrum method from Episode 1.",
+   "start": 266.577,
+   "end": 277.935
+  },
+  {
+   "id": "a2",
+   "ch": 6,
+   "text": "Three pitfalls: sample the finest zone with several points, wrap the heights, and simulate the profile you can really make, not the drawing.",
+   "start": 278.255,
+   "end": 286.376
+  },
+  {
+   "id": "a3",
+   "ch": 6,
+   "text": "Blur this profile by a quarter of a micron, and a quarter of the focused light is gone.",
+   "start": 286.696,
+   "end": 291.418
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "A thin element only delays light. Phase wraps at 2\u03c0, so a lens can be a micron thick, until \u201cthin\u201d stops being true.",
+   "start": 292.488,
+   "end": 300.156
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "The price: steps scatter light, colours split apart, and fine zones stop being thin.",
+   "start": 300.476,
+   "end": 305.413
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "And a lens's outer zones look a lot like a grating. So next time: what does periodic structure do to light?",
+   "start": 305.733,
+   "end": 312.201
+  }
+ ]
+}

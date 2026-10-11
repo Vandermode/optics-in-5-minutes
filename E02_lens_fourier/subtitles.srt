@@ -1,0 +1,340 @@
+1
+00:00:00,900 --> 00:00:04,869
+Shine a laser through a tiny slide with the letter F on it.
+
+2
+00:00:04,939 --> 00:00:09,039
+On a far wall, you don't see an F. You see streaks and fringes.
+
+3
+00:00:09,109 --> 00:00:11,735
+That pattern is the Fourier transform of the F,
+
+4
+00:00:11,775 --> 00:00:14,078
+computed by the light itself.
+
+5
+00:00:14,148 --> 00:00:15,970
+Put a lens right behind the slide,
+
+6
+00:00:16,010 --> 00:00:19,738
+and the same pattern appears just one focal length away.
+
+7
+00:00:19,808 --> 00:00:22,855
+Why does light compute Fourier transforms, for free?
+
+8
+00:00:24,675 --> 00:00:29,077
+Remember episode one: any field is a sum of plane waves,
+
+9
+00:00:29,117 --> 00:00:33,491
+each heading in its own direction, sin θ = kx/k.
+
+10
+00:00:33,561 --> 00:00:37,499
+Their amplitudes form the field's spectrum: its Fourier transform.
+
+11
+00:00:37,569 --> 00:00:40,192
+Up close behind a slit, the waves still overlap,
+
+12
+00:00:40,232 --> 00:00:42,033
+and you mostly see a shadow.
+
+13
+00:00:42,103 --> 00:00:44,632
+Now step back, a thousand times farther.
+
+14
+00:00:44,702 --> 00:00:48,785
+Each plane wave travels in a straight line. So far away,
+
+15
+00:00:48,825 --> 00:00:53,677
+the directions come apart: direction θ lands at x = z tan θ.
+
+16
+00:00:54,347 --> 00:00:56,905
+So the pattern on the wall is the spectrum itself,
+
+17
+00:00:56,945 --> 00:01:00,710
+spread out in space. This is Fraunhofer diffraction.
+
+18
+00:01:00,780 --> 00:01:05,384
+How far is far? The pattern grows like zλ/D,
+
+19
+00:01:05,424 --> 00:01:10,388
+and it must dwarf the slit width D: z ≫ D²/λ.
+
+20
+00:01:11,208 --> 00:01:14,108
+But why a Fourier transform? Follow the light from
+
+21
+00:01:14,148 --> 00:01:18,064
+a point x′ on the slide to a point x on the wall.
+
+22
+00:01:18,134 --> 00:01:20,667
+For small angles, the path length is
+
+23
+00:01:20,707 --> 00:01:25,394
+nearly a parabola: z + (x − x′)²/2z.
+
+24
+00:01:25,464 --> 00:01:28,514
+The wall adds up waves from every point of the slide,
+
+25
+00:01:28,554 --> 00:01:31,049
+each with phase k times that path.
+
+26
+00:01:31,119 --> 00:01:33,936
+Expand the square. The x² term is a curved
+
+27
+00:01:33,976 --> 00:01:36,833
+phase on the wall that brightness can't see.
+
+28
+00:01:36,903 --> 00:01:40,074
+The cross term is exactly the Fourier kernel:
+
+29
+00:01:40,114 --> 00:01:45,874
+position x on the wall picks out the frequency kx = k·x/z.
+
+30
+00:01:45,944 --> 00:01:48,467
+The x′² term is a chirp across the slide:
+
+31
+00:01:48,507 --> 00:01:50,996
+its wiggles speed up toward the edges.
+
+32
+00:01:51,036 --> 00:01:56,146
+Far away it flattens to one, leaving a pure Fourier transform.
+
+33
+00:01:56,216 --> 00:01:59,350
+Closer in, the chirp scrambles it. Could we cancel it?
+
+34
+00:02:00,170 --> 00:02:03,010
+A lens is glass that's thicker in the middle,
+
+35
+00:02:03,050 --> 00:02:05,453
+so it delays the centre most.
+
+36
+00:02:05,493 --> 00:02:10,464
+That's a phase e^(−ikx²/2f): an opposite chirp.
+
+37
+00:02:10,534 --> 00:02:13,455
+Watch a flat wave pass through. It leaves curved,
+
+38
+00:02:13,495 --> 00:02:17,841
+and converges to a point one focal length f behind the lens.
+
+39
+00:02:17,911 --> 00:02:23,026
+Tilt the wave, and the focus slides sideways, to x = f tan θ.
+
+40
+00:02:23,896 --> 00:02:28,421
+Three directions, three separate spots. A lens sorts light by direction.
+
+41
+00:02:28,491 --> 00:02:30,842
+A slit sends out a whole spectrum of directions,
+
+42
+00:02:30,882 --> 00:02:34,997
+so its spectrum appears in the focal plane, not at infinity.
+
+43
+00:02:35,067 --> 00:02:37,351
+In the math, the lens's chirp exactly
+
+44
+00:02:37,391 --> 00:02:40,691
+cancels the slide's chirp when z = f.
+
+45
+00:02:40,761 --> 00:02:43,627
+Move the slide one focal length in front of the lens,
+
+46
+00:02:43,667 --> 00:02:48,102
+and even the curved phase vanishes: an exact Fourier transform.
+
+47
+00:02:48,922 --> 00:02:52,238
+Now add a second lens, one more focal length on.
+
+48
+00:02:52,278 --> 00:02:55,689
+It transforms the spectrum again, and the picture comes back.
+
+49
+00:02:55,759 --> 00:02:58,680
+Upside down! Two Fourier transforms don't
+
+50
+00:02:58,720 --> 00:03:01,669
+undo each other: they mirror x into −x.
+
+51
+00:03:01,739 --> 00:03:05,473
+This is the 4f system. The middle plane holds the spectrum,
+
+52
+00:03:05,513 --> 00:03:10,416
+sorted by direction, so a mask there edits it, frequency by frequency.
+
+53
+00:03:10,486 --> 00:03:14,267
+A pinhole keeps only the low frequencies, and the image blurs.
+
+54
+00:03:14,337 --> 00:03:16,718
+A small dot that blocks the centre keeps only
+
+55
+00:03:16,758 --> 00:03:19,949
+the high frequencies, so just the edges survive.
+
+56
+00:03:20,769 --> 00:03:22,779
+Now a harder case: a living cell.
+
+57
+00:03:22,819 --> 00:03:26,382
+It's nearly transparent; it only delays the light a little.
+
+58
+00:03:26,452 --> 00:03:30,313
+At each point, the light is a big arrow plus a tiny one at 90°,
+
+59
+00:03:30,353 --> 00:03:34,543
+so its length barely changes. The camera sees nothing.
+
+60
+00:03:34,613 --> 00:03:36,718
+The big arrow is light that went straight through,
+
+61
+00:03:36,758 --> 00:03:40,438
+and the first lens focuses it all into the central spot.
+
+62
+00:03:40,508 --> 00:03:43,312
+So delay just that spot by a quarter wave.
+
+63
+00:03:44,182 --> 00:03:46,793
+Now the arrows line up, and the cell appears.
+
+64
+00:03:46,864 --> 00:03:52,339
+That's Frits Zernike's phase contrast microscope, the 1953 Nobel Prize.
+
+65
+00:03:53,159 --> 00:03:56,274
+On a computer, you can choose from three propagators.
+
+66
+00:03:56,344 --> 00:04:00,503
+The angular spectrum method from episode one: FFT, multiply,
+
+67
+00:04:00,543 --> 00:04:06,363
+inverse FFT. Exact, on the same grid as the input, and best up close.
+
+68
+00:04:06,433 --> 00:04:12,590
+Single-FFT Fresnel: multiply by the chirp, then one FFT.
+
+69
+00:04:12,630 --> 00:04:15,569
+The output grid stretches with distance,
+
+70
+00:04:15,609 --> 00:04:19,342
+Δx′ = λz/NΔx, so it's best far away.
+
+71
+00:04:19,412 --> 00:04:23,208
+And Fraunhofer: drop the chirp, and it's just one FFT.
+
+72
+00:04:23,278 --> 00:04:26,962
+The catch: chirps. Once a chirp's wiggles get shorter than two samples,
+
+73
+00:04:27,002 --> 00:04:30,710
+the samples trace a false, slower wave: aliasing.
+
+74
+00:04:30,780 --> 00:04:34,134
+The angular spectrum chirp speeds up as z grows,
+
+75
+00:04:34,174 --> 00:04:37,000
+while the Fresnel chirp slows down.
+
+76
+00:04:37,040 --> 00:04:40,391
+They trade places at zc = NΔx²/λ:
+
+77
+00:04:40,431 --> 00:04:44,008
+angular spectrum below it, Fresnel above.
+
+78
+00:04:44,828 --> 00:04:49,393
+Far away, or at a lens's focus, each direction lands on its own spot,
+
+79
+00:04:49,433 --> 00:04:51,543
+so light lays out its own spectrum.
+
+80
+00:04:51,613 --> 00:04:53,465
+A second lens brings the picture back,
+
+81
+00:04:53,505 --> 00:04:55,678
+with a mask in between to edit it.
+
+82
+00:04:55,748 --> 00:04:58,396
+Where it breaks: our shortcut assumed small angles.
+
+83
+00:04:58,436 --> 00:05:02,637
+For steep ones, use the exact kz from episode one.
+
+84
+00:05:02,707 --> 00:05:07,193
+And a real lens is finite: it only catches directions up to some angle.
+
+85
+00:05:07,233 --> 00:05:10,100
+That cutoff is why every image is blurry.
+

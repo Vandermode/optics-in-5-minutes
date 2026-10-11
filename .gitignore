@@ -1,0 +1,16 @@
+# --- generated media (rebuild with make; share finished films via releases, see README) ---
+*.mp4
+*.ts
+*.wav
+dist/
+**/data/
+**/.cache/
+**/.verify/
+**/audio/cache.json
+# --- local ---
+.models/
+config.local.sh
+OUTLINE.internal.md
+__pycache__/
+*.pyc
+media/

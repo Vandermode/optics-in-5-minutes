@@ -1,0 +1,296 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Shine a laser through a tiny slide with the letter F on it.",
+   "say": "Shine a laser through a tiny slide, with the letter eff on it."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "On a far wall, you don't see an F. You see streaks and fringes.",
+   "say": "On a far wall, you don't see an eff. You see streaks and fringes."
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "That pattern is the Fourier transform of the F, computed by the light itself.",
+   "say": "That pattern is the Fourier transform of the eff, computed by the light itself."
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "Put a lens right behind the slide, and the same pattern appears just one focal length away.",
+   "say": "Put a lens right behind the slide, and the same pattern appears, just one focal length away."
+  },
+  {
+   "id": "h5",
+   "ch": 0,
+   "text": "Why does light compute Fourier transforms, for free?",
+   "say": "Why does light compute Fourier transforms, for free?",
+   "pause_after": 1.0
+  },
+  {
+   "id": "f1",
+   "ch": 1,
+   "text": "Remember episode one: any field is a sum of plane waves, each heading in its own direction, sin θ = kx/k.",
+   "say": "Remember episode one: any field is a sum of plane waves, each heading in its own direction, with sine theta equal to kay ex over kay."
+  },
+  {
+   "id": "f2",
+   "ch": 1,
+   "text": "Their amplitudes form the field's spectrum: its Fourier transform.",
+   "say": "Their amplitudes form the field's spectrum: its Fourier transform."
+  },
+  {
+   "id": "f3",
+   "ch": 1,
+   "text": "Up close behind a slit, the waves still overlap, and you mostly see a shadow.",
+   "say": "Up close behind a slit, the waves still overlap, and you mostly see a shadow."
+  },
+  {
+   "id": "f4",
+   "ch": 1,
+   "text": "Now step back, a thousand times farther.",
+   "say": "Now step back, a thousand times farther."
+  },
+  {
+   "id": "f5",
+   "ch": 1,
+   "text": "Each plane wave travels in a straight line. So far away, the directions come apart: direction θ lands at x = z tan θ.",
+   "say": "Each plane wave travels in a straight line. So far away, the directions come apart: direction theta lands at ex equals zee tan theta.",
+   "pause_after": 0.6
+  },
+  {
+   "id": "f6",
+   "ch": 1,
+   "text": "So the pattern on the wall is the spectrum itself, spread out in space. This is Fraunhofer diffraction.",
+   "say": "So the pattern on the wall is the spectrum itself, spread out in space. This is Fraunhofer diffraction."
+  },
+  {
+   "id": "f7",
+   "ch": 1,
+   "text": "How far is far? The pattern grows like zλ/D, and it must dwarf the slit width D: z ≫ D²/λ.",
+   "say": "How far is far? The pattern grows like zee lambda over dee, and it must dwarf the slit width, dee. So zee must be much bigger than dee squared over lambda."
+  },
+  {
+   "id": "p1",
+   "ch": 2,
+   "text": "But why a Fourier transform? Follow the light from a point x′ on the slide to a point x on the wall.",
+   "say": "But why a Fourier transform? Follow the light from a point, ex prime, on the slide, to a point, ex, on the wall."
+  },
+  {
+   "id": "p2",
+   "ch": 2,
+   "text": "For small angles, the path length is nearly a parabola: z + (x − x′)²/2z.",
+   "say": "For small angles, the path length is nearly a parabola: zee, plus ex minus ex prime squared, over two zee."
+  },
+  {
+   "id": "p3",
+   "ch": 2,
+   "text": "The wall adds up waves from every point of the slide, each with phase k times that path.",
+   "say": "The wall adds up waves from every point of the slide, each with a phase of kay times that path."
+  },
+  {
+   "id": "p4",
+   "ch": 2,
+   "text": "Expand the square. The x² term is a curved phase on the wall that brightness can't see.",
+   "say": "Expand the square. The ex squared term is a curved phase on the wall, that brightness can't see."
+  },
+  {
+   "id": "p5",
+   "ch": 2,
+   "text": "The cross term is exactly the Fourier kernel: position x on the wall picks out the frequency kx = k·x/z.",
+   "say": "The cross term is exactly the Fourier kernel: position ex on the wall picks out the frequency kay ex, equal to kay times ex over zee."
+  },
+  {
+   "id": "p6",
+   "ch": 2,
+   "text": "The x′² term is a chirp across the slide: its wiggles speed up toward the edges. Far away it flattens to one, leaving a pure Fourier transform.",
+   "say": "The ex prime squared term is a chirp across the slide: its wiggles speed up toward the edges. Far away, it flattens to one, leaving a pure Fourier transform."
+  },
+  {
+   "id": "p7",
+   "ch": 2,
+   "text": "Closer in, the chirp scrambles it. Could we cancel it?",
+   "say": "Closer in, the chirp scrambles it. Could we cancel it?"
+  },
+  {
+   "id": "l1",
+   "ch": 3,
+   "text": "A lens is glass that's thicker in the middle, so it delays the centre most. That's a phase e^(−ikx²/2f): an opposite chirp.",
+   "say": "A lens is glass that's thicker in the middle, so it delays the centre the most. That's a phase, e to the minus i kay ex squared over two eff: an opposite chirp."
+  },
+  {
+   "id": "l2",
+   "ch": 3,
+   "text": "Watch a flat wave pass through. It leaves curved, and converges to a point one focal length f behind the lens.",
+   "say": "Watch a flat wave pass through. It leaves curved, and converges to a point, one focal length, eff, behind the lens."
+  },
+  {
+   "id": "l3",
+   "ch": 3,
+   "text": "Tilt the wave, and the focus slides sideways, to x = f tan θ.",
+   "say": "Tilt the wave, and the focus slides sideways, to ex equals eff tan theta.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "l4",
+   "ch": 3,
+   "text": "Three directions, three separate spots. A lens sorts light by direction.",
+   "say": "Three directions, three separate spots. A lens sorts light by direction."
+  },
+  {
+   "id": "l5",
+   "ch": 3,
+   "text": "A slit sends out a whole spectrum of directions, so its spectrum appears in the focal plane, not at infinity.",
+   "say": "A slit sends out a whole spectrum of directions, so its spectrum appears in the focal plane, not at infinity."
+  },
+  {
+   "id": "l6",
+   "ch": 3,
+   "text": "In the math, the lens's chirp exactly cancels the slide's chirp when z = f.",
+   "say": "In the math, the lens's chirp exactly cancels the slide's chirp, when zee equals eff."
+  },
+  {
+   "id": "l7",
+   "ch": 3,
+   "text": "Move the slide one focal length in front of the lens, and even the curved phase vanishes: an exact Fourier transform.",
+   "say": "Move the slide one focal length in front of the lens, and even the curved phase vanishes: an exact Fourier transform."
+  },
+  {
+   "id": "m1",
+   "ch": 4,
+   "text": "Now add a second lens, one more focal length on. It transforms the spectrum again, and the picture comes back.",
+   "say": "Now add a second lens, one more focal length on. It transforms the spectrum again, and the picture comes back."
+  },
+  {
+   "id": "m2",
+   "ch": 4,
+   "text": "Upside down! Two Fourier transforms don't undo each other: they mirror x into −x.",
+   "say": "Upside down! Two Fourier transforms don't undo each other: they mirror ex into minus ex."
+  },
+  {
+   "id": "m3",
+   "ch": 4,
+   "text": "This is the 4f system. The middle plane holds the spectrum, sorted by direction, so a mask there edits it, frequency by frequency.",
+   "say": "This is the four F system. The middle plane holds the spectrum, sorted by direction, so a mask there edits it, frequency by frequency."
+  },
+  {
+   "id": "m4",
+   "ch": 4,
+   "text": "A pinhole keeps only the low frequencies, and the image blurs.",
+   "say": "A pinhole keeps only the low frequencies, and the image blurs."
+  },
+  {
+   "id": "m5",
+   "ch": 4,
+   "text": "A small dot that blocks the centre keeps only the high frequencies, so just the edges survive.",
+   "say": "A small dot that blocks the centre keeps only the high frequencies, so just the edges survive."
+  },
+  {
+   "id": "z1",
+   "ch": 5,
+   "text": "Now a harder case: a living cell. It's nearly transparent; it only delays the light a little.",
+   "say": "Now a harder case: a living cell. It's nearly transparent; it only delays the light a little."
+  },
+  {
+   "id": "z2",
+   "ch": 5,
+   "text": "At each point, the light is a big arrow plus a tiny one at 90°, so its length barely changes. The camera sees nothing.",
+   "say": "At each point, the light is a big arrow, plus a tiny one at ninety degrees, so its length barely changes. The camera sees nothing."
+  },
+  {
+   "id": "z3",
+   "ch": 5,
+   "text": "The big arrow is light that went straight through, and the first lens focuses it all into the central spot.",
+   "say": "The big arrow is light that went straight through, and the first lens focuses it all into the central spot."
+  },
+  {
+   "id": "z4",
+   "ch": 5,
+   "text": "So delay just that spot by a quarter wave.",
+   "say": "So delay just that spot, by a quarter wave.",
+   "pause_after": 0.8
+  },
+  {
+   "id": "z5",
+   "ch": 5,
+   "text": "Now the arrows line up, and the cell appears.",
+   "say": "Now the arrows line up, and the cell appears."
+  },
+  {
+   "id": "z6",
+   "ch": 5,
+   "text": "That's Frits Zernike's phase contrast microscope, the 1953 Nobel Prize.",
+   "say": "That's Frits Zernike's phase contrast microscope: the nineteen fifty-three Nobel Prize."
+  },
+  {
+   "id": "c1",
+   "ch": 6,
+   "text": "On a computer, you can choose from three propagators.",
+   "say": "On a computer, you can choose from three propagators."
+  },
+  {
+   "id": "c2",
+   "ch": 6,
+   "text": "The angular spectrum method from episode one: FFT, multiply, inverse FFT. Exact, on the same grid as the input, and best up close.",
+   "say": "The angular spectrum method from episode one: F F T, multiply, inverse F F T. Exact, on the same grid as the input, and best up close."
+  },
+  {
+   "id": "c3",
+   "ch": 6,
+   "text": "Single-FFT Fresnel: multiply by the chirp, then one FFT. The output grid stretches with distance, Δx′ = λz/NΔx, so it's best far away.",
+   "say": "Single F F T Fresnel: multiply by the chirp, then one F F T. The output grid stretches with distance, delta ex prime equals lambda zee over en delta ex, so it's best far away."
+  },
+  {
+   "id": "c4",
+   "ch": 6,
+   "text": "And Fraunhofer: drop the chirp, and it's just one FFT.",
+   "say": "And Fraunhofer: drop the chirp, and it's just one F F T."
+  },
+  {
+   "id": "c5",
+   "ch": 6,
+   "text": "The catch: chirps. Once a chirp's wiggles get shorter than two samples, the samples trace a false, slower wave: aliasing.",
+   "say": "The catch: chirps. Once a chirp's wiggles get shorter than two samples, the samples trace a false, slower wave: aliasing."
+  },
+  {
+   "id": "c6",
+   "ch": 6,
+   "text": "The angular spectrum chirp speeds up as z grows, while the Fresnel chirp slows down. They trade places at zc = NΔx²/λ: angular spectrum below it, Fresnel above.",
+   "say": "The angular spectrum chirp speeds up as zee grows, while the Fresnel chirp slows down. They trade places at zee sub c, equals en delta ex squared over lambda: angular spectrum below it, Fresnel above."
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "Far away, or at a lens's focus, each direction lands on its own spot, so light lays out its own spectrum.",
+   "say": "Far away, or at a lens's focus, each direction lands on its own spot, so light lays out its own spectrum."
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "A second lens brings the picture back, with a mask in between to edit it.",
+   "say": "A second lens brings the picture back, with a mask in between to edit it."
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "Where it breaks: our shortcut assumed small angles. For steep ones, use the exact kz from episode one.",
+   "say": "Where it breaks: our shortcut assumed small angles. For steep ones, use the exact kay zee, from episode one."
+  },
+  {
+   "id": "r4",
+   "ch": 7,
+   "text": "And a real lens is finite: it only catches directions up to some angle. That cutoff is why every image is blurry.",
+   "say": "And a real lens is finite: it only catches directions up to some angle. That cutoff is why every image is blurry."
+  }
+ ]
+}

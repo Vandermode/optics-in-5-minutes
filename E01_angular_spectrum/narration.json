@@ -1,0 +1,286 @@
+{
+ "voice": "af_heart",
+ "speed": 1.03,
+ "gap_s": 0.32,
+ "chapter_pause_s": 0.75,
+ "lead_in_s": 0.9,
+ "tail_s": 2.6,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Shine a laser through a narrow slit, and a pattern of bright and dark bands appears on the wall.",
+   "say": "Shine a laser through a narrow slit, and a pattern of bright and dark bands appears on the wall."
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "How does light spread out like that? And how can we compute exactly what it looks like at any distance?",
+   "say": "How does light spread out like that? And how can we compute exactly what it looks like at any distance?"
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "There is a beautifully simple answer, called the angular spectrum method.",
+   "say": "There is a beautifully simple answer, called the angular spectrum method."
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "By the end of this video you'll see exactly why it works, using nothing but calculus and a little linear algebra.",
+   "say": "By the end of this video, you'll see exactly why it works, using nothing but calculus and a little linear algebra."
+  },
+  {
+   "id": "w1",
+   "ch": 1,
+   "text": "Let's start with a single wave. Along a line, the light's field goes up and down like a cosine.",
+   "say": "Let's start with a single wave. Along a line, the light's field goes up and down, like a cosine."
+  },
+  {
+   "id": "w2",
+   "ch": 1,
+   "text": "The distance from one crest to the next is the wavelength, λ.",
+   "say": "The distance from one crest to the next is the wavelength, lambda."
+  },
+  {
+   "id": "w3",
+   "ch": 1,
+   "text": "It's often handier to use the wavenumber, k = 2π/λ.",
+   "say": "It's often handier to use the wave number, kay, equals two pi over lambda."
+  },
+  {
+   "id": "w4",
+   "ch": 1,
+   "text": "It tells you how fast the wave's phase turns: k radians for every unit of distance.",
+   "say": "It tells you how fast the wave's phase turns: kay radians, for every unit of distance."
+  },
+  {
+   "id": "w5",
+   "ch": 1,
+   "text": "Light of one colour has one wavelength, so one fixed k. Remember that: it's the key rule later on.",
+   "say": "Light of one colour has one wavelength, so one fixed kay. Remember that: it's the key rule later on."
+  },
+  {
+   "id": "z1",
+   "ch": 2,
+   "text": "Next, a trick that makes waves much easier: complex numbers as arrows.",
+   "say": "Next, a trick that makes waves much easier: complex numbers, as arrows."
+  },
+  {
+   "id": "z2",
+   "ch": 2,
+   "text": "Euler's formula says e^(iθ) = cos θ + i sin θ: an arrow of length one, at angle θ.",
+   "say": "Euler's formula says, e to the i theta, equals cosine theta, plus i sine theta. That's an arrow of length one, at angle theta."
+  },
+  {
+   "id": "z3",
+   "ch": 2,
+   "text": "So at every point we draw an arrow. Its length is the amplitude, and its angle is the phase.",
+   "say": "So at every point, we draw an arrow. Its length is the amplitude, and its angle is the phase."
+  },
+  {
+   "id": "z4",
+   "ch": 2,
+   "text": "The real light is just the arrow's shadow on the horizontal axis.",
+   "say": "The real light is just the arrow's shadow, on the horizontal axis."
+  },
+  {
+   "id": "z5",
+   "ch": 2,
+   "text": "The wave e^(ikx) is an arrow that turns steadily as you move along x.",
+   "say": "The wave, e to the i kay ex, is an arrow that turns steadily, as you move along ex."
+  },
+  {
+   "id": "z6",
+   "ch": 2,
+   "text": "Here's the payoff: shifting the wave is the same as rotating every arrow, which means multiplying by e^(iφ).",
+   "say": "Here's the payoff: shifting the wave is the same as rotating every arrow, which means multiplying by e to the i phi."
+  },
+  {
+   "id": "p1",
+   "ch": 3,
+   "text": "Now let the light live in a plane, with x across and z pointing forward.",
+   "say": "Now let the light live in a plane, with ex across, and zee pointing forward."
+  },
+  {
+   "id": "p2",
+   "ch": 3,
+   "text": "A plane wave, e^(i(kx·x + kz·z)), has straight, parallel crests.",
+   "say": "A plane wave, e to the i times, kay ex ex, plus kay zee zee, has straight, parallel crests."
+  },
+  {
+   "id": "p3",
+   "ch": 3,
+   "text": "Its wave vector, with components kx and kz, points in the direction it travels.",
+   "say": "Its wave vector, with components kay ex and kay zee, points in the direction it travels."
+  },
+  {
+   "id": "p4",
+   "ch": 3,
+   "text": "Which wave vectors are allowed? Light obeys the Helmholtz equation.",
+   "say": "Which wave vectors are allowed? Light obeys the Helmholtz equation."
+  },
+  {
+   "id": "p5",
+   "ch": 3,
+   "text": "Each derivative of an exponential just pulls down a factor, so plugging in the plane wave gives kx² + kz² = k².",
+   "say": "Each derivative of an exponential just pulls down a factor. So plugging in the plane wave gives: kay ex squared, plus kay zee squared, equals kay squared."
+  },
+  {
+   "id": "p6",
+   "ch": 3,
+   "text": "So the wave vector always ends on a circle of radius k. Choose kx, and kz is fixed: √(k² − kx²).",
+   "say": "So the wave vector always ends on a circle of radius kay. Choose kay ex, and kay zee is fixed: the square root of kay squared, minus kay ex squared."
+  },
+  {
+   "id": "p7",
+   "ch": 3,
+   "text": "And the tilt angle satisfies sin θ = kx / k.",
+   "say": "And the tilt angle satisfies: sine theta, equals kay ex over kay."
+  },
+  {
+   "id": "b1",
+   "ch": 4,
+   "text": "Here's the second key fact: the Helmholtz equation is linear. Add two solutions, and you get another solution.",
+   "say": "Here's the second key fact: the Helmholtz equation is linear. Add two solutions, and you get another solution."
+  },
+  {
+   "id": "b2",
+   "ch": 4,
+   "text": "That should remind you of linear algebra: any vector is a sum of basis vectors, and a dot product finds each component.",
+   "say": "That should remind you of linear algebra. Any vector is a sum of basis vectors, and a dot product finds each component."
+  },
+  {
+   "id": "b3",
+   "ch": 4,
+   "text": "Functions are vectors too: sample a field at many points, and it's just a long list of numbers.",
+   "say": "Functions are vectors too. Sample a field at many points, and it's just a long list of numbers."
+  },
+  {
+   "id": "b4",
+   "ch": 4,
+   "text": "A perfect basis for them is the set of waves e^(i·kx·x), one for every spatial frequency kx.",
+   "say": "A perfect basis for them, is the set of waves, e to the i, kay ex, times ex. One for every spatial frequency, kay ex."
+  },
+  {
+   "id": "b5",
+   "ch": 4,
+   "text": "The dot product of our field with each of these waves gives that wave's amplitude. That's exactly the Fourier transform.",
+   "say": "The dot product of our field with each of these waves gives that wave's amplitude. That's exactly the Fourier transform."
+  },
+  {
+   "id": "b6",
+   "ch": 4,
+   "text": "For a slit, the spectrum is large at low frequencies, with ripples at high frequencies that build the sharp edges.",
+   "say": "For a slit, the spectrum is large at low frequencies, with ripples at high frequencies that build the sharp edges."
+  },
+  {
+   "id": "d1",
+   "ch": 5,
+   "text": "Now we can propagate. Each basis wave on the line z = 0 is the start of a tilted plane wave.",
+   "say": "Now we can propagate. Each basis wave, on the line zee equals zero, is the start of a tilted plane wave."
+  },
+  {
+   "id": "d2",
+   "ch": 5,
+   "text": "Moving forward by z, it keeps its shape. It only gets multiplied by a phase, e^(i·kz·z).",
+   "say": "Moving forward by zee, it keeps its shape. It only gets multiplied by a phase: e to the i, kay zee, times zee."
+  },
+  {
+   "id": "d3",
+   "ch": 5,
+   "text": "In linear-algebra language: plane waves are the eigenvectors of propagation, and these phase factors are the eigenvalues.",
+   "say": "In linear algebra language: plane waves are the eigenvectors of propagation, and these phase factors are the eigenvalues."
+  },
+  {
+   "id": "d4",
+   "ch": 5,
+   "text": "In the basis of points, propagation mixes every point with every other. In the plane-wave basis, its matrix is diagonal.",
+   "say": "In the basis of points, propagation mixes every point with every other. In the plane wave basis, its matrix is diagonal."
+  },
+  {
+   "id": "d5",
+   "ch": 5,
+   "text": "So we do what we'd do with any diagonalizable matrix: change basis, multiply by the eigenvalues, and change back.",
+   "say": "So we do what we'd do with any diagonalizable matrix: change basis, multiply by the eigenvalues, and change back."
+  },
+  {
+   "id": "e1",
+   "ch": 6,
+   "text": "One twist: what if kx is bigger than k? Then k² − kx² is negative, and kz becomes imaginary.",
+   "say": "One twist: what if kay ex is bigger than kay? Then kay squared minus kay ex squared is negative, and kay zee becomes imaginary."
+  },
+  {
+   "id": "e2",
+   "ch": 6,
+   "text": "The phase factor turns into a decaying exponential: these evanescent waves fade away within about a wavelength.",
+   "say": "The phase factor turns into a decaying exponential. These evanescent waves fade away within about a wavelength."
+  },
+  {
+   "id": "e3",
+   "ch": 6,
+   "text": "They carry the finest details, smaller than about half a wavelength, which is why ordinary light can't resolve them: the diffraction limit.",
+   "say": "They carry the finest details, smaller than about half a wavelength. That's why ordinary light can't resolve them: the diffraction limit."
+  },
+  {
+   "id": "a1",
+   "ch": 7,
+   "text": "On a computer, the whole method is three steps.",
+   "say": "On a computer, the whole method is three steps."
+  },
+  {
+   "id": "a2",
+   "ch": 7,
+   "text": "One: sample the field and take its fast Fourier transform, the FFT, which changes basis in about N log N operations.",
+   "say": "One: sample the field, and take its fast Fourier transform, the F F T, which changes basis in about en log en operations."
+  },
+  {
+   "id": "a3",
+   "ch": 7,
+   "text": "Two: multiply each frequency by the transfer function, e^(iz√(k² − kx²)).",
+   "say": "Two: multiply each frequency by the transfer function: e to the i zee, times the square root of kay squared minus kay ex squared."
+  },
+  {
+   "id": "a4",
+   "ch": 7,
+   "text": "Three: take the inverse FFT. That's the field at distance z.",
+   "say": "Three: take the inverse F F T. That's the field at distance zee."
+  },
+  {
+   "id": "a5",
+   "ch": 7,
+   "text": "Two practical details: sample finer than half a wavelength, and pad with zeros, because the FFT treats the field as if it repeated forever.",
+   "say": "Two practical details: sample finer than half a wavelength, and pad with zeros, because the F F T treats the field as if it repeated forever."
+  },
+  {
+   "id": "a6",
+   "ch": 7,
+   "text": "Here's a slit, computed exactly this way: a sharp shadow with ripples up close, spreading into a broad pattern far away.",
+   "say": "Here's a slit, computed exactly this way: a sharp shadow with ripples up close, spreading into a broad pattern far away."
+  },
+  {
+   "id": "a7",
+   "ch": 7,
+   "text": "Give the starting field a curved phase, and the same three steps simulate a lens focusing light.",
+   "say": "Give the starting field a curved phase, and the same three steps simulate a lens, focusing light."
+  },
+  {
+   "id": "r1",
+   "ch": 8,
+   "text": "Nothing was approximated, so this is exact for the scalar wave equation, at any distance and any angle.",
+   "say": "Nothing was approximated, so this is exact for the scalar wave equation, at any distance, and any angle."
+  },
+  {
+   "id": "r2",
+   "ch": 8,
+   "text": "Break the field into plane waves, let each one advance its own phase, and add them back up.",
+   "say": "Break the field into plane waves, let each one advance its own phase, and add them back up."
+  },
+  {
+   "id": "r3",
+   "ch": 8,
+   "text": "Two FFTs and one multiplication. That's the angular spectrum method.",
+   "say": "Two F F Ts, and one multiplication. That's the angular spectrum method."
+  }
+ ]
+}

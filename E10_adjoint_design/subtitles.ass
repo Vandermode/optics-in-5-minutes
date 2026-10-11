@@ -1,0 +1,104 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:04.08,Default,,0,0,0,,{\fad(120,120)}Light travels along a silicon wire, a waveguide,
+Dialogue: 0,0:00:04.12,0:00:06.53,Default,,0,0,0,,{\fad(120,120)}and we want to split it evenly into two.
+Dialogue: 0,0:00:06.60,0:00:08.46,Default,,0,0,0,,{\fad(120,120)}A person would draw a smooth fork.
+Dialogue: 0,0:00:08.50,0:00:13.50,Default,,0,0,0,,{\fad(120,120)}Squeezed into this small box, it delivers only 86% of the light.
+Dialogue: 0,0:00:13.57,0:00:16.12,Default,,0,0,0,,{\fad(120,120)}A computer drew this instead: a strange,
+Dialogue: 0,0:00:16.16,0:00:21.34,Default,,0,0,0,,{\fad(120,120)}organic pattern in the same box. It delivers 99.8%.
+Dialogue: 0,0:00:21.41,0:00:24.40,Default,,0,0,0,,{\fad(120,120)}How does a computer invent shapes no human would draw?
+Dialogue: 0,0:00:24.47,0:00:28.08,Default,,0,0,0,,{\fad(120,120)}The trick is to run light backward. It's called the adjoint method.
+Dialogue: 0,0:00:28.90,0:00:33.96,Default,,0,0,0,,{\fad(120,120)}First, turn design into numbers: each pixel of the box gets a value p,
+Dialogue: 0,0:00:34.00,0:00:36.49,Default,,0,0,0,,{\fad(120,120)}from 0 for glass to 1 for silicon.
+Dialogue: 0,0:00:36.56,0:00:39.23,Default,,0,0,0,,{\fad(120,120)}A merit, F(p), scores the device:
+Dialogue: 0,0:00:39.27,0:00:42.56,Default,,0,0,0,,{\fad(120,120)}the fraction of light that reaches the two outputs.
+Dialogue: 0,0:00:42.63,0:00:46.07,Default,,0,0,0,,{\fad(120,120)}Picture F as a landscape over all possible designs.
+Dialogue: 0,0:00:46.11,0:00:49.77,Default,,0,0,0,,{\fad(120,120)}To improve, walk uphill, along the gradient.
+Dialogue: 0,0:00:49.84,0:00:52.83,Default,,0,0,0,,{\fad(120,120)}The obvious way to find it: nudge one pixel,
+Dialogue: 0,0:00:52.87,0:00:56.73,Default,,0,0,0,,{\fad(120,120)}rerun the whole simulation, and see how F changes.
+Dialogue: 0,0:00:56.80,0:00:58.29,Default,,0,0,0,,{\fad(120,120)}That's one simulation per pixel:
+Dialogue: 0,0:00:58.33,0:01:02.64,Default,,0,0,0,,{\fad(120,120)}four thousand for this little box, and millions for a metalens.
+Dialogue: 0,0:01:02.71,0:01:05.29,Default,,0,0,0,,{\fad(120,120)}With a million pixels and a minute per simulation,
+Dialogue: 0,0:01:05.33,0:01:07.76,Default,,0,0,0,,{\fad(120,120)}one step uphill would take two years.
+Dialogue: 0,0:01:08.58,0:01:11.32,Default,,0,0,0,,{\fad(120,120)}Here's the way out. At one frequency,
+Dialogue: 0,0:01:11.36,0:01:16.45,Default,,0,0,0,,{\fad(120,120)}a wave simulation on a grid is one big linear system: A x = b.
+Dialogue: 0,0:01:16.52,0:01:19.47,Default,,0,0,0,,{\fad(120,120)}b is the source, x is the field everywhere,
+Dialogue: 0,0:01:19.51,0:01:23.15,Default,,0,0,0,,{\fad(120,120)}and the matrix A holds the material, so it depends on p.
+Dialogue: 0,0:01:23.22,0:01:26.68,Default,,0,0,0,,{\fad(120,120)}Differentiate both sides with respect to one pixel,
+Dialogue: 0,0:01:26.72,0:01:28.69,Default,,0,0,0,,{\fad(120,120)}and solve for how the field changes.
+Dialogue: 0,0:01:28.76,0:01:31.18,Default,,0,0,0,,{\fad(120,120)}The merit's slope becomes a chain of three factors:
+Dialogue: 0,0:01:31.22,0:01:35.13,Default,,0,0,0,,{\fad(120,120)}a row, the inverse of A, and one column per pixel.
+Dialogue: 0,0:01:35.20,0:01:39.08,Default,,0,0,0,,{\fad(120,120)}Multiply right to left, and every column costs a solve with A:
+Dialogue: 0,0:01:39.12,0:01:41.66,Default,,0,0,0,,{\fad(120,120)}one simulation per pixel, again.
+Dialogue: 0,0:01:42.53,0:01:47.10,Default,,0,0,0,,{\fad(120,120)}But multiply left to right! The row times A⁻¹ is a single vector,
+Dialogue: 0,0:01:47.14,0:01:50.04,Default,,0,0,0,,{\fad(120,120)}λ, and it takes just one extra solve.
+Dialogue: 0,0:01:50.11,0:01:52.52,Default,,0,0,0,,{\fad(120,120)}Then each pixel's slope is a cheap product:
+Dialogue: 0,0:01:52.56,0:01:57.00,Default,,0,0,0,,{\fad(120,120)}two simulations give the whole gradient, however many pixels there are.
+Dialogue: 0,0:01:57.82,0:02:01.15,Default,,0,0,0,,{\fad(120,120)}So what is λ, physically? Light obeys reciprocity:
+Dialogue: 0,0:02:01.19,0:02:05.38,Default,,0,0,0,,{\fad(120,120)}swap a source and a detector, and the signal stays the same.
+Dialogue: 0,0:02:05.45,0:02:10.10,Default,,0,0,0,,{\fad(120,120)}In matrix terms, Aᵀ = A. So λ comes from the same simulation,
+Dialogue: 0,0:02:10.14,0:02:14.58,Default,,0,0,0,,{\fad(120,120)}with the source moved to the outputs: light sent backward.
+Dialogue: 0,0:02:14.65,0:02:17.79,Default,,0,0,0,,{\fad(120,120)}Nudge one pixel, and it scatters a tiny wavelet,
+Dialogue: 0,0:02:17.83,0:02:20.52,Default,,0,0,0,,{\fad(120,120)}with a strength set by the forward light hitting it.
+Dialogue: 0,0:02:20.59,0:02:23.96,Default,,0,0,0,,{\fad(120,120)}The backward field there tells how that wavelet reaches the outputs,
+Dialogue: 0,0:02:24.00,0:02:27.52,Default,,0,0,0,,{\fad(120,120)}and whether it arrives in step with the light already there.
+Dialogue: 0,0:02:27.59,0:02:31.35,Default,,0,0,0,,{\fad(120,120)}So each pixel's slope is the forward field times the adjoint field:
+Dialogue: 0,0:02:31.39,0:02:34.85,Default,,0,0,0,,{\fad(120,120)}the sensitivity map, for every pixel at once.
+Dialogue: 0,0:02:34.92,0:02:36.94,Default,,0,0,0,,{\fad(120,120)}Update every pixel, simulate again,
+Dialogue: 0,0:02:36.98,0:02:39.94,Default,,0,0,0,,{\fad(120,120)}and repeat. Watch the device take shape.
+Dialogue: 0,0:02:40.81,0:02:43.96,Default,,0,0,0,,{\fad(120,120)}Light run backward tells every pixel what to do.
+Dialogue: 0,0:02:44.78,0:02:47.28,Default,,0,0,0,,{\fad(120,120)}You don't even need to derive adjoints by hand.
+Dialogue: 0,0:02:47.32,0:02:51.53,Default,,0,0,0,,{\fad(120,120)}Take a phase mask, then episode one's free-space propagation.
+Dialogue: 0,0:02:51.60,0:02:54.53,Default,,0,0,0,,{\fad(120,120)}It's a chain: multiply by the mask, FFT,
+Dialogue: 0,0:02:54.57,0:02:59.49,Default,,0,0,0,,{\fad(120,120)}multiply by the transfer function H, inverse FFT, then square.
+Dialogue: 0,0:02:59.56,0:03:02.40,Default,,0,0,0,,{\fad(120,120)}Automatic differentiation, the engine of deep learning,
+Dialogue: 0,0:03:02.44,0:03:07.31,Default,,0,0,0,,{\fad(120,120)}runs the chain backward: FFTs become inverse FFTs,
+Dialogue: 0,0:03:07.35,0:03:09.98,Default,,0,0,0,,{\fad(120,120)}and H becomes its conjugate.
+Dialogue: 0,0:03:10.85,0:03:14.87,Default,,0,0,0,,{\fad(120,120)}For propagating waves, conjugating H just flips the sign of z.
+Dialogue: 0,0:03:14.91,0:03:18.19,Default,,0,0,0,,{\fad(120,120)}The backward pass really does send light backward.
+Dialogue: 0,0:03:18.26,0:03:21.50,Default,,0,0,0,,{\fad(120,120)}Now gradient descent shapes the mask to project any picture.
+Dialogue: 0,0:03:21.54,0:03:24.91,Default,,0,0,0,,{\fad(120,120)}Watch the image sharpen as the error falls.
+Dialogue: 0,0:03:24.98,0:03:28.53,Default,,0,0,0,,{\fad(120,120)}Episode five's Gerchberg–Saxton loop was a clever heuristic;
+Dialogue: 0,0:03:28.57,0:03:32.31,Default,,0,0,0,,{\fad(120,120)}gradients make it an optimization with any goal.
+Dialogue: 0,0:03:33.13,0:03:36.85,Default,,0,0,0,,{\fad(120,120)}Now go further: design the optics and the software together.
+Dialogue: 0,0:03:36.92,0:03:40.12,Default,,0,0,0,,{\fad(120,120)}A camera records a scene through our optics, adding noise;
+Dialogue: 0,0:03:40.16,0:03:44.66,Default,,0,0,0,,{\fad(120,120)}then an algorithm, here episode three's Wiener filter, sharpens it.
+Dialogue: 0,0:03:44.73,0:03:46.25,Default,,0,0,0,,{\fad(120,120)}Compare the result with the truth,
+Dialogue: 0,0:03:46.29,0:03:48.36,Default,,0,0,0,,{\fad(120,120)}and send the gradient back through everything:
+Dialogue: 0,0:03:48.40,0:03:52.17,Default,,0,0,0,,{\fad(120,120)}the filter, the noise, the light, into the optics.
+Dialogue: 0,0:03:52.24,0:03:54.47,Default,,0,0,0,,{\fad(120,120)}Ask for sharp images at every depth.
+Dialogue: 0,0:03:54.51,0:03:57.22,Default,,0,0,0,,{\fad(120,120)}An ordinary lens is sharp only in focus;
+Dialogue: 0,0:03:57.26,0:04:01.71,Default,,0,0,0,,{\fad(120,120)}elsewhere, its point-spread function, the PSF, blurs.
+Dialogue: 0,0:04:01.78,0:04:04.06,Default,,0,0,0,,{\fad(120,120)}The learned optics gives up a perfect focus
+Dialogue: 0,0:04:04.10,0:04:07.37,Default,,0,0,0,,{\fad(120,120)}for a PSF that hardly changes with depth,
+Dialogue: 0,0:04:07.41,0:04:09.78,Default,,0,0,0,,{\fad(120,120)}which the filter can undo everywhere.
+Dialogue: 0,0:04:10.60,0:04:12.86,Default,,0,0,0,,{\fad(120,120)}In code, it's a three-line loop: simulate,
+Dialogue: 0,0:04:12.90,0:04:15.93,Default,,0,0,0,,{\fad(120,120)}take the gradient, step, a few hundred times.
+Dialogue: 0,0:04:16.00,0:04:21.03,Default,,0,0,0,,{\fad(120,120)}Real devices add rules: each pixel must be all silicon or all glass,
+Dialogue: 0,0:04:21.07,0:04:23.67,Default,,0,0,0,,{\fad(120,120)}with no feature too small to fabricate.
+Dialogue: 0,0:04:23.74,0:04:26.69,Default,,0,0,0,,{\fad(120,120)}The landscape has many hills, so different starting guesses
+Dialogue: 0,0:04:26.73,0:04:30.88,Default,,0,0,0,,{\fad(120,120)}climb to different designs: all good, none guaranteed best.
+Dialogue: 0,0:04:30.95,0:04:33.69,Default,,0,0,0,,{\fad(120,120)}And the optimizer exploits every error in its model:
+Dialogue: 0,0:04:33.73,0:04:36.58,Default,,0,0,0,,{\fad(120,120)}this lens shines in a cheap simulation,
+Dialogue: 0,0:04:36.62,0:04:39.58,Default,,0,0,0,,{\fad(120,120)}but loses half its light in a careful one.
+Dialogue: 0,0:04:39.65,0:04:42.41,Default,,0,0,0,,{\fad(120,120)}So inverse design needs models fast enough to run
+Dialogue: 0,0:04:42.45,0:04:45.55,Default,,0,0,0,,{\fad(120,120)}thousands of times, and accurate enough to trust.
+Dialogue: 0,0:04:46.37,0:04:48.82,Default,,0,0,0,,{\fad(120,120)}One forward and one backward simulation
+Dialogue: 0,0:04:48.86,0:04:51.64,Default,,0,0,0,,{\fad(120,120)}give the gradient for every pixel at once.
+Dialogue: 0,0:04:51.71,0:04:54.36,Default,,0,0,0,,{\fad(120,120)}And that completes our season: plane waves,
+Dialogue: 0,0:04:54.40,0:04:57.41,Default,,0,0,0,,{\fad(120,120)}lenses as Fourier transforms, the diffraction limit,
+Dialogue: 0,0:04:57.45,0:05:00.89,Default,,0,0,0,,{\fad(120,120)}coherence, phase, flat optics, periodic structures,
+Dialogue: 0,0:05:00.93,0:05:04.20,Default,,0,0,0,,{\fad(120,120)}trapped light, Maxwell on a grid, and design.
+Dialogue: 0,0:05:04.27,0:05:05.96,Default,,0,0,0,,{\fad(120,120)}Ten ideas, one thread.
+Dialogue: 0,0:05:06.63,0:05:09.65,Default,,0,0,0,,{\fad(120,120)}Light is linear: in the right basis, the physics is simple;
+Dialogue: 0,0:05:09.69,0:05:12.48,Default,,0,0,0,,{\fad(120,120)}run it backward, and the design is too.

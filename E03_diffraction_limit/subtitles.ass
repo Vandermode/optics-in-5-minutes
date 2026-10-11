@@ -1,0 +1,101 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:02.78,Default,,0,0,0,,{\fad(120,120)}Here are tiny glowing beads,
+Dialogue: 0,0:00:02.82,0:00:05.43,Default,,0,0,0,,{\fad(120,120)}each one far smaller than the wavelength of light.
+Dialogue: 0,0:00:05.50,0:00:07.57,Default,,0,0,0,,{\fad(120,120)}Now look at them through a perfect microscope.
+Dialogue: 0,0:00:07.61,0:00:11.82,Default,,0,0,0,,{\fad(120,120)}Every bead has become a soft disc, wrapped in faint rings.
+Dialogue: 0,0:00:11.89,0:00:14.56,Default,,0,0,0,,{\fad(120,120)}Push two beads closer than about 200 nanometres,
+Dialogue: 0,0:00:14.60,0:00:17.10,Default,,0,0,0,,{\fad(120,120)}and they merge into a single blob.
+Dialogue: 0,0:00:17.17,0:00:18.99,Default,,0,0,0,,{\fad(120,120)}No lens maker can fix this.
+Dialogue: 0,0:00:19.03,0:00:22.46,Default,,0,0,0,,{\fad(120,120)}So why can't even a perfect lens make a perfect point?
+Dialogue: 0,0:00:25.68,0:00:26.84,Default,,0,0,0,,{\fad(120,120)}First, what is an image?
+Dialogue: 0,0:00:26.88,0:00:30.58,Default,,0,0,0,,{\fad(120,120)}Think of any object as a crowd of tiny points of light.
+Dialogue: 0,0:00:30.65,0:00:33.29,Default,,0,0,0,,{\fad(120,120)}A lens turns each point into the same small blur,
+Dialogue: 0,0:00:33.33,0:00:36.61,Default,,0,0,0,,{\fad(120,120)}called the point spread function, or PSF.
+Dialogue: 0,0:00:36.68,0:00:40.24,Default,,0,0,0,,{\fad(120,120)}Each point stamps a copy of the PSF at its own position,
+Dialogue: 0,0:00:40.28,0:00:41.87,Default,,0,0,0,,{\fad(120,120)}scaled by its brightness.
+Dialogue: 0,0:00:41.91,0:00:45.69,Default,,0,0,0,,{\fad(120,120)}The beads glow independently, so the stamps simply add.
+Dialogue: 0,0:00:45.76,0:00:48.70,Default,,0,0,0,,{\fad(120,120)}Adding up shifted copies like this is called a convolution.
+Dialogue: 0,0:00:48.74,0:00:53.07,Default,,0,0,0,,{\fad(120,120)}The image is the object, convolved with the PSF.
+Dialogue: 0,0:00:53.14,0:00:56.09,Default,,0,0,0,,{\fad(120,120)}Now feed the blur a single wave, a pattern of stripes.
+Dialogue: 0,0:00:56.13,0:00:59.07,Default,,0,0,0,,{\fad(120,120)}Out comes the same wave, only fainter.
+Dialogue: 0,0:00:59.14,0:01:01.52,Default,,0,0,0,,{\fad(120,120)}Just like propagation in episode one,
+Dialogue: 0,0:01:01.56,0:01:04.38,Default,,0,0,0,,{\fad(120,120)}waves are the eigenvectors of blurring.
+Dialogue: 0,0:01:04.42,0:01:07.94,Default,,0,0,0,,{\fad(120,120)}In the Fourier basis, convolution becomes multiplication.
+Dialogue: 0,0:01:08.01,0:01:12.04,Default,,0,0,0,,{\fad(120,120)}Each spatial frequency kx just gets multiplied by one number:
+Dialogue: 0,0:01:12.08,0:01:16.55,Default,,0,0,0,,{\fad(120,120)}the transfer function, the Fourier transform of the PSF.
+Dialogue: 0,0:01:16.62,0:01:19.77,Default,,0,0,0,,{\fad(120,120)}Notice how fine stripes fade much more than coarse ones.
+Dialogue: 0,0:01:20.59,0:01:24.15,Default,,0,0,0,,{\fad(120,120)}So where does the PSF come from? Recall episode one:
+Dialogue: 0,0:01:24.19,0:01:26.77,Default,,0,0,0,,{\fad(120,120)}any light field is a sum of plane waves.
+Dialogue: 0,0:01:26.84,0:01:29.25,Default,,0,0,0,,{\fad(120,120)}A point sends them out in every direction,
+Dialogue: 0,0:01:29.29,0:01:34.99,Default,,0,0,0,,{\fad(120,120)}each with its own kx = k sin θ. Together they fill the k-circle.
+Dialogue: 0,0:01:35.06,0:01:37.40,Default,,0,0,0,,{\fad(120,120)}But a lens has a finite opening.
+Dialogue: 0,0:01:37.44,0:01:41.19,Default,,0,0,0,,{\fad(120,120)}It only catches waves tilted less than some largest angle.
+Dialogue: 0,0:01:41.26,0:01:44.42,Default,,0,0,0,,{\fad(120,120)}The sine of that angle is the numerical aperture, NA.
+Dialogue: 0,0:01:44.46,0:01:49.75,Default,,0,0,0,,{\fad(120,120)}On the k-circle, the lens keeps just a cap: kx up to k times NA.
+Dialogue: 0,0:01:49.82,0:01:54.79,Default,,0,0,0,,{\fad(120,120)}Waves with kx beyond k are evanescent: they never even leave the object.
+Dialogue: 0,0:01:54.83,0:01:58.33,Default,,0,0,0,,{\fad(120,120)}So the lens is a hole in k-space, called the pupil.
+Dialogue: 0,0:01:58.40,0:02:00.84,Default,,0,0,0,,{\fad(120,120)}Add up only the waves that pass through this hole,
+Dialogue: 0,0:02:00.88,0:02:05.45,Default,,0,0,0,,{\fad(120,120)}and you get the PSF. Watch what happens as the aperture opens.
+Dialogue: 0,0:02:06.32,0:02:10.04,Default,,0,0,0,,{\fad(120,120)}The cap widens, and the spot shrinks. Its bright core,
+Dialogue: 0,0:02:10.08,0:02:14.58,Default,,0,0,0,,{\fad(120,120)}the Airy disc, has a radius of 0.61 λ/NA.
+Dialogue: 0,0:02:14.65,0:02:16.32,Default,,0,0,0,,{\fad(120,120)}And magnification can't save you:
+Dialogue: 0,0:02:16.36,0:02:19.87,Default,,0,0,0,,{\fad(120,120)}zooming in on the image only gives you a bigger blur.
+Dialogue: 0,0:02:20.69,0:02:24.15,Default,,0,0,0,,{\fad(120,120)}In 1873, Ernst Abbe asked a sharper question:
+Dialogue: 0,0:02:24.19,0:02:27.45,Default,,0,0,0,,{\fad(120,120)}what is the finest grating a lens can image?
+Dialogue: 0,0:02:27.52,0:02:32.12,Default,,0,0,0,,{\fad(120,120)}A grating of period d splits a plane wave into a straight
+Dialogue: 0,0:02:32.16,0:02:36.94,Default,,0,0,0,,{\fad(120,120)}beam and two first orders, tilted at sin θ = ±λ/d.
+Dialogue: 0,0:02:37.01,0:02:40.75,Default,,0,0,0,,{\fad(120,120)}The lens must catch the straight beam and at least one first order:
+Dialogue: 0,0:02:40.79,0:02:43.26,Default,,0,0,0,,{\fad(120,120)}their interference rebuilds the stripes.
+Dialogue: 0,0:02:43.33,0:02:46.70,Default,,0,0,0,,{\fad(120,120)}Now make the grating finer. The orders tilt further out,
+Dialogue: 0,0:02:46.74,0:02:49.44,Default,,0,0,0,,{\fad(120,120)}and once they leave the cap, the stripes are gone.
+Dialogue: 0,0:02:49.51,0:02:54.55,Default,,0,0,0,,{\fad(120,120)}So with straight-on light, the finest period a lens can image is λ/NA.
+Dialogue: 0,0:02:54.62,0:02:56.27,Default,,0,0,0,,{\fad(120,120)}Abbe's trick: tilt the illumination,
+Dialogue: 0,0:02:56.31,0:02:59.27,Default,,0,0,0,,{\fad(120,120)}so the straight beam enters at one edge of the cap.
+Dialogue: 0,0:02:59.31,0:03:02.68,Default,,0,0,0,,{\fad(120,120)}Now a first order fits in at the other edge.
+Dialogue: 0,0:03:03.55,0:03:06.90,Default,,0,0,0,,{\fad(120,120)}That doubles the reach, to a finest period of λ/2NA.
+Dialogue: 0,0:03:06.94,0:03:09.56,Default,,0,0,0,,{\fad(120,120)}This is the diffraction limit.
+Dialogue: 0,0:03:10.38,0:03:13.22,Default,,0,0,0,,{\fad(120,120)}Abbe's picture is for coherent light, like a laser,
+Dialogue: 0,0:03:13.26,0:03:18.26,Default,,0,0,0,,{\fad(120,120)}where fields add: the pupil cuts the field off sharply at k·NA.
+Dialogue: 0,0:03:18.33,0:03:21.71,Default,,0,0,0,,{\fad(120,120)}Glowing beads are different: each emits with its own random,
+Dialogue: 0,0:03:21.75,0:03:25.57,Default,,0,0,0,,{\fad(120,120)}ever-changing phase, so intensities add, not fields.
+Dialogue: 0,0:03:25.64,0:03:27.98,Default,,0,0,0,,{\fad(120,120)}Then the transfer function, called the OTF,
+Dialogue: 0,0:03:28.02,0:03:32.10,Default,,0,0,0,,{\fad(120,120)}is the overlap of the pupil with a shifted copy of itself.
+Dialogue: 0,0:03:32.17,0:03:35.96,Default,,0,0,0,,{\fad(120,120)}Slide one copy across the other. The overlap shrinks smoothly,
+Dialogue: 0,0:03:36.00,0:03:39.51,Default,,0,0,0,,{\fad(120,120)}and only reaches zero at twice the coherent cutoff.
+Dialogue: 0,0:03:39.58,0:03:42.88,Default,,0,0,0,,{\fad(120,120)}So incoherent light reaches twice as far in kx.
+Dialogue: 0,0:03:42.92,0:03:47.17,Default,,0,0,0,,{\fad(120,120)}But it isn't simply better: its contrast fades toward the cutoff.
+Dialogue: 0,0:03:47.24,0:03:49.54,Default,,0,0,0,,{\fad(120,120)}Here's one test chart, imaged both ways.
+Dialogue: 0,0:03:49.58,0:03:51.83,Default,,0,0,0,,{\fad(120,120)}Coherent light rings at every edge;
+Dialogue: 0,0:03:51.87,0:03:56.02,Default,,0,0,0,,{\fad(120,120)}incoherent light is smooth, but its finest spokes wash out.
+Dialogue: 0,0:03:56.84,0:04:01.38,Default,,0,0,0,,{\fad(120,120)}On a computer, imaging is the same three steps as in episode one:
+Dialogue: 0,0:04:01.42,0:04:05.77,Default,,0,0,0,,{\fad(120,120)}FFT, multiply by the OTF, inverse FFT.
+Dialogue: 0,0:04:05.84,0:04:08.42,Default,,0,0,0,,{\fad(120,120)}So can we run it backwards? Take a blurred image
+Dialogue: 0,0:04:08.46,0:04:12.10,Default,,0,0,0,,{\fad(120,120)}with a little camera noise, and divide by the OTF.
+Dialogue: 0,0:04:12.97,0:04:15.63,Default,,0,0,0,,{\fad(120,120)}Disaster. Wherever the OTF is tiny,
+Dialogue: 0,0:04:15.67,0:04:19.87,Default,,0,0,0,,{\fad(120,120)}the noise gets multiplied by thousands, and swamps everything.
+Dialogue: 0,0:04:19.94,0:04:22.28,Default,,0,0,0,,{\fad(120,120)}The Wiener filter is the stable version.
+Dialogue: 0,0:04:22.32,0:04:25.30,Default,,0,0,0,,{\fad(120,120)}It divides where the signal beats the noise,
+Dialogue: 0,0:04:25.34,0:04:27.14,Default,,0,0,0,,{\fad(120,120)}and gently gives up where it doesn't.
+Dialogue: 0,0:04:27.21,0:04:30.60,Default,,0,0,0,,{\fad(120,120)}But beyond the cutoff, the OTF is exactly zero.
+Dialogue: 0,0:04:30.64,0:04:33.05,Default,,0,0,0,,{\fad(120,120)}Those details never reached the camera,
+Dialogue: 0,0:04:33.09,0:04:35.03,Default,,0,0,0,,{\fad(120,120)}and no filter can bring them back.
+Dialogue: 0,0:04:35.10,0:04:38.83,Default,,0,0,0,,{\fad(120,120)}Only prior knowledge or extra measurements can fill them in.
+Dialogue: 0,0:04:38.87,0:04:41.69,Default,,0,0,0,,{\fad(120,120)}And that's where computational imaging begins.
+Dialogue: 0,0:04:42.51,0:04:47.16,Default,,0,0,0,,{\fad(120,120)}So here is the whole idea. Imaging is convolution with the PSF.
+Dialogue: 0,0:04:47.23,0:04:51.15,Default,,0,0,0,,{\fad(120,120)}A lens only keeps directions with sin θ ≤ NA,
+Dialogue: 0,0:04:51.19,0:04:55.05,Default,,0,0,0,,{\fad(120,120)}so details finer than about λ/2NA never arrive.
+Dialogue: 0,0:04:55.12,0:04:59.15,Default,,0,0,0,,{\fad(120,120)}One honest caveat: real lenses blur differently away from the centre,
+Dialogue: 0,0:04:59.19,0:05:02.73,Default,,0,0,0,,{\fad(120,120)}so the PSF slowly changes across the field.
+Dialogue: 0,0:05:02.80,0:05:05.25,Default,,0,0,0,,{\fad(120,120)}And we saw that intensities add for glowing beads.
+Dialogue: 0,0:05:05.29,0:05:09.05,Default,,0,0,0,,{\fad(120,120)}But why? When does light interfere, and when doesn't it?
