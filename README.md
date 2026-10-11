@@ -59,6 +59,19 @@ make release E=E03          # compact copies in dist/ for sharing (about half th
 make help                   # all targets
 ```
 
+Measured on a fresh clone: `make episode E=E01` takes about 7 minutes with `WORKERS=6`. The rebuilt film matches
+the original (51–67 dB PSNR), and the regenerated timing and subtitles are byte-identical. Most `physics.py` runs
+take seconds to a couple of minutes. Without a GPU, a few take longer (8 CPU cores):
+
+| Episode | `physics.py` on CPU |
+|---|---|
+| E02 | about 50 min |
+| E06 | about 12 min |
+| E07, E10 | about 5 min |
+
+With `jax[cuda12]` each takes 1–2 minutes. `physics.py` only needs re-running when the physics changes, not for
+narration edits.
+
 `E` takes a folder name or just its prefix. Renders run on `WORKERS` processes (default 3; `make render E=E03
 WORKERS=6`).
 

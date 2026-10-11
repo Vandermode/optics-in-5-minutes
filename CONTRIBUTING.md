@@ -73,5 +73,5 @@ gh release create season1-v1 dist/*.mp4 --title "Season 1" --notes "…"   # att
 ```
 
 Release assets live outside the git history, with a 2 GB limit per file. For review, an unlisted YouTube or Vimeo
-link (Vimeo allows comments at a timestamp) or a shared drive folder is often easier; the 720p copies are about
-10–20 MB.
+link (Vimeo allows comments at a timestamp) or a shared drive folder is often easier; for E01 the release copies are
+24 MB (1080p) and 16 MB (720p), against 55 MB for the render.
