@@ -67,9 +67,14 @@ Season 2 candidates are listed in `OUTLINE.md` §6.
 
 ## Sharing films
 
+Each episode has one shareable file: `<slug>_1080p.mp4`, a clean 1080p60 picture plus an English subtitle track that
+viewers can toggle. It is a slow-preset re-encode of the render, about half the size and visually transparent (E01:
+22 MB against 52 MB; 47–51 dB PSNR). Desktop players (VLC, QuickTime, mpv) show the subtitles; browser previews such
+as Google Drive's ignore them. For YouTube, upload the file and add the episode's `subtitles.srt` as captions.
+
 ```bash
-make release E=E03          # dist/e03_…_1080p.mp4, _1080p_softsubs.mp4, _720p.mp4 (slow-preset re-encode)
-gh release create season1-v1 dist/*.mp4 --title "Season 1" --notes "…"   # attach to a GitHub Release
+make release                # dist/<slug>_1080p.mp4 for every episode (about 2 min each); or E=E03 for one
+gh release create season1-v1 dist/*_1080p.mp4 --title "Season 1" --notes "…"   # attach to a GitHub Release
 make pack-data              # dist/data/<slug>_data.tar.gz for every episode (the computed physics, ~200 MB total)
 gh release create season1-data dist/data/*.tar.gz --title "Season 1 physics data" --notes "for O5_DATA_URL"
 ```
@@ -78,6 +83,3 @@ Collaborators without a GPU then set `O5_DATA_URL=gh:<owner>/<repo>@season1-data
 downloads the JAX-heavy episodes' data instead of spending up to an hour per episode on the CPU. Re-pack and re-upload
 a bundle whenever that episode's `physics.py` changes.
 
-Release assets live outside the git history, with a 2 GB limit per file. For review, an unlisted YouTube or Vimeo
-link (Vimeo allows comments at a timestamp) or a shared drive folder is often easier; for E01 the release copies are
-24 MB (1080p) and 16 MB (720p), against 55 MB for the render.

@@ -5,7 +5,7 @@
 #   make episode E=E03                   data -> narration -> render -> verify (skips steps that are up to date)
 #   make physics|audio|render|verify E=E03      one step (FORCE=1 reruns it even if up to date)
 #   make preview E=E03 [CH="Ch2Foo Ch3Bar"]
-#   make release E=E03                   compact copies in dist/ for sharing
+#   make release [E=E03]                 the shareable 1080p copy in dist/ (all episodes without E)
 #   make pack-data [E=E03]               physics data bundles in dist/data/ (attach to a release; see O5_DATA_URL)
 #   make all                             every episode
 #   make new NAME=E11_my_topic TITLE="My Topic"
@@ -65,7 +65,7 @@ preview:
 	common/preview.sh $(EP) $(CH)
 
 release:
-	common/release_encode.sh $(EP)
+	@for e in $(if $(E),$(EP),$(EPISODES)); do common/release_encode.sh $$e; done
 
 pack-data:
 	@for e in $(if $(E),$(EP),$(EPISODES)); do $(PY) common/data_bundle.py pack $$e; done

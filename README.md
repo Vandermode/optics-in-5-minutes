@@ -55,7 +55,7 @@ make check-env              # lists anything still missing, with a hint for each
 ```bash
 make episode E=E03          # data -> narration -> render -> verify; skips every step that is already up to date
 make preview E=E03 CH=Ch3Abbe     # low-res previews of chosen chapters, for layout work
-make release E=E03          # compact copies in dist/ for sharing (about half the size)
+make release E=E03          # the shareable copy: dist/<slug>_1080p.mp4 (about half the render's size)
 make help                   # all targets (FORCE=1 reruns a step even if it is up to date)
 ```
 
