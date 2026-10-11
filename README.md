@@ -6,8 +6,7 @@ soft track. Each film teaches one idea from scratch, assuming calculus and a lit
 field on screen is computed with the method the episode teaches, and each episode's README says which panels are
 computed and which are schematic.
 
-**Watching.** This repository holds the *source* only. The finished films are attached to the GitHub Releases (tag
-`season1-…`), or can be rebuilt from the source in about 3–9 minutes per episode.
+**Watching.** This repository holds the *source* only. The finished films (one 1080p file per episode, about 25 MB each) are shared separately; see `CONTRIBUTING.md`, "Sharing films". Any episode can also be rebuilt from the source with `make episode E=E0N`.
 
 ## Season 1: the ten ideas
 
