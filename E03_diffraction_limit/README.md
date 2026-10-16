@@ -1,5 +1,7 @@
 # The Diffraction Limit: why every image is blurry (5 min)
 
+**Companion lesson:** [interactive course page, Colab notebook, and instructor notes](../teaching/e03-diffraction/README.md). This standalone teaching module runs without the video-production environment.
+
 Optics in 5 Minutes, episode 3. A 3Blue1Brown-style explainer (5:11, 1920×1080, 60 fps) for someone who knows basic
 calculus and a little linear algebra. Narration by an open-source TTS voice (Kokoro-82M, `af_heart`), subtitles
 timed to the speech. 43 segments, 807 words.
