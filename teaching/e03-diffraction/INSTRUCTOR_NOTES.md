@@ -39,7 +39,7 @@ For a shorter session, use the two-point and stripe experiments plus questions 1
 
 - Run the model tests and full notebook; check numerical assertions and rendered figures.
 - Test controls and text on mobile and desktop, plus keyboard access.
-- Verify private-repository behavior of the Colab link; keep direct download/upload instructions available.
+- Verify the public GitHub-to-Colab link and anonymous notebook download; keep local Jupyter instructions available.
 - Replace branch links with the final release ref after merging.
 - Add the real E03 YouTube link when available.
 - Update the course's visibility deliberately when ready for public students or hiring committees.

@@ -40,7 +40,11 @@ def main():
     image = sum(airy(2 * np.pi * .65 * np.hypot(X - s, Y) / .55) for s in [-.26, .26])
     plt.imsave(ASSETS / "airy-hero.png", np.sqrt(image / 2), cmap=LinearSegmentedColormap.from_list("optics", colors), vmin=0, vmax=1)
     for name in ["Lato-Regular.ttf", "Lato-Bold.ttf", "LICENSE-Lato.txt"]:
-        shutil.copy2(REPO / "common" / "fonts" / name, ASSETS / name)
+        original = REPO / "common" / "fonts" / name
+        if original.exists():
+            shutil.copy2(original, ASSETS / name)
+        elif not (ASSETS / name).exists():
+            raise FileNotFoundError(f"Missing bundled font asset: {name}")
     make_notebook()
     cases = np.unique(np.r_[0., 3.8317059702075125, np.linspace(.0001, 63.99, 701), 64., 80.])
     (ROOT / "tests" / "reference-cases.json").write_text(json.dumps({"v": cases.tolist(), "airy": airy(cases).tolist()}), encoding="utf-8")
@@ -67,7 +71,7 @@ def make_notebook():
 
 **Run:** in Colab choose **Runtime → Run all**. Locally, use a Python 3 Jupyter kernel.
 The notebook installs missing numerical packages only if necessary. It does not mount Drive,
-clone a private repository, download data, or require a GPU, Manim, or TTS.
+clone a repository, download data, or require a GPU, Manim, or TTS.
 
 **Model:** equal mutually incoherent point emitters; ideal circular pupil; monochromatic,
 in-focus scalar imaging. All distances are in object space. $\lambda_0$ is the **vacuum**
@@ -402,7 +406,7 @@ at the same NA. The general OTF may now be complex; distinguish OTF from its mag
 - [Nikon MicroscopyU: Resolution](https://www.microscopyu.com/microscopy-basics/resolution)
 - [Nikon MicroscopyU: Modulation Transfer Function](https://www.microscopyu.com/microscopy-basics/modulation-transfer-function)
 - [TU Delft: Advanced Optical Imaging, incoherent imaging](https://qiweb.tudelft.nl/aoi/incoherentimaging/incoherentimaging/)
-- [Optics in 5 Minutes source](https://github.com/Vandermode/optics-in-5-minutes)
+- [Optics in 5 Minutes source](https://github.com/Vandermode/optics-in-5-minutes-course)
 
 The browser lesson uses the same analytic equations and parameter defaults, with a tabulated Airy
 function to keep interaction fast. This notebook evaluates Bessel functions directly with SciPy and

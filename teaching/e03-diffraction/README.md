@@ -24,9 +24,13 @@ Open http://localhost:8765. Use HTTP because the page imports JavaScript modules
 
 ## Run in Colab
 
-Open `e03_diffraction_limit.ipynb` using **File → Upload notebook** in https://colab.research.google.com, then **Runtime → Run all**. No GitHub access is needed for an uploaded copy. The notebook does not depend on any other repository file.
+[Open this notebook directly in Colab](https://colab.research.google.com/github/Vandermode/optics-in-5-minutes-course/blob/main/teaching/e03-diffraction/e03_diffraction_limit.ipynb), sign in with a Google account, and select **Runtime → Run all**. The notebook is loaded from the public course repository; no GitHub account, clone, GPU, or paid Colab plan is required. To retain changes, choose **File → Save a copy in Drive**.
 
-The course page also includes a GitHub-to-Colab link on the `codex/e03-teaching-module` branch. While the repository is private, that route requires access to the repository. After merging, change both branch links in `index.html` to `main` (or a stable release tag). For public learners, provide the downloadable notebook or move the teaching materials to an appropriately public location; the existing repository's visibility is not changed by these files.
+You can also download `e03_diffraction_limit.ipynb` and use **File → Upload notebook** in Colab or open it in local Jupyter. The notebook does not depend on any other repository file.
+
+Public lesson: https://optics-e03-diffraction-lab.w765809530.chatgpt.site/
+
+Public source: https://github.com/Vandermode/optics-in-5-minutes-course
 
 The notebook requires NumPy, SciPy and Matplotlib, which are normally present in Colab. Its first cell installs only missing packages. Its plots and scientific assertions have also been executed in a local Jupyter kernel; a live Colab session is a separate verification step.
 
