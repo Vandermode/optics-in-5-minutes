@@ -14,3 +14,6 @@ OUTLINE.internal.md
 __pycache__/
 *.pyc
 media/
+
+# Local teaching-course environment
+.course-venv/

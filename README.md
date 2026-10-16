@@ -1,6 +1,6 @@
 # Optics in 5 Minutes
 
-**Teaching materials:** [E03 interactive diffraction lesson and standalone Colab notebook](teaching/e03-diffraction/README.md).
+**Teaching materials:** [Complete Season 1 interactive course: ten lessons, standalone CPU notebooks, and instructor packs](teaching/README.md).
 
 Narrated 3Blue1Brown-style explainers of the big ideas in computational optics and photonics. Each is about five
 minutes, 1920×1080 at 60 fps, made with Manim CE and Kokoro-82M narration, with subtitles both burned in and as a
