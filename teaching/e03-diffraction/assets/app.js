@@ -38,7 +38,7 @@ function drawImage() {
   offscreen.width=n; offscreen.height=m;
   const c = offscreen.getContext('2d'), data = c.createImageData(n,m), reveal = $('rings').checked;
   for (let y=0;y<m;y++) for (let x=0;x<n;x++) {
-    const value = pairIntensity(((x+0.5)/n-0.5)*field, ((y+0.5)/n-0.5)*field, state)/2;
+    const value = pairIntensity(((x+0.5)/n-0.5)*field, (y+0.5-m/2)/n*field, state)/2;
     const rgb = colors[Math.min(1024, Math.round((reveal ? Math.sqrt(value) : value)*1024))];
     const i=4*(y*n+x); data.data[i]=rgb[0];data.data[i+1]=rgb[1];data.data[i+2]=rgb[2];data.data[i+3]=255;
   }
