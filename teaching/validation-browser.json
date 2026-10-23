@@ -1,5 +1,5 @@
 {
-  "tested_url": "http://127.0.0.1:8788/",
+  "tested_url": "http://127.0.0.1:8787/",
   "viewports": [
     1280,
     390
@@ -76,6 +76,20 @@
       "interactions": "all controls, presets, quiz, download, share, reset; worker stop where applicable"
     },
     {
+      "episode": "E11",
+      "width": 1280,
+      "layout": "passed",
+      "canvas": "computed",
+      "interactions": "all controls, presets, quiz, download, share, reset; worker stop where applicable"
+    },
+    {
+      "episode": "E12",
+      "width": 1280,
+      "layout": "passed",
+      "canvas": "computed",
+      "interactions": "all controls, presets, quiz, download, share, reset; worker stop where applicable"
+    },
+    {
       "episode": "E01",
       "width": 390,
       "layout": "passed",
@@ -144,9 +158,30 @@
       "layout": "passed",
       "canvas": "computed",
       "interactions": "mobile layout"
+    },
+    {
+      "episode": "E11",
+      "width": 390,
+      "layout": "passed",
+      "canvas": "computed",
+      "interactions": "mobile layout"
+    },
+    {
+      "episode": "E12",
+      "width": 390,
+      "layout": "passed",
+      "canvas": "computed",
+      "interactions": "mobile layout"
     }
   ],
-  "internal_links_checked": 49,
+  "internal_links_checked": 84,
   "legacy_e03_routes": "passed",
+  "external_video_playback": "not covered; YouTube iframe isolated and native controls use synthetic media",
+  "production_media_paths": [
+    "http://127.0.0.1:8787/media/e11-ray-tracing.mp4",
+    "http://127.0.0.1:8787/media/e11-ray-tracing.en.vtt",
+    "http://127.0.0.1:8787/media/e12-lens-design.mp4",
+    "http://127.0.0.1:8787/media/e12-lens-design.en.vtt"
+  ],
   "console_errors": []
 }

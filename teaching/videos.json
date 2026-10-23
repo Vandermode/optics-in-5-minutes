@@ -48,5 +48,17 @@
     "youtubeId": "x9Ys3GWC1Q0",
     "title": "Designing Light by Running It Backward | The Adjoint Method in 5 Minutes",
     "duration": "5:15"
+  },
+  "E11": {
+    "file": "../media/e11-ray-tracing.mp4",
+    "captions": "../media/e11-ray-tracing.en.vtt",
+    "title": "Tracing Light Through a Lens | Optics in 5 Minutes",
+    "duration": "5:02"
+  },
+  "E12": {
+    "file": "../media/e12-lens-design.mp4",
+    "captions": "../media/e12-lens-design.en.vtt",
+    "title": "Lens Design: Choose What Better Means | Optics in 5 Minutes",
+    "duration": "5:08"
   }
 }

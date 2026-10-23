@@ -1,3 +1,4 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -14,6 +15,7 @@ try {
   for (const width of [1440, 1280, 1024, 768, 390, 320]) {
     const context = await browser.newContext({viewport: {width, height: 1000}, reducedMotion: 'reduce'});
     await context.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, contentType: 'text/html', body: ''}));
+    await isolateNativeMedia(context);
     const page = await context.newPage();
     page.on('pageerror', e => errors.push(e.message));
     page.on('console', message => {if (message.type() === 'error') errors.push(message.text());});
@@ -134,6 +136,7 @@ try {
   }
   const compact = await browser.newContext({viewport: {width: 390, height: 560}, reducedMotion: 'reduce'});
   await compact.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
+  await isolateNativeMedia(compact);
   const compactPage = await compact.newPage();
   compactPage.on('pageerror', error => errors.push(error.message));
   await compactPage.goto(new URL('e03-diffraction/', base).href);
@@ -157,5 +160,5 @@ try {
   await fallback.close();
   assert.deepEqual(errors, [], 'Reader browser errors');
   fs.writeFileSync(new URL('report.json', out), JSON.stringify({tested_url: base, results, external_video_playback: 'not covered; iframe isolated', console_errors: errors}, null, 2) + '\n');
-  console.log('PASS reading tools in all ten chapters at six viewport widths.');
+  console.log(`PASS reading tools in all ${catalog.length} chapters at six viewport widths.`);
 } finally { await browser.close(); }

@@ -2,8 +2,10 @@ import {terms, lessonTerms} from './glossary.js';
 import {knowledge} from './knowledge-data.js';
 
 // A term can belong to several core concepts. These are reading paths, not a
-// prerequisite tree; keep detailed terms out of the twelve-node overview.
+// prerequisite tree; keep detailed terms out of the core-concept overview.
 export const conceptTerms = {
+  rays: ['rayTracing', 'snell', 'refractiveIndex', 'paraxial', 'sphericalAberration', 'spotDiagram', 'rmsSpot', 'lensPrescription', 'apertureStop'],
+  lensdesign: ['lensPrescription', 'lensBending', 'meritFunction', 'rmsSpot', 'designConstraints', 'rayTracing', 'spotDiagram', 'apertureStop', 'inverseDesign', 'objective'],
   field: ['complexField', 'amplitude', 'phase', 'monochromatic'],
   fourier: ['fourier', 'spatialFrequency', 'planeWave', 'fft', 'fourF', 'convolution', 'unitary', 'spatialFiltering'],
   propagation: ['angularSpectrum', 'planeWave', 'helmholtz', 'evanescent', 'fresnel', 'monochromatic', 'snell', 'refractiveIndex'],
@@ -21,6 +23,12 @@ export const conceptTerms = {
 // Directly connected terms are curated separately from category membership.
 // Sharing a broad concept alone does not make every pair a useful next step.
 export const termRelations = [
+  ['rayTracing', 'snell'], ['rayTracing', 'lensPrescription'], ['rayTracing', 'paraxial'], ['rayTracing', 'apertureStop'],
+  ['rayTracing', 'spotDiagram'], ['paraxial', 'sphericalAberration'], ['paraxial', 'fresnel'],
+  ['sphericalAberration', 'spotDiagram'], ['sphericalAberration', 'lensBending'], ['spotDiagram', 'rmsSpot'], ['spotDiagram', 'psf'],
+  ['lensPrescription', 'lensBending'], ['lensPrescription', 'refractiveIndex'], ['lensBending', 'meritFunction'],
+  ['meritFunction', 'rmsSpot'], ['meritFunction', 'objective'], ['meritFunction', 'designConstraints'],
+  ['designConstraints', 'inverseDesign'], ['designConstraints', 'fabricationConstraints'], ['apertureStop', 'na'], ['apertureStop', 'pupil'],
   ['complexField', 'amplitude'], ['complexField', 'phase'], ['complexField', 'coherent'],
   ['phase', 'phaseWrapping'], ['phase', 'phaseObject'], ['phase', 'crossTerm'],
   ['monochromatic', 'temporalCoherence'], ['monochromatic', 'helmholtz'],

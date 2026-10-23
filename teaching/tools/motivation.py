@@ -1,6 +1,7 @@
 """Opening optical problems and learning payoffs shared by pages and notebooks."""
 import html
 import re
+from geometric_course import MOTIVATIONS as GEOMETRIC_MOTIVATIONS
 
 
 MOTIVATIONS = {
@@ -129,6 +130,9 @@ MOTIVATIONS = {
         ),
     },
 }
+
+
+MOTIVATIONS.update(GEOMETRIC_MOTIVATIONS)
 
 
 def motivation_html(episode, *, original_e03=False):

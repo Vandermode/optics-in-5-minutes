@@ -1,3 +1,4 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -11,7 +12,7 @@ fs.mkdirSync(out, {recursive: true});
 const browser = await chromium.launch({headless: true});
 const errors = [], results = [], requestFailures = [];
 let activeCase = '';
-const bridgeCounts = {E01:3,E02:3,E03:3,E04:5,E05:3,E06:3,E07:3,E08:4,E09:4,E10:4};
+const bridgeCounts = {E01:3,E02:3,E03:3,E04:5,E05:3,E06:3,E07:3,E08:4,E09:4,E10:4,E11:3,E12:3};
 const endpoint = (entry, language) => new URL(`${entry.slug}/index${language === 'zh' ? '.zh' : ''}.html`, base).href;
 
 async function context(options) {
@@ -22,6 +23,7 @@ async function context(options) {
   });
   // Verify embed URLs and controls; external streaming/playback is outside this test.
   await result.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status:200,contentType:'text/html',body:''}));
+  await isolateNativeMedia(result);
   return result;
 }
 async function noOverflow(page, label) {
@@ -49,9 +51,15 @@ try {
       const anchors = await guide.locator('a[data-video-seek]').evaluateAll(nodes => nodes.map(n => ({at:n.dataset.videoSeek, href:n.href})));
       for (const link of anchors) {
         const url = new URL(link.href);
-        assert.equal(url.searchParams.get('v'), videos[entry.id].youtubeId, label + ' correct film');
-        assert.equal(url.searchParams.get('t'), link.at + 's', label + ' fallback time');
-        assert.ok(Number(link.at) < 320);
+        if(videos[entry.id].file) {
+          assert.equal(url.pathname,new URL(videos[entry.id].file,endpoint(entry,language)).pathname,label+' correct native film');
+          assert.equal(url.hash,'#t='+link.at,label+' native fallback time');
+        } else {
+          assert.equal(url.searchParams.get('v'), videos[entry.id].youtubeId, label + ' correct film');
+          assert.equal(url.searchParams.get('t'), link.at + 's', label + ' fallback time');
+        }
+        const duration=videos[entry.id].duration.split(':').reduce((seconds,part)=>60*seconds+Number(part),0);
+        assert.ok(Number(link.at) < duration);
       }
       if (language === 'zh') {
         assert.match(await guide.locator('h2').innerText(), /[\u3400-\u9fff]/);
@@ -69,11 +77,19 @@ try {
       const seek = guide.locator('.video-flow [data-video-seek]').nth(2);
       const at = await seek.getAttribute('data-video-seek');
       await seek.click();
-      const iframeURL = new URL(await page.locator('#video iframe').getAttribute('src'));
-      assert.equal(iframeURL.searchParams.get('start'), at);
-      assert.equal(iframeURL.searchParams.get('autoplay'), '1');
-      assert.equal(iframeURL.searchParams.get('hl'), language === 'zh' ? 'zh-CN' : 'en');
-      assert.match(iframeURL.pathname, new RegExp(videos[entry.id].youtubeId + '$'));
+      if(videos[entry.id].file) {
+        const video=page.locator('#video video');
+        await page.waitForFunction(target=>{const v=document.querySelector('#video video');return v.readyState>=1&&Math.abs(v.currentTime-Number(target))<3;},at);
+        await video.evaluate(v=>v.pause());
+        assert.equal(await video.locator('track[kind="captions"]').getAttribute('srclang'),'en');
+        assert.ok(await video.evaluate(v=>v.duration>300),'Synthetic seek fixture has sufficient duration');
+      } else {
+        const iframeURL = new URL(await page.locator('#video iframe').getAttribute('src'));
+        assert.equal(iframeURL.searchParams.get('start'), at);
+        assert.equal(iframeURL.searchParams.get('autoplay'), '1');
+        assert.equal(iframeURL.searchParams.get('hl'), language === 'zh' ? 'zh-CN' : 'en');
+        assert.match(iframeURL.pathname, new RegExp(videos[entry.id].youtubeId + '$'));
+      }
       if (entry.id === 'E04') {
         await page.locator('#spectrum-demo').scrollIntoViewIfNeeded();
         await page.screenshot({path:new URL(`${entry.id}-${language}-${width}-spectrum.png`, out).pathname});
@@ -142,7 +158,8 @@ try {
       const first = page.locator('.video-bridge').first();
       if (await first.getAttribute('open') === null) await first.locator('summary').click();
       assert.ok(await first.locator('.video-bridge-body').isVisible());
-      assert.match(await page.locator('.video-flow [data-video-seek]').first().getAttribute('href'), /youtube\.com\/watch\?v=.+&t=0s/);
+      const firstLink=await page.locator('.video-flow [data-video-seek]').first().getAttribute('href');
+      assert.match(firstLink,videos[entry.id].file?/\.mp4#t=0$/:/youtube\.com\/watch\?v=.+&t=0s/);
       if (entry.id === 'E04') {
         assert.ok(await page.locator('.coherence-fallback').isVisible());
         assert.ok(await page.locator('.coherence-interactive').isHidden());
@@ -152,8 +169,8 @@ try {
     await ctx.close();
   }
   assert.deepEqual(errors, []);
-  fs.writeFileSync(new URL('report.json', out), JSON.stringify({results,extraWidths:[320,768,1024,1280],noJavaScript:20,languageState:'passed',externalPlayback:'not tested; iframe isolated',errors}, null, 2) + '\n');
-  console.log('PASS video guides: 40 bilingual chapter cases, 4 extra widths, language/reload state, and 20 static routes.');
+  fs.writeFileSync(new URL('report.json', out), JSON.stringify({results,extraWidths:[320,768,1024,1280],noJavaScript:2*catalog.length,languageState:'passed',externalPlayback:'full films not tested; iframe isolated, native controls use a generated synthetic video fixture',errors}, null, 2) + '\n');
+  console.log(`PASS video guides: ${4*catalog.length} bilingual chapter cases, 4 extra widths, language/reload state, and ${2*catalog.length} static routes.`);
 } catch (error) {
   console.error({activeCase,errors,requestFailures});
   throw error;

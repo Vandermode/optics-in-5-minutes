@@ -1,6 +1,6 @@
 # Optics in 5 Minutes
 
-**Teaching materials:** [Complete Season 1 interactive course: ten lessons, standalone CPU notebooks, and instructor packs](teaching/README.md).
+**Teaching materials:** [Interactive course: twelve lessons, standalone CPU notebooks, and instructor packs](teaching/README.md).
 
 Narrated 3Blue1Brown-style explainers of the big ideas in computational optics and photonics. Each is about five
 minutes, 1920×1080 at 60 fps, made with Manim CE and Kokoro-82M narration, with subtitles both burned in and as a
@@ -27,6 +27,15 @@ computed and which are schematic.
 
 The total running time is about 52 minutes. `OUTLINE.md` explains why these ten ideas were chosen, and lists the
 candidates for Season 2.
+
+## Geometric optics and lens design
+
+| # | Folder | Length | The idea |
+|---|---|---|---|
+| E11 | [`E11_ray_tracing`](E11_ray_tracing/) | 5:02 | Intersect real surfaces and apply Snell’s law; compare paraxial focus, geometric aberration and diffraction. |
+| E12 | [`E12_lens_design`](E12_lens_design/) | 5:08 | Bend a singlet at fixed focal power, choose a common image plane and audit a stated multi-field merit. |
+
+These episodes connect to the existing concept map without changing the original ten-episode season.
 
 ## Setup (once per machine)
 

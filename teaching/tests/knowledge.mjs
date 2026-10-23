@@ -1,7 +1,9 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {geometry} from './knowledge-geometry.mjs';
+import {knowledge} from '../shared/knowledge-data.js';
 
 const root = new URL('../', import.meta.url);
 const base = process.env.COURSE_URL || 'http://127.0.0.1:8787/';
@@ -28,11 +30,11 @@ try {
     await page.goto(base + (language === 'zh' ? 'index.zh.html' : ''));
     await ready(page, language);
     const label = `${language} ${width}px`;
-    assert.equal(await page.locator('.concept-node').count(), 12, label);
-    assert.equal(await page.locator('.concept-region').count(), 4, label);
+    assert.equal(await page.locator('.concept-node').count(), knowledge.concepts.length, label);
+    assert.equal(await page.locator('.concept-region').count(), knowledge.regions.length, label);
     assert.equal(await page.locator('.concept-node[aria-current]').getAttribute('data-concept'), 'fourier');
     assert.ok(await page.locator('#knowledge-map').evaluate(map => Boolean(map.compareDocumentPosition(document.getElementById('course')) & Node.DOCUMENT_POSITION_FOLLOWING)), 'Map precedes episode index');
-    assert.equal(await page.locator('.course-card').count(), 10, 'Episode index remains available');
+    assert.equal(await page.locator('.course-card').count(), catalog.length, 'Episode index remains available');
     await geometry(page, label);
     const episodes = new Set();
     for (const node of await page.locator('.concept-node').all()) {
@@ -60,15 +62,16 @@ try {
         assert.ok(await panel.evaluate(el => el.getBoundingClientRect().top >= 0 && el.getBoundingClientRect().top < 100), 'Mobile routes brought into view');
       }
     }
-    assert.deepEqual([...episodes].sort(), catalog.map(item => item.id), 'All ten episodes reachable');
+    assert.deepEqual([...episodes].sort(), catalog.map(item => item.id), 'Every catalog episode is reachable');
     await geometry(page, label + ' after selections');
 
     // Native keyboard activation and browser history preserve the concept.
+    const previousConcept = await page.locator('.concept-node[aria-current]').getAttribute('data-concept');
     await page.locator('[data-concept=field]').focus();
     await page.keyboard.press('Enter');
     assert.equal(new URL(page.url()).hash, '#concept-field');
     await page.goBack();
-    assert.equal(await page.locator('.concept-node[aria-current]').getAttribute('data-concept'), 'adjoint');
+    assert.equal(await page.locator('.concept-node[aria-current]').getAttribute('data-concept'), previousConcept);
     await page.goForward();
     assert.equal(await page.locator('.concept-node[aria-current]').getAttribute('data-concept'), 'field');
     await page.locator('#concept-field .concept-context summary').click();
@@ -92,14 +95,14 @@ try {
     await page.goto(base + (language === 'zh' ? 'index.zh.html' : 'index.html') + '#concept-adjoint');
     await ready(page, language);
     assert.equal(await page.locator('.concept-node[aria-current]').getAttribute('data-concept'), 'adjoint', 'Direct concept link');
-    assert.deepEqual(await page.locator('#concept-adjoint [data-episode-link]').evaluateAll(links => links.map(link => link.dataset.episodeLink)), ['E10']);
+    assert.deepEqual(await page.locator('#concept-adjoint [data-episode-link]').evaluateAll(links => links.map(link => link.dataset.episodeLink)), knowledge.concepts.find(c => c.id === 'adjoint').episodes);
     await page.goto(base + (language === 'zh' ? 'index.zh.html' : 'index.html') + '?concept=not-a-concept#knowledge-map');
     await ready(page, language);
     assert.equal(await page.locator('.concept-node[aria-current]').getAttribute('data-concept'), 'fourier', 'Unknown concept safely falls back');
     await geometry(page, label + ' after navigation');
     await page.screenshot({path: new URL(`${language}-${width}-home.png`, out).pathname});
     await page.locator('#knowledge-map').screenshot({path: new URL(`${language}-${width}-map.png`, out).pathname});
-    results.push({language, width, concepts: 12, reachable_episodes: 10, geometry: 'passed', navigation: 'passed'});
+    results.push({language, width, concepts: knowledge.concepts.length, reachable_episodes: catalog.length, geometry: 'passed', navigation: 'passed'});
     console.log('PASS knowledge map ' + label);
     await context.close();
   }
@@ -109,9 +112,10 @@ try {
     const context = await browser.newContext({javaScriptEnabled: false, viewport: {width: 320, height: 900}, reducedMotion: 'reduce'});
     context.setDefaultTimeout(20000);
     await context.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
+    await isolateNativeMedia(context);
     const page = await context.newPage();
     await page.goto(base + (language === 'zh' ? 'index.zh.html' : 'index.html'));
-    assert.equal(await page.locator('.concept-panel:visible').count(), 12);
+    assert.equal(await page.locator('.concept-panel:visible').count(), knowledge.concepts.length);
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Static map fits a phone');
     await page.locator('[data-concept=adjoint]').click();
     assert.equal(new URL(page.url()).hash, '#concept-adjoint');

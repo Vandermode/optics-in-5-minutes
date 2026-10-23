@@ -331,3 +331,55 @@ GUIDES["E10"] = dict(
     ],
     sources=[dict(title=tr("Steven G. Johnson · Notes on adjoint methods", "Steven G. Johnson · 伴随方法讲义"), url="https://math.mit.edu/~stevenj/18.336/adjoint.pdf")],
 )
+
+GUIDES['E11'] = dict(
+    question=tr('How can a short ray-tracing algorithm reveal where a lens approximation fails?', '一个简短的光线追迹算法，怎样揭示透镜近似在哪里失效？'),
+    steps=[
+        step(0, 'Start with a computed ray fan', '从计算得到的光线扇出发', 'Parallel rays crowd toward a focus, but the outer rays do not meet the paraxial rays at exactly the same point.', '平行光线向焦点附近聚集，但边缘光线与近轴光线并不在完全相同的位置相交。'),
+        step(23, 'Specify a ray and the optical prescription', '定义光线与光学结构', 'A ray carries position and direction. The lens prescription supplies surfaces, thickness, index and clear apertures.', '光线带有位置与方向。透镜结构参数提供曲面、厚度、折射率和通光孔径。'),
+        step(61, 'Find the actual surface intersection', '找到实际曲面交点', 'Intersect the forward ray with the specified surface cap, then construct the local normal. The other sphere intersection is not automatically the lens surface.', '让前向光线与指定曲面分支求交，再构造局部法线。球面的另一个交点并不自动属于透镜表面。', 'intersection'),
+        step(100, 'Refract with the local normal', '相对局部法线进行折射', 'The tangential wavevector is conserved. A vector form of Snell’s law updates the direction and identifies total internal reflection.', '波矢的切向分量保持不变。Snell 定律的向量形式更新传播方向，并识别全内反射。', 'snell'),
+        step(152, 'Repeat at the second surface', '在第二个曲面重复计算', 'Propagate through the glass, intersect the rear surface and refract into air. A thick-lens paraxial prediction supplies an independent narrow-bundle limit.', '在玻璃中传播，与后表面求交，再折射回空气。厚透镜的近轴预测为细光束极限提供独立检验。', 'paraxial'),
+        step(190, 'Open the aperture and move off axis', '打开孔径并移向离轴视场', 'Outer rays see steeper surfaces. Changing field angle moves the centroid and can change the shape of the geometric spot.', '边缘光线遇到更陡的曲面。改变视场角会移动质心，也可能改变几何光斑的形状。'),
+        step(236, 'State what a ray spot leaves out', '说明光线光斑没有包含什么', 'A spot diagram plots sampled ray intercepts. It omits interference and diffraction, so geometric focus alone does not determine image resolution.', '点列图绘制采样光线的交点，未包含干涉与衍射，所以单靠几何聚焦不能确定图像分辨率。', 'paraxial'),
+        step(273, 'Turn prediction into a design question', '把预测变成设计问题', 'Intersect, find the normal, refract and continue. E12 uses this verified forward model to ask which permitted lens shape improves a specified image.', '求交、找法线、折射，再继续。E12 将用这个经过检验的前向模型，判断哪种允许的透镜形状能改善指定的像。'),
+    ],
+    bridges=[
+        bridge('intersection', 61, 'Why is solving the sphere equation not the whole intersection test?', '为什么解出球面方程还不算完成求交？',
+            eq('r(t) = r₀ + t d\n|r(t) − C|² = R²'),
+            p('The quadratic equation describes the entire sphere. An optical prescription selects the cap containing its vertex, a clear aperture and an encounter order. Require a positive travel distance, the correct cap and a hit inside the aperture. Choose the nearest valid forward hit, rather than the larger root by habit.', '二次方程描述整个球面，而光学结构还指定了包含顶点的曲面分支、通光孔径和光线遇到它的顺序。应同时要求正的传播距离、正确分支以及孔径内的交点，并选择最近的有效前向交点，不能习惯性地取较大根。')),
+        bridge('snell', 100, 'How does a scalar angle law become a 3D direction update?', '标量角度定律怎样变成三维方向更新？',
+            eq('n₁ sin θ₁ = n₂ sin θ₂\n|d| = 1'),
+            p('Split the incoming unit direction into components tangent and normal to the interface. Scale the tangential part by n₁/n₂. Unit length determines the transmitted normal component, with the sign chosen into the next medium. If the tangential part would have length greater than one, there is no real transmitted direction.', '把入射单位方向分解为界面的切向和法向分量，将切向分量乘以 n₁/n₂。单位长度条件决定透射法向分量，其符号指向下一个介质。若切向分量的长度将超过一，就不存在实数透射方向。'),
+            p('A sequential transmitted-ray tracer then reports total internal reflection. It does not continue an imaginary ray, and it does not resolve the evanescent electromagnetic field. A full wave model is needed for the latter question.', '顺序透射光线追迹器此时应报告全内反射，不继续追踪虚构光线，也不求解倏逝电磁场。后一个问题需要波动模型。')),
+        bridge('paraxial', 152, 'Why can two correct models give different focal positions?', '为什么两个正确模型会给出不同焦点？',
+            p('The paraxial lens matrix linearizes angles and heights. Exact surface intersections with vector Snell’s law retain finite-angle geometric effects. They should agree in the narrow on-axis limit, while wide-aperture rays can show spherical aberration. First compare the same reference planes: effective focal length and distance from the rear vertex are not interchangeable.', '近轴透镜矩阵对角度与高度作线性化；精确曲面求交和向量 Snell 定律则保留有限角度几何效应。两者应在细轴上光束极限下一致，而大孔径光线可能出现球差。比较之前还要统一参考平面：有效焦距不能与从后顶点测量的距离互换。'),
+            p('Both are geometric models. Neither produces diffraction merely by tracing more rays. Ray-density refinement tests numerical sampling; E03’s wave-based point response answers a different image-resolution question.', '二者都是几何模型，增加光线数量也不会自动产生衍射。加密光线用于检验数值采样；E03 的波动点响应回答另一层面的成像分辨率问题。')),
+    ],
+)
+
+GUIDES['E12'] = dict(
+    question=tr('What must be fixed before an optimizer can improve a lens honestly?', '让优化器可靠地改进透镜之前，必须先固定什么？'),
+    steps=[
+        step(0, 'Compare lenses with the same focal length', '比较相同焦距的透镜', 'Equal paraxial focal length does not force finite-aperture rays to form the same geometric spot.', '相同近轴焦距并不能保证有限孔径光线形成相同的几何光斑。'),
+        step(21, 'Define the measurement before searching', '搜索之前先定义测量', 'Trace each object field to one detector plane. Separate the spot centroid from its RMS spread, then state the field weights.', '将每个物方视场追迹到同一个探测器平面。区分光斑质心与 RMS 散布，再明确视场权重。', 'metric'),
+        step(62, 'Choose variables and preserve focal power', '选择变量并保持光焦度', 'Bending redistributes surface curvature while the thick-lens paraxial focal power stays fixed. A common image plane is the other design variable.', '弯曲参数重新分配曲面曲率，同时保持厚透镜近轴光焦度。另一个设计变量是公共像面位置。', 'bending'),
+        step(108, 'Optimize the on-axis case', '优化轴上情况', 'Search lens bending and refocus the central bundle. The best central spot is a result for that stated objective.', '搜索透镜弯曲参数，并对中心光束重新对焦。得到的最小中心光斑，只对应这个明确的目标。'),
+        step(141, 'Evaluate the edge fields at the same detector', '在同一探测器上评价边缘视场', 'Keep the selected lens and detector fixed while checking 3° and 6°. Including those fields in the objective can select a different prescription.', '检查 3° 和 6° 时，固定已选透镜和探测器位置。将这些视场纳入目标函数，可能得到另一组结构参数。', 'metric'),
+        step(187, 'Prevent improvements that change the task', '防止通过改变任务来改善分数', 'Fix the entrance aperture, require clear surfaces and count failed rays. Discarding difficult rays would produce a misleading spot metric.', '固定入口孔径，要求曲面保持间隔，并统计失败光线。丢弃难以通过的光线，会得到误导性的光斑指标。', 'audit'),
+        step(223, 'Test samples and physics omitted by the score', '检验评分遗漏的采样与物理', 'Use more pupil rays and intermediate fields. Diffraction, colour, distortion and tolerances need additional models or measurements.', '使用更多瞳面光线及中间视场。衍射、颜色、畸变和公差，都需要额外模型或测量。', 'audit'),
+        step(277, 'Close the design loop', '完成设计循环', 'Specify the task, trace, measure, update under constraints and validate. The final prescription is meaningful together with its evaluation conditions.', '明确任务、追迹、测量、在约束下更新，再验证。最终结构参数只有与评价条件一起给出才有意义。'),
+    ],
+    bridges=[
+        bridge('metric', 21, 'What does a centroid-based RMS spot reward, and what does it ignore?', '以质心为基准的 RMS 光斑奖励什么，又忽略什么？',
+            eq('x̄ₖ = Σⱼ wⱼ xₖⱼ / Σⱼ wⱼ\nσₖ² = Σⱼ wⱼ |xₖⱼ − x̄ₖ|² / Σⱼ wⱼ\nJ = Σₖ Wₖ σₖ² / Σₖ Wₖ'),
+            p('The pupil weights wⱼ describe sampling within one field. The field weights Wₖ specify which object directions matter to the design. Subtracting each field’s centroid removes its image location from this blur metric, so distortion is not constrained. A mean of variances also differs from a worst-field objective.', '瞳面权重 wⱼ 描述单个视场内的采样；视场权重 Wₖ 指定哪些物方方向对设计重要。减去各视场质心，会把像的位置从这个模糊指标中移除，因此畸变不受约束。方差的平均值，也不同于最差视场目标。'),
+            p('All fields share one image plane. Giving each field its own best focus would remove a limitation that a camera with one flat sensor still has. The search may choose that common plane, but it may not assign a different one to every field.', '所有视场共用一个像面。若让每个视场使用各自的最佳焦点，就会移除真实单平面相机仍然面对的一项限制。搜索可以选择这个公共像面，但不能给每个视场分配不同像面。')),
+        bridge('bending', 62, 'How can a lens change shape without changing its focal length?', '透镜怎样改变形状而不改变焦距？',
+            eq('q = (c₁ + c₂)/(c₁ − c₂),   cᵢ = 1/Rᵢ\nΦ = (n − 1)[c₁ − c₂ + (n − 1)d c₁c₂/n]'),
+            p('At fixed n, d and paraxial power Φ, there are still different ways to distribute the two surface curvatures. Solving the power constraint for each q produces a family of prescriptions. Their finite-angle aberrations and principal-plane positions differ, even though their effective focal length is the same.', '固定 n、d 与近轴光焦度 Φ 后，两个表面的曲率仍有不同分配方式。对每个 q 求解光焦度约束，就得到一个结构参数族。即使有效焦距相同，它们的有限角度像差和主平面位置仍会不同。')),
+        bridge('audit', 187, 'What keeps the optimizer from finding a misleading shortcut?', '怎样防止优化器找到误导性的捷径？',
+            p('Keep the pupil fixed and reject or penalize failed traces. Check surface separation over the full mechanical clear aperture. Re-evaluate the selected prescription with denser and shifted pupil samples, and with object directions between the optimized fields. These checks distinguish an optical improvement from a sampling accident.', '固定瞳面，并拒绝或惩罚失败追迹。在完整机械通光孔径内检查曲面间隔。用更密且移位的瞳面采样，以及优化视场之间的物方方向，重新评价所选结构。这些检查用于区分光学改善与采样偶然性。'),
+            p('A low geometric RMS is not a modulation-transfer measurement or a tolerance analysis. E03 provides the diffraction connection, while E10 explains objective sensitivities in a different forward model. A ray optimizer and a Maxwell adjoint share a design workflow without being the same algorithm.', '较低的几何 RMS 并不等同于调制传递测量或公差分析。E03 提供衍射联系，E10 则在另一种前向模型中解释目标敏感度。光线优化器与麦克斯韦伴随共享设计流程，但不是同一个算法。')),
+    ],
+)

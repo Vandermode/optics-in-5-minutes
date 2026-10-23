@@ -1,9 +1,11 @@
+import {geometricTerms, geometricLessonTerms} from './geometric-glossary.js';
 // Definitions use the same scalar models and conventions as the lesson text.
 // Each chapter supplies its own explanation of why a shared term matters there.
 const term = (name, aliases, definition, formula = '', notation = '', episodes = []) =>
   ({name, aliases, definition, formula, notation, episodes});
 
 export const terms = {
+  ...geometricTerms,
   phase: term('Optical phase', ['phase', 'phases', 'relative phase'],
     'The position within an oscillation cycle, expressed as an angle. Interference depends on phase differences between fields; a common constant phase shift does not change their intensity.'),
   amplitude: term('Field amplitude', ['amplitude', 'amplitudes'],
@@ -235,6 +237,7 @@ export const terms = {
 };
 
 export const lessonTerms = {
+  ...geometricLessonTerms,
   E01: {
     phase: 'Each plane-wave coefficient acquires a phase that depends on its direction and propagation distance.',
     amplitude: 'The slit field is decomposed into complex amplitudes, not a list of intensities.',

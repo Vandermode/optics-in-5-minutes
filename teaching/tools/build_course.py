@@ -11,6 +11,8 @@ from motivation import motivation_html, motivation_markdown, refresh_motivation_
 from localization import build_languages
 from knowledge import knowledge_map_html, episode_concepts_html, write_knowledge_data
 from video_logic import video_logic_html
+from geometric_terms import write as write_geometric_terms
+from build_ray_labs import build as build_ray_labs
 
 ROOT = Path(__file__).resolve().parents[1]
 VIDEOS = json.loads((ROOT / "videos.json").read_text())
@@ -27,6 +29,8 @@ EPISODE_KEYWORDS = {
     "E08": ["Waveguide modes", "Evanescent coupling", "Ring resonators", "Quality factor", "Critical coupling"],
     "E09": ["FDTD", "Yee grid", "CFL condition", "Numerical dispersion", "PML"],
     "E10": ["Inverse design", "Adjoint method", "Gradients", "Automatic differentiation", "Fabrication constraints"],
+    "E11": ["Ray tracing", "Snell’s law", "Paraxial approximation", "Spherical aberration", "Geometric spot diagram"],
+    "E12": ["Lens prescription", "Lens bending", "Merit function", "RMS spot radius", "Design constraints"],
 }
 KEYWORD_TERMS = {
     "Plane waves": "planeWave", "Angular spectrum": "angularSpectrum", "Spatial frequency": "spatialFrequency", "FFT": "fft", "Evanescent waves": "evanescent",
@@ -39,6 +43,8 @@ KEYWORD_TERMS = {
     "Waveguide modes": "guidedMode", "Evanescent coupling": "evanescentCoupling", "Ring resonators": "resonator", "Quality factor": "qualityFactor", "Critical coupling": "criticalCoupling",
     "FDTD": "fdtd", "Yee grid": "yee", "CFL condition": "courant", "Numerical dispersion": "numericalDispersion", "PML": "pml",
     "Inverse design": "inverseDesign", "Adjoint method": "adjointMethod", "Gradients": "gradient", "Automatic differentiation": "automaticDifferentiation", "Fabrication constraints": "fabricationConstraints",
+    "Ray tracing": "rayTracing", "Snell’s law": "snell", "Paraxial approximation": "paraxial", "Spherical aberration": "sphericalAberration", "Geometric spot diagram": "spotDiagram",
+    "Lens prescription": "lensPrescription", "Lens bending": "lensBending", "Merit function": "meritFunction", "RMS spot radius": "rmsSpot", "Design constraints": "designConstraints",
 }
 CATALOG = [dict(id=m["id"],slug=m["slug"],title=m["title"],description=m["deck"],
                 prerequisites=m["prerequisites"],notebook=m["slug"].replace("-","_")+".ipynb") for m in MODULES]
@@ -57,16 +63,40 @@ def esc(s):
 def links(items):
     return "".join(f'<li><a href="{esc(url)}" target="_blank" rel="noopener">{esc(label)} ↗</a></li>' for label,url in items)
 
+def video_href(episode):
+    video = VIDEOS[episode]
+    return 'https://www.youtube.com/watch?v=' + video['youtubeId'] if video.get('youtubeId') else video['file']
+
+
+def notebook_actions(m, notebook):
+    download = f'<a class="button secondary" href="{notebook}" download>Download notebook ↓</a><a href="figures.zip" download>Saved figures ↓</a>'
+    if not VIDEOS[m['id']].get('youtubeId'):
+        return f'<div class="actions">{download}</div><p class="meta">Download the notebook and open it in Jupyter, or upload it to Colab using File → Upload notebook. Then select Runtime → Run all.</p>'
+    return f'<div class="actions"><a class="button" href="{COLAB}/{m["slug"]}/{notebook}" target="_blank" rel="noopener">Open in Colab ↗</a>{download}</div><p class="meta">In Colab, sign in with a Google account and select Runtime → Run all. Save a copy in Drive to retain edits. Saved notebook outputs and downloadable PNG figures provide a fallback if Colab’s output frame cannot load.</p>'
+
+
+def public_source_link(m):
+    if not VIDEOS[m['id']].get('youtubeId'):
+        return ''
+    return f'<li><a href="{PUBLIC}/tree/main/teaching/{m["slug"]}" target="_blank" rel="noopener">Lesson and notebook source ↗</a></li>'
+
+
 def video_section(m):
     video = VIDEOS[m["id"]]
-    video_id = video["youtubeId"]
-    if not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+    video_id = video.get("youtubeId")
+    if video_id and not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
         raise ValueError(f'Invalid YouTube video ID for {m["id"]}')
+    if video_id:
+        player = f'<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/{video_id}?rel=0&amp;playsinline=1&amp;hl=en" title="{esc(video["title"])}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen; web-share" allowfullscreen></iframe>'
+        watch = 'Watch on YouTube ↗'
+    else:
+        player = f'<video controls preload="metadata" playsinline width="1280" height="720" aria-label="{esc(video["title"])}" src="{esc(video["file"])}"><track kind="captions" src="{esc(video["captions"])}" srclang="en" label="English" default></video>'
+        watch = 'Open the film ↗'
     return f'''<section id="video" class="section video-section" aria-labelledby="video-title">
 <div class="section-heading"><div><p class="section-label">{m["id"]} / THE FIVE-MINUTE FILM</p><h2 id="video-title">{esc(m["title"])}</h2></div><p>Watch the story, then use the experiment below to test the ideas yourself.</p></div>
-<div class="video-player"><iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/{video_id}?rel=0&amp;playsinline=1&amp;hl=en" title="{esc(video["title"])}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen; web-share" allowfullscreen></iframe></div>
-<p class="video-caption"><span>{esc(video["duration"])} · {m["id"]} · {esc(m["title"])}</span><a href="https://www.youtube.com/watch?v={video_id}" target="_blank" rel="noopener">Watch on YouTube ↗</a></p>
-</section>\n{video_logic_html(m["id"], video_id)}'''
+<div class="video-player">{player}</div>
+<p class="video-caption"><span>{esc(video["duration"])} · {m["id"]} · {esc(m["title"])}</span><a href="{esc(video_href(m['id']))}" target="_blank" rel="noopener">{watch}</a></p>
+</section>\n{video_logic_html(m["id"], video_id, video.get('file'))}'''
 
 def control(c, defaults):
     id=c["id"]
@@ -85,6 +115,8 @@ def page(m):
     earlier = "Useful earlier lessons: " + requirements if m["prerequisites"] else "This is the first lesson in the course."
     goals="".join("<li>"+esc(x)+"</li>" for x in m["goals"])
     steps="".join("<li>"+esc(x)+"</li>" for x in m["steps"])
+    prediction=f'<div class="callout"><p class="eyebrow">PREDICT BEFORE YOU CHANGE A CONTROL</p><p>{esc(m["prediction"])}</p></div>'
+    guidance=f'<div class="reading" style="margin:{24 if m.get("guided_lab") else 35}px 0"><div class="section-label">A GUIDED EXPERIMENT</div><div><ol>{steps}</ol></div></div>'
     presets="".join(f'<button type="button" data-preset="{i}">{esc(p["label"])}</button>' for i,p in enumerate(m["presets"]))
     quiz=""
     for i,q in enumerate(m["quiz"]):
@@ -112,8 +144,9 @@ def page(m):
     {preparation_html(m["id"], earlier)}
     {video_section(m)}
 <section id="idea" class="section reading"><div class="section-label">01 / BUILD AN INTUITION</div><div><h2>What to notice first.</h2>{m["intro"]}
-<h3>By the end, you can</h3><ol>{goals}</ol><div class="callout"><p class="eyebrow">PREDICT BEFORE YOU CHANGE A CONTROL</p><p>{esc(m["prediction"])}</p></div></div></section>
+<h3>By the end, you can</h3><ol>{goals}</ol>{'' if m.get('guided_lab') else prediction}</div></section>
 <section id="lab" class="section"><div class="section-heading"><div><p class="section-label">02 / TEST YOUR PREDICTION</p><h2>Change one thing.<br>Follow what changes.</h2></div><p>All plotted fields and curves are calculated from the stated model. Keep the other controls fixed while testing a prediction.</p></div>
+{prediction + guidance if m.get('guided_lab') else ''}
 <noscript><p class="callout">Enable JavaScript to run the experiment. The explanations and downloadable notebook remain available.</p></noscript>
 <div class="lab-layout"><aside class="controls" aria-label="Experiment controls">{"".join(control(c,m["defaults"]) for c in m["controls"])}
 <div class="control-buttons"><button id="run" class="button" type="button">Run</button><button id="cancel" class="button secondary" type="button" disabled>Stop</button><button id="reset" class="button secondary" type="button">Reset</button><button id="copy-link" class="button secondary" type="button">Copy experiment</button></div>
@@ -121,20 +154,19 @@ def page(m):
 <div class="visuals"><div id="plots" class="plots"></div><div id="metrics" class="metrics" aria-live="polite"></div><p id="run-note" class="run-note"></p>
 <div class="presets" aria-label="Example experiments">{presets}<button type="button" id="download-plot">Save first plot PNG ↓</button></div><a id="plot-download" hidden>Download generated PNG ↓</a></div></div>
 <p class="model-note"><strong>Model:</strong> {esc(m["limits"])}</p>
-<div class="reading" style="margin-top:35px"><div class="section-label">A GUIDED EXPERIMENT</div><div><ol>{steps}</ol></div></div></section>
+{'' if m.get('guided_lab') else guidance}</section>
 <section id="explain" class="section reading"><div class="section-label">03 / CONNECT THE LOGIC</div><div>{m["theory"]}</div></section>
 <section id="check" class="section reading"><div><p class="section-label">04 / CHECK YOUR UNDERSTANDING</p><p>Make a prediction before checking the explanation.</p></div>
 <div><h2>Can you explain the change?</h2><form id="quiz">{quiz}<button class="button" type="submit">Check answers →</button><p id="quiz-status" role="status"></p></form></div></section>
 <section id="notebook" class="section reading"><div class="section-label">05 / TURN IT INTO CODE</div><div><h2>Your own computational experiment.</h2>
 <p>The standalone notebook builds the model in small steps, draws the results, and checks the calculation against independent predictions. It runs on CPU using NumPy, SciPy, and Matplotlib. No repository clone, GPU, or external dataset is needed.</p>
-<div class="actions"><a class="button" href="{COLAB}/{m["slug"]}/{notebook}" target="_blank" rel="noopener">Open in Colab ↗</a><a class="button secondary" href="{notebook}" download>Download notebook ↓</a><a href="figures.zip" download>Saved figures ↓</a></div>
-<p class="meta">In Colab, sign in with a Google account and select Runtime → Run all. Save a copy in Drive to retain edits. Saved notebook outputs and downloadable PNG figures provide a fallback if Colab’s output frame cannot load.</p>
+{notebook_actions(m, notebook)}
 <h3>A short lab report</h3><ol>{tasks}</ol><details><summary>Compare your reasoning</summary><div class="answer">{answers}</div></details>
 <details><summary>Optional deeper extension</summary><div class="answer"><p>{esc(m["extension"])}</p><p>The notebook marks the extension clearly. Complete the core experiment and its checks first.</p></div></details>
 <p><a href="INSTRUCTOR_NOTES.md">Instructor notes and assessment rubric ↗</a> · <a href="README.md">Model, setup, and reproducibility ↗</a></p></div></section>
 <section id="sources" class="section reading"><div class="section-label">MODEL & SOURCES</div><div><h2>Know what the model leaves out.</h2><p>{esc(m["limits"])}</p>
 <p><strong>Video companion:</strong> <a href="#video">watch the {m["id"]} film above</a> ({esc(VIDEOS[m["id"]]["duration"])}).</p>
-<ul class="resource-list">{links(m["refs"])}<li><a href="{PUBLIC}/tree/main/teaching/{m["slug"]}" target="_blank" rel="noopener">Lesson and notebook source ↗</a></li></ul>
+<ul class="resource-list">{links(m["refs"])}{public_source_link(m)}</ul>
 <p class="meta">Calculations and concept checks run locally in your browser. Quiz answers are not uploaded or stored.</p></div></section>
 {knowledge_map_html(CATALOG, m["id"])}</main><footer>OPTICS IN 5 MINUTES · {m["id"]} / {esc(m["title"]).upper()} · <a href="#main">Back to top ↑</a></footer></div>
 <script id="lesson-config" type="application/json">{config}</script></body></html>'''
@@ -244,7 +276,7 @@ def docs(m):
 
 ## Use the lesson
 
-Watch the [{m["id"]} film](https://www.youtube.com/watch?v={VIDEOS[m["id"]]["youtubeId"]}) ({VIDEOS[m["id"]]["duration"]}), embedded near the top of the lesson.
+Watch the [{m["id"]} film]({video_href(m['id'])}) ({VIDEOS[m["id"]]["duration"]}), embedded near the top of the lesson.
 
 Serve the complete teaching/ directory over HTTP. The lesson uses shared local assets and native JavaScript modules. Open this episode's folder in the browser. Its standalone notebook also works directly in Colab or Jupyter; it does not import repository code or require a GPU.
 
@@ -321,7 +353,7 @@ def build_home():
     (ROOT/"index.html").write_text(f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Optics in 5 Minutes · The interactive course</title>
-<meta name="description" content="Explore a connected map of optical concepts and choose from ten interactive lessons with independent Python labs.">
+<meta name="description" content="Explore a connected map of optical concepts and choose from twelve interactive lessons with independent Python labs.">
 <meta name="theme-color" content="#f5f3ed"><link rel="icon" href="e03-diffraction/assets/favicon.svg">
 <link rel="stylesheet" href="shared/course.css"><link rel="stylesheet" href="shared/knowledge.css"><link rel="stylesheet" href="shared/reader.css">
 <script>{compatibility}</script><script type="module" src="shared/home-terms.js"></script><script type="module" src="shared/knowledge.js"></script></head>
@@ -331,9 +363,9 @@ def build_home():
 <main id="course-main"><section class="home-intro"><div><p class="eyebrow">CONNECTED IDEAS / OPEN LEARNING PATHS</p>
 <h1>Follow an idea.<br><em>Find the connections.</em></h1></div><div>
 <p class="lede">Explore optics through the concepts that connect it. Start with a question, find a related lesson, and test the ideas yourself.</p>
-<p class="meta">Five-minute films · Browser experiments · CPU notebooks<br>Ten self-contained lessons, with optional deeper extensions</p></div></section>
+<p class="meta">Five-minute films · Browser experiments · CPU notebooks<br>Twelve self-contained lessons, with optional deeper extensions</p></div></section>
 {knowledge_map_html(CATALOG)}
-<section id="course" class="section"><div class="section-heading"><div><p class="section-label">THE EPISODE INDEX</p><h2>Ten episodes. Many ways in.</h2></div>
+<section id="course" class="section"><div class="section-heading"><div><p class="section-label">THE EPISODE INDEX</p><h2>Twelve episodes. Many ways in.</h2></div>
 <p>Episode numbers identify the material. Choose by concept or interest, and review the foundations each lesson uses.</p></div><div class="catalog">{cards}</div></section>
 <section id="approach" class="section reading"><div class="section-label">A COURSE YOU CAN TEST</div><div><h2>A picture, a prediction, a calculation.</h2>
 <p>Each lesson opens with an optical problem and why solving it matters. Check the prerequisites, watch the five-minute film, then use controls that change the actual model and connect the result to a few equations. The Python lab then rebuilds the calculation, tests it independently, and asks you to explain what the model leaves out.</p>
@@ -342,6 +374,8 @@ def build_home():
 {home_preparation_html()}</main><footer>OPTICS IN 5 MINUTES · <a href="{PUBLIC}">Public source and teaching materials ↗</a> · Calculations run locally in your browser.</footer></div></body></html>''')
 
 def main():
+    build_ray_labs()
+    write_geometric_terms(ROOT)
     fonts=ROOT/"shared/fonts";fonts.mkdir(parents=True,exist_ok=True)
     for name in ["Lato-Regular.ttf","Lato-Bold.ttf","LICENSE-Lato.txt"]:
         shutil.copy2(ROOT/"e03-diffraction/assets"/name,fonts/name)
@@ -424,7 +458,7 @@ def main():
     (ROOT/"preparation/index.html").write_text(guide_html(CATALOG))
     build_home()
     build_languages(ROOT, CATALOG)
-    print("Built the ten-lesson course in English and Chinese, instructor packs, and legacy E03 routes.")
+    print(f"Built the {len(CATALOG)}-lesson course in English and Chinese, instructor packs, and legacy E03 routes.")
 
 if __name__=="__main__":
     main()

@@ -1,9 +1,10 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {terms, lessonTerms} from '../shared/glossary.js';
 import {phrases} from '../shared/zh.js';
-import {episodes, episodesForTerm} from '../shared/term-network.js';
+import {concepts, episodes, episodesForTerm} from '../shared/term-network.js';
 import {searchTerms, termNames} from '../shared/search-index.js';
 
 const root = new URL('../', import.meta.url);
@@ -22,6 +23,7 @@ async function context(width, options = {}) {
     const response = await route.fetch({maxRetries: 2}); await route.fulfill({response});
   });
   await ctx.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
+  await isolateNativeMedia(ctx);
   const page = await ctx.newPage();
   page.on('pageerror', error => errors.push(error.stack || error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
@@ -52,7 +54,7 @@ try {
     const input = page.locator('#concept-search-input'), list = page.locator('#concept-search-results');
     const panel = page.locator('#term-panel');
     assert.equal(await list.isVisible(), false, 'Empty search leaves the overview uncluttered');
-    assert.equal(await page.locator('[data-concept]').count(), 12);
+    assert.equal(await page.locator('[data-concept]').count(), Object.keys(concepts).length);
     assert.equal(await page.locator('form form').count(), 0);
     for (const [query, id] of samples) {
       await input.fill(query);
@@ -184,8 +186,8 @@ try {
         assert.equal(await page.evaluate(() => document.activeElement.dataset.searchTerm), 'coherenceLength');
       }
     }
-    results.push({lang, width, chapters: 10});
-    console.log(`PASS search in all ten chapter maps: ${lang} ${width}`);
+    results.push({lang, width, chapters: Object.keys(episodes).length});
+    console.log(`PASS search in all ${Object.keys(episodes).length} chapter maps: ${lang} ${width}`);
     await close(ctx);
   }
 
@@ -222,7 +224,7 @@ try {
     const fallback = await context(390, {javaScriptEnabled: false});
     await fallback.page.goto(home(lang));
     assert.equal(await fallback.page.locator('.concept-search').isVisible(), false, 'No inert search when JavaScript is disabled');
-    assert.equal(await fallback.page.locator('[data-concept]').count(), 12);
+    assert.equal(await fallback.page.locator('[data-concept]').count(), Object.keys(concepts).length);
     await fallback.page.locator('[data-concept="coherence"]').click();
     assert.equal(new URL(fallback.page.url()).hash, '#concept-coherence');
     assert.ok(await fallback.page.locator('#concept-coherence [data-episode-link="E04"]').isVisible());

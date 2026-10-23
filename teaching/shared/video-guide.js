@@ -27,16 +27,21 @@ function initializeGuide() {
     if (link) document.getElementById(link.hash.slice(1)).open = true;
   });
 
-  const frame = document.querySelector('#video iframe');
+  const frame = document.querySelector('#video iframe, #video video');
   let selectedTime = null;
   function setVideoTime(seconds, play) {
     if (!frame) return;
     selectedTime = seconds;
-    const url = new URL(frame.src);
-    url.searchParams.set('start', seconds);
-    if (play) url.searchParams.set('autoplay', '1');
-    else url.searchParams.delete('autoplay');
-    frame.src = url.href;
+    if (frame.tagName === 'VIDEO') {
+      const seek = () => {frame.currentTime = Math.min(seconds, Number.isFinite(frame.duration) ? frame.duration : seconds); if(play) frame.play().catch(() => {});};
+      if(frame.readyState >= 1) seek(); else frame.addEventListener('loadedmetadata', seek, {once:true});
+    } else {
+      const url = new URL(frame.src);
+      url.searchParams.set('start', seconds);
+      if (play) url.searchParams.set('autoplay', '1');
+      else url.searchParams.delete('autoplay');
+      frame.src = url.href;
+    }
     if (play) {
       let status = document.getElementById('video-seek-status');
       if (!status) {

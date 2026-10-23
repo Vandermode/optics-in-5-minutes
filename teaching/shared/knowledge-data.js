@@ -70,14 +70,16 @@ export const knowledge = {
       "id": "imaging",
       "label": "Imaging & resolution",
       "region": 1,
-      "description": "Use point responses and frequency transfer to understand which details an optical image can carry.",
+      "description": "Compare geometric image errors, point responses and frequency transfer to understand which details an optical image can carry.",
       "foundations": [
         "complex",
         "fourier"
       ],
       "episodes": [
         "E03",
-        "E02"
+        "E02",
+        "E11",
+        "E12"
       ]
     },
     {
@@ -178,10 +180,37 @@ export const knowledge = {
       "episodes": [
         "E10"
       ]
+    },
+    {
+      "id": "rays",
+      "label": "Rays & geometric optics",
+      "region": 0,
+      "description": "Follow positions and directions through refracting surfaces, then test paraxial predictions against finite-aperture geometric rays.",
+      "foundations": [
+        "ray-vectors",
+        "ray-geometry"
+      ],
+      "episodes": [
+        "E11",
+        "E12"
+      ]
+    },
+    {
+      "id": "lensdesign",
+      "label": "Lens design & image quality",
+      "region": 3,
+      "description": "Choose a prescription, objective and physical constraints, then evaluate the resulting lens across fields and independent samples.",
+      "foundations": [
+        "ray-geometry",
+        "squared-error"
+      ],
+      "episodes": [
+        "E12"
+      ]
     }
   ],
   "regions": [
-    "Waves & representations",
+    "Rays, waves & representations",
     "Measurement & reconstruction",
     "Structures & devices",
     "Computation & design"
@@ -430,6 +459,55 @@ export const knowledge = {
         "Automatic differentiation": "automaticDifferentiation",
         "Fabrication constraints": "fabricationConstraints"
       }
+    },
+    {
+      "id": "E11",
+      "slug": "e11-ray-tracing",
+      "title": "Ray tracing through a real lens",
+      "description": "Follow light through two curved interfaces, compare a paraxial focus with finite-aperture rays, and separate geometric blur from diffraction.",
+      "prerequisites": [
+        "E03"
+      ],
+      "notebook": "e11_ray_tracing.ipynb",
+      "keywords": [
+        "Ray tracing",
+        "Snell’s law",
+        "Paraxial approximation",
+        "Spherical aberration",
+        "Geometric spot diagram"
+      ],
+      "keywordTerms": {
+        "Ray tracing": "rayTracing",
+        "Snell’s law": "snell",
+        "Paraxial approximation": "paraxial",
+        "Spherical aberration": "sphericalAberration",
+        "Geometric spot diagram": "spotDiagram"
+      }
+    },
+    {
+      "id": "E12",
+      "slug": "e12-lens-design",
+      "title": "Lens design with a measurable objective",
+      "description": "Bend a singlet without changing its paraxial focal power. Choose a common image plane, minimize a stated geometric error, and check what the design sacrifices away from the centre.",
+      "prerequisites": [
+        "E11",
+        "E03"
+      ],
+      "notebook": "e12_lens_design.ipynb",
+      "keywords": [
+        "Lens prescription",
+        "Lens bending",
+        "Merit function",
+        "RMS spot radius",
+        "Design constraints"
+      ],
+      "keywordTerms": {
+        "Lens prescription": "lensPrescription",
+        "Lens bending": "lensBending",
+        "Merit function": "meritFunction",
+        "RMS spot radius": "rmsSpot",
+        "Design constraints": "designConstraints"
+      }
     }
   ],
   "focus": {
@@ -442,6 +520,8 @@ export const knowledge = {
     "E07": "periodic",
     "E08": "modes",
     "E09": "maxwell",
-    "E10": "adjoint"
+    "E10": "adjoint",
+    "E11": "rays",
+    "E12": "lensdesign"
   }
 };

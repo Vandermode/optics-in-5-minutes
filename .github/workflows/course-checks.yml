@@ -32,10 +32,13 @@ jobs:
       - run: pip install -r teaching/requirements-dev.txt
       - run: npm ci --prefix teaching
       - run: npx --prefix teaching playwright install --with-deps chromium
+      - name: Install native-video control fixture encoder
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Rebuild pages and independent references
         run: |
           python teaching/tools/build_course.py
           python teaching/tools/build_references.py
+          python teaching/tools/build_ray_references.py
       - run: npm test --prefix teaching
       - name: Execute notebooks in clean CPU kernels
         run: python teaching/tools/validate_notebooks.py

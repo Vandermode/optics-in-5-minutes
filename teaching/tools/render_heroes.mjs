@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 const root=new URL('../',import.meta.url),catalog=JSON.parse(fs.readFileSync(new URL('course.json',root),'utf8'));
 const results=[];
+const selected = new Set(process.argv.slice(2));
 for(const entry of catalog){
+  if(selected.size && !selected.has(entry.id))continue;
   if(entry.id==='E03')continue;
   const html=fs.readFileSync(new URL(entry.slug+'/index.html',root),'utf8');
   const config=JSON.parse(html.match(/<script id="lesson-config" type="application\/json">([\s\S]*?)<\/script>/)[1]);

@@ -70,10 +70,11 @@ def time_label(seconds):
     return f"{seconds // 60}:{seconds % 60:02d}"
 
 
-def replay(video_id, seconds, label=None):
+def replay(video_id, seconds, label=None, video_file=None):
     time = time_label(seconds)
+    href = f'https://www.youtube.com/watch?v={video_id}&t={seconds}s' if video_id else f'{video_file}#t={seconds}'
     return (f'<a class="video-time" data-video-seek="{seconds}" '
-            f'href="https://www.youtube.com/watch?v={esc(video_id)}&amp;t={seconds}s" '
+            f'href="{esc(href)}" '
             f'target="_blank" rel="noopener" title="Play from {time}">'
             f'<span translate="no">{time}</span>' + (f' · {esc(label)}' if label else '') + '</a>')
 
@@ -100,8 +101,8 @@ def coherence_demo():
 </div></div>'''
 
 
-def video_logic_html(episode, video_id):
-    if not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+def video_logic_html(episode, video_id, video_file=None):
+    if not video_file and (not video_id or not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id)):
         raise ValueError(f"Invalid video ID for guide {episode}")
     guide = GUIDES[episode]
     ids = [b["id"] for b in guide["bridges"]]
@@ -115,7 +116,7 @@ def video_logic_html(episode, video_id):
         if detail and detail not in ids:
             raise ValueError(f"Missing explanation {episode}/{detail}")
         more = f'<a class="video-bridge-link" href="#guide-{detail}">Open the missing step →</a>' if detail else ''
-        steps.append(f'<li>{replay(video_id, s["at"])}<div><h4>{esc(s["title"]["en"])}</h4><p>{esc(s["text"]["en"])}</p>{more}</div></li>')
+        steps.append(f'<li>{replay(video_id, s["at"], video_file=video_file)}<div><h4>{esc(s["title"]["en"])}</h4><p>{esc(s["text"]["en"])}</p>{more}</div></li>')
     explanations = []
     for b in guide["bridges"]:
         blocks = []
@@ -126,7 +127,7 @@ def video_logic_html(episode, video_id):
                 blocks.append(f'<p>{esc(block["text"]["en"])}</p>')
         # The spectrum question is the entry point for this companion experiment.
         opened = ' open' if episode == "E04" and b["id"] == "spectrum" else ''
-        explanations.append(f'<details class="video-bridge" id="guide-{b["id"]}"{opened}><summary>{esc(b["title"]["en"])}</summary><div class="video-bridge-body"><p class="video-replay">{replay(video_id, b["at"], "Replay this part")}</p>{"".join(blocks)}{coherence_demo() if b.get("demo") else ""}</div></details>')
+        explanations.append(f'<details class="video-bridge" id="guide-{b["id"]}"{opened}><summary>{esc(b["title"]["en"])}</summary><div class="video-bridge-body"><p class="video-replay">{replay(video_id, b["at"], "Replay this part", video_file)}</p>{"".join(blocks)}{coherence_demo() if b.get("demo") else ""}</div></details>')
     sources = ''.join(f'<li><a href="{esc(s["url"])}" target="_blank" rel="noopener">{esc(s["title"]["en"])}</a></li>' for s in guide.get("sources", []))
     sources = f'<div class="video-guide-sources"><h4>Further reading for these explanations</h4><ul>{sources}</ul></div>' if sources else ''
     return f'''<section id="video-guide" class="section video-guide" aria-labelledby="video-guide-title">

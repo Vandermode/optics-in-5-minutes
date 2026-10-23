@@ -1,0 +1,371 @@
+1
+00:00:00,900 --> 00:00:03,389
+Watch parallel rays pass through two curved
+
+2
+00:00:03,429 --> 00:00:06,555
+glass surfaces and crowd toward a common focus.
+
+3
+00:00:06,625 --> 00:00:10,053
+Now zoom in. The outer rays cross before the central rays,
+
+4
+00:00:10,093 --> 00:00:12,416
+so one point cannot catch them all.
+
+5
+00:00:13,286 --> 00:00:15,307
+How can we predict this mismatch without
+
+6
+00:00:15,347 --> 00:00:18,379
+pretending a real lens is infinitely thin?
+
+7
+00:00:18,449 --> 00:00:20,670
+Trace each ray: find the next surface,
+
+8
+00:00:20,710 --> 00:00:22,873
+change its direction, then repeat.
+
+9
+00:00:23,693 --> 00:00:26,828
+A ray marks a local direction of light travel.
+
+10
+00:00:26,868 --> 00:00:28,969
+It is not the complete electric field.
+
+11
+00:00:29,039 --> 00:00:32,116
+Store a starting position and a unit direction vector.
+
+12
+00:00:32,156 --> 00:00:35,207
+Distance along that direction is our variable.
+
+13
+00:00:35,277 --> 00:00:38,709
+In uniform material, a ray follows a straight line.
+
+14
+00:00:38,749 --> 00:00:40,879
+A boundary can change its direction.
+
+15
+00:00:40,949 --> 00:00:42,610
+Our lens has two spherical surfaces,
+
+16
+00:00:42,650 --> 00:00:46,955
+four millimetres apart, with glass index one point five.
+
+17
+00:00:47,025 --> 00:00:50,938
+You see a central slice of a three-dimensional calculation.
+
+18
+00:00:50,978 --> 00:00:54,146
+The optical axis runs horizontally, along z.
+
+19
+00:00:54,216 --> 00:00:58,018
+Curvature, thickness, and aperture specify the glass.
+
+20
+00:00:58,058 --> 00:01:00,234
+We still need to calculate where light goes.
+
+21
+00:01:01,054 --> 00:01:03,908
+First, extend the incoming line until it meets the
+
+22
+00:01:03,948 --> 00:01:07,341
+first spherical surface. Calculate that intersection.
+
+23
+00:01:07,411 --> 00:01:09,432
+Substitute the ray into the sphere equation.
+
+24
+00:01:09,472 --> 00:01:13,503
+A quadratic gives two possible roots, one, or none.
+
+25
+00:01:13,573 --> 00:01:16,348
+But our optical surface is only a spherical cap.
+
+26
+00:01:16,388 --> 00:01:19,647
+A root on the opposite cap must be rejected.
+
+27
+00:01:20,517 --> 00:01:23,024
+Keep a forward intersection on the correct cap,
+
+28
+00:01:23,064 --> 00:01:27,069
+inside the clear aperture. Otherwise, report a missed surface.
+
+29
+00:01:27,139 --> 00:01:29,129
+At the accepted point, construct the normal.
+
+30
+00:01:29,169 --> 00:01:32,769
+For a sphere, it follows the line through its centre.
+
+31
+00:01:32,839 --> 00:01:34,827
+Orient the normal into the next medium.
+
+32
+00:01:34,867 --> 00:01:39,690
+Measure bending from this local direction, not from the optical axis.
+
+33
+00:01:40,510 --> 00:01:42,653
+Split the incoming unit direction into
+
+34
+00:01:42,693 --> 00:01:45,518
+parts tangent and normal to the interface.
+
+35
+00:01:45,588 --> 00:01:49,932
+The phase variation along that interface must match on both sides.
+
+36
+00:01:49,972 --> 00:01:52,148
+That determines the tangential part.
+
+37
+00:01:52,218 --> 00:01:55,117
+Divide the first refractive index by the second.
+
+38
+00:01:55,157 --> 00:01:58,730
+Multiply the tangential direction by this ratio.
+
+39
+00:01:58,800 --> 00:02:01,615
+From air into glass, the ratio is below one.
+
+40
+00:02:01,655 --> 00:02:03,851
+The ray bends toward the normal.
+
+41
+00:02:03,921 --> 00:02:06,620
+Rebuild the normal component to make a unit vector.
+
+42
+00:02:06,660 --> 00:02:09,418
+Choose the branch entering the next medium.
+
+43
+00:02:10,288 --> 00:02:12,019
+This is vector Snell refraction.
+
+44
+00:02:12,059 --> 00:02:16,387
+The familiar sine law describes the same rule using angles.
+
+45
+00:02:16,457 --> 00:02:19,330
+From glass into air, the tangential part grows.
+
+46
+00:02:19,370 --> 00:02:23,857
+Beyond the critical angle, no real transmitted direction exists.
+
+47
+00:02:23,927 --> 00:02:27,770
+That is total internal reflection. Our transmitted path stops;
+
+48
+00:02:27,810 --> 00:02:31,449
+following the reflected branch requires another trace.
+
+49
+00:02:32,269 --> 00:02:35,476
+Find the second surface using the new direction.
+
+50
+00:02:35,516 --> 00:02:38,226
+A thick lens requires two separate refractions.
+
+51
+00:02:38,296 --> 00:02:41,735
+Recompute the normal and exchange the refractive indices.
+
+52
+00:02:41,775 --> 00:02:44,583
+This time, the ray leaves glass for air.
+
+53
+00:02:44,653 --> 00:02:47,282
+Intersect the outgoing line with a detector plane.
+
+54
+00:02:47,322 --> 00:02:50,917
+This point is the ray's predicted landing position.
+
+55
+00:02:50,987 --> 00:02:52,542
+Repeat across the entrance aperture.
+
+56
+00:02:52,582 --> 00:02:57,631
+Every path shown comes from surface intersections and Snell refraction.
+
+57
+00:02:57,701 --> 00:03:00,149
+Near the axis, ray angles are small.
+
+58
+00:03:00,189 --> 00:03:04,295
+Linearizing their motion gives the paraxial focus, marked here.
+
+59
+00:03:04,365 --> 00:03:06,633
+That focus is a useful reference,
+
+60
+00:03:06,673 --> 00:03:09,602
+not a promise for every ray through a finite lens.
+
+61
+00:03:10,422 --> 00:03:12,876
+Open the aperture without changing the lens.
+
+62
+00:03:12,916 --> 00:03:16,437
+Outer rays now sample steeper surface regions.
+
+63
+00:03:16,507 --> 00:03:19,654
+Watch the enlarged focus. For this spherical lens,
+
+64
+00:03:19,694 --> 00:03:22,988
+outer rays cross the axis before central rays.
+
+65
+00:03:23,858 --> 00:03:26,133
+This mismatch is spherical aberration.
+
+66
+00:03:26,173 --> 00:03:29,950
+It comes from the geometry, not a coarse numerical grid.
+
+67
+00:03:30,020 --> 00:03:32,977
+Move the detector. The bundle narrows and spreads,
+
+68
+00:03:33,017 --> 00:03:34,859
+but its rays never all meet.
+
+69
+00:03:34,929 --> 00:03:38,261
+Here, best focus minimizes the root mean square distance
+
+70
+00:03:38,301 --> 00:03:41,895
+from the spot centroid. Other criteria can differ.
+
+71
+00:03:41,965 --> 00:03:44,771
+Tilt the input. The off-axis pattern changes,
+
+72
+00:03:44,811 --> 00:03:48,316
+so an on-axis test cannot describe the whole image.
+
+73
+00:03:48,386 --> 00:03:52,251
+Closing the aperture reduces geometric spread but rejects light.
+
+74
+00:03:52,291 --> 00:03:55,700
+A smaller ray spot is not the whole story.
+
+75
+00:03:56,520 --> 00:03:59,377
+These are geometric paths. Their landing points
+
+76
+00:03:59,417 --> 00:04:01,908
+are not a diffraction point spread function.
+
+77
+00:04:01,978 --> 00:04:06,156
+Waves still spread through a finite aperture, as in episode three.
+
+78
+00:04:06,196 --> 00:04:09,321
+Closing the aperture can increase diffraction blur.
+
+79
+00:04:10,191 --> 00:04:14,700
+Our ideal surfaces use one fixed index. We omit reflected power,
+
+80
+00:04:14,740 --> 00:04:18,167
+dispersion, absorption, and manufacturing errors.
+
+81
+00:04:18,237 --> 00:04:22,177
+A missed surface or total internal reflection is a tracing outcome.
+
+82
+00:04:22,217 --> 00:04:25,263
+Check those before comparing image errors.
+
+83
+00:04:25,333 --> 00:04:27,651
+Other surface shapes use the same logic.
+
+84
+00:04:27,691 --> 00:04:30,800
+More rays sample the chosen model more densely;
+
+85
+00:04:30,840 --> 00:04:32,997
+they do not add missing physics.
+
+86
+00:04:33,817 --> 00:04:36,467
+One ray follows one recipe: intersect,
+
+87
+00:04:36,507 --> 00:04:39,522
+construct the normal, refract, and continue.
+
+88
+00:04:39,592 --> 00:04:43,324
+A bundle reveals the consequences. Aperture, field angle,
+
+89
+00:04:43,364 --> 00:04:47,022
+and detector position all affect the geometric image.
+
+90
+00:04:47,092 --> 00:04:49,417
+The paraxial focus starts the design.
+
+91
+00:04:49,457 --> 00:04:54,013
+Exact surface tracing tests the finite lens within its assumptions.
+
+92
+00:04:54,083 --> 00:04:56,813
+Next, we will choose lens shapes using image error,
+
+93
+00:04:56,853 --> 00:04:59,192
+while keeping the required focal length.

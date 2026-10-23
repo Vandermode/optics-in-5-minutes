@@ -1,0 +1,265 @@
+{
+  "voice": "af_heart",
+  "speed": 1.03,
+  "gap_s": 0.32,
+  "chapter_pause_s": 0.75,
+  "lead_in_s": 0.9,
+  "tail_s": 2.6,
+  "segments": [
+    {
+      "id": "h1",
+      "ch": 0,
+      "text": "These lenses have the same focal length. Yet their rays do not land in the same tiny spot.",
+      "say": "These lenses have the same focal length. Yet their rays do not land in the same tiny spot."
+    },
+    {
+      "id": "h2",
+      "ch": 0,
+      "text": "One looks better at the centre of the image, but that is only one place to look.",
+      "say": "One looks better at the centre of the image, but that is only one place to look."
+    },
+    {
+      "id": "h3",
+      "ch": 0,
+      "text": "Which lens should we build? First, we have to decide what better means.",
+      "say": "Which lens should we build? First, we have to decide what better means.",
+      "pause_after": 0.8
+    },
+    {
+      "id": "h4",
+      "ch": 0,
+      "text": "Lens design begins with a measurable task, not a favourite shape.",
+      "say": "Lens design begins with a measurable task, not a favourite shape."
+    },
+    {
+      "id": "s1",
+      "ch": 1,
+      "text": "Recall the ray tracer: intersect a surface, find its normal, then apply Snell's law at each boundary.",
+      "say": "Recall the ray tracer: intersect a surface, find its normal, then apply Snell's law at each boundary."
+    },
+    {
+      "id": "s2",
+      "ch": 1,
+      "text": "Send a bundle from one distant object point through the entrance aperture. Each ray reaches a different position on the detector.",
+      "say": "Send a bundle from one distant object point through the entrance aperture. Each ray reaches a different position on the detector."
+    },
+    {
+      "id": "s3",
+      "ch": 1,
+      "text": "Their mean position is the spot's centroid. Measure each ray's distance from that centre.",
+      "say": "Their mean position is the spot's centroid. Measure each ray's distance from that centre."
+    },
+    {
+      "id": "s4",
+      "ch": 1,
+      "text": "Square those distances, average them, and take the square root. That gives the RMS geometric spot radius.",
+      "say": "Square those distances, average them, and take the square root. That gives the root mean square geometric spot radius."
+    },
+    {
+      "id": "s5",
+      "ch": 1,
+      "text": "Smaller means a tighter ray bundle, for this aperture and detector plane. It does not yet describe diffraction.",
+      "say": "Smaller means a tighter ray bundle, for this aperture and detector plane. It does not yet describe diffraction."
+    },
+    {
+      "id": "s6",
+      "ch": 1,
+      "text": "We score spread around each centroid, so image position and distortion remain separate requirements.",
+      "say": "We score spread around each centroid, so image position and distortion remain separate requirements."
+    },
+    {
+      "id": "b1",
+      "ch": 2,
+      "text": "Now choose the design variables. Our lens has two spherical surfaces, with curvatures given by inverse radius.",
+      "say": "Now choose the design variables. Our lens has two spherical surfaces, with curvatures given by inverse radius."
+    },
+    {
+      "id": "b2",
+      "ch": 2,
+      "text": "Keep the glass index, centre thickness, entrance aperture, and wavelength fixed. The effective focal length stays fifty millimetres.",
+      "say": "Keep the glass index, centre thickness, entrance aperture, and wavelength fixed. The effective focal length stays fifty millimetres."
+    },
+    {
+      "id": "b3",
+      "ch": 2,
+      "text": "Change the bending parameter, q. It redistributes curvature between the two faces while we preserve the thick lens's paraxial power.",
+      "say": "Change the bending parameter, cue. It redistributes curvature between the two faces while we preserve the thick lens's paraxial power."
+    },
+    {
+      "id": "b4",
+      "ch": 2,
+      "text": "Watch the lens change shape. Its rays meet the surfaces at different angles, so their aberrations change.",
+      "say": "Watch the lens change shape. Its rays meet the surfaces at different angles, so their aberrations change."
+    },
+    {
+      "id": "b5",
+      "ch": 2,
+      "text": "Equal effective focal lengths do not guarantee equal back focal distances. The detector position is another design variable, shared by every field.",
+      "say": "Equal effective focal lengths do not guarantee equal back focal distances. The detector position is another design variable, shared by every field."
+    },
+    {
+      "id": "b6",
+      "ch": 2,
+      "text": "For each bending, choose one detector plane for the chosen score. Never refocus each field separately.",
+      "say": "For each bending, choose one detector plane for the chosen score. Never refocus each field separately."
+    },
+    {
+      "id": "a1",
+      "ch": 3,
+      "text": "Begin with an object point on the optical axis. Sweep the bending and find each shape's best on-axis detector plane.",
+      "say": "Begin with an object point on the optical axis. Sweep the bending and find each shape's best on-axis detector plane."
+    },
+    {
+      "id": "a2",
+      "ch": 3,
+      "text": "Each dot on this curve comes from an actual traced bundle. Its height is the geometric spot radius.",
+      "say": "Each dot on this curve comes from an actual traced bundle. Its height is the geometric spot radius."
+    },
+    {
+      "id": "a3",
+      "ch": 3,
+      "text": "The lowest part identifies a promising shape. Refine the search around it instead of choosing by appearance.",
+      "say": "The lowest part identifies a promising shape. Refine the search around it instead of choosing by appearance."
+    },
+    {
+      "id": "a4",
+      "ch": 3,
+      "text": "This shape and detector plane reduce the on-axis spread, for the rays we have sampled.",
+      "say": "This shape and detector plane reduce the on-axis spread, for the rays we have sampled.",
+      "pause_after": 0.8
+    },
+    {
+      "id": "a5",
+      "ch": 3,
+      "text": "But a good central spot is not a complete image. What happened away from the axis?",
+      "say": "But a good central spot is not a complete image. What happened away from the axis?"
+    },
+    {
+      "id": "f1",
+      "ch": 4,
+      "text": "Tilt the incoming bundles to three and six degrees. First, keep the on-axis design's lens, aperture, and detector unchanged.",
+      "say": "Tilt the incoming bundles to three and six degrees. First, keep the on-axis design's lens, aperture, and detector unchanged."
+    },
+    {
+      "id": "f2",
+      "ch": 4,
+      "text": "Now each object direction produces its own spot. Off-axis bundles can become asymmetric and need not prefer the same bending.",
+      "say": "Now each object direction produces its own spot. Off-axis bundles can become asymmetric and need not prefer the same bending."
+    },
+    {
+      "id": "f3",
+      "ch": 4,
+      "text": "Use a combined merit: the mean squared spot radius over the three sampled fields, with equal weights.",
+      "say": "Use a combined merit: the mean squared spot radius over the three sampled fields, with equal weights."
+    },
+    {
+      "id": "f4",
+      "ch": 4,
+      "text": "Now optimize bending and one common detector plane for all three fields. Compare every resulting spot using the same scale.",
+      "say": "Now optimize bending and one common detector plane for all three fields. Compare every resulting spot using the same scale."
+    },
+    {
+      "id": "f5",
+      "ch": 4,
+      "text": "The preferred lens depends on the task. Different field weights, a curved detector, or another aperture can change the answer.",
+      "say": "The preferred lens depends on the task. Different field weights, a curved detector, or another aperture can change the answer."
+    },
+    {
+      "id": "f6",
+      "ch": 4,
+      "text": "An optimizer follows the score we write. It does not know which images we forgot to test.",
+      "say": "An optimizer follows the score we write. It does not know which images we forgot to test.",
+      "pause_after": 0.8
+    },
+    {
+      "id": "c1",
+      "ch": 5,
+      "text": "A score also needs constraints. Reject shapes whose two surfaces collide within the required clear opening.",
+      "say": "A score also needs constraints. Reject shapes whose two surfaces collide within the required clear opening."
+    },
+    {
+      "id": "c2",
+      "ch": 5,
+      "text": "Require every sampled entrance ray to reach the detector. A missed surface or failed transmission must not simply disappear from the average.",
+      "say": "Require every sampled entrance ray to reach the detector. A missed surface or failed transmission must not simply disappear from the average."
+    },
+    {
+      "id": "c3",
+      "ch": 5,
+      "text": "Otherwise, throwing away the difficult rays could make a bad lens look excellent.",
+      "say": "Otherwise, throwing away the difficult rays could make a bad lens look excellent."
+    },
+    {
+      "id": "c4",
+      "ch": 5,
+      "text": "Likewise, shrinking the aperture would change the light collection and the task. We hold it fixed throughout this comparison.",
+      "say": "Likewise, shrinking the aperture would change the light collection and the task. We hold it fixed throughout this comparison."
+    },
+    {
+      "id": "c5",
+      "ch": 5,
+      "text": "Search only the feasible designs, and keep the rejected cases visible. The boundary of the search is part of the result.",
+      "say": "Search only the feasible designs, and keep the rejected cases visible. The boundary of the search is part of the result."
+    },
+    {
+      "id": "v1",
+      "ch": 6,
+      "text": "Before trusting the selected lens, trace a denser pupil sample. Then test directions between the fields used in the score.",
+      "say": "Before trusting the selected lens, trace a denser pupil sample. Then test directions between the fields used in the score."
+    },
+    {
+      "id": "v2",
+      "ch": 6,
+      "text": "Check that the reported improvement survives. This tests sampling and generalization within our stated ray model.",
+      "say": "Check that the reported improvement survives. This tests sampling and generalization within our stated ray model."
+    },
+    {
+      "id": "v3",
+      "ch": 6,
+      "text": "It does not validate everything outside that model. Here the glass index is constant, so chromatic aberration is absent by assumption.",
+      "say": "It does not validate everything outside that model. Here the glass index is constant, so chromatic aberration is absent by assumption."
+    },
+    {
+      "id": "v4",
+      "ch": 6,
+      "text": "Nor is a cloud of ray intersections a diffraction point-spread function. Even a perfect geometric focus has a finite wave-optical spot.",
+      "say": "Nor is a cloud of ray intersections a diffraction point spread function. Even a perfect geometric focus has a finite wave optical spot."
+    },
+    {
+      "id": "v5",
+      "ch": 6,
+      "text": "Episode three supplies that diffraction scale. Episode ten explains how a chosen objective can guide many design variables with gradients.",
+      "say": "Episode three supplies that diffraction scale. Episode ten explains how a chosen objective can guide many design variables with gradients."
+    },
+    {
+      "id": "v6",
+      "ch": 6,
+      "text": "This example searches one bending parameter and solves for a shared detector position. It is not a Maxwell adjoint optimization or a universal best lens.",
+      "say": "This example searches one bending parameter and solves for a shared detector position. It is not a Maxwell adjoint optimization or a universal best lens."
+    },
+    {
+      "id": "r1",
+      "ch": 7,
+      "text": "Lens design is a loop: specify a task, trace the rays, measure performance, then change the prescription under constraints.",
+      "say": "Lens design is a loop: specify a task, trace the rays, measure performance, then change the prescription under constraints."
+    },
+    {
+      "id": "r2",
+      "ch": 7,
+      "text": "Keep the whole comparison honest: the same aperture, one shared detector plane, all tested fields, and no silently discarded rays.",
+      "say": "Keep the whole comparison honest: the same aperture, one shared detector plane, all tested fields, and no silently discarded rays."
+    },
+    {
+      "id": "r3",
+      "ch": 7,
+      "text": "The next questions are practical. What changes across colour, and what can several elements correct that one singlet cannot?",
+      "say": "The next questions are practical. What changes across colour, and what can several elements correct that one singlet cannot?"
+    },
+    {
+      "id": "r4",
+      "ch": 7,
+      "text": "Start by asking what better means. Then build a model that can honestly answer.",
+      "say": "Start by asking what better means. Then build a model that can honestly answer."
+    }
+  ]
+}

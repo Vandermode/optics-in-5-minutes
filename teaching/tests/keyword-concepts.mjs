@@ -1,3 +1,4 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -13,7 +14,8 @@ fs.mkdirSync(out, {recursive: true});
 const translated = (value, lang) => lang === 'zh' ? phrases[value.replace(/\s+/g, ' ').trim()] ?? value : value;
 const home = lang => new URL(`index${lang === 'zh' ? '.zh' : ''}.html#course`, base).href;
 const bindings = catalog.flatMap(entry => entry.keywords.map(keyword => ({episode: entry.id, keyword, id: entry.keywordTerms[keyword]})));
-assert.equal(bindings.length, 48);
+assert.equal(bindings.length, Object.values(episodes).reduce((n, episode) => n + Object.keys(episode.keywordTerms).length, 0), 'Manifest and knowledge export cover the same keyword inventory');
+assert.deepEqual([...new Set(bindings.map(binding => binding.episode))], catalog.map(entry => entry.id), 'Every episode has searchable keywords');
 for (const {episode, keyword, id} of bindings) {
   assert.ok(terms[id] && termConcepts[id].length && relatedTerms(id).length, `${keyword}: connected canonical term`);
   assert.ok(episodesForTerm(id).includes(episode), `${keyword}: taught in its card's episode`);
@@ -32,6 +34,7 @@ async function context(width, javaScriptEnabled = true) {
     await route.fulfill({response});
   });
   await ctx.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
+  await isolateNativeMedia(ctx);
   const page = await ctx.newPage();
   page.on('pageerror', error => errors.push(error.stack || error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
@@ -61,7 +64,7 @@ try {
   for (const lang of ['en', 'zh']) for (const width of [1440, 390]) {
     const {ctx, page} = await context(width);
     await page.goto(home(lang)); await ready(page);
-    assert.equal(await page.locator('.course-card').count(), 10);
+    assert.equal(await page.locator('.course-card').count(), catalog.length);
     assert.equal(await page.locator('a a, .course-card .course-keyword').count(), 0, 'Independent lesson and keyword links');
     const panel = page.locator('#term-panel');
     for (const {episode, keyword, id} of bindings) {
@@ -99,7 +102,7 @@ try {
       assert.equal(await link.getAttribute('aria-expanded'), 'false');
     }
     results.push({lang, width, bindings: bindings.length});
-    console.log(`PASS 48 keyword definitions and graph routes: ${lang} ${width}`);
+    console.log(`PASS ${bindings.length} keyword definitions and graph routes: ${lang} ${width}`);
 
     // Keyboard access, modal focus, connected-term history and language state.
     await page.goto(home(lang)); await ready(page);
@@ -202,7 +205,7 @@ try {
 
     const staticPage = await context(390, false);
     await staticPage.page.goto(home(lang));
-    assert.equal(await staticPage.page.locator('.course-keyword').count(), 48);
+    assert.equal(await staticPage.page.locator('.course-keyword').count(), bindings.length);
     await staticPage.page.locator('.course-keyword[data-open-term="adjointMethod"]').click();
     assert.equal(await staticPage.page.locator('body').getAttribute('data-episode'), 'E10');
     assert.equal(await staticPage.page.locator('html').getAttribute('lang'), lang === 'zh' ? 'zh-CN' : 'en');
