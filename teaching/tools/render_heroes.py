@@ -2,13 +2,14 @@
 from pathlib import Path
 import json
 import subprocess
+import sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 ROOT=Path(__file__).resolve().parents[1]
-subprocess.run(["node",str(ROOT/"tools/render_heroes.mjs")],check=True)
+subprocess.run(["node",str(ROOT/"tools/render_heroes.mjs"),*sys.argv[1:]],check=True)
 cmap=LinearSegmentedColormap.from_list("course",["#05131a","#0f3d4a","#287278","#6eb1a3","#dfe5bc","#fff9de"])
 plt.rcParams.update({"font.size":11,"axes.labelcolor":"#172f39","text.color":"#172f39","axes.edgecolor":"#a9b7af","figure.facecolor":"#f5f3ed","axes.facecolor":"#fffdf8"})
 for item in json.loads((ROOT/".qa/heroes.json").read_text()):
@@ -21,12 +22,16 @@ for item in json.loads((ROOT/".qa/heroes.json").read_text()):
         ax.set_xticks([]);ax.set_yticks([])
     else:
         for series in p["series"]:
-            ax.plot(series["x"],series["y"],label=series["label"],color=series["color"],lw=2)
+            label = series["label"] if series.get("showLegend", True) else '_nolegend_'
+            ax.plot(series["x"],series["y"],label=label,color=series["color"],lw=2,
+                    linestyle='None' if series.get('points') else '-',
+                    marker='.' if series.get('points') else None, markersize=3)
         ax.set(xlabel=p.get("xLabel",""),ylabel=p.get("yLabel",""))
         if "xRange" in p:ax.set_xlim(p["xRange"])
         if "yRange" in p:ax.set_ylim(p["yRange"])
+        if p.get('equalAspect'):ax.set_aspect('equal', adjustable='box')
         ax.legend(frameon=False,fontsize=10);ax.grid(alpha=.17)
     ax.set_title(p["title"],fontsize=13,pad=15)
     out=ROOT/item["slug"]/"assets";out.mkdir(exist_ok=True)
     fig.savefig(out/"hero.png");plt.close(fig)
-print("Saved nine computed hero figures.")
+print("Saved computed hero figures for the authored lessons.")

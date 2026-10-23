@@ -242,5 +242,54 @@
       "Automatic differentiation": "automaticDifferentiation",
       "Fabrication constraints": "fabricationConstraints"
     }
+  },
+  {
+    "id": "E11",
+    "slug": "e11-ray-tracing",
+    "title": "Ray tracing through a real lens",
+    "description": "Follow light through two curved interfaces, compare a paraxial focus with finite-aperture rays, and separate geometric blur from diffraction.",
+    "prerequisites": [
+      "E03"
+    ],
+    "notebook": "e11_ray_tracing.ipynb",
+    "keywords": [
+      "Ray tracing",
+      "Snell’s law",
+      "Paraxial approximation",
+      "Spherical aberration",
+      "Geometric spot diagram"
+    ],
+    "keywordTerms": {
+      "Ray tracing": "rayTracing",
+      "Snell’s law": "snell",
+      "Paraxial approximation": "paraxial",
+      "Spherical aberration": "sphericalAberration",
+      "Geometric spot diagram": "spotDiagram"
+    }
+  },
+  {
+    "id": "E12",
+    "slug": "e12-lens-design",
+    "title": "Lens design with a measurable objective",
+    "description": "Bend a singlet without changing its paraxial focal power. Choose a common image plane, minimize a stated geometric error, and check what the design sacrifices away from the centre.",
+    "prerequisites": [
+      "E11",
+      "E03"
+    ],
+    "notebook": "e12_lens_design.ipynb",
+    "keywords": [
+      "Lens prescription",
+      "Lens bending",
+      "Merit function",
+      "RMS spot radius",
+      "Design constraints"
+    ],
+    "keywordTerms": {
+      "Lens prescription": "lensPrescription",
+      "Lens bending": "lensBending",
+      "Merit function": "meritFunction",
+      "RMS spot radius": "rmsSpot",
+      "Design constraints": "designConstraints"
+    }
   }
 ]

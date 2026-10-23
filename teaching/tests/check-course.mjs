@@ -76,4 +76,4 @@ for(const entry of catalog){
 }
 const regression=spawnSync(process.execPath,['tests/check-model.mjs'],{cwd:new URL('e03-diffraction/',root),encoding:'utf8'});
 process.stdout.write(regression.stdout);process.stderr.write(regression.stderr);assert.equal(regression.status,0,'E03 regression');
-console.log(`PASS ${assertions} numerical comparisons and invariants, including all ten lessons.`);
+console.log(`PASS ${assertions} numerical comparisons and invariants, including all ${catalog.length} lessons.`);

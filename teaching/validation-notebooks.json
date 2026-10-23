@@ -156,5 +156,39 @@
       "Sparse Helmholtz gradient relative error: 5.020800334884438e-10\nError if conjugation is accidentally omitted: 1.8129195953770494",
       "Saved 5 figures in e10_figures.zip"
     ]
+  },
+  {
+    "id": "E11",
+    "code_cells": 7,
+    "png_outputs": 5,
+    "elapsed_seconds": 5.59,
+    "clean_kernel": true,
+    "optional_sections_executed": true,
+    "assertions": "passed",
+    "stdout": [
+      "Python 3.11.7 | NumPy 2.4.6 | SciPy 1.17.1 | Matplotlib 3.11.2",
+      "Normal incidence, scalar Snell law, TIR, and ray reversal checks passed.",
+      "Near-cap sag: 0.36130541603657207 mm; rejected far-hemisphere root: 99.63869458396343 mm",
+      "Paraxial EFL / back focal length / absolute image z: {'power': 0.019733333333333335, 'focal': 50.67567567567567, 'bfl': 49.32432432432432, 'image_z': 53.32432432432432}\nGeometric RMS: 69.19565743770927 \u03bcm; accepted rays: 96 / 96",
+      "ABCD focus: 53.32432432432432 mm; near-axis focus errors: [0.02025935 0.00506352 0.0012658  0.00031644]\nPupil convergence: [(36, 0.11883393103800602), (144, 0.12049616809220018), (576, 0.12090866642543296), (2304, 0.12101160314513183)]\nFull-ray reversibility passed.",
+      "Saved 5 figures in e11_figures.zip"
+    ]
+  },
+  {
+    "id": "E12",
+    "code_cells": 8,
+    "png_outputs": 4,
+    "elapsed_seconds": 9.48,
+    "clean_kernel": true,
+    "optional_sections_executed": true,
+    "assertions": "passed",
+    "stdout": [
+      "Python 3.11.7 | NumPy 2.4.6 | SciPy 1.17.1 | Matplotlib 3.11.2",
+      "q=-1.20, R1=-251.458, R2=-22.860, EFL=50.000000, edge=0.884 mm\nq=-0.60, R1=123.924, R2=-30.981, EFL=50.000000, edge=0.999 mm\nq=+0.00, R1=49.324, R2=-49.324, EFL=50.000000, edge=1.036 mm\nq=+0.60, R1=30.981, R2=-123.924, EFL=50.000000, edge=0.999 mm\nq=+1.20, R1=22.860, R2=251.458, EFL=50.000000, edge=0.884 mm",
+      "Initial paraxial z: 52.64839839775475 mm; common least-squares z: 51.637690171745845 mm",
+      "On-axis objective : q = 0.6865234375 , common z = 51.22776078515433 , merit = 0.00023856753844424237 mm\u00b2\nThree-field objective : q = 0.467236328125 , common z = 51.21456626089123 , merit = 0.0010027688477961614 mm\u00b2",
+      "Common-plane derivative: 1.4094628242311558e-15 mm\nPupil-refined merits (same device and plane): [0.0010027688477961614, 0.0010064753122333294, 0.0010074048660047843]\nDeliberately oversized stop: lost fraction 0.15624999999999997 penalized merit 1000156.25",
+      "Saved 4 figures in e12_figures.zip"
+    ]
   }
 ]

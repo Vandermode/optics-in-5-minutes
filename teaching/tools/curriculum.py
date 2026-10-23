@@ -379,3 +379,6 @@ dict(id="E10",slug="e10-adjoint-design",title="Designing light with gradients",
      refs=[("Steven G. Johnson · Notes on adjoint methods","https://math.mit.edu/~stevenj/18.336/adjoint.pdf"),
            ("SciPy · Sparse factorization solve conventions","https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.SuperLU.solve.html"),FFT]),
 ]
+
+from geometric_course import MODULES as GEOMETRIC_MODULES
+MODULES.extend(GEOMETRIC_MODULES)

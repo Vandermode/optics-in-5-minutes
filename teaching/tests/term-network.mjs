@@ -1,3 +1,4 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -37,6 +38,7 @@ async function context(width, lang) {
     await route.fulfill({response});
   });
   await ctx.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
+  await isolateNativeMedia(ctx);
   const page = await ctx.newPage();
   page.on('pageerror', error => errors.push(error.stack || error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
@@ -69,7 +71,7 @@ try {
     for (const [episode, contexts] of Object.entries(lessonTerms)) {
       const label = `${episode} ${lang} ${width}`;
       await page.goto(route(episode, lang)); await ready(page);
-      assert.equal(await page.locator('[data-concept]').count(), 12, label + ' overview stays small');
+      assert.equal(await page.locator('[data-concept]').count(), Object.keys(concepts).length, label + ' complete overview');
       assert.equal(await page.locator('.concept-term-layer[open]').count(), 0, label + ' detailed vocabulary starts collapsed');
       const ids = width === 1440 ? Object.keys(contexts) : [Object.keys(contexts)[0]];
       const panel = page.locator('#term-panel');

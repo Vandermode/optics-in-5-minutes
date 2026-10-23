@@ -1,0 +1,14 @@
+{
+  "slug": "e11_ray_tracing",
+  "title": "Tracing Light Through a Lens",
+  "chapters": [
+    "Ch0Hook",
+    "Ch1RayState",
+    "Ch2Intersection",
+    "Ch3Refraction",
+    "Ch4ThroughLens",
+    "Ch5ImageError",
+    "Ch6Limits",
+    "Ch7Recap"
+  ]
+}

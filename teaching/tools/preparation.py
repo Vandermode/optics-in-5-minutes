@@ -1,6 +1,7 @@
 """Focused prerequisites and primary learning resources for the teaching course."""
 import html
 import re
+from geometric_course import TOPICS as GEOMETRIC_TOPICS, PREPARATION as GEOMETRIC_PREPARATION
 
 SITE = "https://vandermode.github.io/optics-in-5-minutes-course/"
 AUDIENCE = (
@@ -204,6 +205,10 @@ LESSONS = {
 }
 
 
+TOPICS.update(GEOMETRIC_TOPICS)
+LESSONS.update(GEOMETRIC_PREPARATION)
+
+
 def esc(value):
     return html.escape(str(value), quote=True)
 
@@ -312,7 +317,7 @@ def guide_html(catalog):
 <ul class="prep-resources">{resource_html(key)}</ul><p class="prep-use">{"<br>".join(context)}</p></article>''')
     jumps = " · ".join(f'<a href="#{key}">{esc(topic["title"])}</a>' for key, topic in TOPICS.items())
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Prerequisites & learning resources · Optics in 5 Minutes</title><meta name="description" content="Focused preparation for ten computational optics lessons, with specific skills and selected primary learning resources.">
+<title>Prerequisites & learning resources · Optics in 5 Minutes</title><meta name="description" content="Focused preparation for twelve optics lessons, with specific skills and selected primary learning resources.">
 <link rel="icon" href="../e03-diffraction/assets/favicon.svg"><link rel="stylesheet" href="../shared/course.css"><link rel="stylesheet" href="../shared/preparation.css"></head>
 <body><a class="skip" href="#resource-main">Skip to resources</a><div class="shell"><header class="topbar"><a class="brand" href="../">OPTICS<span>IN 5 MINUTES</span></a><nav aria-label="Course navigation"><a href="../#course">All lessons</a><a href="#topics">Find a topic</a></nav></header>
 <main id="resource-main"><section class="prep-guide-intro"><p class="eyebrow">PREREQUISITES & LEARNING RESOURCES</p><h1>Refresh what you need.<br>Then return to the optics.</h1>

@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("episodes", nargs="*", help="E01 … E10; default: all ten")
+    parser.add_argument("episodes", nargs="*", help="Episode IDs such as E11 E12; default: every catalog entry")
     args = parser.parse_args()
     catalog = json.loads((ROOT / "course.json").read_text())
     report_path = ROOT / "validation-notebooks.json"

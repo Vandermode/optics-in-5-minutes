@@ -1,7 +1,9 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {geometry} from './knowledge-geometry.mjs';
+import {knowledge} from '../shared/knowledge-data.js';
 
 const root = new URL('../', import.meta.url);
 const base = process.env.COURSE_URL || 'http://127.0.0.1:8787/';
@@ -26,6 +28,7 @@ async function context(options = {}) {
     }
   });
   await ctx.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
+  await isolateNativeMedia(ctx);
   ctx.on('page', page => {
     page.on('pageerror', error => errors.push(error.stack || error.message));
     page.on('console', message => {if (message.type() === 'error') errors.push(message.text());});
@@ -69,7 +72,9 @@ try {
       await ready(page, entry.id, language);
       const expected = Object.keys(memberships).filter(id => memberships[id].includes(entry.id));
       const marked = () => page.locator('.concept-node[data-in-episode]').evaluateAll(nodes => nodes.map(node => node.dataset.concept));
-      assert.deepEqual(await marked(), expected, label + ' highlights agree with the course map');
+      // Nodes are grouped by visual region; panels retain curriculum order.
+      // Membership must agree even when those two presentation orders differ.
+      assert.deepEqual((await marked()).sort(), [...expected].sort(), label + ' highlights agree with the course map');
       assert.deepEqual(await page.locator('[data-chapter-concept]').evaluateAll(nodes => nodes.map(node => node.dataset.chapterConcept)), expected, label + ' opening concepts');
       assert.ok(expected.includes(await current(page)), label + ' starts with a concept used here');
       assert.equal(await current(page), await page.locator('#knowledge-map').getAttribute('data-default-concept'));
@@ -112,7 +117,7 @@ try {
       await page.locator(`[data-concept="${outside}"]`).focus();
       await page.keyboard.press('Enter');
       assert.equal(await current(page), outside);
-      assert.deepEqual(await marked(), expected, 'Chapter highlights remain when exploring another concept');
+      assert.deepEqual((await marked()).sort(), [...expected].sort(), 'Chapter highlights remain when exploring another concept');
       await page.goBack();
       assert.equal(await current(page), chosen);
       await page.reload();
@@ -142,7 +147,7 @@ try {
       await ready(page, entry.id, other);
       assert.equal(await current(page), chosen, 'Language switch retains selected concept');
       assert.equal(await page.locator('#' + rangeId).inputValue(), value, 'Language switch retains experiment controls');
-      assert.deepEqual(await marked(), expected, 'Both editions highlight the same concepts');
+      assert.deepEqual((await marked()).sort(), [...expected].sort(), 'Both editions highlight the same concepts');
       await page.locator(`[data-concept="${chosen}"]`).click();
       await page.locator(`#concept-${chosen} .concept-home`).click();
       await ready(page, null, other);
@@ -167,7 +172,7 @@ try {
   for (const width of [1280, 1024, 768, 320]) for (const language of ['en', 'zh']) {
     const ctx = await context({viewport: {width, height: 1000}});
     const page = await ctx.newPage();
-    for (const id of ['E03', 'E10']) {
+    for (const id of ['E03', 'E10', 'E11', 'E12']) {
       const entry = catalog.find(item => item.id === id);
       await page.goto(new URL(entry.slug + (language === 'zh' ? '/index.zh.html' : '/index.html') + '#knowledge-map', base).href);
       await ready(page, id, language);
@@ -186,7 +191,7 @@ try {
     const page = await ctx.newPage();
     for (const entry of catalog) {
       await page.goto(new URL(entry.slug + (language === 'zh' ? '/index.zh.html' : '/index.html'), base).href);
-      assert.equal(await page.locator('.concept-panel:visible').count(), 12, 'Static concept routes remain available');
+      assert.equal(await page.locator('.concept-panel:visible').count(), knowledge.concepts.length, 'Static concept routes remain available');
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
       await page.locator('[data-chapter-concept]').first().click();
       const selected = new URL(page.url()).hash;

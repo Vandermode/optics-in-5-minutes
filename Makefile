@@ -43,6 +43,9 @@ $(1)/.verify/report.txt: $(1)/$(call lc,$(1))_1080p60.mp4
 endef
 $(foreach e,$(EPISODES),$(eval $(call EPISODE_RULES,$(e))))
 
+# Both geometric-optics films compute their data with the shared teaching model.
+E11_ray_tracing/data/.done E12_lens_design/data/.done: teaching/tools/ray_optics.py
+
 physics:
 	@$(MAKE) --no-print-directory $(if $(FORCE),-W $(EP)/physics.py) $(EP)/data/.done
 audio:

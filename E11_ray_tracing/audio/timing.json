@@ -1,0 +1,327 @@
+{
+ "total": 301.542,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Watch parallel rays pass through two curved glass surfaces and crowd toward a common focus.",
+   "start": 0.9,
+   "end": 6.305
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "Now zoom in. The outer rays cross before the central rays, so one point cannot catch them all.",
+   "start": 6.625,
+   "end": 12.166
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "How can we predict this mismatch without pretending a real lens is infinitely thin?",
+   "start": 13.286,
+   "end": 18.129
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "Trace each ray: find the next surface, change its direction, then repeat.",
+   "start": 18.449,
+   "end": 22.623
+  },
+  {
+   "id": "r1",
+   "ch": 1,
+   "text": "A ray marks a local direction of light travel. It is not the complete electric field.",
+   "start": 23.693,
+   "end": 28.719
+  },
+  {
+   "id": "r2",
+   "ch": 1,
+   "text": "Store a starting position and a unit direction vector. Distance along that direction is our variable.",
+   "start": 29.039,
+   "end": 34.957
+  },
+  {
+   "id": "r3",
+   "ch": 1,
+   "text": "In uniform material, a ray follows a straight line. A boundary can change its direction.",
+   "start": 35.277,
+   "end": 40.629
+  },
+  {
+   "id": "r4",
+   "ch": 1,
+   "text": "Our lens has two spherical surfaces, four millimetres apart, with glass index one point five.",
+   "start": 40.949,
+   "end": 46.705
+  },
+  {
+   "id": "r5",
+   "ch": 1,
+   "text": "You see a central slice of a three-dimensional calculation. The optical axis runs horizontally, along z.",
+   "start": 47.025,
+   "end": 53.896
+  },
+  {
+   "id": "r6",
+   "ch": 1,
+   "text": "Curvature, thickness, and aperture specify the glass. We still need to calculate where light goes.",
+   "start": 54.216,
+   "end": 59.984
+  },
+  {
+   "id": "i1",
+   "ch": 2,
+   "text": "First, extend the incoming line until it meets the first spherical surface. Calculate that intersection.",
+   "start": 61.054,
+   "end": 67.091
+  },
+  {
+   "id": "i2",
+   "ch": 2,
+   "text": "Substitute the ray into the sphere equation. A quadratic gives two possible roots, one, or none.",
+   "start": 67.411,
+   "end": 73.253
+  },
+  {
+   "id": "i3",
+   "ch": 2,
+   "text": "But our optical surface is only a spherical cap. A root on the opposite cap must be rejected.",
+   "start": 73.573,
+   "end": 79.397
+  },
+  {
+   "id": "i4",
+   "ch": 2,
+   "text": "Keep a forward intersection on the correct cap, inside the clear aperture. Otherwise, report a missed surface.",
+   "start": 80.517,
+   "end": 86.819
+  },
+  {
+   "id": "i5",
+   "ch": 2,
+   "text": "At the accepted point, construct the normal. For a sphere, it follows the line through its centre.",
+   "start": 87.139,
+   "end": 92.519
+  },
+  {
+   "id": "i6",
+   "ch": 2,
+   "text": "Orient the normal into the next medium. Measure bending from this local direction, not from the optical axis.",
+   "start": 92.839,
+   "end": 99.44
+  },
+  {
+   "id": "s1",
+   "ch": 3,
+   "text": "Split the incoming unit direction into parts tangent and normal to the interface.",
+   "start": 100.51,
+   "end": 105.268
+  },
+  {
+   "id": "s2",
+   "ch": 3,
+   "text": "The phase variation along that interface must match on both sides. That determines the tangential part.",
+   "start": 105.588,
+   "end": 111.898
+  },
+  {
+   "id": "s3",
+   "ch": 3,
+   "text": "Divide the first refractive index by the second. Multiply the tangential direction by this ratio.",
+   "start": 112.218,
+   "end": 118.48
+  },
+  {
+   "id": "s4",
+   "ch": 3,
+   "text": "From air into glass, the ratio is below one. The ray bends toward the normal.",
+   "start": 118.8,
+   "end": 123.601
+  },
+  {
+   "id": "s5",
+   "ch": 3,
+   "text": "Rebuild the normal component to make a unit vector. Choose the branch entering the next medium.",
+   "start": 123.921,
+   "end": 129.168
+  },
+  {
+   "id": "s6",
+   "ch": 3,
+   "text": "This is vector Snell refraction. The familiar sine law describes the same rule using angles.",
+   "start": 130.288,
+   "end": 136.137
+  },
+  {
+   "id": "s7",
+   "ch": 3,
+   "text": "From glass into air, the tangential part grows. Beyond the critical angle, no real transmitted direction exists.",
+   "start": 136.457,
+   "end": 143.607
+  },
+  {
+   "id": "s8",
+   "ch": 3,
+   "text": "That is total internal reflection. Our transmitted path stops; following the reflected branch requires another trace.",
+   "start": 143.927,
+   "end": 151.199
+  },
+  {
+   "id": "l1",
+   "ch": 4,
+   "text": "Find the second surface using the new direction. A thick lens requires two separate refractions.",
+   "start": 152.269,
+   "end": 157.976
+  },
+  {
+   "id": "l2",
+   "ch": 4,
+   "text": "Recompute the normal and exchange the refractive indices. This time, the ray leaves glass for air.",
+   "start": 158.296,
+   "end": 164.333
+  },
+  {
+   "id": "l3",
+   "ch": 4,
+   "text": "Intersect the outgoing line with a detector plane. This point is the ray's predicted landing position.",
+   "start": 164.653,
+   "end": 170.667
+  },
+  {
+   "id": "l4",
+   "ch": 4,
+   "text": "Repeat across the entrance aperture. Every path shown comes from surface intersections and Snell refraction.",
+   "start": 170.987,
+   "end": 177.381
+  },
+  {
+   "id": "l5",
+   "ch": 4,
+   "text": "Near the axis, ray angles are small. Linearizing their motion gives the paraxial focus, marked here.",
+   "start": 177.701,
+   "end": 184.045
+  },
+  {
+   "id": "l6",
+   "ch": 4,
+   "text": "That focus is a useful reference, not a promise for every ray through a finite lens.",
+   "start": 184.365,
+   "end": 189.352
+  },
+  {
+   "id": "a1",
+   "ch": 5,
+   "text": "Open the aperture without changing the lens. Outer rays now sample steeper surface regions.",
+   "start": 190.422,
+   "end": 196.187
+  },
+  {
+   "id": "a2",
+   "ch": 5,
+   "text": "Watch the enlarged focus. For this spherical lens, outer rays cross the axis before central rays.",
+   "start": 196.507,
+   "end": 202.738
+  },
+  {
+   "id": "a3",
+   "ch": 5,
+   "text": "This mismatch is spherical aberration. It comes from the geometry, not a coarse numerical grid.",
+   "start": 203.858,
+   "end": 209.7
+  },
+  {
+   "id": "a4",
+   "ch": 5,
+   "text": "Move the detector. The bundle narrows and spreads, but its rays never all meet.",
+   "start": 210.02,
+   "end": 214.609
+  },
+  {
+   "id": "a5",
+   "ch": 5,
+   "text": "Here, best focus minimizes the root mean square distance from the spot centroid. Other criteria can differ.",
+   "start": 214.929,
+   "end": 221.645
+  },
+  {
+   "id": "a6",
+   "ch": 5,
+   "text": "Tilt the input. The off-axis pattern changes, so an on-axis test cannot describe the whole image.",
+   "start": 221.965,
+   "end": 228.066
+  },
+  {
+   "id": "a7",
+   "ch": 5,
+   "text": "Closing the aperture reduces geometric spread but rejects light. A smaller ray spot is not the whole story.",
+   "start": 228.386,
+   "end": 235.45
+  },
+  {
+   "id": "m1",
+   "ch": 6,
+   "text": "These are geometric paths. Their landing points are not a diffraction point spread function.",
+   "start": 236.52,
+   "end": 241.658
+  },
+  {
+   "id": "m2",
+   "ch": 6,
+   "text": "Waves still spread through a finite aperture, as in episode three. Closing the aperture can increase diffraction blur.",
+   "start": 241.978,
+   "end": 249.071
+  },
+  {
+   "id": "m3",
+   "ch": 6,
+   "text": "Our ideal surfaces use one fixed index. We omit reflected power, dispersion, absorption, and manufacturing errors.",
+   "start": 250.191,
+   "end": 257.917
+  },
+  {
+   "id": "m4",
+   "ch": 6,
+   "text": "A missed surface or total internal reflection is a tracing outcome. Check those before comparing image errors.",
+   "start": 258.237,
+   "end": 265.013
+  },
+  {
+   "id": "m5",
+   "ch": 6,
+   "text": "Other surface shapes use the same logic. More rays sample the chosen model more densely; they do not add missing physics.",
+   "start": 265.333,
+   "end": 272.747
+  },
+  {
+   "id": "c1",
+   "ch": 7,
+   "text": "One ray follows one recipe: intersect, construct the normal, refract, and continue.",
+   "start": 273.817,
+   "end": 279.272
+  },
+  {
+   "id": "c2",
+   "ch": 7,
+   "text": "A bundle reveals the consequences. Aperture, field angle, and detector position all affect the geometric image.",
+   "start": 279.592,
+   "end": 286.772
+  },
+  {
+   "id": "c3",
+   "ch": 7,
+   "text": "The paraxial focus starts the design. Exact surface tracing tests the finite lens within its assumptions.",
+   "start": 287.092,
+   "end": 293.763
+  },
+  {
+   "id": "c4",
+   "ch": 7,
+   "text": "Next, we will choose lens shapes using image error, while keeping the required focal length.",
+   "start": 294.083,
+   "end": 298.942
+  }
+ ]
+}

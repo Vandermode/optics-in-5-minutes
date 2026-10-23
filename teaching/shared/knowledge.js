@@ -241,8 +241,31 @@ function draw() {
   if (!width) return;
   const columns = width >= 640 ? 2 : 1;
   const blockWidth = width / columns;
-  const blockHeight = columns === 2 ? 250 : 230;
-  const height = blockHeight * (regions.length / columns);
+  // Measure wrapped labels before spacing rows. Narrow screens need clear lanes
+  // between tall nodes as well as enough room for the labels themselves.
+  const regionLayouts = regions.map(region => {
+    region.style.width = blockWidth + 'px';
+    const regionNodes = [...region.querySelectorAll('[data-concept]')];
+    const entries = regionNodes.map((node, slot) => {
+      const centred = regionNodes.length % 2 === 1 && slot === regionNodes.length - 1;
+      const w = centred ? Math.min(210, blockWidth - 48) : Math.min(186, (blockWidth - 40) / 2);
+      const x = blockWidth * (centred ? .5 : slot % 2 === 0 ? .25 : .75);
+      Object.assign(node.style, {width: w + 'px', left: (x - w / 2) + 'px', top: '0px'});
+      return {node, x, w, h: node.getBoundingClientRect().height, row: Math.floor(slot / 2)};
+    });
+    let top = Math.max(56, region.querySelector('h3').getBoundingClientRect().height + 32);
+    const firstTop = top;
+    for (let row = 0; row < Math.ceil(entries.length / 2); row++) {
+      const rowEntries = entries.filter(entry => entry.row === row);
+      const rowHeight = Math.max(...rowEntries.map(entry => entry.h));
+      for (const entry of rowEntries) entry.y = top + rowHeight / 2;
+      top += rowHeight + 31;
+    }
+    const lastBottom = top - 31;
+    return {entries, firstTop, lastBottom, height: lastBottom + (columns === 2 ? 39 : 19)};
+  });
+  const blockHeight = Math.max(columns === 2 ? 250 : 230, ...regionLayouts.map(region => region.height));
+  const height = blockHeight * Math.ceil(regions.length / columns);
   graph.style.height = height + 'px';
   svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
   svg.setAttribute('width', width);
@@ -251,12 +274,7 @@ function draw() {
   regions.forEach((region, index) => {
     const gx = index % columns * blockWidth, gy = Math.floor(index / columns) * blockHeight;
     Object.assign(region.style, {left: gx + 'px', top: gy + 'px', width: blockWidth + 'px', height: blockHeight + 'px'});
-    [...region.querySelectorAll('[data-concept]')].forEach((node, slot) => {
-      const w = slot === 2 ? Math.min(210, blockWidth - 48) : Math.min(186, (blockWidth - 40) / 2);
-      const x = blockWidth * (slot === 0 ? .25 : slot === 1 ? .75 : .5);
-      const y = slot === 2 ? 180 : 87;
-      Object.assign(node.style, {width: w + 'px', left: (x - w / 2) + 'px', top: '0px'});
-      const h = node.getBoundingClientRect().height;
+    regionLayouts[index].entries.forEach(({node, x, y, w, h}) => {
       node.style.top = (y - h / 2) + 'px';
       layout.set(node.dataset.concept, {x: gx + x, y: gy + y, w, h});
     });
@@ -271,10 +289,11 @@ function draw() {
   marker.append(make('path', {d: 'M 1 1 L 9 5 L 1 9 Z', fill: 'context-stroke'}));
   defs.append(marker); svg.append(defs);
   regions.forEach((region, index) => {
+    const {firstTop, lastBottom} = regionLayouts[index];
     svg.append(make('ellipse', {
       cx: index % columns * blockWidth + blockWidth / 2,
-      cy: Math.floor(index / columns) * blockHeight + 120,
-      rx: blockWidth / 2 - 5, ry: 105,
+      cy: Math.floor(index / columns) * blockHeight + (firstTop + lastBottom) / 2,
+      rx: blockWidth / 2 - 5, ry: (lastBottom - firstTop) / 2 + 20,
       fill: getComputedStyle(region).getPropertyValue('--region-color'), 'fill-opacity': .055,
     }));
   });

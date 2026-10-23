@@ -3,8 +3,9 @@ import html
 import json
 
 from preparation import TOPICS
+from geometric_course import tr
 
-REGIONS = ["Waves & representations", "Measurement & reconstruction",
+REGIONS = [tr("Rays, waves & representations", "光线、波与表征"), "Measurement & reconstruction",
            "Structures & devices", "Computation & design"]
 
 CONCEPTS = [
@@ -21,8 +22,8 @@ CONCEPTS = [
          description="Connect field correlations to what survives a camera's averaging: interference, fringe visibility, and speckle.",
          foundations=["complex", "averages"], episodes=["E04", "E05", "E03"]),
     dict(id="imaging", label="Imaging & resolution", region=1,
-         description="Use point responses and frequency transfer to understand which details an optical image can carry.",
-         foundations=["complex", "fourier"], episodes=["E03", "E02"]),
+         description=tr("Compare geometric image errors, point responses and frequency transfer to understand which details an optical image can carry.", "比较几何成像误差、点响应和频率传递，理解光学图像能够承载哪些细节。"),
+         foundations=["complex", "fourier"], episodes=["E03", "E02", "E11", "E12"]),
     dict(id="recovery", label="Holography & phase recovery", region=1,
          description="Recover information about an optical field using a reference or constraints on intensity measurements.",
          foundations=["complex", "fourier"], episodes=["E05"]),
@@ -44,12 +45,19 @@ CONCEPTS = [
     dict(id="adjoint", label="Adjoints & inverse design", region=3,
          description="Use a scalar objective and an adjoint calculation to find how every design parameter changes the result.",
          foundations=["derivatives", "complex-matrices", "fourier"], episodes=["E10"]),
+    dict(id="rays", label=tr("Rays & geometric optics", "光线与几何光学"), region=0,
+         description=tr("Follow positions and directions through refracting surfaces, then test paraxial predictions against finite-aperture geometric rays.", "跟踪位置与方向如何通过折射曲面，再用有限孔径几何光线检验近轴预测。"),
+         foundations=["ray-vectors", "ray-geometry"], episodes=["E11", "E12"]),
+    dict(id="lensdesign", label=tr("Lens design & image quality", "透镜设计与成像质量"), region=3,
+         description=tr("Choose a prescription, objective and physical constraints, then evaluate the resulting lens across fields and independent samples.", "选择结构参数、目标函数与物理约束，再跨视场并用独立采样评价所得透镜。"),
+         foundations=["ray-geometry", "squared-error"], episodes=["E12"]),
 ]
 
 EPISODE_FOCUS = {
     "E01": "propagation", "E02": "fourier", "E03": "imaging",
     "E04": "coherence", "E05": "recovery", "E06": "phase",
     "E07": "periodic", "E08": "modes", "E09": "maxwell", "E10": "adjoint",
+    "E11": "rays", "E12": "lensdesign",
 }
 
 # "basis" is directional conceptual support, never an episode completion rule.
@@ -75,6 +83,12 @@ RELATIONS = [
     ("phase", "adjoint", "related", "Phase pixels become adjustable design parameters."),
     ("recovery", "adjoint", "related", "Reconstruction and design share optimization methods."),
     ("modes", "maxwell", "related", "Eigenfields and time evolution offer complementary views."),
+    ("rays", "lensdesign", "basis", tr("A ray model evaluates each candidate lens prescription.", "光线模型用于评价每组候选透镜结构参数。")),
+    ("rays", "propagation", "related", tr("Geometric rays and wave propagation retain different physical information.", "几何光线与波动传播保留不同层次的物理信息。")),
+    ("rays", "imaging", "related", tr("Compare geometric spot spread with the wave-optical point response.", "比较几何光斑散布与波动光学点响应。")),
+    ("lensdesign", "imaging", "related", tr("Image-quality metrics determine which tradeoffs the design rewards.", "成像质量指标决定设计偏好哪些取舍。")),
+    ("lensdesign", "phase", "related", tr("Curved lenses and phase elements offer different ways to control an image.", "曲面透镜与相位元件提供不同的成像调控方式。")),
+    ("lensdesign", "adjoint", "related", tr("Both use a forward model, objective and constrained update; their solvers and variables differ.", "两者都使用前向模型、目标和受约束更新，但求解器与变量不同。")),
 ]
 
 

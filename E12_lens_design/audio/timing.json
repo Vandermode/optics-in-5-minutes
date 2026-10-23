@@ -1,0 +1,299 @@
+{
+ "total": 308.187,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "These lenses have the same focal length. Yet their rays do not land in the same tiny spot.",
+   "start": 0.9,
+   "end": 6.495
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "One looks better at the centre of the image, but that is only one place to look.",
+   "start": 6.815,
+   "end": 11.017
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "Which lens should we build? First, we have to decide what better means.",
+   "start": 11.337,
+   "end": 15.296
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "Lens design begins with a measurable task, not a favourite shape.",
+   "start": 16.416,
+   "end": 20.266
+  },
+  {
+   "id": "s1",
+   "ch": 1,
+   "text": "Recall the ray tracer: intersect a surface, find its normal, then apply Snell's law at each boundary.",
+   "start": 21.336,
+   "end": 27.611
+  },
+  {
+   "id": "s2",
+   "ch": 1,
+   "text": "Send a bundle from one distant object point through the entrance aperture. Each ray reaches a different position on the detector.",
+   "start": 27.931,
+   "end": 35.314
+  },
+  {
+   "id": "s3",
+   "ch": 1,
+   "text": "Their mean position is the spot's centroid. Measure each ray's distance from that centre.",
+   "start": 35.634,
+   "end": 40.58
+  },
+  {
+   "id": "s4",
+   "ch": 1,
+   "text": "Square those distances, average them, and take the square root. That gives the RMS geometric spot radius.",
+   "start": 40.9,
+   "end": 48.31
+  },
+  {
+   "id": "s5",
+   "ch": 1,
+   "text": "Smaller means a tighter ray bundle, for this aperture and detector plane. It does not yet describe diffraction.",
+   "start": 48.63,
+   "end": 55.2
+  },
+  {
+   "id": "s6",
+   "ch": 1,
+   "text": "We score spread around each centroid, so image position and distortion remain separate requirements.",
+   "start": 55.52,
+   "end": 61.036
+  },
+  {
+   "id": "b1",
+   "ch": 2,
+   "text": "Now choose the design variables. Our lens has two spherical surfaces, with curvatures given by inverse radius.",
+   "start": 62.106,
+   "end": 69.208
+  },
+  {
+   "id": "b2",
+   "ch": 2,
+   "text": "Keep the glass index, centre thickness, entrance aperture, and wavelength fixed. The effective focal length stays fifty millimetres.",
+   "start": 69.528,
+   "end": 76.977
+  },
+  {
+   "id": "b3",
+   "ch": 2,
+   "text": "Change the bending parameter, q. It redistributes curvature between the two faces while we preserve the thick lens's paraxial power.",
+   "start": 77.297,
+   "end": 85.334
+  },
+  {
+   "id": "b4",
+   "ch": 2,
+   "text": "Watch the lens change shape. Its rays meet the surfaces at different angles, so their aberrations change.",
+   "start": 85.654,
+   "end": 91.73
+  },
+  {
+   "id": "b5",
+   "ch": 2,
+   "text": "Equal effective focal lengths do not guarantee equal back focal distances. The detector position is another design variable, shared by every field.",
+   "start": 92.05,
+   "end": 101.429
+  },
+  {
+   "id": "b6",
+   "ch": 2,
+   "text": "For each bending, choose one detector plane for the chosen score. Never refocus each field separately.",
+   "start": 101.749,
+   "end": 107.744
+  },
+  {
+   "id": "a1",
+   "ch": 3,
+   "text": "Begin with an object point on the optical axis. Sweep the bending and find each shape's best on-axis detector plane.",
+   "start": 108.814,
+   "end": 115.969
+  },
+  {
+   "id": "a2",
+   "ch": 3,
+   "text": "Each dot on this curve comes from an actual traced bundle. Its height is the geometric spot radius.",
+   "start": 116.289,
+   "end": 122.442
+  },
+  {
+   "id": "a3",
+   "ch": 3,
+   "text": "The lowest part identifies a promising shape. Refine the search around it instead of choosing by appearance.",
+   "start": 122.762,
+   "end": 129.02
+  },
+  {
+   "id": "a4",
+   "ch": 3,
+   "text": "This shape and detector plane reduce the on-axis spread, for the rays we have sampled.",
+   "start": 129.34,
+   "end": 134.083
+  },
+  {
+   "id": "a5",
+   "ch": 3,
+   "text": "But a good central spot is not a complete image. What happened away from the axis?",
+   "start": 135.203,
+   "end": 140.014
+  },
+  {
+   "id": "f1",
+   "ch": 4,
+   "text": "Tilt the incoming bundles to three and six degrees. First, keep the on-axis design's lens, aperture, and detector unchanged.",
+   "start": 141.084,
+   "end": 149.051
+  },
+  {
+   "id": "f2",
+   "ch": 4,
+   "text": "Now each object direction produces its own spot. Off-axis bundles can become asymmetric and need not prefer the same bending.",
+   "start": 149.371,
+   "end": 157.56
+  },
+  {
+   "id": "f3",
+   "ch": 4,
+   "text": "Use a combined merit: the mean squared spot radius over the three sampled fields, with equal weights.",
+   "start": 157.88,
+   "end": 164.13
+  },
+  {
+   "id": "f4",
+   "ch": 4,
+   "text": "Now optimize bending and one common detector plane for all three fields. Compare every resulting spot using the same scale.",
+   "start": 164.45,
+   "end": 172.403
+  },
+  {
+   "id": "f5",
+   "ch": 4,
+   "text": "The preferred lens depends on the task. Different field weights, a curved detector, or another aperture can change the answer.",
+   "start": 172.723,
+   "end": 180.017
+  },
+  {
+   "id": "f6",
+   "ch": 4,
+   "text": "An optimizer follows the score we write. It does not know which images we forgot to test.",
+   "start": 180.337,
+   "end": 185.647
+  },
+  {
+   "id": "c1",
+   "ch": 5,
+   "text": "A score also needs constraints. Reject shapes whose two surfaces collide within the required clear opening.",
+   "start": 187.517,
+   "end": 194.129
+  },
+  {
+   "id": "c2",
+   "ch": 5,
+   "text": "Require every sampled entrance ray to reach the detector. A missed surface or failed transmission must not simply disappear from the average.",
+   "start": 194.45,
+   "end": 203.086
+  },
+  {
+   "id": "c3",
+   "ch": 5,
+   "text": "Otherwise, throwing away the difficult rays could make a bad lens look excellent.",
+   "start": 203.406,
+   "end": 208.052
+  },
+  {
+   "id": "c4",
+   "ch": 5,
+   "text": "Likewise, shrinking the aperture would change the light collection and the task. We hold it fixed throughout this comparison.",
+   "start": 208.372,
+   "end": 215.082
+  },
+  {
+   "id": "c5",
+   "ch": 5,
+   "text": "Search only the feasible designs, and keep the rejected cases visible. The boundary of the search is part of the result.",
+   "start": 215.402,
+   "end": 222.675
+  },
+  {
+   "id": "v1",
+   "ch": 6,
+   "text": "Before trusting the selected lens, trace a denser pupil sample. Then test directions between the fields used in the score.",
+   "start": 223.745,
+   "end": 230.988
+  },
+  {
+   "id": "v2",
+   "ch": 6,
+   "text": "Check that the reported improvement survives. This tests sampling and generalization within our stated ray model.",
+   "start": 231.308,
+   "end": 237.76
+  },
+  {
+   "id": "v3",
+   "ch": 6,
+   "text": "It does not validate everything outside that model. Here the glass index is constant, so chromatic aberration is absent by assumption.",
+   "start": 238.08,
+   "end": 246.529
+  },
+  {
+   "id": "v4",
+   "ch": 6,
+   "text": "Nor is a cloud of ray intersections a diffraction point-spread function. Even a perfect geometric focus has a finite wave-optical spot.",
+   "start": 246.849,
+   "end": 256.139
+  },
+  {
+   "id": "v5",
+   "ch": 6,
+   "text": "Episode three supplies that diffraction scale. Episode ten explains how a chosen objective can guide many design variables with gradients.",
+   "start": 256.459,
+   "end": 265.635
+  },
+  {
+   "id": "v6",
+   "ch": 6,
+   "text": "This example searches one bending parameter and solves for a shared detector position. It is not a Maxwell adjoint optimization or a universal best lens.",
+   "start": 265.955,
+   "end": 275.984
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "Lens design is a loop: specify a task, trace the rays, measure performance, then change the prescription under constraints.",
+   "start": 277.054,
+   "end": 284.579
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "Keep the whole comparison honest: the same aperture, one shared detector plane, all tested fields, and no silently discarded rays.",
+   "start": 284.899,
+   "end": 293.434
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "The next questions are practical. What changes across colour, and what can several elements correct that one singlet cannot?",
+   "start": 293.754,
+   "end": 300.731
+  },
+  {
+   "id": "r4",
+   "ch": 7,
+   "text": "Start by asking what better means. Then build a model that can honestly answer.",
+   "start": 301.051,
+   "end": 305.587
+  }
+ ]
+}

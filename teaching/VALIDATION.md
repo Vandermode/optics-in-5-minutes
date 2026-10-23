@@ -1,4 +1,22 @@
-# Verification record · Season 1 teaching course
+# Verification record · Optics teaching course
+
+## Geometric-optics additions · 2026-10-23
+
+E11 and E12 use a shared three-dimensional, sequential transmitted-ray specification in Python and JavaScript. The added numerical suite passes 768 checks, including 45 independent meridional paths solved with scalar Snell angles and bracketed surface intersections, an ABCD paraxial reference, ray reversal, physical-cap selection, total internal reflection, fixed focal power, common-plane stationarity, pupil refinement, and penalties for lost rays. Agreement between language ports is checked separately from these independent references.
+
+Both standalone notebooks executed in fresh kernels in empty temporary directories with their optional sections included: 15 code cells and nine saved PNG figures in total. The execution environment was Python 3.11.7, NumPy 2.4.6, SciPy 1.17.1, and Matplotlib 3.11.2. The notebook files embed their numerical engine and need no repository imports or external data. This is local kernel verification; no authenticated Colab execution is claimed for these additions.
+
+At the default E12 aperture, the three-field design has q = 0.467236 and one common detector at z = 51.214566 mm from the first vertex. Its sampled merit is 0.00100277 mm². Increasing the pupil sampling to 576 and 2304 rays per field gives 0.00100648 and 0.00100740 mm² at the same detector. Intermediate fields at 1.5° and 4.5° are audited separately. The centroid-relative metric omits distortion and diffraction and does not certify a globally optimal or manufactured lens.
+
+The native-video browser fixture is a generated 32×32 silent WebM test clip. It checks metadata loading and seeking without requiring production media in Git; it does not establish playback quality of either complete film. Local-film previews are excluded from ordinary website export until published media metadata is supplied.
+
+All ten browser suites passed after the additions: 24 lesson/viewport cases, 72 reader cases, 36 language cases, 12 homepage map layouts and 384 destination anchors, 48 chapter-map cases plus extra widths and static routes, 48 term-network cases, all 58 episode keywords, bilingual concept search across all 12 chapters, 48 video-guide cases, and 12 focused geometric-optics cases. Widths span 320–1440 px where applicable. Checks include physical control effects, optimization cancellation, keyboard navigation, language and URL-state retention, native-video seeking, and layouts without JavaScript. No browser errors were recorded. The numerical command passes 9,148 course checks, 20 spectrum checks, 852 search checks, and the 768 geometric comparisons.
+
+The two films were rendered at 1920 × 1080 and 60 fps: E11 has 18,093 frames (301.55 seconds), and E12 has 18,491 frames (308.187 seconds). Each has 93 English subtitle cues and measured integrated loudness of −16.3 LUFS. Every rendered piece has its expected frame count. E11's detected abrupt changes are intentional zooms or chapter entries; E12 has none. Neither film has a piece-boundary discontinuity. Chapter contact sheets and full-resolution formula/comparison frames were visually inspected.
+
+The complete H.264/AAC distribution files were also played in Chrome for Testing 156.0.8078.47 through the lesson pages, served with byte-range support. Both decoded 1080p frames, sought to their guide timestamps, loaded all 93 WebVTT cues, and displayed active English captions with no player or browser errors. Playback was confirmed from decoded frames and nonblank canvas samples, not metadata alone. The local server's prefix/suffix byte ranges and unsatisfiable-range responses were checked against the original movie bytes. These checks cover the local complete films; new YouTube publication remains separate.
+
+## Original ten-episode verification · 2026-10-17
 
 Checked on 2026-10-17. The machine-readable reports are [notebook execution](validation-notebooks.json) and [browser verification](validation-browser.json). These checks validate the stated numerical models; they do not establish experimental device accuracy.
 

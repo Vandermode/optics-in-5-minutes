@@ -1,8 +1,11 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const root=new URL('../',import.meta.url),base=process.env.COURSE_URL||'http://127.0.0.1:8787/';
 const catalog=JSON.parse(fs.readFileSync(new URL('course.json',root))),out=new URL('.qa/browser/',root);
+const videos=JSON.parse(fs.readFileSync(new URL('videos.json',root)));
+const nativeMedia=new Set(catalog.flatMap(entry=>[videos[entry.id].file,videos[entry.id].captions].filter(Boolean).map(path=>new URL(path,new URL(entry.slug+'/',base)).href)));
 fs.mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({headless:true});
 const report=[],links=new Set(),errors=[];
@@ -12,11 +15,12 @@ try{
     // Check the course independently of YouTube's scripts and permission messages.
     // Real video playback is verified separately on the published lesson.
     await context.route('https://www.youtube-nocookie.com/embed/**',route=>route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><html lang="en"><title>External video player</title></html>'}));
+    await isolateNativeMedia(context);
     const page=await context.newPage();
     page.on('pageerror',e=>errors.push(e.message));
     page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
     await page.goto(base);await page.locator('.course-card').last().waitFor();
-    assert.equal(await page.locator('.course-card').count(),10);
+    assert.equal(await page.locator('.course-card').count(),catalog.length);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Homepage horizontal overflow');
     await page.screenshot({path:new URL(`home-${width}.png`,out).pathname});
     for(const entry of catalog){
@@ -67,7 +71,8 @@ try{
         if(config)for(const control of config.controls)assert.equal(String(await page.locator('#'+control.id).inputValue()),String(new URL(shared).searchParams.get(control.id)));
       }
       const hrefs=await page.locator('a[href]').evaluateAll(elements=>elements.map(el=>el.href));
-      hrefs.filter(u=>u.startsWith(base)&&!u.startsWith('data:')).forEach(u=>links.add(u.split('#')[0].split('?')[0]));
+      // Production-film files are checked in the release audit, not replaced by fixture success.
+      hrefs.filter(u=>u.startsWith(base)&&!u.startsWith('data:')).forEach(u=>{const path=u.split('#')[0].split('?')[0];if(!nativeMedia.has(path))links.add(path);});
       report.push({episode:entry.id,width,layout:'passed',canvas:'computed',interactions:width===1280?'all controls, presets, quiz, download, share, reset; worker stop where applicable':'mobile layout'});
       console.log(`PASS ${entry.id} ${width}px`);
     }
@@ -81,6 +86,6 @@ try{
   for(const url of links){const response=await context.request.get(url);assert.equal(response.status(),200,`Broken course link: ${url}`);}
   await context.close();
   assert.deepEqual(errors,[],`Browser errors: ${errors.join('; ')}`);
-  fs.writeFileSync(new URL('validation-browser.json',root),JSON.stringify({tested_url:base,viewports:[1280,390],results:report,internal_links_checked:links.size,legacy_e03_routes:'passed',external_video_playback:'not covered; YouTube iframe stubbed',console_errors:errors},null,2)+'\n');
-  console.log(`PASS ${links.size} internal links, all ten lessons at two widths, and legacy E03 routes.`);
+  fs.writeFileSync(new URL('validation-browser.json',root),JSON.stringify({tested_url:base,viewports:[1280,390],results:report,internal_links_checked:links.size,legacy_e03_routes:'passed',external_video_playback:'not covered; YouTube iframe isolated and native controls use synthetic media',production_media_paths:[...nativeMedia],console_errors:errors},null,2)+'\n');
+  console.log(`PASS ${links.size} internal links, all ${catalog.length} lessons at two widths, and legacy E03 routes.`);
 }finally{await browser.close();}

@@ -44,10 +44,17 @@ export function draw(canvas,p) {
   xLines.forEach((text,i)=>c.fillText(text,w/2,h-18-(xLines.length-1-i)*18));
   c.save();c.translate(16,box.y+box.h/2);c.rotate(-Math.PI/2);c.fillText(t(p.yLabel||''),0,0);c.restore();
   c.save();c.beginPath();c.rect(box.x,box.y,box.w,box.h);c.clip();
-  for(const s of p.series){c.strokeStyle=s.color||'#267d85';c.lineWidth=2;c.setLineDash(s.dash?[5,4]:[]);c.beginPath();let started=false;s.x.forEach((x,i)=>{if(!Number.isFinite(s.y[i])){started=false;return;}if(started)c.lineTo(X(x),Y(s.y[i]));else{c.moveTo(X(x),Y(s.y[i]));started=true;}});c.stroke();}
+  for(const s of p.series){
+    c.strokeStyle=c.fillStyle=s.color||'#267d85';c.lineWidth=s.lineWidth||2;c.setLineDash(s.dash?[5,4]:[]);
+    if(s.points){
+      s.x.forEach((x,i)=>{if(Number.isFinite(x)&&Number.isFinite(s.y[i])){c.beginPath();c.arc(X(x),Y(s.y[i]),s.pointRadius||2.2,0,2*Math.PI);c.fill();}});
+    }else{
+      c.beginPath();let started=false;s.x.forEach((x,i)=>{if(!Number.isFinite(x)||!Number.isFinite(s.y[i])){started=false;return;}if(started)c.lineTo(X(x),Y(s.y[i]));else{c.moveTo(X(x),Y(s.y[i]));started=true;}});c.stroke();
+    }
+  }
   c.restore();c.setLineDash([]);
 }
 export function renderPlots(container,result) {
   if(container.children.length!==result.plots.length)container.replaceChildren(...result.plots.map(()=>{const f=document.createElement('figure');f.innerHTML='<h3></h3><canvas role="img"></canvas><figcaption></figcaption>';return f;}));
-  result.plots.forEach((p,i)=>{const f=container.children[i];f.querySelector('h3').textContent=t(p.title);const canvas=f.querySelector('canvas');canvas.setAttribute('aria-label',t(p.title)+'. '+t(p.caption||p.yLabel||''));draw(canvas,p);const cap=f.querySelector('figcaption');cap.replaceChildren();if(p.series)for(const s of p.series){const label=document.createElement('span');label.className='legend-item';label.style.setProperty('--line',s.color||'#267d85');label.textContent=t(s.label);cap.append(label);}if(p.caption){const note=document.createElement('p');note.textContent=t(p.caption);cap.append(note);}});
+  result.plots.forEach((p,i)=>{const f=container.children[i];f.querySelector('h3').textContent=t(p.title);const canvas=f.querySelector('canvas');canvas.setAttribute('aria-label',t(p.title)+'. '+t(p.caption||p.yLabel||''));draw(canvas,p);const cap=f.querySelector('figcaption');cap.replaceChildren();if(p.series)for(const s of p.series){if(s.showLegend===false)continue;const label=document.createElement('span');label.className='legend-item';label.style.setProperty('--line',s.color||'#267d85');label.textContent=t(s.label);cap.append(label);}if(p.caption){const note=document.createElement('p');note.textContent=t(p.caption);cap.append(note);}});
 }

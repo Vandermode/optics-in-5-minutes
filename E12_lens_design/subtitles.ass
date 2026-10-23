@@ -1,0 +1,105 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:03.50,Default,,0,0,0,,{\fad(120,120)}These lenses have the same focal length.
+Dialogue: 0,0:00:03.54,0:00:06.74,Default,,0,0,0,,{\fad(120,120)}Yet their rays do not land in the same tiny spot.
+Dialogue: 0,0:00:06.81,0:00:08.76,Default,,0,0,0,,{\fad(120,120)}One looks better at the centre of the image,
+Dialogue: 0,0:00:08.80,0:00:11.26,Default,,0,0,0,,{\fad(120,120)}but that is only one place to look.
+Dialogue: 0,0:00:11.33,0:00:15.54,Default,,0,0,0,,{\fad(120,120)}Which lens should we build? First, we have to decide what better means.
+Dialogue: 0,0:00:16.41,0:00:20.51,Default,,0,0,0,,{\fad(120,120)}Lens design begins with a measurable task, not a favourite shape.
+Dialogue: 0,0:00:21.33,0:00:24.02,Default,,0,0,0,,{\fad(120,120)}Recall the ray tracer: intersect a surface,
+Dialogue: 0,0:00:24.06,0:00:27.86,Default,,0,0,0,,{\fad(120,120)}find its normal, then apply Snell's law at each boundary.
+Dialogue: 0,0:00:27.93,0:00:29.97,Default,,0,0,0,,{\fad(120,120)}Send a bundle from one distant object
+Dialogue: 0,0:00:30.01,0:00:31.64,Default,,0,0,0,,{\fad(120,120)}point through the entrance aperture.
+Dialogue: 0,0:00:31.68,0:00:35.56,Default,,0,0,0,,{\fad(120,120)}Each ray reaches a different position on the detector.
+Dialogue: 0,0:00:35.63,0:00:37.81,Default,,0,0,0,,{\fad(120,120)}Their mean position is the spot's centroid.
+Dialogue: 0,0:00:37.85,0:00:40.83,Default,,0,0,0,,{\fad(120,120)}Measure each ray's distance from that centre.
+Dialogue: 0,0:00:40.90,0:00:45.23,Default,,0,0,0,,{\fad(120,120)}Square those distances, average them, and take the square root.
+Dialogue: 0,0:00:45.27,0:00:48.56,Default,,0,0,0,,{\fad(120,120)}That gives the RMS geometric spot radius.
+Dialogue: 0,0:00:48.63,0:00:50.79,Default,,0,0,0,,{\fad(120,120)}Smaller means a tighter ray bundle,
+Dialogue: 0,0:00:50.83,0:00:53.37,Default,,0,0,0,,{\fad(120,120)}for this aperture and detector plane.
+Dialogue: 0,0:00:53.41,0:00:55.45,Default,,0,0,0,,{\fad(120,120)}It does not yet describe diffraction.
+Dialogue: 0,0:00:55.52,0:00:57.92,Default,,0,0,0,,{\fad(120,120)}We score spread around each centroid,
+Dialogue: 0,0:00:57.96,0:01:01.28,Default,,0,0,0,,{\fad(120,120)}so image position and distortion remain separate requirements.
+Dialogue: 0,0:01:02.10,0:01:06.44,Default,,0,0,0,,{\fad(120,120)}Now choose the design variables. Our lens has two spherical surfaces,
+Dialogue: 0,0:01:06.48,0:01:09.45,Default,,0,0,0,,{\fad(120,120)}with curvatures given by inverse radius.
+Dialogue: 0,0:01:09.52,0:01:12.58,Default,,0,0,0,,{\fad(120,120)}Keep the glass index, centre thickness, entrance aperture,
+Dialogue: 0,0:01:12.62,0:01:13.67,Default,,0,0,0,,{\fad(120,120)}and wavelength fixed.
+Dialogue: 0,0:01:13.71,0:01:17.22,Default,,0,0,0,,{\fad(120,120)}The effective focal length stays fifty millimetres.
+Dialogue: 0,0:01:17.29,0:01:21.42,Default,,0,0,0,,{\fad(120,120)}Change the bending parameter, q. It redistributes curvature between
+Dialogue: 0,0:01:21.46,0:01:25.58,Default,,0,0,0,,{\fad(120,120)}the two faces while we preserve the thick lens's paraxial power.
+Dialogue: 0,0:01:25.65,0:01:29.12,Default,,0,0,0,,{\fad(120,120)}Watch the lens change shape. Its rays meet the surfaces
+Dialogue: 0,0:01:29.16,0:01:31.98,Default,,0,0,0,,{\fad(120,120)}at different angles, so their aberrations change.
+Dialogue: 0,0:01:32.05,0:01:34.12,Default,,0,0,0,,{\fad(120,120)}Equal effective focal lengths do not
+Dialogue: 0,0:01:34.16,0:01:36.20,Default,,0,0,0,,{\fad(120,120)}guarantee equal back focal distances.
+Dialogue: 0,0:01:36.24,0:01:41.67,Default,,0,0,0,,{\fad(120,120)}The detector position is another design variable, shared by every field.
+Dialogue: 0,0:01:41.74,0:01:45.34,Default,,0,0,0,,{\fad(120,120)}For each bending, choose one detector plane for the chosen score.
+Dialogue: 0,0:01:45.38,0:01:47.99,Default,,0,0,0,,{\fad(120,120)}Never refocus each field separately.
+Dialogue: 0,0:01:48.81,0:01:52.04,Default,,0,0,0,,{\fad(120,120)}Begin with an object point on the optical axis.
+Dialogue: 0,0:01:52.08,0:01:56.21,Default,,0,0,0,,{\fad(120,120)}Sweep the bending and find each shape's best on-axis detector plane.
+Dialogue: 0,0:01:56.28,0:01:59.28,Default,,0,0,0,,{\fad(120,120)}Each dot on this curve comes from an actual traced bundle.
+Dialogue: 0,0:01:59.32,0:02:02.69,Default,,0,0,0,,{\fad(120,120)}Its height is the geometric spot radius.
+Dialogue: 0,0:02:02.76,0:02:05.22,Default,,0,0,0,,{\fad(120,120)}The lowest part identifies a promising shape.
+Dialogue: 0,0:02:05.26,0:02:09.27,Default,,0,0,0,,{\fad(120,120)}Refine the search around it instead of choosing by appearance.
+Dialogue: 0,0:02:09.34,0:02:12.21,Default,,0,0,0,,{\fad(120,120)}This shape and detector plane reduce the on-axis spread,
+Dialogue: 0,0:02:12.25,0:02:14.33,Default,,0,0,0,,{\fad(120,120)}for the rays we have sampled.
+Dialogue: 0,0:02:15.20,0:02:18.08,Default,,0,0,0,,{\fad(120,120)}But a good central spot is not a complete image.
+Dialogue: 0,0:02:18.12,0:02:20.26,Default,,0,0,0,,{\fad(120,120)}What happened away from the axis?
+Dialogue: 0,0:02:21.08,0:02:24.66,Default,,0,0,0,,{\fad(120,120)}Tilt the incoming bundles to three and six degrees. First,
+Dialogue: 0,0:02:24.70,0:02:29.30,Default,,0,0,0,,{\fad(120,120)}keep the on-axis design's lens, aperture, and detector unchanged.
+Dialogue: 0,0:02:29.37,0:02:32.49,Default,,0,0,0,,{\fad(120,120)}Now each object direction produces its own spot.
+Dialogue: 0,0:02:32.53,0:02:35.27,Default,,0,0,0,,{\fad(120,120)}Off-axis bundles can become asymmetric
+Dialogue: 0,0:02:35.31,0:02:37.81,Default,,0,0,0,,{\fad(120,120)}and need not prefer the same bending.
+Dialogue: 0,0:02:37.88,0:02:41.15,Default,,0,0,0,,{\fad(120,120)}Use a combined merit: the mean squared spot radius
+Dialogue: 0,0:02:41.19,0:02:44.38,Default,,0,0,0,,{\fad(120,120)}over the three sampled fields, with equal weights.
+Dialogue: 0,0:02:44.45,0:02:49.10,Default,,0,0,0,,{\fad(120,120)}Now optimize bending and one common detector plane for all three fields.
+Dialogue: 0,0:02:49.14,0:02:52.65,Default,,0,0,0,,{\fad(120,120)}Compare every resulting spot using the same scale.
+Dialogue: 0,0:02:52.72,0:02:56.17,Default,,0,0,0,,{\fad(120,120)}The preferred lens depends on the task. Different field weights,
+Dialogue: 0,0:02:56.21,0:03:00.26,Default,,0,0,0,,{\fad(120,120)}a curved detector, or another aperture can change the answer.
+Dialogue: 0,0:03:00.33,0:03:02.56,Default,,0,0,0,,{\fad(120,120)}An optimizer follows the score we write.
+Dialogue: 0,0:03:02.60,0:03:05.89,Default,,0,0,0,,{\fad(120,120)}It does not know which images we forgot to test.
+Dialogue: 0,0:03:07.51,0:03:11.31,Default,,0,0,0,,{\fad(120,120)}A score also needs constraints. Reject shapes whose two
+Dialogue: 0,0:03:11.35,0:03:14.37,Default,,0,0,0,,{\fad(120,120)}surfaces collide within the required clear opening.
+Dialogue: 0,0:03:14.45,0:03:18.24,Default,,0,0,0,,{\fad(120,120)}Require every sampled entrance ray to reach the detector.
+Dialogue: 0,0:03:18.28,0:03:20.35,Default,,0,0,0,,{\fad(120,120)}A missed surface or failed transmission
+Dialogue: 0,0:03:20.39,0:03:23.33,Default,,0,0,0,,{\fad(120,120)}must not simply disappear from the average.
+Dialogue: 0,0:03:23.40,0:03:25.31,Default,,0,0,0,,{\fad(120,120)}Otherwise, throwing away the difficult
+Dialogue: 0,0:03:25.35,0:03:28.30,Default,,0,0,0,,{\fad(120,120)}rays could make a bad lens look excellent.
+Dialogue: 0,0:03:28.37,0:03:30.28,Default,,0,0,0,,{\fad(120,120)}Likewise, shrinking the aperture would
+Dialogue: 0,0:03:30.32,0:03:32.51,Default,,0,0,0,,{\fad(120,120)}change the light collection and the task.
+Dialogue: 0,0:03:32.55,0:03:35.33,Default,,0,0,0,,{\fad(120,120)}We hold it fixed throughout this comparison.
+Dialogue: 0,0:03:35.40,0:03:39.41,Default,,0,0,0,,{\fad(120,120)}Search only the feasible designs, and keep the rejected cases visible.
+Dialogue: 0,0:03:39.45,0:03:42.92,Default,,0,0,0,,{\fad(120,120)}The boundary of the search is part of the result.
+Dialogue: 0,0:03:43.74,0:03:47.44,Default,,0,0,0,,{\fad(120,120)}Before trusting the selected lens, trace a denser pupil sample.
+Dialogue: 0,0:03:47.48,0:03:51.23,Default,,0,0,0,,{\fad(120,120)}Then test directions between the fields used in the score.
+Dialogue: 0,0:03:51.30,0:03:53.29,Default,,0,0,0,,{\fad(120,120)}Check that the reported improvement survives.
+Dialogue: 0,0:03:53.33,0:03:58.01,Default,,0,0,0,,{\fad(120,120)}This tests sampling and generalization within our stated ray model.
+Dialogue: 0,0:03:58.08,0:04:00.80,Default,,0,0,0,,{\fad(120,120)}It does not validate everything outside that model.
+Dialogue: 0,0:04:00.84,0:04:03.46,Default,,0,0,0,,{\fad(120,120)}Here the glass index is constant,
+Dialogue: 0,0:04:03.50,0:04:06.77,Default,,0,0,0,,{\fad(120,120)}so chromatic aberration is absent by assumption.
+Dialogue: 0,0:04:06.84,0:04:10.94,Default,,0,0,0,,{\fad(120,120)}Nor is a cloud of ray intersections a diffraction point-spread function.
+Dialogue: 0,0:04:10.98,0:04:16.38,Default,,0,0,0,,{\fad(120,120)}Even a perfect geometric focus has a finite wave-optical spot.
+Dialogue: 0,0:04:16.45,0:04:19.52,Default,,0,0,0,,{\fad(120,120)}Episode three supplies that diffraction scale.
+Dialogue: 0,0:04:19.56,0:04:23.43,Default,,0,0,0,,{\fad(120,120)}Episode ten explains how a chosen objective can
+Dialogue: 0,0:04:23.47,0:04:25.88,Default,,0,0,0,,{\fad(120,120)}guide many design variables with gradients.
+Dialogue: 0,0:04:25.95,0:04:28.53,Default,,0,0,0,,{\fad(120,120)}This example searches one bending parameter
+Dialogue: 0,0:04:28.57,0:04:31.18,Default,,0,0,0,,{\fad(120,120)}and solves for a shared detector position.
+Dialogue: 0,0:04:31.22,0:04:36.23,Default,,0,0,0,,{\fad(120,120)}It is not a Maxwell adjoint optimization or a universal best lens.
+Dialogue: 0,0:04:37.05,0:04:41.07,Default,,0,0,0,,{\fad(120,120)}Lens design is a loop: specify a task, trace the rays,
+Dialogue: 0,0:04:41.11,0:04:44.82,Default,,0,0,0,,{\fad(120,120)}measure performance, then change the prescription under constraints.
+Dialogue: 0,0:04:44.89,0:04:48.22,Default,,0,0,0,,{\fad(120,120)}Keep the whole comparison honest: the same aperture,
+Dialogue: 0,0:04:48.26,0:04:51.55,Default,,0,0,0,,{\fad(120,120)}one shared detector plane, all tested fields,
+Dialogue: 0,0:04:51.59,0:04:53.68,Default,,0,0,0,,{\fad(120,120)}and no silently discarded rays.
+Dialogue: 0,0:04:53.75,0:04:57.57,Default,,0,0,0,,{\fad(120,120)}The next questions are practical. What changes across colour,
+Dialogue: 0,0:04:57.61,0:05:00.98,Default,,0,0,0,,{\fad(120,120)}and what can several elements correct that one singlet cannot?
+Dialogue: 0,0:05:01.05,0:05:02.82,Default,,0,0,0,,{\fad(120,120)}Start by asking what better means.
+Dialogue: 0,0:05:02.86,0:05:05.83,Default,,0,0,0,,{\fad(120,120)}Then build a model that can honestly answer.

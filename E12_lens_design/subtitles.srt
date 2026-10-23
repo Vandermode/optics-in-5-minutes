@@ -1,0 +1,371 @@
+1
+00:00:00,900 --> 00:00:03,502
+These lenses have the same focal length.
+
+2
+00:00:03,542 --> 00:00:06,745
+Yet their rays do not land in the same tiny spot.
+
+3
+00:00:06,815 --> 00:00:08,760
+One looks better at the centre of the image,
+
+4
+00:00:08,800 --> 00:00:11,267
+but that is only one place to look.
+
+5
+00:00:11,337 --> 00:00:15,546
+Which lens should we build? First, we have to decide what better means.
+
+6
+00:00:16,416 --> 00:00:20,516
+Lens design begins with a measurable task, not a favourite shape.
+
+7
+00:00:21,336 --> 00:00:24,024
+Recall the ray tracer: intersect a surface,
+
+8
+00:00:24,064 --> 00:00:27,861
+find its normal, then apply Snell's law at each boundary.
+
+9
+00:00:27,931 --> 00:00:29,971
+Send a bundle from one distant object
+
+10
+00:00:30,011 --> 00:00:31,642
+point through the entrance aperture.
+
+11
+00:00:31,682 --> 00:00:35,564
+Each ray reaches a different position on the detector.
+
+12
+00:00:35,634 --> 00:00:37,815
+Their mean position is the spot's centroid.
+
+13
+00:00:37,855 --> 00:00:40,830
+Measure each ray's distance from that centre.
+
+14
+00:00:40,900 --> 00:00:45,238
+Square those distances, average them, and take the square root.
+
+15
+00:00:45,278 --> 00:00:48,560
+That gives the RMS geometric spot radius.
+
+16
+00:00:48,630 --> 00:00:50,790
+Smaller means a tighter ray bundle,
+
+17
+00:00:50,830 --> 00:00:53,372
+for this aperture and detector plane.
+
+18
+00:00:53,412 --> 00:00:55,450
+It does not yet describe diffraction.
+
+19
+00:00:55,520 --> 00:00:57,924
+We score spread around each centroid,
+
+20
+00:00:57,964 --> 00:01:01,286
+so image position and distortion remain separate requirements.
+
+21
+00:01:02,106 --> 00:01:06,443
+Now choose the design variables. Our lens has two spherical surfaces,
+
+22
+00:01:06,483 --> 00:01:09,458
+with curvatures given by inverse radius.
+
+23
+00:01:09,528 --> 00:01:12,588
+Keep the glass index, centre thickness, entrance aperture,
+
+24
+00:01:12,628 --> 00:01:13,670
+and wavelength fixed.
+
+25
+00:01:13,710 --> 00:01:17,227
+The effective focal length stays fifty millimetres.
+
+26
+00:01:17,297 --> 00:01:21,427
+Change the bending parameter, q. It redistributes curvature between
+
+27
+00:01:21,467 --> 00:01:25,584
+the two faces while we preserve the thick lens's paraxial power.
+
+28
+00:01:25,654 --> 00:01:29,129
+Watch the lens change shape. Its rays meet the surfaces
+
+29
+00:01:29,169 --> 00:01:31,980
+at different angles, so their aberrations change.
+
+30
+00:01:32,050 --> 00:01:34,128
+Equal effective focal lengths do not
+
+31
+00:01:34,168 --> 00:01:36,209
+guarantee equal back focal distances.
+
+32
+00:01:36,249 --> 00:01:41,679
+The detector position is another design variable, shared by every field.
+
+33
+00:01:41,749 --> 00:01:45,348
+For each bending, choose one detector plane for the chosen score.
+
+34
+00:01:45,388 --> 00:01:47,994
+Never refocus each field separately.
+
+35
+00:01:48,814 --> 00:01:52,040
+Begin with an object point on the optical axis.
+
+36
+00:01:52,080 --> 00:01:56,219
+Sweep the bending and find each shape's best on-axis detector plane.
+
+37
+00:01:56,289 --> 00:01:59,288
+Each dot on this curve comes from an actual traced bundle.
+
+38
+00:01:59,328 --> 00:02:02,692
+Its height is the geometric spot radius.
+
+39
+00:02:02,762 --> 00:02:05,228
+The lowest part identifies a promising shape.
+
+40
+00:02:05,268 --> 00:02:09,270
+Refine the search around it instead of choosing by appearance.
+
+41
+00:02:09,340 --> 00:02:12,211
+This shape and detector plane reduce the on-axis spread,
+
+42
+00:02:12,251 --> 00:02:14,333
+for the rays we have sampled.
+
+43
+00:02:15,203 --> 00:02:18,081
+But a good central spot is not a complete image.
+
+44
+00:02:18,121 --> 00:02:20,264
+What happened away from the axis?
+
+45
+00:02:21,084 --> 00:02:24,661
+Tilt the incoming bundles to three and six degrees. First,
+
+46
+00:02:24,701 --> 00:02:29,301
+keep the on-axis design's lens, aperture, and detector unchanged.
+
+47
+00:02:29,371 --> 00:02:32,498
+Now each object direction produces its own spot.
+
+48
+00:02:32,538 --> 00:02:35,271
+Off-axis bundles can become asymmetric
+
+49
+00:02:35,311 --> 00:02:37,810
+and need not prefer the same bending.
+
+50
+00:02:37,880 --> 00:02:41,153
+Use a combined merit: the mean squared spot radius
+
+51
+00:02:41,193 --> 00:02:44,380
+over the three sampled fields, with equal weights.
+
+52
+00:02:44,450 --> 00:02:49,109
+Now optimize bending and one common detector plane for all three fields.
+
+53
+00:02:49,149 --> 00:02:52,653
+Compare every resulting spot using the same scale.
+
+54
+00:02:52,723 --> 00:02:56,175
+The preferred lens depends on the task. Different field weights,
+
+55
+00:02:56,215 --> 00:03:00,267
+a curved detector, or another aperture can change the answer.
+
+56
+00:03:00,337 --> 00:03:02,563
+An optimizer follows the score we write.
+
+57
+00:03:02,603 --> 00:03:05,897
+It does not know which images we forgot to test.
+
+58
+00:03:07,517 --> 00:03:11,314
+A score also needs constraints. Reject shapes whose two
+
+59
+00:03:11,354 --> 00:03:14,379
+surfaces collide within the required clear opening.
+
+60
+00:03:14,450 --> 00:03:18,247
+Require every sampled entrance ray to reach the detector.
+
+61
+00:03:18,287 --> 00:03:20,350
+A missed surface or failed transmission
+
+62
+00:03:20,390 --> 00:03:23,336
+must not simply disappear from the average.
+
+63
+00:03:23,406 --> 00:03:25,311
+Otherwise, throwing away the difficult
+
+64
+00:03:25,351 --> 00:03:28,302
+rays could make a bad lens look excellent.
+
+65
+00:03:28,372 --> 00:03:30,283
+Likewise, shrinking the aperture would
+
+66
+00:03:30,323 --> 00:03:32,518
+change the light collection and the task.
+
+67
+00:03:32,558 --> 00:03:35,332
+We hold it fixed throughout this comparison.
+
+68
+00:03:35,402 --> 00:03:39,418
+Search only the feasible designs, and keep the rejected cases visible.
+
+69
+00:03:39,458 --> 00:03:42,925
+The boundary of the search is part of the result.
+
+70
+00:03:43,745 --> 00:03:47,447
+Before trusting the selected lens, trace a denser pupil sample.
+
+71
+00:03:47,487 --> 00:03:51,238
+Then test directions between the fields used in the score.
+
+72
+00:03:51,308 --> 00:03:53,294
+Check that the reported improvement survives.
+
+73
+00:03:53,334 --> 00:03:58,010
+This tests sampling and generalization within our stated ray model.
+
+74
+00:03:58,080 --> 00:04:00,804
+It does not validate everything outside that model.
+
+75
+00:04:00,844 --> 00:04:03,461
+Here the glass index is constant,
+
+76
+00:04:03,501 --> 00:04:06,779
+so chromatic aberration is absent by assumption.
+
+77
+00:04:06,849 --> 00:04:10,944
+Nor is a cloud of ray intersections a diffraction point-spread function.
+
+78
+00:04:10,984 --> 00:04:16,389
+Even a perfect geometric focus has a finite wave-optical spot.
+
+79
+00:04:16,459 --> 00:04:19,525
+Episode three supplies that diffraction scale.
+
+80
+00:04:19,565 --> 00:04:23,436
+Episode ten explains how a chosen objective can
+
+81
+00:04:23,476 --> 00:04:25,885
+guide many design variables with gradients.
+
+82
+00:04:25,955 --> 00:04:28,531
+This example searches one bending parameter
+
+83
+00:04:28,571 --> 00:04:31,182
+and solves for a shared detector position.
+
+84
+00:04:31,222 --> 00:04:36,234
+It is not a Maxwell adjoint optimization or a universal best lens.
+
+85
+00:04:37,054 --> 00:04:41,074
+Lens design is a loop: specify a task, trace the rays,
+
+86
+00:04:41,114 --> 00:04:44,829
+measure performance, then change the prescription under constraints.
+
+87
+00:04:44,899 --> 00:04:48,226
+Keep the whole comparison honest: the same aperture,
+
+88
+00:04:48,266 --> 00:04:51,550
+one shared detector plane, all tested fields,
+
+89
+00:04:51,590 --> 00:04:53,684
+and no silently discarded rays.
+
+90
+00:04:53,754 --> 00:04:57,573
+The next questions are practical. What changes across colour,
+
+91
+00:04:57,613 --> 00:05:00,981
+and what can several elements correct that one singlet cannot?
+
+92
+00:05:01,051 --> 00:05:02,823
+Start by asking what better means.
+
+93
+00:05:02,863 --> 00:05:05,837
+Then build a model that can honestly answer.

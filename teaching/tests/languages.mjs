@@ -1,3 +1,4 @@
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -21,11 +22,26 @@ for (const contexts of Object.values(lessonTerms)) {
 }
 
 const browser = await chromium.launch({headless: true});
-const errors = [], results = [];
+const errors = [], results = [], requestFailures = [];
+let activeCase = '', activePage = null;
 async function context(options = {}) {
   const ctx = await browser.newContext({reducedMotion: 'reduce', ...options});
   ctx.setDefaultTimeout(30000);
+  // Match the other long browser suites: retry transient local transport resets,
+  // while serving and executing the actual course files without substitutions.
+  await ctx.route(new URL(base).href + '**', async route => {
+    try {
+      const response = await route.fetch({maxRetries: 2});
+      await route.fulfill({response});
+    } catch (error) {
+      if (!error.message.includes('closed')) throw error;
+    }
+  });
+  ctx.on('requestfailed', request => {
+    if (request.failure()?.errorText !== 'net::ERR_ABORTED') requestFailures.push({url:request.url(),message:request.failure()?.errorText});
+  });
   await ctx.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
+  await isolateNativeMedia(ctx);
   return ctx;
 }
 async function ready(page, episode, language) {
@@ -56,7 +72,7 @@ try {
     assert.equal(await page.locator('html').getAttribute('lang'), 'en', 'Fresh visit defaults to English');
     await page.locator('header [data-language="zh"]').click();
     await ready(page, null, 'zh');
-    assert.equal(await page.locator('.course-card').count(), 10);
+    assert.equal(await page.locator('.course-card').count(), catalog.length);
     assert.ok(await page.locator('.course-card').evaluateAll(cards => cards.every(card => card.href.endsWith('/index.zh.html'))), 'Chinese course links');
     await noOverflow(page, `Chinese home ${width}`);
     if (width === 1440) {
@@ -74,6 +90,8 @@ try {
 
     for (const entry of catalog) {
       const label = `${entry.id} ${width}px`;
+      activeCase = label;
+      activePage = page;
       // The saved choice is also honored when an English route is opened.
       await page.goto(new URL(entry.slug + '/', base).href);
       await ready(page, entry.id, 'zh');
@@ -190,4 +208,12 @@ try {
   await blockedStorage.close();
   assert.deepEqual(errors, [], 'Bilingual browser errors');
   fs.writeFileSync(new URL('report.json', out), JSON.stringify({tested_url: base, results, default_language: 'English', no_javascript: 'passed', blocked_storage: 'passed', external_video_playback: 'not covered; iframe isolated', errors}, null, 2) + '\n');
+} catch (error) {
+  const pageState = await activePage?.evaluate(() => ({url:location.href, documentState:document.readyState,
+    language:document.documentElement.lang, readerReady:Boolean(document.querySelector('.reader-ready')),
+    status:document.getElementById('status')?.textContent})).catch(() => null);
+  const failure = {at:new Date().toISOString(), activeCase, error:error.stack, pageState, errors, requestFailures};
+  fs.writeFileSync(new URL('failure.json', out), JSON.stringify(failure, null, 2) + '\n');
+  console.error(failure);
+  throw error;
 } finally { await browser.close(); }

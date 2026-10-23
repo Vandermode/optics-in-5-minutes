@@ -1,0 +1,105 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:03.38,Default,,0,0,0,,{\fad(120,120)}Watch parallel rays pass through two curved
+Dialogue: 0,0:00:03.42,0:00:06.55,Default,,0,0,0,,{\fad(120,120)}glass surfaces and crowd toward a common focus.
+Dialogue: 0,0:00:06.62,0:00:10.05,Default,,0,0,0,,{\fad(120,120)}Now zoom in. The outer rays cross before the central rays,
+Dialogue: 0,0:00:10.09,0:00:12.41,Default,,0,0,0,,{\fad(120,120)}so one point cannot catch them all.
+Dialogue: 0,0:00:13.28,0:00:15.30,Default,,0,0,0,,{\fad(120,120)}How can we predict this mismatch without
+Dialogue: 0,0:00:15.34,0:00:18.37,Default,,0,0,0,,{\fad(120,120)}pretending a real lens is infinitely thin?
+Dialogue: 0,0:00:18.44,0:00:20.67,Default,,0,0,0,,{\fad(120,120)}Trace each ray: find the next surface,
+Dialogue: 0,0:00:20.71,0:00:22.87,Default,,0,0,0,,{\fad(120,120)}change its direction, then repeat.
+Dialogue: 0,0:00:23.69,0:00:26.82,Default,,0,0,0,,{\fad(120,120)}A ray marks a local direction of light travel.
+Dialogue: 0,0:00:26.86,0:00:28.96,Default,,0,0,0,,{\fad(120,120)}It is not the complete electric field.
+Dialogue: 0,0:00:29.03,0:00:32.11,Default,,0,0,0,,{\fad(120,120)}Store a starting position and a unit direction vector.
+Dialogue: 0,0:00:32.15,0:00:35.20,Default,,0,0,0,,{\fad(120,120)}Distance along that direction is our variable.
+Dialogue: 0,0:00:35.27,0:00:38.70,Default,,0,0,0,,{\fad(120,120)}In uniform material, a ray follows a straight line.
+Dialogue: 0,0:00:38.74,0:00:40.87,Default,,0,0,0,,{\fad(120,120)}A boundary can change its direction.
+Dialogue: 0,0:00:40.94,0:00:42.61,Default,,0,0,0,,{\fad(120,120)}Our lens has two spherical surfaces,
+Dialogue: 0,0:00:42.65,0:00:46.95,Default,,0,0,0,,{\fad(120,120)}four millimetres apart, with glass index one point five.
+Dialogue: 0,0:00:47.02,0:00:50.93,Default,,0,0,0,,{\fad(120,120)}You see a central slice of a three-dimensional calculation.
+Dialogue: 0,0:00:50.97,0:00:54.14,Default,,0,0,0,,{\fad(120,120)}The optical axis runs horizontally, along z.
+Dialogue: 0,0:00:54.21,0:00:58.01,Default,,0,0,0,,{\fad(120,120)}Curvature, thickness, and aperture specify the glass.
+Dialogue: 0,0:00:58.05,0:01:00.23,Default,,0,0,0,,{\fad(120,120)}We still need to calculate where light goes.
+Dialogue: 0,0:01:01.05,0:01:03.90,Default,,0,0,0,,{\fad(120,120)}First, extend the incoming line until it meets the
+Dialogue: 0,0:01:03.94,0:01:07.34,Default,,0,0,0,,{\fad(120,120)}first spherical surface. Calculate that intersection.
+Dialogue: 0,0:01:07.41,0:01:09.43,Default,,0,0,0,,{\fad(120,120)}Substitute the ray into the sphere equation.
+Dialogue: 0,0:01:09.47,0:01:13.50,Default,,0,0,0,,{\fad(120,120)}A quadratic gives two possible roots, one, or none.
+Dialogue: 0,0:01:13.57,0:01:16.34,Default,,0,0,0,,{\fad(120,120)}But our optical surface is only a spherical cap.
+Dialogue: 0,0:01:16.38,0:01:19.64,Default,,0,0,0,,{\fad(120,120)}A root on the opposite cap must be rejected.
+Dialogue: 0,0:01:20.51,0:01:23.02,Default,,0,0,0,,{\fad(120,120)}Keep a forward intersection on the correct cap,
+Dialogue: 0,0:01:23.06,0:01:27.06,Default,,0,0,0,,{\fad(120,120)}inside the clear aperture. Otherwise, report a missed surface.
+Dialogue: 0,0:01:27.13,0:01:29.12,Default,,0,0,0,,{\fad(120,120)}At the accepted point, construct the normal.
+Dialogue: 0,0:01:29.16,0:01:32.76,Default,,0,0,0,,{\fad(120,120)}For a sphere, it follows the line through its centre.
+Dialogue: 0,0:01:32.83,0:01:34.82,Default,,0,0,0,,{\fad(120,120)}Orient the normal into the next medium.
+Dialogue: 0,0:01:34.86,0:01:39.69,Default,,0,0,0,,{\fad(120,120)}Measure bending from this local direction, not from the optical axis.
+Dialogue: 0,0:01:40.51,0:01:42.65,Default,,0,0,0,,{\fad(120,120)}Split the incoming unit direction into
+Dialogue: 0,0:01:42.69,0:01:45.51,Default,,0,0,0,,{\fad(120,120)}parts tangent and normal to the interface.
+Dialogue: 0,0:01:45.58,0:01:49.93,Default,,0,0,0,,{\fad(120,120)}The phase variation along that interface must match on both sides.
+Dialogue: 0,0:01:49.97,0:01:52.14,Default,,0,0,0,,{\fad(120,120)}That determines the tangential part.
+Dialogue: 0,0:01:52.21,0:01:55.11,Default,,0,0,0,,{\fad(120,120)}Divide the first refractive index by the second.
+Dialogue: 0,0:01:55.15,0:01:58.73,Default,,0,0,0,,{\fad(120,120)}Multiply the tangential direction by this ratio.
+Dialogue: 0,0:01:58.80,0:02:01.61,Default,,0,0,0,,{\fad(120,120)}From air into glass, the ratio is below one.
+Dialogue: 0,0:02:01.65,0:02:03.85,Default,,0,0,0,,{\fad(120,120)}The ray bends toward the normal.
+Dialogue: 0,0:02:03.92,0:02:06.62,Default,,0,0,0,,{\fad(120,120)}Rebuild the normal component to make a unit vector.
+Dialogue: 0,0:02:06.66,0:02:09.41,Default,,0,0,0,,{\fad(120,120)}Choose the branch entering the next medium.
+Dialogue: 0,0:02:10.28,0:02:12.01,Default,,0,0,0,,{\fad(120,120)}This is vector Snell refraction.
+Dialogue: 0,0:02:12.05,0:02:16.38,Default,,0,0,0,,{\fad(120,120)}The familiar sine law describes the same rule using angles.
+Dialogue: 0,0:02:16.45,0:02:19.33,Default,,0,0,0,,{\fad(120,120)}From glass into air, the tangential part grows.
+Dialogue: 0,0:02:19.37,0:02:23.85,Default,,0,0,0,,{\fad(120,120)}Beyond the critical angle, no real transmitted direction exists.
+Dialogue: 0,0:02:23.92,0:02:27.77,Default,,0,0,0,,{\fad(120,120)}That is total internal reflection. Our transmitted path stops;
+Dialogue: 0,0:02:27.81,0:02:31.44,Default,,0,0,0,,{\fad(120,120)}following the reflected branch requires another trace.
+Dialogue: 0,0:02:32.26,0:02:35.47,Default,,0,0,0,,{\fad(120,120)}Find the second surface using the new direction.
+Dialogue: 0,0:02:35.51,0:02:38.22,Default,,0,0,0,,{\fad(120,120)}A thick lens requires two separate refractions.
+Dialogue: 0,0:02:38.29,0:02:41.73,Default,,0,0,0,,{\fad(120,120)}Recompute the normal and exchange the refractive indices.
+Dialogue: 0,0:02:41.77,0:02:44.58,Default,,0,0,0,,{\fad(120,120)}This time, the ray leaves glass for air.
+Dialogue: 0,0:02:44.65,0:02:47.28,Default,,0,0,0,,{\fad(120,120)}Intersect the outgoing line with a detector plane.
+Dialogue: 0,0:02:47.32,0:02:50.91,Default,,0,0,0,,{\fad(120,120)}This point is the ray's predicted landing position.
+Dialogue: 0,0:02:50.98,0:02:52.54,Default,,0,0,0,,{\fad(120,120)}Repeat across the entrance aperture.
+Dialogue: 0,0:02:52.58,0:02:57.63,Default,,0,0,0,,{\fad(120,120)}Every path shown comes from surface intersections and Snell refraction.
+Dialogue: 0,0:02:57.70,0:03:00.14,Default,,0,0,0,,{\fad(120,120)}Near the axis, ray angles are small.
+Dialogue: 0,0:03:00.18,0:03:04.29,Default,,0,0,0,,{\fad(120,120)}Linearizing their motion gives the paraxial focus, marked here.
+Dialogue: 0,0:03:04.36,0:03:06.63,Default,,0,0,0,,{\fad(120,120)}That focus is a useful reference,
+Dialogue: 0,0:03:06.67,0:03:09.60,Default,,0,0,0,,{\fad(120,120)}not a promise for every ray through a finite lens.
+Dialogue: 0,0:03:10.42,0:03:12.87,Default,,0,0,0,,{\fad(120,120)}Open the aperture without changing the lens.
+Dialogue: 0,0:03:12.91,0:03:16.43,Default,,0,0,0,,{\fad(120,120)}Outer rays now sample steeper surface regions.
+Dialogue: 0,0:03:16.50,0:03:19.65,Default,,0,0,0,,{\fad(120,120)}Watch the enlarged focus. For this spherical lens,
+Dialogue: 0,0:03:19.69,0:03:22.98,Default,,0,0,0,,{\fad(120,120)}outer rays cross the axis before central rays.
+Dialogue: 0,0:03:23.85,0:03:26.13,Default,,0,0,0,,{\fad(120,120)}This mismatch is spherical aberration.
+Dialogue: 0,0:03:26.17,0:03:29.95,Default,,0,0,0,,{\fad(120,120)}It comes from the geometry, not a coarse numerical grid.
+Dialogue: 0,0:03:30.02,0:03:32.97,Default,,0,0,0,,{\fad(120,120)}Move the detector. The bundle narrows and spreads,
+Dialogue: 0,0:03:33.01,0:03:34.85,Default,,0,0,0,,{\fad(120,120)}but its rays never all meet.
+Dialogue: 0,0:03:34.92,0:03:38.26,Default,,0,0,0,,{\fad(120,120)}Here, best focus minimizes the root mean square distance
+Dialogue: 0,0:03:38.30,0:03:41.89,Default,,0,0,0,,{\fad(120,120)}from the spot centroid. Other criteria can differ.
+Dialogue: 0,0:03:41.96,0:03:44.77,Default,,0,0,0,,{\fad(120,120)}Tilt the input. The off-axis pattern changes,
+Dialogue: 0,0:03:44.81,0:03:48.31,Default,,0,0,0,,{\fad(120,120)}so an on-axis test cannot describe the whole image.
+Dialogue: 0,0:03:48.38,0:03:52.25,Default,,0,0,0,,{\fad(120,120)}Closing the aperture reduces geometric spread but rejects light.
+Dialogue: 0,0:03:52.29,0:03:55.70,Default,,0,0,0,,{\fad(120,120)}A smaller ray spot is not the whole story.
+Dialogue: 0,0:03:56.52,0:03:59.37,Default,,0,0,0,,{\fad(120,120)}These are geometric paths. Their landing points
+Dialogue: 0,0:03:59.41,0:04:01.90,Default,,0,0,0,,{\fad(120,120)}are not a diffraction point spread function.
+Dialogue: 0,0:04:01.97,0:04:06.15,Default,,0,0,0,,{\fad(120,120)}Waves still spread through a finite aperture, as in episode three.
+Dialogue: 0,0:04:06.19,0:04:09.32,Default,,0,0,0,,{\fad(120,120)}Closing the aperture can increase diffraction blur.
+Dialogue: 0,0:04:10.19,0:04:14.70,Default,,0,0,0,,{\fad(120,120)}Our ideal surfaces use one fixed index. We omit reflected power,
+Dialogue: 0,0:04:14.74,0:04:18.16,Default,,0,0,0,,{\fad(120,120)}dispersion, absorption, and manufacturing errors.
+Dialogue: 0,0:04:18.23,0:04:22.17,Default,,0,0,0,,{\fad(120,120)}A missed surface or total internal reflection is a tracing outcome.
+Dialogue: 0,0:04:22.21,0:04:25.26,Default,,0,0,0,,{\fad(120,120)}Check those before comparing image errors.
+Dialogue: 0,0:04:25.33,0:04:27.65,Default,,0,0,0,,{\fad(120,120)}Other surface shapes use the same logic.
+Dialogue: 0,0:04:27.69,0:04:30.80,Default,,0,0,0,,{\fad(120,120)}More rays sample the chosen model more densely;
+Dialogue: 0,0:04:30.84,0:04:32.99,Default,,0,0,0,,{\fad(120,120)}they do not add missing physics.
+Dialogue: 0,0:04:33.81,0:04:36.46,Default,,0,0,0,,{\fad(120,120)}One ray follows one recipe: intersect,
+Dialogue: 0,0:04:36.50,0:04:39.52,Default,,0,0,0,,{\fad(120,120)}construct the normal, refract, and continue.
+Dialogue: 0,0:04:39.59,0:04:43.32,Default,,0,0,0,,{\fad(120,120)}A bundle reveals the consequences. Aperture, field angle,
+Dialogue: 0,0:04:43.36,0:04:47.02,Default,,0,0,0,,{\fad(120,120)}and detector position all affect the geometric image.
+Dialogue: 0,0:04:47.09,0:04:49.41,Default,,0,0,0,,{\fad(120,120)}The paraxial focus starts the design.
+Dialogue: 0,0:04:49.45,0:04:54.01,Default,,0,0,0,,{\fad(120,120)}Exact surface tracing tests the finite lens within its assumptions.
+Dialogue: 0,0:04:54.08,0:04:56.81,Default,,0,0,0,,{\fad(120,120)}Next, we will choose lens shapes using image error,
+Dialogue: 0,0:04:56.85,0:04:59.19,Default,,0,0,0,,{\fad(120,120)}while keeping the required focal length.
