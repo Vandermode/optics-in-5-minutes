@@ -1,4 +1,5 @@
 import {isolateNativeMedia} from './native-media-fixture.mjs';
+import {useCourseTransport} from './course-transport.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -14,6 +15,7 @@ try{
   for(const width of [1280,390]){
     activeCase=`Homepage ${width}px`;
     const context=await browser.newContext({viewport:{width,height:900},acceptDownloads:true,permissions:['clipboard-read','clipboard-write'],reducedMotion:'reduce'});
+    await useCourseTransport(context,base);
     // Check the course independently of YouTube's scripts and permission messages.
     // Real video playback is verified separately on the published lesson.
     await context.route('https://www.youtube-nocookie.com/embed/**',route=>route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><html lang="en"><title>External video player</title></html>'}));
@@ -91,6 +93,7 @@ try{
     assert.equal(await page.locator('#na').inputValue(),'0.81');assert.equal(await page.locator('#wavelength').inputValue(),'620');
     await page.goto(base+'#frequency-space');await page.waitForURL('**/e03-diffraction/#frequency-space');
     const legacy=await page.request.get(base+'e03_diffraction_limit.ipynb');assert.equal(legacy.status(),200);
+    await context.unrouteAll({behavior:'wait'});
     await context.close();
   }
   activeCase='Internal link checks';

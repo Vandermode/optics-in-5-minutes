@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {isolateNativeMedia} from './native-media-fixture.mjs';
+import {useCourseTransport} from './course-transport.mjs';
 import {phrases} from '../shared/zh.js';
 
 const root=new URL('../',import.meta.url);
@@ -28,11 +29,7 @@ const browser=await chromium.launch({headless:true});
 async function newContext(width) {
   const context=await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce'});
   context.setDefaultTimeout(30000);
-  // Only retry transient transport resets. Assertions and page behavior are not retried.
-  await context.route(new URL(base).href+'**',async route=>{
-    try {await route.fulfill({response:await route.fetch({maxRetries:2})});}
-    catch(error) {if(!error.message.includes('closed'))throw error;}
-  });
+  await useCourseTransport(context,base);
   await context.route('https://www.youtube-nocookie.com/embed/**',route=>route.fulfill({status:200,contentType:'text/html',body:''}));
   await isolateNativeMedia(context);
   context.on('requestfailed',request=>{

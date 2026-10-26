@@ -1,4 +1,5 @@
 import {isolateNativeMedia} from './native-media-fixture.mjs';
+import {useCourseTransport} from './course-transport.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -17,6 +18,7 @@ const endpoint = (entry, language) => new URL(`${entry.slug}/index${language ===
 
 async function context(options) {
   const result = await browser.newContext({reducedMotion:'reduce', ...options});
+  await useCourseTransport(result, base);
   result.on('requestfailed', request => {
     const message = request.failure()?.errorText;
     if (message !== 'net::ERR_ABORTED') requestFailures.push({url:request.url(),message});
@@ -97,6 +99,7 @@ try {
       results.push({episode:entry.id,language,width,steps:times.length,explanations:bridgeCounts[entry.id]});
       console.log('PASS ' + label + ': outline, explanations, timestamps, and layout');
     }
+    await ctx.unrouteAll({behavior:'wait'});
     await ctx.close();
   }
 
@@ -108,6 +111,7 @@ try {
     await page.locator('#spectrum-demo').scrollIntoViewIfNeeded();
     await noOverflow(page, `E04 spectrum at ${width}`);
     assert.ok(await page.locator('#spectrum-plot').evaluate(c => c.width > 0));
+    await ctx.unrouteAll({behavior:'wait'});
     await ctx.close();
   }
 
@@ -146,6 +150,7 @@ try {
     assert.equal(await page.locator('#guide-spectrum').getAttribute('open'), null, 'closed state survives reload');
     assert.equal(await page.locator('#spectrum-width').inputValue(), '15');
     assert.equal(await page.locator('#spectrum-path').inputValue(), '10');
+    await ctx.unrouteAll({behavior:'wait'});
     await ctx.close();
   }
 
@@ -166,12 +171,14 @@ try {
       }
       await noOverflow(page, `static ${entry.id} ${language}`);
     }
+    await ctx.unrouteAll({behavior:'wait'});
     await ctx.close();
   }
   assert.deepEqual(errors, []);
   fs.writeFileSync(new URL('report.json', out), JSON.stringify({results,extraWidths:[320,768,1024,1280],noJavaScript:2*catalog.length,languageState:'passed',externalPlayback:'full films not tested; iframe isolated, native controls use a generated synthetic video fixture',errors}, null, 2) + '\n');
   console.log(`PASS video guides: ${4*catalog.length} bilingual chapter cases, 4 extra widths, language/reload state, and ${2*catalog.length} static routes.`);
 } catch (error) {
+  fs.writeFileSync(new URL('failure.json', out), JSON.stringify({activeCase, message:error.message, errors, requestFailures, results}, null, 2) + '\n');
   console.error({activeCase,errors,requestFailures});
   throw error;
 } finally { await browser.close(); }

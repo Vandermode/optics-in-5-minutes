@@ -1,4 +1,5 @@
 import {isolateNativeMedia} from './native-media-fixture.mjs';
+import {useCourseTransport} from './course-transport.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -12,6 +13,7 @@ const out = new URL('.qa/browser/knowledge/', root);
 fs.mkdirSync(out, {recursive: true});
 const browser = await chromium.launch({headless: true});
 const results = [], errors = [], internalLinks = new Set(), mappings = new Map();
+let activeCase = '';
 
 async function ready(page, language) {
   await page.locator('.knowledge-ready').waitFor();
@@ -23,6 +25,8 @@ async function ready(page, language) {
 try {
   for (const width of [1440, 1280, 1024, 768, 390, 320]) for (const language of ['en', 'zh']) {
     const context = await browser.newContext({viewport: {width, height: 1000}, reducedMotion: 'reduce', locale: 'zh-CN'});
+    await useCourseTransport(context, base);
+    activeCase = `${language} ${width}px`;
     context.setDefaultTimeout(20000);
     const page = await context.newPage();
     page.on('pageerror', error => errors.push(error.message));
@@ -104,12 +108,15 @@ try {
     await page.locator('#knowledge-map').screenshot({path: new URL(`${language}-${width}-map.png`, out).pathname});
     results.push({language, width, concepts: knowledge.concepts.length, reachable_episodes: catalog.length, geometry: 'passed', navigation: 'passed'});
     console.log('PASS knowledge map ' + label);
+    await context.unrouteAll({behavior: 'wait'});
     await context.close();
   }
 
   // Static concept links work without JavaScript, in either edition.
   for (const language of ['en', 'zh']) {
     const context = await browser.newContext({javaScriptEnabled: false, viewport: {width: 320, height: 900}, reducedMotion: 'reduce'});
+    await useCourseTransport(context, base);
+    activeCase = `No-JavaScript ${language}`;
     context.setDefaultTimeout(20000);
     await context.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
     await isolateNativeMedia(context);
@@ -123,10 +130,12 @@ try {
     assert.ok(new URL(page.url()).pathname.includes('/e10-adjoint-design/'));
     assert.equal(await page.locator('html').getAttribute('lang'), language === 'zh' ? 'zh-CN' : 'en');
     console.log('PASS static concept navigation ' + language);
+    await context.unrouteAll({behavior: 'wait'});
     await context.close();
   }
 
   const context = await browser.newContext();
+  activeCase = 'Destination anchors';
   const page = await context.newPage();
   for (const href of internalLinks) {
     const response = await context.request.get(href);
@@ -139,6 +148,9 @@ try {
   assert.deepEqual(errors, []);
   fs.writeFileSync(new URL('report.json', out), JSON.stringify({results, checked_links: internalLinks.size, no_javascript: 'passed', errors}, null, 2) + '\n');
   console.log(`PASS concept navigation, bilingual state, no-JavaScript routes, and ${internalLinks.size} destination anchors.`);
+} catch (error) {
+  fs.writeFileSync(new URL('failure.json', out), JSON.stringify({activeCase, message: error.message, errors, results}, null, 2) + '\n');
+  throw error;
 } finally {
   await browser.close();
 }

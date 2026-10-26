@@ -2,12 +2,14 @@ import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {isolateNativeMedia} from './native-media-fixture.mjs';
+import {useCourseTransport} from './course-transport.mjs';
 
 const root=new URL('../',import.meta.url),base=process.env.COURSE_URL||'http://127.0.0.1:8787/';
 const catalog=JSON.parse(fs.readFileSync(new URL('course.json',root))).filter(e=>['E11','E12'].includes(e.id));
 const out=new URL('.qa/browser/geometric-optics/',root);
 fs.mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({headless:true}),errors=[],cases=[];
+let activeCase='';
 const complete={en:'Calculation complete.',zh:'计算完成。'};
 async function ready(page,language) {
   await page.waitForFunction(text=>document.getElementById('status')?.textContent===text,complete[language]);
@@ -24,12 +26,14 @@ async function seekReady(page,time) {
 try {
   for(const language of ['en','zh']) for(const width of [1440,390,320]) {
     const context=await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce'});
+    await useCourseTransport(context,base);
     await isolateNativeMedia(context);
     const page=await context.newPage();
     page.on('pageerror',error=>errors.push(error.message));
     page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
     for(const entry of catalog) {
       const label=`${entry.id} ${language} ${width}`;
+      activeCase=label;
       await page.goto(new URL(`${entry.slug}/index${language==='zh'?'.zh':''}.html`,base).href);
       await ready(page,language);
       await page.locator('.reader-ready').waitFor();
@@ -101,4 +105,7 @@ try {
   assert.deepEqual(errors,[],'Geometric-optics browser errors');
   fs.writeFileSync(new URL('report.json',out),JSON.stringify({cases,errors,media:'Generated synthetic fixture validates native controls; production film playback is a separate release check.'},null,2)+'\n');
   console.log('PASS geometric optics: 12 bilingual desktop/mobile/narrow cases.');
+} catch(error) {
+  fs.writeFileSync(new URL('failure.json',out),JSON.stringify({activeCase,message:error.message,errors,cases},null,2)+'\n');
+  throw error;
 } finally {await browser.close();}
