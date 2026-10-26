@@ -1,5 +1,5 @@
 {
- "total": 319.435,
+ "total": 322.679,
  "segments": [
   {
    "id": "h1",
@@ -130,156 +130,156 @@
   {
    "id": "g8",
    "ch": 2,
-   "text": "Below one wavelength, only the zeroth order survives, and the grating acts like a uniform film with an in-between index. That's where metasurfaces live.",
+   "text": "At normal incidence into air, a period below the air wavelength leaves only the transmitted zero order. Internal resonances can remain, so treating the grating as a uniform film needs a separate check.",
    "start": 131.365,
-   "end": 140.808
+   "end": 144.053
   },
   {
    "id": "b1",
    "ch": 3,
    "text": "Now let the structure repeat along the direction light travels: a stack of layers, repeating every period.",
-   "start": 141.878,
-   "end": 147.963
+   "start": 145.123,
+   "end": 151.207
   },
   {
    "id": "b2",
    "ch": 3,
    "text": "Shift it by one period and nothing changes. So the waves inside can only gain a fixed phase from one period to the next.",
-   "start": 148.283,
-   "end": 155.862
+   "start": 151.527,
+   "end": 159.107
   },
   {
    "id": "b3",
    "ch": 3,
    "text": "These are Bloch waves: e^(i\u03baz) times a function that repeats. A full turn of phase per period is invisible, so \u03ba only matters up to multiples of K.",
-   "start": 156.182,
-   "end": 167.463
+   "start": 159.427,
+   "end": 170.707
   },
   {
    "id": "b4",
    "ch": 3,
    "text": "Plot frequency, \u03c9, against \u03ba. With no contrast, light follows a straight line, and its copies, shifted by K, are the same waves.",
-   "start": 167.783,
-   "end": 177.07
+   "start": 171.027,
+   "end": 180.315
   },
   {
    "id": "b5",
    "ch": 3,
    "text": "The copies cross at the zone edge, where \u03bb = 2n\u039b. That's the Bragg condition: reflections from every layer add up in step.",
-   "start": 177.39,
-   "end": 186.189
+   "start": 180.635,
+   "end": 189.433
   },
   {
    "id": "b6",
    "ch": 3,
    "text": "Now turn up the index contrast, \u0394n. Watch the crossing: the forward and backward waves couple, and the bands pull apart.",
-   "start": 186.509,
-   "end": 194.003
+   "start": 189.753,
+   "end": 197.247
   },
   {
    "id": "b7",
    "ch": 3,
    "text": "A gap opens: a band of frequencies where no wave can travel through the stack.",
-   "start": 195.123,
-   "end": 199.586
+   "start": 198.367,
+   "end": 202.831
   },
   {
    "id": "b8",
    "ch": 3,
    "text": "Light there dies off within a few layers, so it all reflects. Ten pairs make a nearly perfect mirror for one band of colours.",
-   "start": 199.906,
-   "end": 207.295
+   "start": 203.151,
+   "end": 210.539
   },
   {
    "id": "r1",
    "ch": 4,
    "text": "How do you compute a real grating, with thick ridges? Rigorous coupled-wave analysis, RCWA, puts all of this together.",
-   "start": 208.365,
-   "end": 216.461
+   "start": 211.609,
+   "end": 219.706
   },
   {
    "id": "r2",
    "ch": 4,
    "text": "Thanks to the period, the field in any layer is just a list of amplitudes, one per diffraction order.",
-   "start": 216.781,
-   "end": 222.496
+   "start": 220.026,
+   "end": 225.74
   },
   {
    "id": "r3",
    "ch": 4,
    "text": "In a uniform layer, each order travels alone, picking up its own phase, e^(ikz z). The matrix is diagonal, as in episode one.",
-   "start": 222.816,
-   "end": 231.966
+   "start": 226.06,
+   "end": 235.21
   },
   {
    "id": "r4",
    "ch": 4,
    "text": "In a grating layer, the Fourier coefficients of \u03b5 couple each order to the others, and the matrix fills in.",
-   "start": 232.286,
-   "end": 238.635
+   "start": 235.53,
+   "end": 241.88
   },
   {
    "id": "r5",
    "ch": 4,
    "text": "Diagonalize it: the eigenvectors are the layer's Bloch modes, and the eigenvalues give their kz.",
-   "start": 238.955,
-   "end": 245.001
+   "start": 242.2,
+   "end": 248.246
   },
   {
    "id": "r6",
    "ch": 4,
    "text": "Advance each mode's phase, match the fields at every interface, and chain the layers with scattering matrices. They never contain growing exponentials, so they stay stable.",
-   "start": 245.321,
-   "end": 255.425
+   "start": 248.566,
+   "end": 258.669
   },
   {
    "id": "c1",
    "ch": 5,
    "text": "On a computer, RCWA takes four lines: expand \u03b5, build the matrix, diagonalize, chain the layers.",
-   "start": 256.495,
-   "end": 264.195
+   "start": 259.739,
+   "end": 267.44
   },
   {
    "id": "c2",
    "ch": 5,
    "text": "The pitfall is truncation: keep enough orders, and check that the answer converges. For the other polarization, use Li's factorization rules.",
-   "start": 264.515,
-   "end": 273.438
+   "start": 267.76,
+   "end": 276.683
   },
   {
    "id": "c3",
    "ch": 5,
    "text": "The payoff: sweep the ridge width of a sub-wavelength grating, and record the phase of the light passing straight through.",
-   "start": 273.758,
-   "end": 280.195
+   "start": 277.003,
+   "end": 283.439
   },
   {
    "id": "c4",
    "ch": 5,
    "text": "That's a metasurface's unit-cell library. Pick the width for each phase you need, and you have a flat lens, cell by cell.",
-   "start": 280.915,
-   "end": 287.945
+   "start": 284.159,
+   "end": 291.19
   },
   {
    "id": "e1",
    "ch": 6,
    "text": "Symmetry fixes momentum. Flat interfaces conserve kx. Periodic ones conserve it only up to multiples of K = 2\u03c0/\u039b, and where copies meet, gaps open.",
-   "start": 289.015,
-   "end": 301.407
+   "start": 292.26,
+   "end": 304.652
   },
   {
    "id": "e2",
    "ch": 6,
    "text": "Where it breaks: RCWA needs true periodicity, and a metasurface lens only borrows it locally, cell by cell.",
-   "start": 301.727,
-   "end": 309.263
+   "start": 304.972,
+   "end": 312.508
   },
   {
    "id": "e3",
    "ch": 6,
    "text": "Total internal reflection traps light in a slab, and Bragg mirrors trap it between them. So how do we guide light, and store it?",
-   "start": 309.583,
-   "end": 316.835
+   "start": 312.828,
+   "end": 320.079
   }
  ]
 }

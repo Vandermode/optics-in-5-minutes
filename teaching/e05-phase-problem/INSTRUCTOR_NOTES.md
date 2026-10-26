@@ -60,11 +60,11 @@ Reconstruct with a crop smaller than, equal to, and larger than the object bandw
 
 **Worked reasoning:** A small crop smooths the field. An unnecessarily large crop can collect unwanted terms; colour similarity is not a quantitative error test.
 
-### Test an ambiguity
+### Audit two errors
 
-Rotate a candidate field by a constant phase and compare its Fourier magnitude.
+For three initial phases, report the Fourier-amplitude residual and phase-aligned field error after the same number of updates. Check that a pure global phase rotation changes neither metric.
 
-**Worked reasoning:** The magnitude is unchanged. Phase-sensitive comparisons should align global phase when no known reference fixes it.
+**Worked reasoning:** A small residual establishes agreement with the fitted amplitudes. It does not establish recovery of the synthetic truth. Compare every reconstruction on one phase scale; finite-run disagreement is not a proof of nonuniqueness.
 
 ## Ten-point rubric
 
@@ -74,6 +74,8 @@ Rotate a candidate field by a constant phase and compare its Fourier magnitude.
 - Model limitations and interpretation of disagreement: 2 points.
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
+
+
 
 ## Common misconceptions
 
@@ -87,4 +89,4 @@ Grade reasoning and evidence, not an attractive plot alone. Results may vary wit
 
 Coherent, stable, monochromatic scalar fields and a known plane-wave reference. The browser uses a periodic, noiseless, explicitly band-limited object and integer-bin carriers. Real detectors add noise, finite pixels, nonuniform reference amplitude, and calibration errors.
 
-Optional extension: Numerically refocus a recovered field, compare several Gerchberg–Saxton initializations, and design a phase-only two-spot hologram.
+Optional extension: Design a phase-only two-spot hologram, quantize the phase, and compare the requested and achieved intensities on a common scale.

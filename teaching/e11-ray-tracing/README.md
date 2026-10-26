@@ -33,6 +33,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Use a ray fan to test when a paraxial focal prediction stops being accurate.
 - Explain why a geometric spot diagram does not establish diffraction-limited resolution.
 
+
+
 ## Use the lesson
 
 Watch the [E11 film](../media/e11-ray-tracing.mp4) (5:02), embedded near the top of the lesson.

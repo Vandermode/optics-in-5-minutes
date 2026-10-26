@@ -35,6 +35,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Choose a carrier and Fourier crop that isolate the desired field.
 - Distinguish reference-based recovery from iterative phase retrieval and its ambiguities.
 
+
+
 ## Use the lesson
 
 Watch the [E05 film](https://www.youtube.com/watch?v=G7s3JcGsoDo) (5:05), embedded near the top of the lesson.

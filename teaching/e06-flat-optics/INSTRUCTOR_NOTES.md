@@ -75,6 +75,8 @@ Compare quantization, height smoothing, and pixel refinement.
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
 
+
+
 ## Common misconceptions
 
 - Removing h₂π leaves the field multiplier unchanged… The complex transmission is unchanged when the removed phase is an integer multiple of 2π.

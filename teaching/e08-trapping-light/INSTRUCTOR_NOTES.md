@@ -75,6 +75,8 @@ Compare through-port power, circulating power, and decay after drive removal.
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
 
+
+
 ## Common misconceptions
 
 - A guided slab mode’s effective index lies… The core supports transverse oscillation while the cladding tail decays.

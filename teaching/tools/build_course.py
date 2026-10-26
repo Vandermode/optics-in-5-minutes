@@ -70,15 +70,33 @@ def video_href(episode):
 
 def notebook_actions(m, notebook):
     download = f'<a class="button secondary" href="{notebook}" download>Download notebook ↓</a><a href="figures.zip" download>Saved figures ↓</a>'
-    if not VIDEOS[m['id']].get('youtubeId'):
+    if m.get('local_preview') or not VIDEOS[m['id']].get('youtubeId'):
         return f'<div class="actions">{download}</div><p class="meta">Download the notebook and open it in Jupyter, or upload it to Colab using File → Upload notebook. Then select Runtime → Run all.</p>'
     return f'<div class="actions"><a class="button" href="{COLAB}/{m["slug"]}/{notebook}" target="_blank" rel="noopener">Open in Colab ↗</a>{download}</div><p class="meta">In Colab, sign in with a Google account and select Runtime → Run all. Save a copy in Drive to retain edits. Saved notebook outputs and downloadable PNG figures provide a fallback if Colab’s output frame cannot load.</p>'
 
 
 def public_source_link(m):
-    if not VIDEOS[m['id']].get('youtubeId'):
+    if m.get('local_preview') or not VIDEOS[m['id']].get('youtubeId'):
         return ''
     return f'<li><a href="{PUBLIC}/tree/main/teaching/{m["slug"]}" target="_blank" rel="noopener">Lesson and notebook source ↗</a></li>'
+
+
+def optional_work(m, markdown=False):
+    goals = m.get('optional_goals', [])
+    tasks = m.get('optional_exercises', [])
+    if not goals and not tasks:
+        return ''
+    notice = 'These extension tasks are separate from the core ten-point rubric.'
+    if markdown:
+        result = '\n\n### Optional extension outcomes\n\n' + '\n'.join('- ' + goal for goal in goals)
+        result += '\n\n' + notice
+        for title, task, answer in tasks:
+            result += f'\n\n**{title}.** {task}\n\n**Worked reasoning:** {answer}'
+        return result + '\n'
+    result = '<h4>Optional extension outcomes</h4><ul>' + ''.join('<li>' + esc(goal) + '</li>' for goal in goals) + '</ul>'
+    for title, task, answer in tasks:
+        result += f'<h4>{esc(title)}</h4><p>{esc(task)}</p><p>{esc(answer)}</p>'
+    return result + '<p>' + notice + '</p>'
 
 
 def video_section(m):
@@ -116,7 +134,7 @@ def page(m):
     goals="".join("<li>"+esc(x)+"</li>" for x in m["goals"])
     steps="".join("<li>"+esc(x)+"</li>" for x in m["steps"])
     prediction=f'<div class="callout"><p class="eyebrow">PREDICT BEFORE YOU CHANGE A CONTROL</p><p>{esc(m["prediction"])}</p></div>'
-    guidance=f'<div class="reading" style="margin:{24 if m.get("guided_lab") else 35}px 0"><div class="section-label">A GUIDED EXPERIMENT</div><div><ol>{steps}</ol></div></div>'
+    guidance=f'<div id="lab-guide" class="reading" style="margin:24px 0"><div class="section-label">A GUIDED EXPERIMENT</div><div><ol>{steps}</ol></div></div>'
     presets="".join(f'<button type="button" data-preset="{i}">{esc(p["label"])}</button>' for i,p in enumerate(m["presets"]))
     quiz=""
     for i,q in enumerate(m["quiz"]):
@@ -144,9 +162,9 @@ def page(m):
     {preparation_html(m["id"], earlier)}
     {video_section(m)}
 <section id="idea" class="section reading"><div class="section-label">01 / BUILD AN INTUITION</div><div><h2>What to notice first.</h2>{m["intro"]}
-<h3>By the end, you can</h3><ol>{goals}</ol>{'' if m.get('guided_lab') else prediction}</div></section>
+<h3>By the end, you can</h3><ol>{goals}</ol></div></section>
 <section id="lab" class="section"><div class="section-heading"><div><p class="section-label">02 / TEST YOUR PREDICTION</p><h2>Change one thing.<br>Follow what changes.</h2></div><p>All plotted fields and curves are calculated from the stated model. Keep the other controls fixed while testing a prediction.</p></div>
-{prediction + guidance if m.get('guided_lab') else ''}
+{prediction + guidance}
 <noscript><p class="callout">Enable JavaScript to run the experiment. The explanations and downloadable notebook remain available.</p></noscript>
 <div class="lab-layout"><aside class="controls" aria-label="Experiment controls">{"".join(control(c,m["defaults"]) for c in m["controls"])}
 <div class="control-buttons"><button id="run" class="button" type="button">Run</button><button id="cancel" class="button secondary" type="button" disabled>Stop</button><button id="reset" class="button secondary" type="button">Reset</button><button id="copy-link" class="button secondary" type="button">Copy experiment</button></div>
@@ -154,7 +172,7 @@ def page(m):
 <div class="visuals"><div id="plots" class="plots"></div><div id="metrics" class="metrics" aria-live="polite"></div><p id="run-note" class="run-note"></p>
 <div class="presets" aria-label="Example experiments">{presets}<button type="button" id="download-plot">Save first plot PNG ↓</button></div><a id="plot-download" hidden>Download generated PNG ↓</a></div></div>
 <p class="model-note"><strong>Model:</strong> {esc(m["limits"])}</p>
-{'' if m.get('guided_lab') else guidance}</section>
+</section>
 <section id="explain" class="section reading"><div class="section-label">03 / CONNECT THE LOGIC</div><div>{m["theory"]}</div></section>
 <section id="check" class="section reading"><div><p class="section-label">04 / CHECK YOUR UNDERSTANDING</p><p>Make a prediction before checking the explanation.</p></div>
 <div><h2>Can you explain the change?</h2><form id="quiz">{quiz}<button class="button" type="submit">Check answers →</button><p id="quiz-status" role="status"></p></form></div></section>
@@ -162,7 +180,7 @@ def page(m):
 <p>The standalone notebook builds the model in small steps, draws the results, and checks the calculation against independent predictions. It runs on CPU using NumPy, SciPy, and Matplotlib. No repository clone, GPU, or external dataset is needed.</p>
 {notebook_actions(m, notebook)}
 <h3>A short lab report</h3><ol>{tasks}</ol><details><summary>Compare your reasoning</summary><div class="answer">{answers}</div></details>
-<details><summary>Optional deeper extension</summary><div class="answer"><p>{esc(m["extension"])}</p><p>The notebook marks the extension clearly. Complete the core experiment and its checks first.</p></div></details>
+<details class="optional-extension"><summary>Optional deeper extension</summary><div class="answer"><p>{esc(m["extension"])}</p><p>The notebook marks the extension clearly. Complete the core experiment and its checks first.</p>{optional_work(m)}</div></details>
 <p><a href="INSTRUCTOR_NOTES.md">Instructor notes and assessment rubric ↗</a> · <a href="README.md">Model, setup, and reproducibility ↗</a></p></div></section>
 <section id="sources" class="section reading"><div class="section-label">MODEL & SOURCES</div><div><h2>Know what the model leaves out.</h2><p>{esc(m["limits"])}</p>
 <p><strong>Video companion:</strong> <a href="#video">watch the {m["id"]} film above</a> ({esc(VIDEOS[m["id"]]["duration"])}).</p>
@@ -187,7 +205,7 @@ def build_notebook(m):
 
 **You will learn to:**
 
-"""+ "\n".join("- "+g for g in m["goals"])+f"""
+"""+ "\n".join("- "+g for g in m["goals"])+(('\n\n**Optional extension outcomes:**\n\n' + '\n'.join('- ' + goal for goal in m['optional_goals'])) if m.get('optional_goals') else '')+f"""
 
 **Model:** {m['limits']}
 
@@ -226,7 +244,8 @@ print("Python", sys.version.split()[0], "| NumPy", np.__version__, "| SciPy", sc
             cells.append(nbformat.v4.new_code_cell(section.strip()))
     report="## A short lab report\n\n"+"\n\n".join(f"**{i+1}. {title}.** {task}" for i,(title,task,answer) in enumerate(m["exercises"]))
     report+="\n\n### Worked reasoning\n\n"+"\n\n".join(f"**{title}.** {answer}" for title,task,answer in m["exercises"])
-    report+="\n\n### Ten-point rubric\n\nPrediction and reasoning: 2; reproducible parameters, units, and plots: 3; quantitative validation: 3; limitations and interpretation: 2.\n\n## References\n\n"
+    report+="\n\n### Ten-point rubric\n\nPrediction and reasoning: 2; reproducible parameters, units, and plots: 3; quantitative validation: 3; limitations and interpretation: 2."
+    report+=optional_work(m, markdown=True)+"\n\n## References\n\n"
     report+="\n".join(f"- [{title}]({url})" for title,url in m["refs"])
     report+="\n\n## Save your figures\n\nThe final cell creates a ZIP of the computed PNGs. In Colab, use the Files sidebar to download it if an output frame or link is blocked. Saved notebook outputs and the public lesson's figure download provide another viewing route."
     cells.append(nbformat.v4.new_markdown_cell(report))
@@ -273,6 +292,8 @@ def docs(m):
 ## Learning outcomes
 
 {goals}
+
+{optional_work(m, markdown=True)}
 
 ## Use the lesson
 
@@ -331,6 +352,8 @@ Use the optional extension for a longer lab rather than rushing the core. The qu
 - Model limitations and interpretation of disagreement: 2 points.
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
+
+{optional_work(m, markdown=True)}
 
 ## Common misconceptions
 
@@ -403,6 +426,19 @@ def main():
     text=text.replace('<section class="hero"', '<section id="overview" class="hero"')
     text=text.replace('<section class="section interpretation">', '<section id="explain" class="section interpretation">')
     text=text.replace('<section class="section footnotes">', '<section id="sources" class="section footnotes">')
+    # E03 has a custom page, but follows the same prediction → guidance → controls order.
+    text=re.sub(r'\s*<!-- course-lab-guide -->.*?<!-- /course-lab-guide -->\n?', '\n\n', text, flags=re.S)
+    text=re.sub(r'\s*<div class="prediction">.*?</div>', '', text, flags=re.S)
+    e03_guidance = '''<!-- course-lab-guide -->
+    <div class="prediction"><span class="tiny-label">PREDICT BEFORE YOU TOUCH THE SLIDERS</span><p>Two emitters are 520 nm apart. Would you change the wavelength, the aperture, or the display zoom to make their optical images more distinguishable?</p></div>
+    <div id="lab-guide" class="lab-guidance"><h3>A guided experiment</h3><ol>
+    <li>Keep wavelength and separation fixed. Increase numerical aperture and compare the PSF width, profile dip, and separation divided by the Rayleigh distance.</li>
+    <li>Restore the starting aperture and change wavelength. Predict the direction of the change before reading the updated profile.</li>
+    <li>Change only display zoom. Check that the Rayleigh distance and separation ratio stay fixed, then compare the below, at, and above Rayleigh presets.</li>
+    </ol></div>
+    <!-- /course-lab-guide -->
+'''
+    text=text.replace('    <noscript><p class="notice">Enable JavaScript to run the interactive experiment.', e03_guidance+'    <noscript><p class="notice">Enable JavaScript to run the interactive experiment.', 1)
     preparation = ('<!-- course-preparation -->\n'
                    + preparation_html("E03", 'Useful earlier lessons: <a href="../e01-angular-spectrum/">E01</a>, <a href="../e02-lens-fourier/">E02</a>').replace('class="preparation"', 'class="preparation preparation-e03"')
                    + '\n<!-- /course-preparation -->')

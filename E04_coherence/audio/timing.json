@@ -1,5 +1,5 @@
 {
- "total": 301.169,
+ "total": 302.562,
  "segments": [
   {
    "id": "h1",
@@ -67,261 +67,261 @@
   {
    "id": "c7",
    "ch": 1,
-   "text": "On average, the cross term vanishes, so the intensities add.",
+   "text": "If averaging removes the cross term, the intensities add.",
    "start": 58.552,
-   "end": 61.884
+   "end": 61.855
   },
   {
    "id": "c8",
    "ch": 1,
    "text": "The visibility measures what's left: one for perfect fringes, zero for none.",
-   "start": 63.004,
-   "end": 67.475
+   "start": 62.975,
+   "end": 67.446
   },
   {
    "id": "t1",
    "ch": 2,
    "text": "Why would phases wander? One reason is colour. Split a beam, and delay one copy by a path difference, \u0394L.",
-   "start": 68.545,
-   "end": 75.181
+   "start": 68.516,
+   "end": 75.152
   },
   {
    "id": "t2",
    "ch": 2,
    "text": "With a single colour, the fringes go on forever.",
-   "start": 75.501,
-   "end": 78.173
+   "start": 75.472,
+   "end": 78.144
   },
   {
    "id": "t3",
    "ch": 2,
    "text": "But each colour has its own spacing. At zero delay they agree; further out, they drift apart.",
-   "start": 78.493,
-   "end": 84.035
+   "start": 78.464,
+   "end": 84.006
   },
   {
    "id": "t4",
    "ch": 2,
    "text": "Add a whole spectrum, and fringes survive only near zero delay. That window is the coherence length, roughly \u03bb\u00b2/\u0394\u03bb.",
-   "start": 84.355,
-   "end": 93.284
+   "start": 84.326,
+   "end": 93.256
   },
   {
    "id": "t5",
    "ch": 2,
    "text": "In fact, the envelope is the Fourier transform of the spectrum: narrow spectrum, long coherence.",
-   "start": 93.604,
-   "end": 99.551
+   "start": 93.576,
+   "end": 99.523
   },
   {
    "id": "t6",
    "ch": 2,
    "text": "A good laser: centimetres to kilometres. An LED: about ten microns. Sunlight: about one micron.",
-   "start": 99.871,
-   "end": 107.07
+   "start": 99.843,
+   "end": 107.042
   },
   {
    "id": "s1",
    "ch": 3,
    "text": "Colour isn't the whole story. A laser behaves like a single point of light; an LED is a crowd of independent points.",
-   "start": 108.14,
-   "end": 115.898
+   "start": 108.112,
+   "end": 115.87
   },
   {
    "id": "s2",
    "ch": 3,
    "text": "Move one point off centre. Its light reaches the slits tilted, and the tilt shifts its fringes sideways.",
-   "start": 116.218,
-   "end": 122.411
+   "start": 116.19,
+   "end": 122.382
   },
   {
    "id": "s3",
    "ch": 3,
    "text": "Different points have unrelated phases, so their intensities add. The camera sees a sum of shifted copies.",
-   "start": 122.731,
-   "end": 128.939
+   "start": 122.702,
+   "end": 128.91
   },
   {
    "id": "s4",
    "ch": 3,
    "text": "Watch as the source grows: the copies spread out and fill in each other's dark bands, until the sum is flat grey.",
-   "start": 129.259,
-   "end": 135.846
+   "start": 129.23,
+   "end": 135.817
   },
   {
    "id": "s5",
    "ch": 3,
    "text": "Fringes vanish once the source's angular size reaches about \u03bb over the slit separation.",
-   "start": 136.966,
-   "end": 142.652
+   "start": 136.937,
+   "end": 142.624
   },
   {
    "id": "s6",
    "ch": 3,
    "text": "A tiny pinhole brings them back. So does distance: a giant star, far away, looks tiny.",
-   "start": 142.972,
-   "end": 148.646
+   "start": 142.944,
+   "end": 148.617
   },
   {
    "id": "s7",
    "ch": 3,
    "text": "How visibility fades as the slits move apart is the Fourier transform of the source's shape: the van Cittert\u2013Zernike theorem.",
-   "start": 148.966,
-   "end": 156.475
+   "start": 148.937,
+   "end": 156.446
   },
   {
    "id": "s8",
    "ch": 3,
    "text": "In 1920, Michelson spread two mirrors apart until a star's fringes vanished, and measured the size of Betelgeuse.",
-   "start": 156.795,
-   "end": 164.056
+   "start": 156.766,
+   "end": 164.027
   },
   {
    "id": "p1",
    "ch": 4,
    "text": "Coherence has a dark side. A wall is rough on the scale of a wavelength.",
-   "start": 165.126,
-   "end": 169.368
+   "start": 165.097,
+   "end": 169.34
   },
   {
    "id": "p2",
    "ch": 4,
    "text": "At each pixel, light arrives from every bump with a random phase, and the arrows add up like a random walk.",
-   "start": 169.688,
-   "end": 176.029
+   "start": 169.66,
+   "end": 176.001
   },
   {
    "id": "p3",
    "ch": 4,
    "text": "Sometimes they cancel, sometimes they line up: dark and bright grains called speckle.",
-   "start": 176.349,
-   "end": 181.051
+   "start": 176.321,
+   "end": 181.022
   },
   {
    "id": "p4",
    "ch": 4,
    "text": "Its contrast, the standard deviation over the mean, is exactly one.",
-   "start": 181.371,
-   "end": 185.494
+   "start": 181.342,
+   "end": 185.465
   },
   {
    "id": "p5",
    "ch": 4,
    "text": "Each grain is about \u03bb/NA across: the numerical aperture, NA, is the sine of the widest angle collected.",
-   "start": 185.814,
-   "end": 193.298
+   "start": 185.785,
+   "end": 193.269
   },
   {
    "id": "p6",
    "ch": 4,
    "text": "Average N independent patterns, and the contrast falls as 1/\u221aN. An LED's many colours and points do just that.",
-   "start": 193.618,
-   "end": 201.563
+   "start": 193.589,
+   "end": 201.534
   },
   {
    "id": "m1",
    "ch": 5,
    "text": "How do we compute with partially coherent light? Record, for every pair of points, how well their fields keep in step.",
-   "start": 202.633,
-   "end": 209.178
+   "start": 202.604,
+   "end": 209.149
   },
   {
    "id": "m2",
    "ch": 5,
    "text": "That's the mutual intensity, J: the average of the field at x\u2081 times the conjugate field at x\u2082. Its diagonal is the intensity.",
-   "start": 209.498,
-   "end": 218.876
+   "start": 209.469,
+   "end": 218.847
   },
   {
    "id": "m3",
    "ch": 5,
    "text": "Off the diagonal, it says how strongly two points would interfere through a double slit.",
-   "start": 219.196,
-   "end": 223.822
+   "start": 219.167,
+   "end": 223.794
   },
   {
    "id": "m4",
    "ch": 5,
    "text": "Swapping the points conjugates J, so it's a Hermitian matrix, and it can be diagonalized.",
-   "start": 224.142,
-   "end": 229.566
+   "start": 224.114,
+   "end": 229.538
   },
   {
    "id": "m5",
    "ch": 5,
    "text": "Its eigenvectors are coherent modes, each perfectly coherent, and its eigenvalues are their powers.",
-   "start": 229.886,
-   "end": 236.149
+   "start": 229.858,
+   "end": 236.121
   },
   {
    "id": "m6",
    "ch": 5,
    "text": "So partially coherent light is a sum of independent coherent fields, whose intensities add.",
-   "start": 236.469,
-   "end": 242.037
+   "start": 236.441,
+   "end": 242.009
   },
   {
    "id": "m7",
    "ch": 5,
    "text": "A laser needs one mode. The bigger the source, the more modes it takes.",
-   "start": 243.157,
-   "end": 247.163
+   "start": 243.129,
+   "end": 247.134
   },
   {
    "id": "k1",
    "ch": 6,
    "text": "On a computer, that gives three recipes. Coherent light: propagate the field, then square it.",
-   "start": 248.233,
-   "end": 253.6
+   "start": 248.204,
+   "end": 253.572
   },
   {
    "id": "k2",
    "ch": 6,
    "text": "Incoherent light: add intensities, often with a convolution. Partially coherent light: propagate a few modes, and add their intensities.",
-   "start": 253.92,
-   "end": 262.218
+   "start": 253.892,
+   "end": 262.189
   },
   {
    "id": "k3",
    "ch": 6,
    "text": "Here's a diffractive element lit by a laser. Its far-field pattern is crisp, but speckled.",
-   "start": 262.538,
-   "end": 267.929
+   "start": 262.509,
+   "end": 267.901
   },
   {
    "id": "k4",
    "ch": 6,
    "text": "With an LED, each source point tilts the light, shifting the pattern, and each colour stretches it. The sum is blurred, but smooth.",
-   "start": 268.249,
-   "end": 275.917
+   "start": 268.221,
+   "end": 275.888
   },
   {
    "id": "k5",
    "ch": 6,
    "text": "At large angles, this simple blur stops being exact, but a few coherent modes are often enough.",
-   "start": 276.237,
-   "end": 282.027
+   "start": 276.208,
+   "end": 281.999
   },
   {
    "id": "r1",
    "ch": 7,
-   "text": "So, when does light interfere? Fields add when their phases stay in step. When phases wander, intensities add.",
-   "start": 283.097,
-   "end": 289.837
+   "text": "Fields always add; the exposure determines which interference terms survive. When the averaged cross term vanishes, intensities add.",
+   "start": 283.069,
+   "end": 291.23
   },
   {
    "id": "r2",
    "ch": 7,
    "text": "And partially coherent light is a sum of coherent patterns.",
-   "start": 290.157,
-   "end": 293.501
+   "start": 291.55,
+   "end": 294.894
   },
   {
    "id": "r3",
    "ch": 7,
    "text": "Next time: coherence lets us do what a camera can't, and record the phase of light.",
-   "start": 293.821,
-   "end": 298.569
+   "start": 295.214,
+   "end": 299.962
   }
  ]
 }

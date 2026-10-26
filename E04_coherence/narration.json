@@ -63,8 +63,8 @@
   {
    "id": "c7",
    "ch": 1,
-   "text": "On average, the cross term vanishes, so the intensities add.",
-   "say": "On average, the cross term vanishes, so the intensities add.",
+   "text": "If averaging removes the cross term, the intensities add.",
+   "say": "If averaging removes the cross term, the intensities add.",
    "pause_after": 0.8
   },
   {
@@ -270,8 +270,8 @@
   {
    "id": "r1",
    "ch": 7,
-   "text": "So, when does light interfere? Fields add when their phases stay in step. When phases wander, intensities add.",
-   "say": "So, when does light interfere? Fields add when their phases stay in step. When phases wander, intensities add."
+   "text": "Fields always add; the exposure determines which interference terms survive. When the averaged cross term vanishes, intensities add.",
+   "say": "Fields always add; the exposure determines which interference terms survive. When the averaged cross term vanishes, intensities add."
   },
   {
    "id": "r2",

@@ -56,7 +56,7 @@ dict(id="E01", slug="e01-angular-spectrum", title="The angular spectrum method",
                 ("Separate numerical errors","Change padding and sample spacing independently. Explain which fixes wrap-around and which extends Nyquist.","Padding separates periodic replicas; smaller pixels represent higher spatial frequencies. Neither replaces checking convergence."),
                 ("Test an eigenfunction","Propagate a single Fourier-grid plane wave and compare it with its analytic phase factor.","A grid-aligned plane wave keeps its transverse shape. Its coefficient gains e^(i k_z z), and its norm stays constant when k_z is real.")],
      refs=[PROP,FFT]),
-dict(id="E02", slug="e02-lens-fourier", title="Why a lens computes a Fourier transform",
+dict(id="E02", local_preview=True, slug="e02-lens-fourier", title="Why a lens computes a Fourier transform",
      headline="A direction enters.<br><em>A position lights up.</em>",
      deck="A lens sorts plane waves into focal spots. A second lens turns that spectrum back into an image—and lets you edit it along the way.",
      prerequisites=["E01"],goals=["Convert transverse spatial frequency into a focal-plane coordinate.",
@@ -86,8 +86,12 @@ dict(id="E02", slug="e02-lens-fourier", title="Why a lens computes a Fourier tra
 <p>A thin phase object multiplies the field by e<sup>iφ(x,y)</sup>. Its intensity may be uniform even when φ varies. For a weak object, e<sup>iφ</sup> ≈ 1 + iφ: an unscattered background and a small scattered contribution are approximately a quarter-cycle apart. Their first-order intensity contrast is then small.</p>
 <p>A small phase disk near the Fourier origin changes the phase of the background relative to the scattered field. Their interference can turn phase variation into visible intensity contrast. The disk does not read an absolute optical phase; it creates a relative-phase measurement. Its finite size also affects low-frequency scattered components, so the resulting image is not an exact quantitative phase map.</p>
 <h3>Coordinates are part of the algorithm.</h3>
-<p>For an N-point input sampled at Δx, Fourier bins are separated by Δfₓ = 1/(NΔx). In the focal plane, Δx_f = λf/(NΔx). Relabeling the FFT with the input coordinates is a common mistake. The notebook checks this scaling and the reversal explicitly, then examines how quadratic phases can be undersampled.</p>""",
-     extension="Compute front-to-back focal-plane propagation with Fresnel operators, inspect residual quadratic phase, and compare the physical output coordinates with FFT-bin labels.",
+<p>For an N-point input sampled at Δx, Fourier bins are separated by Δfₓ = 1/(NΔx). In the focal plane, Δx_f = λf/(NΔx). Relabeling the FFT with the input coordinates is a common mistake. The notebook checks this scaling and the reversal explicitly.</p>
+<p>The Nyquist frequency, 1/(2Δx), bounds the spatial frequencies the grid can represent. A rapidly varying quadratic phase can be undersampled even when its intensity looks smooth.</p>
+<h3>Test the complete propagation path.</h3>
+<p>Let P_f denote propagation through one focal length and L the thin lens. An object against the lens follows U → L → P_f. An object in the front focal plane follows U → P_f → L → P_f. The optional experiment evaluates every propagation integral directly, then compares the result with the Fourier prediction on the same physical output grid.</p>
+<p>For the ideal, unbounded paraxial lens in that experiment, the focal intensities agree, but the against-lens field retains an output quadratic phase. The front-to-back field has only a known constant phase factor. Comparing intensity alone misses this difference; compare the complex fields while retaining the specified prefactors, then refine the sampling and integration window.</p>""",
+     extension="Compare U → L → P_f with the complete U → P_f → L → P_f path using direct Fresnel integrals. Test intensity, coordinate-dependent phase, and complex-field error on one physical output grid, then refine both sampling and window size.",
      limits="Coherent monochromatic scalar illumination, ideal paraxial lenses, and thin Fourier masks. The focal-spot panel uses a Gaussian entrance field. The 4f panel is a periodic sampled field; no aberrations, finite detector pixels, or noise are included.",
      quiz=[question("At fixed illumination direction, doubling f makes the focal displacement…",["Half as large","Twice as large","Independent of f"],1,"The paraxial relation x_f = f sin θ scales linearly with focal length."),
            question("An unfiltered equal-focal-length 4f system produces…",["The spatially inverted field","Only the object’s intensity spectrum","A universally sharper object"],0,"Two forward Fourier transforms reverse the spatial coordinates."),
@@ -96,12 +100,14 @@ dict(id="E02", slug="e02-lens-fourier", title="Why a lens computes a Fourier tra
                 ("Compare three masks","Save unfiltered, low-pass, and central-stop images with the same intensity scale.","The mask acts on the complex field spectrum. Squaring after filtering makes coherent image formation nonlinear in input intensity."),
                 ("Make phase visible","Compare a weak phase object before and after a central π/2 phase shift.","The small scattered field interferes differently with the rotated background. Finite disk size and strong phase shifts limit the weak-object interpretation.")],
      refs=[("MIT OpenCourseWare · Spatial filtering and lens transforms","https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-18-spatial-filtering-lens-transfer-functions-transforms/"),PROP,FFT]),
-dict(id="E04",slug="e04-coherence",title="Coherence and what a camera averages",
+dict(id="E04",local_preview=True,slug="e04-coherence",title="Coherence and what a camera averages",
      headline="Fields always add.<br><em>What survives the exposure?</em>",
      deck="Connect interference, source bandwidth, source size, and speckle through one measurement: the time-averaged squared field.",
      prerequisites=["E01","E03"],goals=["Explain intensity addition as a consequence of averaged cross terms.",
          "Distinguish temporal coherence, spatial coherence, and fixed spatial randomness.",
-         "Use mutual intensity and coherent modes to propagate partially coherent light."],
+         "Distinguish the effects of spectral filtering, angular filtering, and averaging independent patterns."],
+     optional_goals=["Build a mutual-intensity matrix and interpret its coherent modes.",
+                     "Compare source averaging with full and truncated coherent-mode propagation."],
      defaults=dict(phase=0,jitter=0,bandwidth=5,delay=0,angle=0,baseline=30,balance=1,patterns=1,realizations="independent"),
      controls=[slider("phase","Relative phase",-180,180,5,"°"),slider("jitter","Uniform phase half-range",0,360,10,"°",help="Relative phase samples span ± this angle during an exposure."),
                slider("bandwidth","Frequency standard deviation",0,30,1,"THz"),slider("delay","Path delay",0,100,2,"fs"),
@@ -127,7 +133,7 @@ dict(id="E04",slug="e04-coherence",title="Coherence and what a camera averages",
 <h3>Why random phase can make visible speckle.</h3>
 <p>A stationary rough surface imposes irregular spatial phases. Under stable coherent illumination, those contributions still interfere consistently during an exposure, producing fixed bright and dark grains. Spatial randomness alone does not wash them out. Contrast decreases when the measurement combines different sufficiently independent patterns, polarizations, wavelengths, or unresolved grains.</p>
 <p>For resolved, fully developed, single-polarization speckle, contrast C = σI/⟨I⟩ is approximately one. Averaging N independent equal-weight patterns gives C ≈ 1/√N. Repeating one pattern provides no such benefit. A finite image and correlated samples make a measured contrast fluctuate around that ideal prediction.</p>
-<h3>One matrix carries all pairwise information.</h3>
+<h3>Optional: one matrix carries all pairwise information.</h3>
 <p>Mutual intensity is Jᵢⱼ = ⟨UᵢUⱼ*⟩. Its diagonal is intensity, but its off-diagonal correlations affect what happens after propagation. J is Hermitian and positive semidefinite. Its eigenvectors are coherent modes and its nonnegative eigenvalues are their powers. Propagate each mode through the same linear field operator and sum its weighted intensity. The notebook checks this against direct independent-source averaging and shows how to measure truncation error.</p>""",
      extension="Build a mutual-intensity matrix from independent source angles, diagonalize it, and compare full and truncated coherent-mode propagation.",
      limits="Stationary scalar, same-polarization fields; small-angle uniform angular source; Gaussian frequency spectrum. The product of temporal, spatial, and jitter correlations assumes separable independent effects. Speckle uses circular complex Gaussian fields filtered by a finite pupil.",
@@ -136,11 +142,12 @@ dict(id="E04",slug="e04-coherence",title="Coherence and what a camera averages",
            question("Two beams show V = 0.5. This proves |γ| = 0.5 only if…",["Their wavelengths are visible","Their intensities are equal and polarizations match","Their source is a laser"],1,"Brightness imbalance and polarization mismatch also reduce visibility.")],
      exercises=[("Diagnose low visibility","Produce the same fringe visibility using intensity imbalance and phase averaging. Explain how to distinguish them.","Measure each beam separately and check polarization before interpreting visibility as |γ|."),
                 ("Audit the averaging law","Compare fixed and independent realizations at N = 1, 4, 16, 64.","Only independent equal-weight patterns give the ideal 1/√N scaling; finite fields give sampling variation."),
-                ("Propagate correlations","Compare direct source averaging with a full coherent-mode decomposition, then retain fewer modes.","The complete decompositions agree. Retained power and output intensity error should both be reported; a high retained-power fraction alone does not bound every pixel’s relative error.")],
+                ("Separate two filters","At nonzero delay and slit baseline, compare narrowing the spectrum with narrowing the angular source. State which correlation each change affects.","A spectral filter changes temporal coherence; an angular filter changes spatial coherence. Neither automatically fixes the other. Record the controls held fixed.")],
+     optional_exercises=[("Propagate correlations","Compare direct source averaging with a full coherent-mode decomposition, then retain fewer modes.","The complete decompositions agree. Retained power and output intensity error should both be reported; a high retained-power fraction alone does not bound every pixel’s relative error.")],
      refs=[("MIT OpenCourseWare · Coherent and incoherent imaging","https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-22-coherent-and-incoherent-imaging/"),
            ("Singer & Vartanyants · Coherent-mode propagation","https://arxiv.org/abs/1108.6008"),
            ("Goodman · Statistical properties of laser speckle","https://opg.optica.org/josa/abstract.cfm?uri=josa-66-11-1145")]),
-dict(id="E05",slug="e05-phase-problem",title="Holography and the phase problem",
+dict(id="E05",local_preview=True,slug="e05-phase-problem",title="Holography and the phase problem",
      headline="A camera loses phase.<br><em>A reference leaves clues.</em>",
      deck="Turn a phase difference into measurable fringes, recover a complex field from a sideband, and learn what iterative constraints can—and cannot—determine.",
      prerequisites=["E01","E02","E04"],goals=["Expand a hologram into its background and interference terms.",
@@ -166,15 +173,20 @@ dict(id="E05",slug="e05-phase-problem",title="Holography and the phase problem",
 <p>Phase retrieval starts from measurements such as a Fourier magnitude and assumptions such as a known spatial amplitude or support. Gerchberg–Saxton alternates between planes: propagate, replace the magnitude with the measured value while keeping phase, propagate back, and impose the other constraint.</p>
 <div class="equation">U → F[U] → measured magnitude + current phase → F<sup>−1</sup> → object constraint</div>
 <p>Each projection satisfies one condition, but their combination is a nonconvex problem. A small residual does not automatically prove a unique or correct object. Depending on the experiment, shifts, conjugate inversion, or global phase can leave measurements unchanged. Multiple initializations can stagnate at different solutions. Additional distances, known references, or scanning diversity add information rather than merely iterations.</p>
+<h3>Measure agreement with data and error against truth separately.</h3>
+<p>In the notebook, U is the known synthetic field, u is a reconstruction, and b = |F(U)| is the measured Fourier amplitude. The residual r measures agreement with b. The field error e compares with U after removing an arbitrary global phase. Both are evaluated on the same completed iteration.</p>
+<div class="equation">r = ‖|F(u)| − b‖₂ / ‖b‖₂<br>e = min_α ‖e<sup>iα</sup>u − U‖₂ / ‖U‖₂</div>
+<figure class="evidence-figure"><a href="figures/03-phase-retrieval.png" target="_blank" rel="noopener"><img src="figures/03-phase-retrieval.png" width="1680" height="1040" loading="lazy" alt="Three phase-retrieval runs: measured-amplitude residuals fall below one percent while phase-aligned field errors remain above fourteen percent; all recovered phases share the truth image’s color scale."></a><figcaption>Computed notebook example: the same two magnitude constraints, seeds 3, 7, and 11, and 150 updates. Residuals are 0.654–0.786%; field errors are 14.6–18.3%. Open the figure to inspect both curves and all three reconstructions.</figcaption></figure>
+<p>This finite example shows that a small measurement residual can coexist with substantial reconstruction error. It does not prove nonuniqueness or rule out improvement with more iterations. For an unknown object, e is unavailable; test predictions against independent measurements instead of treating the fitted residual as ground truth.</p>
 <p>The same loop can design a phase-only hologram by replacing a measured magnitude with a desired output magnitude. That is a synthesis problem: the target may not be exactly reachable under a fixed input amplitude. The notebook reports residuals and compares starts instead of promising exact convergence.</p>""",
-     extension="Numerically refocus a recovered field, compare several Gerchberg–Saxton initializations, and design a phase-only two-spot hologram.",
+     extension="Design a phase-only two-spot hologram, quantize the phase, and compare the requested and achieved intensities on a common scale.",
      limits="Coherent, stable, monochromatic scalar fields and a known plane-wave reference. The browser uses a periodic, noiseless, explicitly band-limited object and integer-bin carriers. Real detectors add noise, finite pixels, nonuniform reference amplitude, and calibration errors.",
      quiz=[question("Why tilt the reference?",["To move the cross terms away from the central spectrum","To make the camera directly measure complex numbers","To remove the need for sampling"],0,"The carrier shifts the cross terms, allowing a Fourier filter to isolate one."),
            question("Increasing the carrier without limit eventually…",["Always improves recovery","Aliases the sideband across Nyquist","Eliminates all phase ambiguities"],1,"The sideband’s outer edge must remain inside the sampled frequency range."),
            question("A phase-retrieval run reaches a small magnitude residual. That guarantees…",["The unique physical object","Agreement with that measured magnitude, within the residual","Freedom from global phase ambiguity"],1,"Uniqueness requires sufficient data and appropriate assumptions; magnitude agreement alone is weaker.")],
      exercises=[("Budget the spectrum","For B = 8 and Nyquist = 64 bins, identify a safe carrier interval and explain both bounds.","Use 24 < f_c < 56 bins before adding practical margins. The crop must contain B without admitting central or conjugate terms."),
                 ("Compare crops","Reconstruct with a crop smaller than, equal to, and larger than the object bandwidth.","A small crop smooths the field. An unnecessarily large crop can collect unwanted terms; colour similarity is not a quantitative error test."),
-                ("Test an ambiguity","Rotate a candidate field by a constant phase and compare its Fourier magnitude.","The magnitude is unchanged. Phase-sensitive comparisons should align global phase when no known reference fixes it.")],
+                ("Audit two errors","For three initial phases, report the Fourier-amplitude residual and phase-aligned field error after the same number of updates. Check that a pure global phase rotation changes neither metric.","A small residual establishes agreement with the fitted amplitudes. It does not establish recovery of the synthetic truth. Compare every reconstruction on one phase scale; finite-run disagreement is not a proof of nonuniqueness.")],
      refs=[("Latychevskaia · Iterative phase retrieval for digital holography","https://arxiv.org/abs/1911.07214"),PROP,FFT]),
 dict(id="E06",slug="e06-flat-optics",title="Flat optics and wrapped phase",
      headline="Remove full turns.<br><em>Keep the focus.</em>",
@@ -214,12 +226,14 @@ dict(id="E06",slug="e06-flat-optics",title="Flat optics and wrapped phase",
                 ("Measure order efficiency","Compute the +1 Fourier coefficient of 2-, 4-, 8-, and 16-level phase ramps.","Use a common unit-amplitude input and compare squared coefficient magnitude with sinc²(1/N)."),
                 ("Separate error sources","Compare quantization, height smoothing, and pixel refinement.","Quantization and smoothing alter the modeled device; pixel refinement changes its numerical representation. Full-wave model error is a separate issue.")],
      refs=[("Levy, Mendlovic & Marom · Efficiency analysis of diffractive lenses","https://opg.optica.org/josaa/abstract.cfm?uri=josaa-18-1-86"),PROP]),
-dict(id="E07",slug="e07-periodic-structures",title="Gratings, Bloch waves, and band gaps",
+dict(id="E07",local_preview=True,slug="e07-periodic-structures",title="Gratings, Bloch waves, and band gaps",
      headline="Repeat a structure.<br><em>Change the allowed waves.</em>",
      deck="Use momentum matching to find diffraction directions, then use a period’s transfer matrix to explain why a stack can reject a band of frequencies.",
      prerequisites=["E01","E06"],goals=["Determine which grating orders propagate in each medium.",
          "Connect a finite Bragg mirror to an infinite crystal’s Bloch gap.",
-         "Distinguish energy conservation from convergence in a truncated RCWA calculation."],
+         "Explain why allowed diffraction directions do not determine diffraction efficiencies."],
+     optional_goals=["Compute order powers with a small TE-RCWA model.",
+                     "Distinguish energy conservation from convergence as retained harmonics increase."],
      defaults=dict(wavelength=550,period=1,angle=0,contrast=.9,pairs=10),
      controls=[slider("wavelength","Grating wavelength",400,800,10,"nm"),slider("period","Grating period",.3,2,.05,"μm",2),
                slider("angle","Incidence angle",-50,50,2,"°"),slider("contrast","Stack index contrast",0,1.2,.05,"",2),
@@ -240,7 +254,7 @@ dict(id="E07",slug="e07-periodic-structures",title="Gratings, Bloch waves, and b
 <p>A Bloch wave returns to the same field shape after one period, multiplied by e<sup>iK_BΛ</sup>. It is therefore an eigenvector of the unit-cell operator. For a lossless reciprocal two-component stack, the determinant is one, and its eigenvalues occur as reciprocal pairs.</p>
 <div class="equation">cos(K_BΛ) = ½ tr M_period</div>
 <p>If the half trace lies between −1 and 1, K_B is real and the Bloch factor has unit magnitude. Outside that interval, the solutions grow or decay across periods. The decaying solution describes penetration into a semi-infinite stop band. A finite mirror still transmits a small amount, and can show interference fringes outside the gap. Its reflectance is not simply a binary band diagram.</p>
-<h3>RCWA keeps a finite set of coupled orders.</h3>
+<h3>Optional: RCWA keeps a finite set of coupled orders.</h3>
 <p>A layer patterned across x couples Fourier components. Expanding its permittivity produces a matrix whose off-diagonal entries connect different diffraction orders. Diagonalizing that matrix finds the layer’s field modes. Boundary matching then connects incoming, reflected, internal, and transmitted amplitudes.</p>
 <p>The optional notebook solves one lamellar layer for TE polarization using forward modes referenced at the entrance and backward modes referenced at the exit. This keeps evanescent propagation factors decaying, avoiding a matrix filled with huge growing exponentials. Power in an order includes its longitudinal wavevector factor; squared amplitude alone is insufficient when angles or refractive indices differ.</p>
 <p>A truncated basis can conserve total power while distributing it incorrectly among orders. Increase the retained harmonics and compare individual efficiencies and complex amplitudes, as well as boundary residuals and total R + T. The exercise deliberately shows a low-order calculation with excellent conservation but appreciable diffraction error.</p>""",
@@ -248,10 +262,11 @@ dict(id="E07",slug="e07-periodic-structures",title="Gratings, Bloch waves, and b
      limits="The browser grating panel is kinematic only. The separate Bragg stack is lossless, normally illuminated, with equal layer thicknesses and exterior index 1.9. The optional RCWA model is a 1D lamellar, isotropic, lossless TE layer; it rejects exact cutoffs. TM and nonperiodic structures require additional treatment.",
      quiz=[question("The grating equation alone determines…",["All order efficiencies","Allowed diffraction directions","The absorption spectrum"],1,"Efficiencies require solving the boundary-value problem for the actual structure."),
            question("For the lossless layer stack, |½ tr Mperiod| > 1 indicates…",["A Bloch attenuation gap","Unit transmission","Numerical failure in every case"],0,"The Bloch wavevector becomes complex, giving reciprocal growing and decaying factors."),
-           question("An RCWA run has R + T = 1 to machine precision. Its individual orders are…",["Necessarily converged","Still subject to harmonic-truncation error","All equally strong"],1,"Conservation is necessary but not sufficient. Compare order powers and amplitudes as the basis grows.")],
+           question("Only the zeroth transmitted order can propagate. This establishes…",["Perfect transmission through a uniform film","The number of propagating transmitted directions","The absence of internal resonances"],1,"Order counting gives allowed directions. Reflection, absorption, and internal resonances still depend on the structure; a uniform-film approximation needs separate justification.")],
      exercises=[("Count orders","Predict the order count before changing wavelength, angle, or exit index.","Apply the propagation condition in the appropriate medium to every integer m; treat exact grazing separately."),
                 ("Build a mirror","Compare two and ten periods at fixed index contrast, then remove the contrast.","More periods strengthen finite-stack reflection in the same infinite-medium gap. No contrast removes the periodic scattering."),
-                ("Convergence audit","Report conservation, boundary residual, and changes in individual RCWA order powers.","A small residual or power-balance error alone does not bound truncation error. Retain more harmonics and compare complex t₀ as well.")],
+                ("Separate direction from power","Choose a period with only one transmitted order in the air-to-air browser diagram. Identify what you can conclude from that plot and what needs an amplitude calculation.","The plot determines the allowed transmitted direction, not its efficiency. Zero-order transmission can coexist with reflection or internal resonances, so it does not establish a uniform-film response.")],
+     optional_exercises=[("Convergence audit","Report conservation, boundary residual, and changes in individual RCWA order powers.","A small residual or power-balance error alone does not bound truncation error. Retain more harmonics and compare complex t₀ as well.")],
      refs=[("Moharam et al. · Stable rigorous coupled-wave analysis","https://opg.optica.org/josaa/abstract.cfm?uri=josaa-12-5-1068"),
            ("Li · Fourier factorization for discontinuous periodic structures","https://opg.optica.org/josaa/abstract.cfm?uri=josaa-13-9-1870")]),
 dict(id="E08",slug="e08-trapping-light",title="Waveguides, modes, and resonators",
@@ -294,7 +309,7 @@ dict(id="E08",slug="e08-trapping-light",title="Waveguides, modes, and resonators
                 ("Track energy storage","Compare through-port power, circulating power, and decay after drive removal.","Stored power can be larger than incident power through repeated coherent accumulation; decay and dissipation still obey energy balance.")],
      refs=[("MIT OpenCourseWare · Dielectric waveguides","https://ocw.mit.edu/courses/6-974-fundamentals-of-photonics-quantum-electronics-spring-2006/pages/lecture-notes/"),
            ("SciPy · Hermitian eigenproblems","https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eigh.html")]),
-dict(id="E09",slug="e09-maxwell-grid",title="Maxwell on a grid",
+dict(id="E09",local_preview=True,slug="e09-maxwell-grid",title="Maxwell on a grid",
      headline="Update a neighbour.<br><em>Watch a wave emerge.</em>",
      deck="Solve Maxwell’s coupled field equations with staggered samples, then find out why time steps, pixels, and computational boundaries are part of the physics calculation.",
      prerequisites=["E01","E07"],worker=True,goals=["Explain the spatial and temporal staggering of a Yee update.",
@@ -337,10 +352,10 @@ dict(id="E09",slug="e09-maxwell-grid",title="Maxwell on a grid",
      refs=[("Meep · Introduction and Courant stability","https://meep.readthedocs.io/en/stable/Introduction/"),
            ("Meep · Perfectly matched layers and convergence","https://meep.readthedocs.io/en/latest/Perfectly_Matched_Layer/"),
            ("Roden & Gedney · Convolution PML","https://doi.org/10.1002/1098-2760(20001205)27:5%3C334::AID-MOP14%3E3.0.CO;2-A")]),
-dict(id="E10",slug="e10-adjoint-design",title="Designing light with gradients",
+dict(id="E10",local_preview=True,slug="e10-adjoint-design",title="Designing light with gradients",
      headline="One error field.<br><em>Every pixel’s gradient.</em>",
      deck="Design a phase mask by measuring how each parameter affects an image, then replace thousands of separate perturbations with one adjoint calculation.",
-     prerequisites=["E01","E05","E09"],worker=True,goals=["Derive a real phase gradient through a complex Fourier operator.",
+     prerequisites=["E02","E06"],worker=True,goals=["Derive a real phase gradient through a complex Fourier operator.",
          "Verify that gradient with central finite differences.",
          "Explain why adjoints are not generally inverse propagation and why gradients do not guarantee global optimality."],
      defaults=dict(target="two",seed=42,iterations=100,step=.6),
@@ -351,6 +366,13 @@ dict(id="E10",slug="e10-adjoint-design",title="Designing light with gradients",
               preset("Design a ring",target="ring"),preset("Conservative steps",step=.2)],
      prediction="A mask has 4,096 adjustable phase pixels and one scalar loss. How many perturbed simulations would a central finite-difference gradient require? What calculation could share work across all pixels?",
      intro="""<p>Forward modeling answers what a device does. Design asks which parameters make it do something useful. Here the parameters are the phase delays of a fixed-amplitude pupil. A unitary Fourier transform produces the output field, and its intensity is compared with a target.</p>
+<p>This core experiment combines the Fourier model from E02 with the phase mask from E06. It deliberately uses a simpler forward model than E09: we differentiate a Fourier pupil calculation, not the Yee time updates. The adjoint principle can be applied to Maxwell solvers too, but that requires their own parameters, boundary treatment, and derivative checks.</p>
+<div id="model-bridge" class="model-comparison" role="region" aria-label="Comparison of the E09 and E10 core models" tabindex="0"><table><caption>Identify the forward model before differentiating it.</caption><thead><tr><th scope="col">Question</th><th scope="col">E09 · Maxwell on a grid</th><th scope="col">E10 · Core phase-mask design</th></tr></thead><tbody>
+<tr><th scope="row">What is propagated?</th><td>Electric and magnetic fields through Yee time steps.</td><td>A scalar pupil field through a unitary Fourier transform.</td></tr>
+<tr><th scope="row">Which parameters enter?</th><td>A specified permittivity distribution and excitation.</td><td>Adjustable pupil phases; amplitude and target power stay fixed.</td></tr>
+<tr><th scope="row">What is evaluated?</th><td>Field probes, reflected signals, and spectral response.</td><td>Output intensity mismatch with one chosen target.</td></tr>
+<tr><th scope="row">What is checked?</th><td>Grid, time-step, duration, and boundary convergence.</td><td>Phase derivatives against finite differences, then the optimized response.</td></tr>
+</tbody></table></div>
 <div class="equation">u = a e<sup>iφ</sup> &nbsp; · &nbsp; v = Fu &nbsp; · &nbsp; J = ½ Σ(|v|² − T)² / ΣT²</div>
 <p>The aperture a and target T are normalized once so their total powers agree. The loss is an intensity mismatch, not an amplitude mismatch. A central finite difference would perturb each φ separately in both directions, costing roughly twice as many forward evaluations as there are parameters.</p>
 <p>Reverse differentiation shares the effect of the final error. First compute the output field v and residual r = |v|² − T. Weight that field by the residual and propagate it through the Hermitian adjoint F†. One overlap with the input field then gives every real phase derivative.</p>
@@ -364,7 +386,7 @@ dict(id="E10",slug="e10-adjoint-design",title="Designing light with gradients",
 <p>That equality is not general. If propagation is diagonal in a spectral basis with factors H, the adjoint uses H*, whereas an inverse uses 1/H. Evanescent attenuation remains attenuation under the adjoint; inverse propagation would amplify it. Lossy systems therefore make a useful counterexample to the phrase run the light backward.</p>
 <h3>The same idea applies to a matrix wave solver.</h3>
 <p>Suppose a discretized frequency-domain model is A(p)x = b. A real scalar objective gives an output sensitivity q = ∂J/∂x*. Solve A†λ = q. If b has no parameter dependence, each real parameter derivative is −2 Re[λ†(∂A/∂p)x], plus any explicit objective dependence.</p>
-<p>The optional sparse Helmholtz example uses precisely this Hermitian convention and checks all pixel derivatives. An equivalent transpose convention can be used if its source and overlap are conjugated consistently. Mixing the two conventions is a common source of gradients with convincing structure and incorrect signs.</p>
+<p>The optional sparse Helmholtz example changes the forward model again: it solves a frequency-domain scalar wave equation with material parameters. It uses this Hermitian convention and checks all pixel derivatives; it is not a derivative of E09’s time-domain Yee code. An equivalent transpose convention can be used if its source and overlap are conjugated consistently. Mixing conventions is a common source of incorrect gradient signs.</p>
 <h3>Accurate derivatives are the beginning of design.</h3>
 <p>The browser uses a seeded initial phase and backtracking descent. Every accepted step must lower the stated loss. Computing the gradient needs one forward and one adjoint operation per scalar objective, while line search adds forward trials. The counter reports those additional evaluations rather than hiding them in a two-simulation claim.</p>
 <p>The objective is nonconvex. Multiple starts can end at different local solutions. A phase pattern that works in the numerical model can also fail after quantization, smoothing, or a more accurate wave model. The notebook applies a fabrication projection and evaluates the resulting device again. A lower training loss is useful evidence, but it is not a certificate of global optimality or experimental performance.</p>""",

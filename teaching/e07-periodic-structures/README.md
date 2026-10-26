@@ -23,7 +23,7 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 For the RCWA extension, review Fourier harmonics and basis truncation; the notebook introduces boundary matching and efficiencies.
 - [TU Delft · Fourier analysis](https://qiweb.tudelft.nl/aoi/fourieranalysis/fourieranalysis/) — Use §4.1 for the transform pair, then §4.2.1–4.2.4 for linearity, scaling, shifts, and convolution. Consult §4.2.7 for two successive transforms.
 
-**Python preparation:** Work with complex matrices and inspect convergence as the number of retained harmonics changes.
+**Python preparation:** Multiply 2 × 2 complex matrices and compare finite stacks. Harmonic convergence is studied only in the optional RCWA extension.
 - [NumPy · The absolute basics for beginners](https://numpy.org/doc/stable/user/absolute_beginners.html) — Use the sections on array shape, indexing and slicing, basic operations, and broadcasting. Practice changing one parameter and rerunning a cell.
 
 **Developed here:** Connect grating directions, Bloch propagation, and band gaps; calculate diffraction efficiencies in the extension.
@@ -35,11 +35,25 @@ For the RCWA extension, review Fourier harmonics and basis truncation; the noteb
 
 - Determine which grating orders propagate in each medium.
 - Connect a finite Bragg mirror to an infinite crystal’s Bloch gap.
-- Distinguish energy conservation from convergence in a truncated RCWA calculation.
+- Explain why allowed diffraction directions do not determine diffraction efficiencies.
+
+
+
+### Optional extension outcomes
+
+- Compute order powers with a small TE-RCWA model.
+- Distinguish energy conservation from convergence as retained harmonics increase.
+
+These extension tasks are separate from the core ten-point rubric.
+
+**Convergence audit.** Report conservation, boundary residual, and changes in individual RCWA order powers.
+
+**Worked reasoning:** A small residual or power-balance error alone does not bound truncation error. Retain more harmonics and compare complex t₀ as well.
+
 
 ## Use the lesson
 
-Watch the [E07 film](https://www.youtube.com/watch?v=qQ0YwOpt-mA) (5:20), embedded near the top of the lesson.
+Watch the [E07 film](../media/e07-periodic-structures.mp4) (5:23), embedded near the top of the lesson.
 
 Serve the complete teaching/ directory over HTTP. The lesson uses shared local assets and native JavaScript modules. Open this episode's folder in the browser. Its standalone notebook also works directly in Colab or Jupyter; it does not import repository code or require a GPU.
 

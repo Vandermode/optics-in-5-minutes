@@ -35,6 +35,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Explain why two Fourier transforms invert an image.
 - Predict how Fourier-plane masks change amplitude and phase objects.
 
+
+
 ## Use the lesson
 
 Watch the [E02 film](https://www.youtube.com/watch?v=EapI6kCGKLM) (5:13), embedded near the top of the lesson.

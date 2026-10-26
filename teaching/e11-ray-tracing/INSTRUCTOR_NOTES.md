@@ -73,6 +73,8 @@ At two field angles, report the centroid and RMS radius with the same image plan
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
 
+
+
 ## Common misconceptions
 
 - At a curved refracting surface, the incidence angle is measured from… The normal changes across a curved surface. Using the optical axis instead changes the actual refraction problem.

@@ -703,19 +703,19 @@ class Ch2Grating(Chapter):
         self.play(FadeIn(bl), FadeIn(bv), run_time=0.4)
         self.play(K_t.animate.set_value(K1), run_time=5.0, rate_func=rate_functions.ease_in_out_sine)
 
-        # ---------------- g8: sub-wavelength -> zeroth order only = effective medium
-        sub = tx("$\\Lambda < \\lambda$: only $m = 0$ survives", 32, WHITE).move_to([-3.6, 2.3, 0])
-        film = tx("acts like a uniform film", 32, GREY_A).move_to([-3.6, 1.35, 0])
-        meta = tx("metasurfaces live here", 32, YELLOW)
-        meta = VGroup(SurroundingRectangle(meta, buff=0.14, color=YELLOW, corner_radius=0.08), meta).move_to([-3.6, 0.65, 0])
+        # ---------------- g8: outgoing orders do not determine the internal response
+        sub = VGroup(
+            tx("normal incidence; transmission into air", 24, GREY_A).move_to([-3.6, 2.65, 0]),
+            tx("$\\Lambda < \\lambda_{\\rm air}$: only $m = 0$ propagates", 30, WHITE).move_to([-3.6, 2.1, 0]))
+        resonance = tx("internal resonances can remain", 28, YELLOW).move_to([-3.6, 1.25, 0])
+        film = tx("uniform-film model: check separately", 27, GREY_A).move_to([-3.6, 0.65, 0])
         self.at(S("g8"))
-        self.play(FadeOut(rule), FadeIn(sub, shift=0.1 * UP), run_time=0.8)
-        self.at(WT("g8", "uniform") - 0.5)
-        self.play(FadeOut(bl), FadeOut(bv), run_time=0.4)
+        self.play(FadeOut(rule), FadeOut(bl), FadeOut(bv), FadeIn(sub, shift=0.1 * UP), run_time=0.8)
         self.remove(bv)
-        self.play(FadeIn(film), run_time=0.6)
-        self.at(WT("g8", "meta") - 0.3)
-        self.play(FadeIn(meta, shift=0.1 * UP), run_time=0.7)
+        self.at(WT("g8", "internal") - 0.2)
+        self.play(FadeIn(resonance), run_time=0.6)
+        self.at(WT("g8", "uniform") - 0.3)
+        self.play(FadeIn(film, shift=0.1 * UP), run_time=0.7)
         self.finish()
 
 
@@ -999,7 +999,7 @@ class Ch3Bands(Chapter):
         self.add(knob, rc, bar_m)
         self.play(FadeIn(rax), FadeIn(rax_l), r_op.animate.set_value(1.0), bar_f.animate.set_value(1.0), run_time=0.8)
         self.at(WT("b6", "watch") - 0.3)
-        self.play(dn_t.animate.set_value(DN_MAX), run_time=6.2, rate_func=rate_functions.ease_in_out_sine)
+        self.play(dn_t.animate.set_value(DN_MAX), run_time=5.7, rate_func=rate_functions.ease_in_out_sine)
 
         # ---------------- b7: the gap
         gap = st["gap"][-1]
@@ -1174,7 +1174,7 @@ class Ch4RCWA(Chapter):
         self.play(FadeIn(eps_plot), FadeIn(eps_pl), run_time=0.6)
         self.play(GrowArrow(ft_ar), FadeIn(stems_g), FadeIn(stems_l), run_time=0.8)
         self.at(WT("r4", "couple") - 0.2)
-        self.play(*anims, FadeTransform(uni_l, gr_l), run_time=1.6)
+        self.play(*anims, Succession(FadeOut(uni_l), FadeIn(gr_l)), run_time=1.6)
 
         # ---------------- r5: eig -> Bloch modes with their own k_z
         modes, xs, qv = rc["modes"], rc["xs"], rc["q"]

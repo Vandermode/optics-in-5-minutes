@@ -440,9 +440,8 @@ export const knowledge = {
       "title": "Designing light with gradients",
       "description": "Design a phase mask by measuring how each parameter affects an image, then replace thousands of separate perturbations with one adjoint calculation.",
       "prerequisites": [
-        "E01",
-        "E05",
-        "E09"
+        "E02",
+        "E06"
       ],
       "notebook": "e10_adjoint_design.ipynb",
       "keywords": [

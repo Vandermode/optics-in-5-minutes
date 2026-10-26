@@ -34,6 +34,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Compare on-axis and multi-field optimization using one common image plane and the same entrance aperture.
 - Audit an improved design with denser pupil sampling and explain the image-quality questions its merit function omits.
 
+
+
 ## Use the lesson
 
 Watch the [E12 film](../media/e12-lens-design.mp4) (5:08), embedded near the top of the lesson.

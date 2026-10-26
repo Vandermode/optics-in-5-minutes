@@ -35,6 +35,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Explain directional coupling through relative supermode phase.
 - Relate ring resonance, storage, and critical coupling without confusing amplitude and power.
 
+
+
 ## Use the lesson
 
 Watch the [E08 film](https://www.youtube.com/watch?v=rPNYODeWrJs) (5:07), embedded near the top of the lesson.

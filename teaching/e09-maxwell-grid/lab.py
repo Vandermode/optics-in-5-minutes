@@ -223,3 +223,13 @@ ax.set(xlabel="Time / optical period",ylabel="2D probe error versus large-domain
 show(fig,"04-2d-cpml")
 assert errors['pml']<errors['lossy'] and errors['pml']<1e-4
 print("2D boundary squared-field ratios:",errors)
+
+# %% [markdown]
+# ## Connect a trusted forward model to a design question
+#
+# This lab tests a time-domain Yee calculation; it does not compute a design gradient.
+# E10 introduces adjoint differentiation using a simpler scalar Fourier phase mask,
+# combining E02's propagation model with E06's adjustable phase. Its core parameters
+# are pupil phases, not the permittivity pixels in this Yee grid. The optional E10
+# material example solves a frequency-domain scalar Helmholtz system. Each forward
+# model needs its own physical validation and its own numerical derivative check.

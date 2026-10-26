@@ -34,6 +34,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Distinguish instability, numerical dispersion, and boundary reflection.
 - Measure reflection with a reference run and verify an absorber by refinement.
 
+
+
 ## Use the lesson
 
 Watch the [E09 film](https://www.youtube.com/watch?v=2cyHmzPtHA0) (5:16), embedded near the top of the lesson.

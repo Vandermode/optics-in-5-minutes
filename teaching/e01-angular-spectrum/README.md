@@ -36,6 +36,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Predict how wavelength, aperture width, and distance change diffraction.
 - Separate physical evanescent decay from numerical aliasing and wrap-around.
 
+
+
 ## Use the lesson
 
 Watch the [E01 film](https://www.youtube.com/watch?v=y5bIpnGhecs) (5:07), embedded near the top of the lesson.
