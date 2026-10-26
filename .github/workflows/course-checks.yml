@@ -13,7 +13,8 @@ permissions:
 
 jobs:
   course:
-    runs-on: ubuntu-latest
+    # Keep the runner compatible with the pinned Playwright browser package.
+    runs-on: ubuntu-24.04
     env:
       OPENBLAS_NUM_THREADS: '2'
       OMP_NUM_THREADS: '2'
