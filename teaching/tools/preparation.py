@@ -139,10 +139,10 @@ LESSONS = {
             skill("averages", "Distinguish averaging a product from multiplying averages, and independent from repeated samples.", "These distinctions govern fringe visibility and speckle contrast."),
         ],
         extra=["eigenvectors", "complex-matrices"],
-        extra_use="For the coherent-mode section and notebook extension, review eigenvectors and Hermitian matrices.",
+        extra_use="Only for the optional coherent-mode extension, review eigenvectors and Hermitian matrices.",
         notebook="Average arrays over a realization axis and compare standard deviation with mean intensity.",
         coding=["numpy"],
-        new="Connect detector averaging to temporal coherence, spatial coherence, and speckle; then represent correlations with coherent modes.",
+        new="Connect detector averaging to temporal coherence, spatial coherence, and speckle. The optional extension represents correlations with coherent modes.",
     ),
     "E05": dict(
         skills=[
@@ -169,7 +169,7 @@ LESSONS = {
         ],
         extra=["fourier"],
         extra_use="For the RCWA extension, review Fourier harmonics and basis truncation; the notebook introduces boundary matching and efficiencies.",
-        notebook="Work with complex matrices and inspect convergence as the number of retained harmonics changes.",
+        notebook="Multiply 2 × 2 complex matrices and compare finite stacks. Harmonic convergence is studied only in the optional RCWA extension.",
         coding=["numpy"],
         new="Connect grating directions, Bloch propagation, and band gaps; calculate diffraction efficiencies in the extension.",
     ),

@@ -61,31 +61,76 @@ show(fig,"02-refocusing")
 # Without a reference, one intensity plane is insufficient. Gerchberg–Saxton alternates
 # between planes: keep the current phase but replace the amplitude with a measured or
 # desired amplitude. This enforces one constraint at a time, not both simultaneously.
-# A global phase remains undetermined. A low error is evidence of consistency, not uniqueness.
+# A global phase remains undetermined. Measure two different errors on each completed update:
+# the Fourier-amplitude residual $r=\|\,|F(u)|-b\,\|_2/\|b\|_2$, where $b=|F(U)|$ is measured,
+# and the field error $e=\min_\alpha\|e^{i\alpha}u-U\|_2/\|U\|_2$ against the known synthetic U.
+# The second error is available here because we made the object; it is not a measured loss.
+# **Predict:** if three initial phases reach small amplitude residuals, must they recover U?
 # %%
 F=lambda u:np.fft.fft2(u,norm="ortho")
 FH=lambda v:np.fft.ifft2(v,norm="ortho")
 known_amplitude=abs(U);measured_amplitude=abs(F(U))
+def align_global_phase(u):
+    return u*np.exp(-1j*np.angle(np.vdot(U,u)))
+
+def error_metrics(u):
+    residual=np.linalg.norm(abs(F(u))-measured_amplitude)/np.linalg.norm(measured_amplitude)
+    field_error=np.linalg.norm(align_global_phase(u)-U)/np.linalg.norm(U)
+    return np.array([residual,field_error])
+
+assert max(error_metrics(U*np.exp(.73j)))<1e-12  # A pure global phase is not an error.
+
 def gs(seed,iterations=150):
     random=np.random.default_rng(seed)
     u=known_amplitude*np.exp(1j*random.uniform(-np.pi,np.pi,(N,N)))
-    losses=[]
+    history=[error_metrics(u)]
     for _ in range(iterations):
         v=F(u)
-        losses.append(np.linalg.norm(abs(v)-measured_amplitude)/np.linalg.norm(measured_amplitude))
         u=known_amplitude*np.exp(1j*np.angle(FH(measured_amplitude*np.exp(1j*np.angle(v)))))
-    return u,np.asarray(losses)
-results=[gs(seed) for seed in [3,7,11]]
-fig,ax=plt.subplots(1,2,figsize=(11,4))
-for seed,(u,history) in zip([3,7,11],results):
-    ax[0].semilogy(history,label=f"Seed {seed}")
-    assert history[-1]<history[0]
+        history.append(error_metrics(u))  # Both metrics describe this same post-update field.
+    return u,np.asarray(history)
+
+seeds=[3,7,11];iterations=150
+results=[gs(seed,iterations) for seed in seeds]
+colors=["#0072B2","#D55E00","#009E73"]
+fig=plt.figure(figsize=(12,7.4),layout="constrained")
+grid=fig.add_gridspec(2,4,height_ratios=[1,1.1])
+error_axes=[fig.add_subplot(grid[0,:2]),fig.add_subplot(grid[0,2:])]
+for seed,color,(u,history) in zip(seeds,colors,results):
+    for column,a in enumerate(error_axes):
+        a.semilogy(np.arange(iterations+1),100*history[:,column],color=color,label=f"Seed {seed}")
+    assert history.shape==(iterations+1,2)
+    assert history[-1,0]<history[0,0]
+    assert np.max(abs(history[-1]-error_metrics(u)))<1e-12
     assert np.max(abs(abs(u)-known_amplitude))<1e-12
-ax[0].set(xlabel="Iteration",ylabel="Fourier-amplitude relative error");ax[0].legend()
-ax[1].imshow(np.angle(results[0][0]),cmap="twilight",vmin=-np.pi,vmax=np.pi)
-ax[1].set(title="One recovered phase · not guaranteed unique",xlabel="Pixel")
+    # Check the stated default example, while allowing the experiment below to change its budget.
+    if iterations==150 and seed in [3,7,11]:
+        assert history[-1,0]<.01 and history[-1,1]>.1
+for a,title in zip(error_axes,["Agreement with measured Fourier amplitudes","Error against the known complex field"]):
+    a.set(title=title,xlabel="Completed GS updates",ylabel="Relative error (%)",ylim=(.1,250))
+    a.set_yticks([.1,1,10,100],["0.1","1","10","100"])
+    a.legend(fontsize=9)
+phase_axes=[fig.add_subplot(grid[1,j]) for j in range(4)]
+phase_fields=[U]+[align_global_phase(u) for u,history in results]
+phase_limit=.2*np.ceil(max(np.max(abs(np.angle(field))) for field in phase_fields)/.2)
+titles=["Known phase"]+[f"Seed {seed}\nField error {100*history[-1,1]:.1f}%" for seed,(u,history) in zip(seeds,results)]
+for a,field,title in zip(phase_axes,phase_fields,titles):
+    phase_image=a.imshow(np.angle(field),cmap="RdBu_r",vmin=-phase_limit,vmax=phase_limit)
+    a.set(title=title,xlabel="x pixel",ylabel="y pixel")
+for a,color in zip(phase_axes[1:],colors):a.title.set_color(color)
+colorbar=fig.colorbar(phase_image,ax=phase_axes,orientation="horizontal",shrink=.6,pad=.04)
+colorbar.set_label("Phase (rad) · common scale · reconstructions aligned to remove global phase")
+colorbar.set_ticks([-phase_limit,0,phase_limit])
+fig.suptitle(f"Small measurement residuals can coexist with substantial field errors\nSame two magnitude constraints · {iterations} updates · three initial phases",fontsize=13)
 show(fig,"03-phase-retrieval")
-print("Final magnitude errors:",[float(h[-1]) for u,h in results])
+for seed,(u,history) in zip(seeds,results):
+    print(f"Seed {seed}, completed update {iterations}: amplitude residual {100*history[-1,0]:.3f}%; phase-aligned field error {100*history[-1,1]:.3f}%")
+# %% [markdown]
+# These finite runs fit the amplitudes much better than they recover the known field.
+# They do not prove that the inverse problem is nonunique or that longer runs cannot improve.
+# Change the iteration count or initial seeds and compare both trajectories. For an unknown
+# object, another independent measurement can test predictions beyond the fitted data;
+# the ground-truth field error used here is unavailable.
 # %% [markdown]
 # ## Optional extension · Design, then quantize, a phase-only mask
 #

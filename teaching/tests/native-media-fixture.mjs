@@ -21,9 +21,9 @@ function fixture() {
 }
 
 export async function isolateNativeMedia(context) {
-  await context.route(/\/media\/e1[12]-[^/]+\.en\.vtt(?:\?|$)/,route=>route.fulfill({status:200,contentType:'text/vtt',
+  await context.route(/\/media\/e\d{2}-[^/]+\.en\.vtt(?:\?|$)/,route=>route.fulfill({status:200,contentType:'text/vtt',
     body:'WEBVTT\n\n00:00:00.000 --> 00:05:40.000\nSynthetic video-control fixture, not the course film.\n'}));
-  await context.route(/\/media\/e1[12]-[^/]+\.mp4(?:\?|$)/,route=>{
+  await context.route(/\/media\/e\d{2}-[^/]+\.mp4(?:\?|$)/,route=>{
     const body=fixture(),range=route.request().headers().range?.match(/^bytes=(\d+)-(\d*)$/);
     if(range) {
       const start=Number(range[1]),end=Math.min(range[2]?Number(range[2]):body.length-1,body.length-1);

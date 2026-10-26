@@ -54,7 +54,36 @@ ax[2].set(xlabel="Independent patterns",ylabel="Contrast");ax[2].legend()
 show(fig,"02-speckle-averaging")
 print("Measured contrasts:",dict(zip(counts,contrasts)))
 # %% [markdown]
-# ## 3 · A matrix of correlations
+# ## 3 · A spectral filter and an angular filter change different correlations
+#
+# Keep a nonzero delay τ=40 fs and slit baseline d=30 μm. In this separable model,
+# a Gaussian frequency spectrum gives |γ_t|=exp[-(2πσ_ντ)²/2], while a uniform angular
+# strip of full width Θ gives γ_s=sinc(Θd/λ). Balanced, polarization-matched beams have
+# visibility V=|γ_t γ_s|. Narrowing one distribution does not narrow the other.
+# **Predict:** which filter changes the delay dependence, and which changes the baseline dependence?
+# %%
+delay_fs,baseline_um,lambda_um=40.,30.,.55
+temporal=lambda sigma_thz:np.exp(-.5*(2*np.pi*.001*sigma_thz*delay_fs)**2)
+spatial=lambda width_mrad:np.sinc(.001*width_mrad*baseline_um/lambda_um)
+sigma_grid=np.linspace(0,20,201)
+angle_grid=np.linspace(0,30,201)
+angle_samples=(np.arange(4096)+.5)/4096-.5
+check_widths=np.array([0.,3.,9.,18.,27.])
+angular_quadrature=np.exp(2j*np.pi*baseline_um/lambda_um*.001*check_widths[:,None]*angle_samples).mean(axis=1)
+assert np.max(abs(angular_quadrature-spatial(check_widths)))<2e-7
+fig,ax=plt.subplots(1,2,figsize=(11,3.8))
+ax[0].plot(sigma_grid,temporal(sigma_grid),color="#0072B2")
+ax[0].set(xlabel="Frequency standard deviation σν (THz)",ylabel="|γ_t|",title="Spectral filtering · fixed delay 40 fs",ylim=(0,1.05))
+ax[1].plot(angle_grid,abs(spatial(angle_grid)),color="#D55E00",label="Uniform-strip formula")
+ax[1].plot(check_widths,abs(angular_quadrature),"o",color="black",ms=4,label="Independent angle average")
+ax[1].set(xlabel="Full source angle Θ (mrad)",ylabel="|γ_s|",title="Angular filtering · fixed baseline 30 μm",ylim=(0,1.05))
+ax[1].legend(fontsize=9)
+show(fig,"03-separate-filters")
+for label,sigma_thz,width_mrad in [("Before filtering",5.,18.),("Narrow spectrum",1.,18.),("Narrow angles",5.,3.)]:
+    gt,gs=temporal(sigma_thz),abs(spatial(width_mrad))
+    print(f"{label}: σν={sigma_thz:g} THz, Θ={width_mrad:g} mrad; |γ_t|={gt:.4f}, |γ_s|={gs:.4f}, visibility={gt*gs:.4f}")
+# %% [markdown]
+# ## Optional extension · A matrix of correlations
 #
 # $J_{ij}=\langle U_i U_j^*\rangle$ contains intensity on its diagonal and pairwise
 # complex correlations elsewhere. For two equal-intensity samples,
@@ -78,10 +107,10 @@ ax[0].imshow(abs(J),origin="lower",extent=[x[0],x[-1],x[0],x[-1]],cmap="magma")
 ax[0].set(xlabel="x₂ (μm)",ylabel="x₁ (μm)",title="|Mutual intensity|")
 ax[1].plot(np.arange(1,len(powers)+1),np.cumsum(powers)/powers.sum(),"o-")
 ax[1].set(xlim=(1,15),ylim=(0,1.02),xlabel="Retained modes",ylabel="Cumulative power fraction")
-show(fig,"03-mutual-intensity")
+show(fig,"04-mutual-intensity")
 print("Trace / eigenvalue sum:",np.trace(J).real,powers.sum())
 # %% [markdown]
-# ## Optional extension · Propagate the correlations three ways
+# ### Continue the optional extension · Propagate the correlations three ways
 #
 # A linear field operator L sends J to $LJL^\dagger$. Equivalently, propagate each independent
 # source field, or each eigenmode, before summing weighted intensities. These complete
@@ -104,5 +133,5 @@ for K in [1,2,4,8]:
     error=np.linalg.norm(approx-direct)/np.linalg.norm(direct)
     ax[1].plot(approx,label=f"{K} modes · error {error:.3f}")
 ax[1].set(xlabel="Output sample",ylabel="Intensity");ax[1].legend(fontsize=9)
-show(fig,"04-mode-propagation")
+show(fig,"05-mode-propagation")
 print("All-mode/source-sum maximum intensity difference:",np.max(abs(full-direct)))

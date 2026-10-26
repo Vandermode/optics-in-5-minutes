@@ -1,6 +1,6 @@
-# Optics in 5 Minutes · E07 · Periodic Structures: Gratings, Bloch Waves & Band Gaps (5:19)
+# Optics in 5 Minutes · E07 · Periodic Structures: Gratings, Bloch Waves & Band Gaps (5:23)
 
-3Blue1Brown-style explainer (5:19, 1920×1080, 60 fps) for viewers with basic calculus and a little linear algebra.
+3Blue1Brown-style explainer (5:23, 1920×1080, 60 fps) for viewers with basic calculus and a little linear algebra.
 Narration by an open-source TTS voice (Kokoro-82M, `af_heart`), subtitles timed to the speech.
 One idea: **symmetry fixes momentum**. Flat interfaces conserve kx. Periodic ones conserve it only up to multiples of
 K = 2π/Λ, and where copies meet, gaps open.
@@ -14,11 +14,11 @@ K = 2π/Λ, and where copies meet, gaps open.
 |---|------|------|
 | 0 | 0:00 | hook: white light through a fine grating fans into rainbows; a 10-pair layer stack reflects one colour (both computed). "How can mere structure pick a direction, and a colour?" |
 | 1 | 0:21 | a flat boundary: recall sin θ = kx/k; k = n·k0, so each medium has its own k-circle; crests must meet at the boundary, so kx is shared (conserved); one vertical line through both circles = Snell's law; tilt past the critical angle and the line misses the air circle: total internal reflection with an evanescent tail |
-| 2 | 1:20 | a periodic boundary: anything repeating every Λ is a sum of e^(imKx), K = 2π/Λ; multiplying shifts kx by mK; copies of the line spaced by K; every copy that crosses the circle is a diffraction order (computed beams); red has the smaller circle, so it bends most (rainbow); shrink Λ and the orders leave one by one; below one wavelength only the 0th order survives (effective medium, where metasurfaces live) |
-| 3 | 2:21 | Bloch waves and band gaps: shift a stack by one period and nothing changes, so waves gain a fixed phase e^(iκΛ) per period (computed Bloch wave, phasor dials); κ only matters modulo K; light line ω = cκ/n and its copies shifted by K fill one zone; they cross at the zone edge, λ = 2nΛ (Bragg); **signature shot:** the index-contrast slider Δn opens an avoided crossing, the band gap, while the computed reflectance of a 10-pair stack grows a stop band at the same frequencies; inside the gap the field dies off within a few layers |
-| 4 | 3:28 | RCWA, one layer at a time: a thick grating's orders (computed); the field in a layer is one amplitude per order; uniform layer: diagonal matrix, each order picks up e^(ikz,m z); grating layer: the Fourier coefficients ε_(m−p) fill the matrix; eig gives the Bloch modes and their kz (computed); chain layers with S-matrices (only decaying exponentials, so stable) |
-| 5 | 4:16 | on a computer: the grating equation is one line and RCWA four (expand ε, build the matrix, eig, chain); pitfall: truncation (computed convergence; TM needs Li's factorization rules); payoff: zero-order phase vs ridge width = a metasurface unit-cell library (computed), picked cell by cell into a flat lens |
-| 6 | 4:48 | recap: the one-sentence idea with three icons; where it breaks: RCWA needs true periodicity and a metasurface lens only borrows it locally (local periodic approximation); teaser: TIR traps light in a slab, Bragg mirrors between them; next: trapping light, waveguides, modes and resonators |
+| 2 | 1:20 | a periodic boundary: anything repeating every Λ is a sum of e^(imKx), K = 2π/Λ; multiplying shifts kx by mK; copies of the line spaced by K; every copy that crosses the circle is a diffraction order (computed beams); red has the smaller circle, so it bends most (rainbow); shrink Λ and the orders leave one by one; at normal incidence only the transmitted zero order propagates into air when Λ < λair; internal resonances can remain, so a uniform-film approximation needs an independent check |
+| 3 | 2:25 | Bloch waves and band gaps: shift a stack by one period and nothing changes, so waves gain a fixed phase e^(iκΛ) per period (computed Bloch wave, phasor dials); κ only matters modulo K; light line ω = cκ/n and its copies shifted by K fill one zone; they cross at the zone edge, λ = 2nΛ (Bragg); **signature shot:** the index-contrast slider Δn opens an avoided crossing, the band gap, while the computed reflectance of a 10-pair stack grows a stop band at the same frequencies; inside the gap the field dies off within a few layers |
+| 4 | 3:31 | RCWA, one layer at a time: a thick grating's orders (computed); the field in a layer is one amplitude per order; uniform layer: diagonal matrix, each order picks up e^(ikz,m z); grating layer: the Fourier coefficients ε_(m−p) fill the matrix; eig gives the Bloch modes and their kz (computed); chain layers with S-matrices (only decaying exponentials, so stable) |
+| 5 | 4:19 | on a computer: the grating equation is one line and RCWA four (expand ε, build the matrix, eig, chain); pitfall: truncation (computed convergence; TM needs Li's factorization rules); payoff: zero-order phase vs ridge width = a metasurface unit-cell library (computed), picked cell by cell into a flat lens |
+| 6 | 4:52 | recap: the one-sentence idea with three icons; where it breaks: RCWA needs true periodicity and a metasurface lens only borrows it locally (local periodic approximation); teaser: TIR traps light in a slab, Bragg mirrors between them; next: trapping light, waveguides, modes and resonators |
 
 ## What is computed and what is schematic
 All numerics are in `physics.py` (deterministic, no random numbers) and are written to `data/*.npz`. The scenes only
@@ -65,18 +65,37 @@ screen); the icons in Ch6 except the band diagram.
 * In the field maps every plane-wave component of the beam (divergence about 3°) gets the order amplitudes computed
   for normal incidence, the incident beam below the grating is drawn without reflected light, and only the light
   transmitted into air is shown.
+* The zero-order statement in Ch2 concerns normal-incidence transmission into air. The reflected channels in glass and the internal grating modes obey their own propagation conditions. Closing higher transmitted orders does not establish a uniform effective medium; near-wavelength high-contrast gratings can still support resonances ([Karagodsky and Chang-Hasnain, 2012](https://doi.org/10.1364/OE.20.010888)).
 * The ridge layer in Ch4's cross-section is drawn 1.25× taller than its true 0.9λ for legibility.
 
 ## Rebuild
 ```bash
 python physics.py              # data/*.npz (about 1.5 min; the field maps use JAX on a GPU)
 ../common/audio.sh .                                    # narration: Kokoro TTS -> Whisper check -> subtitles
-./preview.sh                                            # low-res chapter previews (2 processes)
-./render.sh --skip-audio                                # final render, 3 workers
+PAR=1 ./preview.sh                                      # low-res chapter previews; coordinate across episodes
+WORKERS=3 ./render.sh --skip-audio                       # final render, 3 workers
 python ../common/verify.py .   # counts, seam scan, loudness, stills -> .verify/
 ```
 Scenes: `scenes.py` (`Ch0Hook` … `Ch6Recap`), shared helpers from `../common/o5common.py`. Narration: `narration.json`
-(40 segments, 793 words). Sync uses segment starts plus word timestamps from the Whisper check (`WT()` in `scenes.py`).
-`scenes.py` overrides `Chapter.at()` with a whole-frame version (wait exactly k frames), because the copy in
-`common/` still waits a float duration, which can shift a play by one frame at a render seam when its target lies on
-the 1/60 s grid (FAST_ANIMATION_PIPELINE.md §10).
+(40 segments, 802 words). Sync uses segment starts plus word timestamps from the Whisper check (`WT()` in `scenes.py`).
+`scenes.py` overrides `Chapter.at()` with a whole-frame version (wait exactly k frames), matching the whole-frame behavior now used by the shared helper (FAST_ANIMATION_PIPELINE.md §10). The local override is retained for compatibility with this episode's original render.
+
+## Validation (2026-10-26)
+
+The revised Ch2 narration and labels distinguish the transmitted zero-order condition from a uniform-film
+approximation. The physics source is unchanged; the existing production data were reused after confirming
+the source hash, and the RCWA Airy-film, energy-conservation and thin-relief checks were rerun successfully.
+
+All seven chapter previews passed exact frame counts and timing checks. Preview inspection also caught a
+late Ch3 animation and an overlapping Ch4 label transition; both were corrected before the final render.
+The 1080p60 render contains 19,361 frames (expected 19,361), runs 322.684 s, carries 91 subtitle cues, and
+measures −16.3 LUFS. No detected image jump coincides with a render-piece boundary. The single scan flag at
+21.00–21.10 s is the intended hook fade to black, confirmed frame by frame. Final contact sheets and the
+corrected Ch2 frame at 142.5 s were inspected for legibility and subtitle clearance. The Whisper round-trip
+flags were reviewed against word timestamps; the revised narration was transcribed in full.
+
+The distribution encode, `../dist/e07_periodic_structures_1080p.mp4` (23,346,685 bytes), was independently
+probed after encoding: H.264 at 1920×1080 and 60 fps, the same 19,361 frames and 322.684 s duration, AAC audio,
+and 91 cues in a toggleable English subtitle track.
+
+Verification records and stills are generated under `.verify/` and remain local build artifacts.

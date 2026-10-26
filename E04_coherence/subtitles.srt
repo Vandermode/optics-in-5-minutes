@@ -1,17 +1,17 @@
 1
-00:00:00,900 --> 00:00:03,632
+00:00:00,900 --> 00:00:03,659
 Shine a laser on a wall, and the spot sparkles
 
 2
-00:00:03,672 --> 00:00:07,425
+00:00:03,699 --> 00:00:07,425
 with grainy speckle. An LED's spot is smooth.
 
 3
-00:00:07,495 --> 00:00:09,790
+00:00:07,495 --> 00:00:09,771
 Through two slits, the laser paints crisp fringes.
 
 4
-00:00:09,830 --> 00:00:14,881
+00:00:09,811 --> 00:00:14,881
 The LED paints none, unless it first shines through a tiny pinhole.
 
 5
@@ -19,23 +19,23 @@ The LED paints none, unless it first shines through a tiny pinhole.
 What does a laser have, that an LED doesn't? In a word: coherence.
 
 6
-00:00:19,993 --> 00:00:23,514
+00:00:19,993 --> 00:00:23,804
 At any point, a light wave is an arrow, a complex number.
 
 7
-00:00:23,554 --> 00:00:26,810
+00:00:23,844 --> 00:00:26,810
 Its length is the amplitude, its angle the phase.
 
 8
-00:00:26,880 --> 00:00:29,438
+00:00:26,880 --> 00:00:29,643
 It spins hundreds of trillions of times a second,
 
 9
-00:00:29,478 --> 00:00:31,029
+00:00:29,683 --> 00:00:31,102
 too fast for any camera,
 
 10
-00:00:31,069 --> 00:00:34,643
+00:00:31,142 --> 00:00:34,643
 which records only its squared length: the intensity.
 
 11
@@ -55,306 +55,306 @@ Squaring the sum gives both intensities,
 plus a cross term that depends on Δφ: interference.
 
 15
-00:00:47,518 --> 00:00:50,005
+00:00:47,518 --> 00:00:50,066
 Move across a screen, and Δφ grows steadily,
 
 16
-00:00:50,045 --> 00:00:52,645
+00:00:50,106 --> 00:00:52,645
 so the cross term paints fringes.
 
 17
-00:00:52,715 --> 00:00:54,817
+00:00:52,715 --> 00:00:54,984
 Now let one wave's phase jitter randomly,
 
 18
-00:00:54,857 --> 00:00:58,482
+00:00:55,024 --> 00:00:58,482
 faster than the camera can follow. The fringes dance.
 
 19
-00:00:58,552 --> 00:01:02,134
-On average, the cross term vanishes, so the intensities add.
+00:00:58,552 --> 00:01:02,105
+If averaging removes the cross term, the intensities add.
 
 20
-00:01:03,004 --> 00:01:04,483
+00:01:02,975 --> 00:01:04,480
 The visibility measures what's left:
 
 21
-00:01:04,523 --> 00:01:07,725
+00:01:04,520 --> 00:01:07,696
 one for perfect fringes, zero for none.
 
 22
-00:01:08,545 --> 00:01:11,239
+00:01:08,516 --> 00:01:11,199
 Why would phases wander? One reason is colour.
 
 23
-00:01:11,279 --> 00:01:15,431
+00:01:11,239 --> 00:01:15,402
 Split a beam, and delay one copy by a path difference, ΔL.
 
 24
-00:01:15,501 --> 00:01:18,423
+00:01:15,472 --> 00:01:18,394
 With a single colour, the fringes go on forever.
 
 25
-00:01:18,493 --> 00:01:20,645
+00:01:18,464 --> 00:01:20,608
 But each colour has its own spacing.
 
 26
-00:01:20,685 --> 00:01:24,285
+00:01:20,648 --> 00:01:24,256
 At zero delay they agree; further out, they drift apart.
 
 27
-00:01:24,355 --> 00:01:29,763
+00:01:24,326 --> 00:01:29,735
 Add a whole spectrum, and fringes survive only near zero delay.
 
 28
-00:01:29,803 --> 00:01:33,534
+00:01:29,775 --> 00:01:33,506
 That window is the coherence length, roughly λ²/Δλ.
 
 29
-00:01:33,604 --> 00:01:36,944
+00:01:33,576 --> 00:01:36,924
 In fact, the envelope is the Fourier transform of the spectrum:
 
 30
-00:01:36,984 --> 00:01:39,801
+00:01:36,964 --> 00:01:39,773
 narrow spectrum, long coherence.
 
 31
-00:01:39,871 --> 00:01:43,028
+00:01:39,843 --> 00:01:42,988
 A good laser: centimetres to kilometres. An LED:
 
 32
-00:01:43,068 --> 00:01:47,320
+00:01:43,028 --> 00:01:47,292
 about ten microns. Sunlight: about one micron.
 
 33
-00:01:48,140 --> 00:01:50,321
+00:01:48,112 --> 00:01:49,639
 Colour isn't the whole story.
 
 34
-00:01:50,361 --> 00:01:53,030
+00:01:49,679 --> 00:01:52,536
 A laser behaves like a single point of light;
 
 35
-00:01:53,070 --> 00:01:56,148
+00:01:52,576 --> 00:01:56,120
 an LED is a crowd of independent points.
 
 36
-00:01:56,218 --> 00:01:59,662
+00:01:56,190 --> 00:01:59,670
 Move one point off centre. Its light reaches the slits tilted,
 
 37
-00:01:59,702 --> 00:02:02,661
+00:01:59,710 --> 00:02:02,632
 and the tilt shifts its fringes sideways.
 
 38
-00:02:02,731 --> 00:02:04,531
+00:02:02,702 --> 00:02:04,517
 Different points have unrelated phases,
 
 39
-00:02:04,571 --> 00:02:09,189
+00:02:04,557 --> 00:02:09,160
 so their intensities add. The camera sees a sum of shifted copies.
 
 40
-00:02:09,259 --> 00:02:12,645
+00:02:09,230 --> 00:02:12,624
 Watch as the source grows: the copies spread out and fill
 
 41
-00:02:12,685 --> 00:02:16,096
+00:02:12,664 --> 00:02:16,067
 in each other's dark bands, until the sum is flat grey.
 
 42
-00:02:16,966 --> 00:02:20,193
+00:02:16,937 --> 00:02:20,455
 Fringes vanish once the source's angular size
 
 43
-00:02:20,233 --> 00:02:22,902
+00:02:20,495 --> 00:02:22,874
 reaches about λ over the slit separation.
 
 44
-00:02:22,972 --> 00:02:25,634
+00:02:22,944 --> 00:02:25,597
 A tiny pinhole brings them back. So does distance:
 
 45
-00:02:25,674 --> 00:02:28,896
+00:02:25,637 --> 00:02:28,867
 a giant star, far away, looks tiny.
 
 46
-00:02:28,966 --> 00:02:32,595
+00:02:28,937 --> 00:02:32,571
 How visibility fades as the slits move apart is the Fourier
 
 47
-00:02:32,635 --> 00:02:36,725
+00:02:32,611 --> 00:02:36,696
 transform of the source's shape: the van Cittert–Zernike theorem.
 
 48
-00:02:36,795 --> 00:02:39,438
+00:02:36,766 --> 00:02:39,417
 In 1920, Michelson spread two mirrors
 
 49
-00:02:39,478 --> 00:02:41,837
+00:02:39,457 --> 00:02:41,817
 apart until a star's fringes vanished,
 
 50
-00:02:41,877 --> 00:02:44,306
+00:02:41,857 --> 00:02:44,277
 and measured the size of Betelgeuse.
 
 51
-00:02:45,126 --> 00:02:49,618
+00:02:45,097 --> 00:02:49,590
 Coherence has a dark side. A wall is rough on the scale of a wavelength.
 
 52
-00:02:49,688 --> 00:02:53,296
+00:02:49,660 --> 00:02:53,276
 At each pixel, light arrives from every bump with a random phase,
 
 53
-00:02:53,336 --> 00:02:56,279
+00:02:53,316 --> 00:02:56,251
 and the arrows add up like a random walk.
 
 54
-00:02:56,349 --> 00:02:58,671
+00:02:56,321 --> 00:02:58,560
 Sometimes they cancel, sometimes they line up:
 
 55
-00:02:58,711 --> 00:03:01,301
+00:02:58,600 --> 00:03:01,272
 dark and bright grains called speckle.
 
 56
-00:03:01,371 --> 00:03:05,744
+00:03:01,342 --> 00:03:05,715
 Its contrast, the standard deviation over the mean, is exactly one.
 
 57
-00:03:05,814 --> 00:03:09,957
+00:03:05,785 --> 00:03:09,935
 Each grain is about λ/NA across: the numerical aperture,
 
 58
-00:03:09,997 --> 00:03:13,548
+00:03:09,975 --> 00:03:13,519
 NA, is the sine of the widest angle collected.
 
 59
-00:03:13,618 --> 00:03:17,999
+00:03:13,589 --> 00:03:17,965
 Average N independent patterns, and the contrast falls as 1/√N.
 
 60
-00:03:18,039 --> 00:03:21,813
+00:03:18,005 --> 00:03:21,784
 An LED's many colours and points do just that.
 
 61
-00:03:22,633 --> 00:03:25,597
+00:03:22,604 --> 00:03:25,559
 How do we compute with partially coherent light? Record,
 
 62
-00:03:25,637 --> 00:03:29,428
+00:03:25,599 --> 00:03:29,399
 for every pair of points, how well their fields keep in step.
 
 63
-00:03:29,498 --> 00:03:33,970
+00:03:29,469 --> 00:03:33,950
 That's the mutual intensity, J: the average of the field at x₁
 
 64
-00:03:34,010 --> 00:03:39,126
+00:03:33,990 --> 00:03:39,097
 times the conjugate field at x₂. Its diagonal is the intensity.
 
 65
-00:03:39,196 --> 00:03:41,638
+00:03:39,167 --> 00:03:41,607
 Off the diagonal, it says how strongly two
 
 66
-00:03:41,678 --> 00:03:44,072
+00:03:41,647 --> 00:03:44,044
 points would interfere through a double slit.
 
 67
-00:03:44,142 --> 00:03:46,001
+00:03:44,114 --> 00:03:45,961
 Swapping the points conjugates J,
 
 68
-00:03:46,041 --> 00:03:49,816
+00:03:46,001 --> 00:03:49,788
 so it's a Hermitian matrix, and it can be diagonalized.
 
 69
-00:03:49,886 --> 00:03:51,885
+00:03:49,858 --> 00:03:51,865
 Its eigenvectors are coherent modes,
 
 70
-00:03:51,925 --> 00:03:56,399
+00:03:51,905 --> 00:03:56,371
 each perfectly coherent, and its eigenvalues are their powers.
 
 71
-00:03:56,469 --> 00:03:59,438
+00:03:56,441 --> 00:03:59,398
 So partially coherent light is a sum of independent
 
 72
-00:03:59,478 --> 00:04:02,287
+00:03:59,438 --> 00:04:02,259
 coherent fields, whose intensities add.
 
 73
-00:04:03,157 --> 00:04:07,413
+00:04:03,129 --> 00:04:07,384
 A laser needs one mode. The bigger the source, the more modes it takes.
 
 74
-00:04:08,233 --> 00:04:10,323
+00:04:08,204 --> 00:04:10,303
 On a computer, that gives three recipes.
 
 75
-00:04:10,363 --> 00:04:13,850
+00:04:10,343 --> 00:04:13,822
 Coherent light: propagate the field, then square it.
 
 76
-00:04:13,920 --> 00:04:17,357
+00:04:13,892 --> 00:04:17,317
 Incoherent light: add intensities, often with a convolution.
 
 77
-00:04:17,397 --> 00:04:19,286
+00:04:17,357 --> 00:04:19,264
 Partially coherent light:
 
 78
-00:04:19,326 --> 00:04:22,468
+00:04:19,304 --> 00:04:22,439
 propagate a few modes, and add their intensities.
 
 79
-00:04:22,538 --> 00:04:24,760
+00:04:22,509 --> 00:04:24,720
 Here's a diffractive element lit by a laser.
 
 80
-00:04:24,800 --> 00:04:28,179
+00:04:24,760 --> 00:04:28,151
 Its far-field pattern is crisp, but speckled.
 
 81
-00:04:28,249 --> 00:04:32,123
+00:04:28,221 --> 00:04:32,098
 With an LED, each source point tilts the light, shifting the pattern,
 
 82
-00:04:32,163 --> 00:04:36,167
+00:04:32,138 --> 00:04:36,138
 and each colour stretches it. The sum is blurred, but smooth.
 
 83
-00:04:36,237 --> 00:04:39,492
+00:04:36,208 --> 00:04:39,472
 At large angles, this simple blur stops being exact,
 
 84
-00:04:39,532 --> 00:04:42,277
+00:04:39,512 --> 00:04:42,249
 but a few coherent modes are often enough.
 
 85
-00:04:43,097 --> 00:04:44,351
-So, when does light interfere?
+00:04:43,069 --> 00:04:45,710
+Fields always add; the exposure determines
 
 86
-00:04:44,391 --> 00:04:47,241
-Fields add when their phases stay in step.
+00:04:45,750 --> 00:04:47,507
+which interference terms survive.
 
 87
-00:04:47,281 --> 00:04:50,087
-When phases wander, intensities add.
+00:04:47,547 --> 00:04:51,480
+When the averaged cross term vanishes, intensities add.
 
 88
-00:04:50,157 --> 00:04:53,751
+00:04:51,550 --> 00:04:55,144
 And partially coherent light is a sum of coherent patterns.
 
 89
-00:04:53,821 --> 00:04:56,945
+00:04:55,214 --> 00:04:58,331
 Next time: coherence lets us do what a camera can't,
 
 90
-00:04:56,985 --> 00:04:58,819
+00:04:58,371 --> 00:05:00,212
 and record the phase of light.
 

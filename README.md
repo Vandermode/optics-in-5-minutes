@@ -17,10 +17,10 @@ computed and which are schematic.
 | E01 | [`E01_angular_spectrum`](E01_angular_spectrum/) | 5:07 | Propagation is diagonal in the plane-wave basis: FFT, multiply, inverse FFT. |
 | E02 | [`E02_lens_fourier`](E02_lens_fourier/) | 5:12 | Far away, or at a lens's focus, each direction lands on its own spot. The 4f machine and phase contrast. |
 | E03 | [`E03_diffraction_limit`](E03_diffraction_limit/) | 5:11 | Imaging is convolution with the PSF; the lens is a hole in k-space (λ/2NA). Coherent vs incoherent imaging, Wiener filtering. |
-| E04 | [`E04_coherence`](E04_coherence/) | 5:01 | Fields add when phases stay in step, intensities when they wander. Speckle; coherent modes. |
+| E04 | [`E04_coherence`](E04_coherence/) | 5:03 | Fields always add; intensities add when the averaged cross term vanishes. Speckle; coherent modes. |
 | E05 | [`E05_phase_problem`](E05_phase_problem/) | 5:05 | Cameras lose phase. Off-axis holography and Gerchberg–Saxton recover it; computer-generated holograms design it. |
 | E06 | [`E06_flat_optics`](E06_flat_optics/) | 5:15 | Thin elements and kinoforms: phase wraps at 2π. Steps, colour, and where "thin" breaks. |
-| E07 | [`E07_periodic_structures`](E07_periodic_structures/) | 5:19 | Symmetry fixes momentum: Snell's law, gratings, Bloch waves and band gaps, RCWA. |
+| E07 | [`E07_periodic_structures`](E07_periodic_structures/) | 5:23 | Symmetry fixes momentum: Snell's law, gratings, Bloch waves and band gaps, RCWA. |
 | E08 | [`E08_trapping_light`](E08_trapping_light/) | 5:06 | Waveguide modes as eigenvectors; couplers as 2×2 rotations; ring resonators, Q and critical coupling. |
 | E09 | [`E09_maxwell_grid`](E09_maxwell_grid/) | 5:15 | FDTD: E and H leapfrog on the Yee grid. The Courant limit, grid dispersion, and the PML as complex-stretched space. |
 | E10 | [`E10_adjoint_design`](E10_adjoint_design/) | 5:15 | The adjoint method: two simulations give every pixel's gradient. Differentiable and end-to-end optics. Season recap. |

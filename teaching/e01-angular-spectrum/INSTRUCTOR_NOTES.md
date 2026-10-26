@@ -76,6 +76,8 @@ Propagate a single Fourier-grid plane wave and compare it with its analytic phas
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
 
+
+
 ## Common misconceptions
 
 - At fixed wavelength, halving a slit’s width generally makes its far-field central band… The field needs a broader transverse-frequency spectrum. The distant angular spread increases.

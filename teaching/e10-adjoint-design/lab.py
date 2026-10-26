@@ -1,6 +1,12 @@
 # %% [markdown]
 # ## 1 · Define the forward model and one scalar objective
 #
+# This core lab combines E02's Fourier propagation with E06's phase mask. It does not
+# differentiate E09's time-domain Yee solver. Here the design parameters are pupil phases,
+# the forward map is one unitary FFT, and the scalar objective compares output intensities.
+# The later optional material-design example switches to a frequency-domain scalar
+# Helmholtz equation; that also needs its own derivative check and is not the Yee code.
+#
 # The mask has fixed amplitude A and variable phase φ: u=A exp(iφ). A unitary Fourier
 # operator P gives v=Pu and intensity I=|v|². We minimize L=½Σ(I−T)²/ΣT².
 # The target total power equals the input power, a necessary but insufficient feasibility condition.

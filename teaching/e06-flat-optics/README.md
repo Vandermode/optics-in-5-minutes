@@ -35,6 +35,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Explain why phase wrapping is equivalent at one design wavelength.
 - Quantify staircase efficiency and identify when the thin-element model fails.
 
+
+
 ## Use the lesson
 
 Watch the [E06 film](https://www.youtube.com/watch?v=0rMp3nl57Lg) (5:15), embedded near the top of the lesson.

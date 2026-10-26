@@ -76,6 +76,8 @@ Quantize the final phase and re-evaluate the unchanged objective and intensity n
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
 
+
+
 ## Common misconceptions
 
 - For thousands of phase parameters and one scalar loss, the adjoint gradient needs… The overlap computes all parameter derivatives from the same forward and adjoint fields.

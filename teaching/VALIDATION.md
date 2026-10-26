@@ -1,5 +1,24 @@
 # Verification record · Optics teaching course
 
+## Teaching-logic corrections · 2026-10-26
+
+The six corrections align the films, required work, numerical evidence, and experiment order. Revised materials remain a local review version.
+
+| Correction | Evidence and scope |
+| --- | --- |
+| E04/E07 film and page agreement | E04 now states that fields always add and intensities add when the averaged cross term vanishes. E07 identifies normal-incidence transmission into air and explains that only the zeroth propagating transmitted order does not establish a uniform-film response or exclude internal resonances. Both films were revoiced, rendered, and checked with their revised captions and guide times. |
+| Core and optional work | E04’s core compares spectral and angular filtering; coherent-mode propagation remains optional. E07’s core separates order directions from efficiencies; RCWA convergence remains optional. Both notebooks execute through their first optional heading without defining or calling the advanced solvers. Core goals, quizzes, reports, and rubrics match that boundary. |
+| E02 propagation through the lens | The notebook independently integrates input → front focal propagation → thin lens → back focal propagation. Lens half-widths of 32, 64, and 102.4 μm give relative field errors of 3.26×10⁻⁴, 7.26×10⁻¹⁰, and 1.09×10⁻¹⁴. Halving lens-plane or input spacing changes the field by less than 1.3×10⁻¹⁴. The object-against-lens case agrees with the Fourier result including its output chirp to 3.2×10⁻¹⁵; omitting that chirp gives 0.506 field error despite identical intensity. |
+| E05 measurement fit versus reconstruction | Both errors are evaluated on the same field after each completed update. At update 150, seeds 3, 7, and 11 give Fourier-amplitude residuals of 0.654%, 0.786%, and 0.734%, but phase-aligned field errors of 18.262%, 17.426%, and 14.611%. The figure includes both curves and all three phase reconstructions on common scales. This finite example demonstrates a limitation of residual-only assessment; it does not prove nonuniqueness. |
+| E09 → E10 model change | E10 explicitly identifies its scalar Fourier pupil operator, parameters, objective, and derivative checks alongside E09’s time-domain Yee model. Its optional frequency-domain scalar Helmholtz calculation is also identified as a separate model. |
+| Prediction before controls | All twelve lessons place the prediction and guided experiment before the controls in both languages, including E03’s custom page. The focused browser suite checks both document order and rendered layout at 1440 and 390 px. |
+
+All six modified notebooks executed successfully in clean CPU kernels, including optional sections: 38 code cells and 26 PNG figures. Their source code and executed outputs agree. The E04 angular-average check agrees with the uniform-strip formula within 4.6×10⁻⁸; narrowing spectral width or angular extent holds the other parameter fixed. New and revised figures were visually inspected. Rebuilding the full bilingual course twice produces identical artifacts and preserves notebook outputs.
+
+The revised E04 film contains 18,154 frames (302.567 seconds) and 90 subtitle cues; E07 contains 19,361 frames (322.683 seconds) and 91 cues. Both are 1920 × 1080 at 60 fps with H.264 video, AAC audio, and measured integrated loudness of −16.3 LUFS. All chapter previews, piece counts, seam scans, and final formula frames were reviewed; detected abrupt changes are intentional transitions.
+
+Both complete distribution files were played through the local lesson pages in Chrome for Testing 156.0.8078.47. They decoded 1080p frames, sought to the revised guide times, loaded every WebVTT cue, and displayed active captions without player or browser errors. This used the actual films, separately from the synthetic native-player fixture in the general browser suite. No new YouTube upload or public-site deployment is part of this review.
+
 ## Geometric-optics additions · 2026-10-23
 
 E11 and E12 use a shared three-dimensional, sequential transmitted-ray specification in Python and JavaScript. The added numerical suite passes 768 checks, including 45 independent meridional paths solved with scalar Snell angles and bracketed surface intersections, an ABCD paraxial reference, ray reversal, physical-cap selection, total internal reflection, fixed focal power, common-plane stationarity, pupil refinement, and penalties for lost rays. Agreement between language ports is checked separately from these independent references.

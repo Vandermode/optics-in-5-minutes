@@ -1,20 +1,27 @@
-# Coherence: when does light interfere? (Optics in 5 Minutes · E04, 5:01)
+# Coherence: when does light interfere? (Optics in 5 Minutes · E04, 5:03)
 
-3Blue1Brown-style explainer (5:01, 1920×1080, 60 fps) for viewers who know calculus and a little linear algebra.
+3Blue1Brown-style explainer (5:03, 1920×1080, 60 fps) for viewers who know calculus and a little linear algebra.
 Narration by an open-source TTS voice (Kokoro-82M), subtitles timed to the speech with Whisper.
 
 * `e04_coherence_1080p60.mp4` – subtitles burned in
 * `e04_coherence_1080p60_softsubs.mp4` – clean picture + toggleable English subtitle track
+* `../dist/e04_coherence_1080p.mp4` – compact release with toggleable English subtitles (25.9 MB)
 * `subtitles.srt` / `subtitles.ass` – subtitles
 
-The idea in one sentence (the recap line): *fields add when their phases stay in step; when phases wander,
-intensities add. Partially coherent light is a sum of coherent patterns.*
+The central idea: *fields always add; the exposure determines which interference terms survive.
+When the averaged cross term vanishes, intensities add. Partially coherent light can be represented
+as an intensity sum of mutually uncorrelated coherent modes.*
+
+Both recap panels sum fields. They differ in the exposure average: the intensity cross term survives in one
+case and vanishes in the other. Phase variation alone does not guarantee intensity addition. The finite-sample
+strong-jitter calculation has residual visibility 0.00436, so Ch1 labels its averaged cross term as approximately
+zero; the recap shows the ideal zero-cross-term limit.
 
 ## Chapters
 | # | time | idea |
 |---|------|------|
 | 0 | 0:00 | hook: a laser spot speckles, an LED spot is smooth; two slits: crisp fringes (laser), none (LED), fringes back with a pinhole (LED) |
-| 1 | 0:19 | interference is arrow addition: the camera sees \|a₁+a₂\|² = \|a₁\|²+\|a₂\|²+2\|a₁\|\|a₂\| cos Δφ; Δφ across a screen paints fringes; fast phase jitter averages the cross term away; visibility V |
+| 1 | 0:19 | interference is arrow addition: the camera averages \|a₁+a₂\|² = \|a₁\|²+\|a₂\|²+2\|a₁\|\|a₂\| cos Δφ; Δφ across a screen paints fringes; intensity addition requires a vanishing averaged cross term; visibility V |
 | 2 | 1:08 | colour (temporal coherence): every colour has its own fringe spacing; summed over a spectrum, fringes survive only near zero delay; envelope = Fourier transform of the spectrum, ℓc ≈ λ²/Δλ; laser / LED / sunlight |
 | 3 | 1:48 | size (spatial coherence): a tilted source point shifts the fringes; independent points add shifted copies, which wash out when θs ≈ λ/d (signature shot); a pinhole or distance restores them; van Cittert–Zernike; Michelson & Pease, Betelgeuse (1920) |
 | 4 | 2:45 | speckle: each pixel is a random walk of phasors (signature shot); contrast 1; grain ≈ λ/NA; averaging N independent patterns → 1/√N |
@@ -53,8 +60,14 @@ python physics.py    # all computed fields -> data/*.npz (seeded, ~10 s)
 ./render.sh --skip-audio                      # final render (3 workers, windowed parallel renderer)
 python ../common/verify.py .   # counts, seam scan, loudness, stills -> .verify/
 ```
-Verified (`../common/verify.py`): 18,070 frames, 90 cues, −16.3 LUFS; the only seam-scan jump (79.3 s) is the intended
-Chapter-2 transform. Scene-sync note: `scenes.py` anchors animations to spoken words (`W(segment, word)`, from Whisper's `audio/words.json`);
-if a word is not found it falls back to the segment start and prints a warning to stderr.
+Verified on 2026-10-26 after correcting the field-addition narration and recap: 18,154 frames, 302.567 s,
+90 subtitle cues, −16.3 LUFS; all counts pass. The only seam-scan jump (79.22–79.35 s) is the intended
+Chapter-2 wave transform; none occurs within 50 ms of a render-piece boundary. All eight chapter previews,
+24 final-film stills, and full-resolution frames of the revised Ch1 and recap were visually checked.
+The compact release preserves all 18,154 frames at 1920×1080, 60 fps, with AAC audio and the verified subtitle track.
 
-Re-rendered 2026-10-11 after `common/o5common.py` got the whole-frame `Chapter.at()` (FAST_ANIMATION_PIPELINE.md §10): 18,070 frames, all counts OK, −16.3 LUFS.
+Narration and subtitles were regenerated. The 23 Whisper comparison flags were inspected: they reflect
+mathematical spelling, number formatting, or words assigned just before a segment boundary; both revised
+lines transcribe correctly. Scene-sync note: `scenes.py` anchors animations to spoken words
+(`W(segment, word)`, from Whisper's `audio/words.json`); a missing word falls back to the segment start
+and prints a warning. The corrected render has no missing-word or late-animation warnings.

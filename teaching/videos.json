@@ -15,9 +15,11 @@
     "duration": "5:12"
   },
   "E04": {
-    "youtubeId": "8rnnqnpCpsg",
     "title": "Why Lasers Speckle and LEDs Do Not | Coherence in 5 Minutes",
-    "duration": "5:02"
+    "duration": "5:03",
+    "previousYoutubeId": "8rnnqnpCpsg",
+    "file": "../media/e04-coherence.mp4",
+    "captions": "../media/e04-coherence.en.vtt"
   },
   "E05": {
     "youtubeId": "G7s3JcGsoDo",
@@ -30,9 +32,11 @@
     "duration": "5:15"
   },
   "E07": {
-    "youtubeId": "qQ0YwOpt-mA",
     "title": "How Structure Selects Light | Gratings and Band Gaps in 5 Minutes",
-    "duration": "5:20"
+    "duration": "5:23",
+    "previousYoutubeId": "qQ0YwOpt-mA",
+    "file": "../media/e07-periodic-structures.mp4",
+    "captions": "../media/e07-periodic-structures.en.vtt"
   },
   "E08": {
     "youtubeId": "rPNYODeWrJs",

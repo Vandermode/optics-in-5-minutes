@@ -67,30 +67,100 @@ for a,v,title in zip(ax,[.65*letter,abs(phase_object)**2,abs(revealed)**2],["Obj
     a.set(title=title,xlabel="x sample",ylabel="y sample")
 show(fig,"03-phase-contrast")
 # %% [markdown]
-# ## Optional extension · Check the quadratic-phase cancellation
+# ## Optional extension · Propagate from the front focal plane to the back focal plane
 #
-# At the back focal plane of a lens, an object placed immediately against the lens produces
-# a Fourier transform with a remaining output quadratic phase. The Fresnel kernel below
-# is evaluated directly and compared with the FFT on its correct physical output grid.
-# A front-focal-plane placement cancels this additional coordinate phase; it matters for
-# complex-field comparisons even when intensity pictures agree.
+# Compare the same input field in two physical positions. Against the lens, its path is
+# $U\to L\to P_f$. One focal length before the lens, its path is $U\to P_f\to L\to P_f$.
+# Here $L(x)=\exp[-i\pi x^2/(\lambda f)]$ and the one-dimensional Fresnel operator is
+# $P_f[U](x')=A_f\int U(x)\exp[i\pi(x'-x)^2/(\lambda f)]\,dx$,
+# with $A_f=\exp(ikf)/\sqrt{i\lambda f}$ and $k=2\pi/\lambda$.
+# All lengths below are in micrometres. The lens is ideal, paraxial and has no limiting stop.
+#
+# Define $\widehat U(f_x)=\int U(x)\exp(-2\pi i f_xx)\,dx$ and use $x_f=\lambda f f_x$.
+# The against-lens output is $A_f\exp[i\pi x_f^2/(\lambda f)]\widehat U(f_x)$.
+# The front-to-back output is $\exp(ikf)A_f\widehat U(f_x)$: only a constant phase remains.
+# We compute every propagation leg by direct quadrature, then compare the complex fields
+# with these predictions. The known prefactors are retained; no fitted phase is removed.
+# **Predict:** can the two focal intensities agree while the complex fields differ?
 # %%
-size,spacing,f_lens,lam=128,.5,100.,.55
+size,spacing,f_lens,lam=512,.125,100.,.55
 xin=(np.arange(size)-size//2)*spacing
 input_field=np.exp(-(xin/5)**2)*np.exp(.4j*np.sin(xin))
 fx=np.fft.fftshift(np.fft.fftfreq(size,spacing))
-xout=lam*f_lens*fx
+central=slice(size//2-64,size//2+64)
+xout=lam*f_lens*fx[central]
 k=2*np.pi/lam
-lens=np.exp(-1j*k*xin*xin/(2*f_lens))
-kernel=np.exp(1j*k*(xout[:,None]-xin[None,:])**2/(2*f_lens))
-direct=kernel@(input_field*lens)*spacing
-fourier=(F(input_field)*np.sqrt(size)*spacing)*np.exp(1j*k*xout*xout/(2*f_lens))
-relative=np.linalg.norm(direct-fourier)/np.linalg.norm(direct)
-assert relative<1e-12
-fig,ax=plt.subplots(1,2,figsize=(10,3.6))
-ax[0].plot(xout,abs(direct)**2,label="Direct Fresnel");ax[0].plot(xout,abs(fourier)**2,"--",label="FFT + output chirp")
-ax[0].set(xlabel="Output x (μm)",ylabel="Intensity in common arbitrary units");ax[0].legend()
-ax[1].plot(xout,np.angle(np.exp(1j*k*xout*xout/(2*f_lens))))
-ax[1].set(xlabel="Output x (μm)",ylabel="Residual phase (rad)")
+A_f=np.exp(1j*k*f_lens)/np.sqrt(1j*lam*f_lens)
+
+def fresnel_step(field,source_x,target_x):
+    """Direct 1D Fresnel quadrature over distance f_lens, including its prefactor."""
+    source_dx=source_x[1]-source_x[0]
+    kernel=np.exp(1j*k*(target_x[:,None]-source_x[None,:])**2/(2*f_lens))
+    return A_f*(kernel@field)*source_dx
+
+def front_to_back(lens_half_width,lens_dx):
+    # This window approximates an unbounded lens plane; enlarge it to check truncation.
+    lens_x=np.arange(-lens_half_width,lens_half_width,lens_dx)
+    at_lens=fresnel_step(input_field,xin,lens_x)
+    after_lens=at_lens*np.exp(-1j*k*lens_x*lens_x/(2*f_lens))
+    return fresnel_step(after_lens,lens_x,xout)
+
+fourier=np.fft.fftshift(np.fft.fft(np.fft.ifftshift(input_field)))[central]*spacing
+output_chirp=np.exp(1j*k*xout*xout/(2*f_lens))
+flat_against=A_f*fourier
+expected_against=flat_against*output_chirp
+expected_front=np.exp(1j*k*f_lens)*A_f*fourier
+against=fresnel_step(input_field*np.exp(-1j*k*xin*xin/(2*f_lens)),xin,xout)
+
+# Vary the intermediate window independently of its sampling; then halve the spacing.
+window_errors=[]
+for half_width in [32.,64.,102.4]:
+    trial=front_to_back(half_width,.2)
+    window_errors.append(np.linalg.norm(trial-expected_front)/np.linalg.norm(expected_front))
+front=front_to_back(102.4,.1)
+refinement=np.linalg.norm(front-trial)/np.linalg.norm(front)
+# Refine the input sampling too, preserving its physical window and the output positions.
+finer_x=(np.arange(2*size)-size)*(spacing/2)
+finer_input=np.exp(-(finer_x/5)**2)*np.exp(.4j*np.sin(finer_x))
+lens_x=np.arange(-102.4,102.4,.1)
+finer_at_lens=fresnel_step(finer_input,finer_x,lens_x)
+finer_front=fresnel_step(finer_at_lens*np.exp(-1j*k*lens_x*lens_x/(2*f_lens)),lens_x,xout)
+input_refinement=np.linalg.norm(finer_front-front)/np.linalg.norm(front)
+front_error=np.linalg.norm(front-expected_front)/np.linalg.norm(expected_front)
+against_error=np.linalg.norm(against-expected_against)/np.linalg.norm(expected_against)
+missing_chirp_error=np.linalg.norm(against-flat_against)/np.linalg.norm(flat_against)
+assert window_errors[2]<window_errors[1]<window_errors[0]
+assert max(front_error,against_error,refinement,input_refinement)<1e-10
+assert missing_chirp_error>.1
+assert np.linalg.norm(abs(front)**2-abs(against)**2)/np.linalg.norm(abs(front)**2)<1e-10
+
+fig,ax=plt.subplots(2,2,figsize=(11,7),sharex=True,layout="constrained")
+bright=abs(fourier)>1e-3*abs(fourier).max()
+for row,(actual,flat,title) in enumerate([
+    (against,flat_against,"Object against lens: L → P_f"),
+    (front,expected_front,"Object at front focus: P_f → L → P_f")]):
+    ax[row,0].plot(xout,abs(actual)**2,label="Direct propagation")
+    ax[row,0].plot(xout,abs(flat)**2,"--",label="Scaled Fourier intensity")
+    ax[row,0].set(title=title,ylabel="Intensity / input peak")
+    residual=np.angle(actual*np.conj(flat))
+    ax[row,1].plot(xout[bright],residual[bright],"o",ms=3,label="Computed phase difference")
+    prediction=np.angle(output_chirp) if row==0 else np.zeros_like(xout)
+    ax[row,1].plot(xout[bright],prediction[bright],"x",ms=5,label="Output chirp" if row==0 else "Zero coordinate phase")
+    ax[row,1].set(title="Phase relative to the scaled Fourier field",ylabel="Wrapped phase (rad)",ylim=(-np.pi,np.pi))
+for a in ax.flat:a.set(xlim=(-25,25),xlabel="Back focal-plane position (μm)")
+fig.legend([*ax[0,0].get_lines(),*ax[0,1].get_lines()],
+           ["Direct intensity","Fourier intensity","Direct phase","Predicted phase"],
+           loc="outside lower center",ncol=4,fontsize=9)
+fig.suptitle(f"Object placement changes phase while these focal intensities agree\nλ = {lam:g} μm · f = {f_lens:g} μm · ideal paraxial lens",fontsize=13)
 show(fig,"04-fresnel-check")
-print("Direct-kernel/FFT field relative error:",relative)
+print("Front-to-back complex-field errors for lens half-widths 32, 64, 102.4 μm:",window_errors)
+print("Halving lens-plane spacing, relative field change:",refinement)
+print("Halving input spacing, relative field change:",input_refinement)
+print("Against-lens / front-to-back complex-field relative errors:",against_error,front_error)
+print("Against-lens field error if the output chirp is omitted:",missing_chirp_error)
+# %% [markdown]
+# Agreement is for this sampled, scalar paraxial example. Window enlargement and grid
+# refinement check the numerical integral, not the accuracy of paraxial optics at large
+# angles. Phase is plotted only where Fourier amplitude exceeds 0.1% of its peak, because
+# phase at a dark sample is not a useful comparison. The errors above use the full complex
+# arrays on the common output grid, including the dark samples and known constant phases.

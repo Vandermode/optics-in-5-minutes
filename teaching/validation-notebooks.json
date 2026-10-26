@@ -19,15 +19,15 @@
     "id": "E02",
     "code_cells": 6,
     "png_outputs": 4,
-    "elapsed_seconds": 3.7,
+    "elapsed_seconds": 5.54,
     "clean_kernel": true,
     "optional_sections_executed": true,
     "assertions": "passed",
     "stdout": [
-      "Python 3.12.13 | NumPy 2.4.3 | SciPy 1.16.3 | Matplotlib 3.11.2",
+      "Python 3.11.7 | NumPy 2.4.6 | SciPy 1.17.1 | Matplotlib 3.11.2",
       "Predicted / sampled peak: 99.99833334166665 96.6796875 \u03bcm; focal sample spacing: 10.7421875",
       "4f reversal assertion passed.",
-      "Direct-kernel/FFT field relative error: 5.563640690787443e-15",
+      "Front-to-back complex-field errors for lens half-widths 32, 64, 102.4 \u03bcm: [np.float64(0.00032556261047696916), np.float64(7.255115986749452e-10), np.float64(1.0902466442860853e-14)]\nHalving lens-plane spacing, relative field change: 1.293704447462849e-14\nHalving input spacing, relative field change: 4.723791444239503e-15\nAgainst-lens / front-to-back complex-field relative errors: 3.1905152107199295e-15 6.879810932034997e-15\nAgainst-lens field error if the output chirp is omitted: 0.5060926931331187",
       "Saved 4 figures in e02_figures.zip"
     ]
   },
@@ -49,33 +49,34 @@
   },
   {
     "id": "E04",
-    "code_cells": 6,
-    "png_outputs": 4,
-    "elapsed_seconds": 4.29,
+    "code_cells": 7,
+    "png_outputs": 5,
+    "elapsed_seconds": 5.65,
     "clean_kernel": true,
     "optional_sections_executed": true,
     "assertions": "passed",
     "stdout": [
-      "Python 3.12.13 | NumPy 2.4.3 | SciPy 1.16.3 | Matplotlib 3.11.2",
+      "Python 3.11.7 | NumPy 2.4.6 | SciPy 1.17.1 | Matplotlib 3.11.2",
       "Gaussian spectrum Fourier-transform error: 3.6700841254955208e-09",
       "Measured contrasts: {np.int64(1): np.float64(1.0319437549450547), np.int64(4): np.float64(0.4890293492795309), np.int64(16): np.float64(0.2420299489605858), np.int64(64): np.float64(0.12228626837408525)}",
+      "Before filtering: \u03c3\u03bd=5 THz, \u0398=18 mrad; |\u03b3_t|=0.4540, |\u03b3_s|=0.0185, visibility=0.0084\nNarrow spectrum: \u03c3\u03bd=1 THz, \u0398=18 mrad; |\u03b3_t|=0.9689, |\u03b3_s|=0.0185, visibility=0.0179\nNarrow angles: \u03c3\u03bd=5 THz, \u0398=3 mrad; |\u03b3_t|=0.4540, |\u03b3_s|=0.9565, visibility=0.4343",
       "Trace / eigenvalue sum: 24.751699163959508 24.75169916395956",
       "All-mode/source-sum maximum intensity difference: 7.105427357601002e-15",
-      "Saved 4 figures in e04_figures.zip"
+      "Saved 5 figures in e04_figures.zip"
     ]
   },
   {
     "id": "E05",
     "code_cells": 6,
     "png_outputs": 4,
-    "elapsed_seconds": 5.79,
+    "elapsed_seconds": 7.75,
     "clean_kernel": true,
     "optional_sections_executed": true,
     "assertions": "passed",
     "stdout": [
-      "Python 3.12.13 | NumPy 2.4.3 | SciPy 1.16.3 | Matplotlib 3.11.2",
+      "Python 3.11.7 | NumPy 2.4.6 | SciPy 1.17.1 | Matplotlib 3.11.2",
       "Relative complex-field error with isolated sideband: 4.826320838642857e-15\nCarrier 12, crop 8: relative field error 0.00133\nCarrier 32, crop 3: relative field error 0.0687\nCarrier 60, crop 8: relative field error 0.992",
-      "Final magnitude errors: [0.006545125134857436, 0.007876352946562372, 0.007349024349969488]",
+      "Seed 3, completed update 150: amplitude residual 0.654%; phase-aligned field error 18.262%\nSeed 7, completed update 150: amplitude residual 0.786%; phase-aligned field error 17.426%\nSeed 11, completed update 150: amplitude residual 0.734%; phase-aligned field error 14.611%",
       "Saved 4 figures in e05_figures.zip"
     ]
   },
@@ -98,14 +99,14 @@
     "id": "E07",
     "code_cells": 6,
     "png_outputs": 4,
-    "elapsed_seconds": 4.11,
+    "elapsed_seconds": 4.31,
     "clean_kernel": true,
     "optional_sections_executed": true,
     "assertions": "passed",
     "stdout": [
-      "Python 3.12.13 | NumPy 2.4.3 | SciPy 1.16.3 | Matplotlib 3.11.2",
+      "Python 3.11.7 | NumPy 2.4.6 | SciPy 1.17.1 | Matplotlib 3.11.2",
       "Allowed orders and angles: [(np.int64(-1), np.float64(-34.147069974002896)), (np.int64(0), np.float64(12.000000000000002)), (np.int64(1), np.float64(77.72608519215471))]",
-      "Largest flux error: 3.3306690738754696e-16 Final reflectance change: 0.00013871247772911932",
+      "Largest flux error: 4.440892098500626e-16 Final reflectance change: 0.00013871247773072914",
       "Saved 4 figures in e07_figures.zip"
     ]
   },
@@ -128,12 +129,12 @@
     "id": "E09",
     "code_cells": 6,
     "png_outputs": 4,
-    "elapsed_seconds": 6.69,
+    "elapsed_seconds": 6.87,
     "clean_kernel": true,
     "optional_sections_executed": true,
     "assertions": "passed",
     "stdout": [
-      "Python 3.12.13 | NumPy 2.4.3 | SciPy 1.16.3 | Matplotlib 3.11.2",
+      "Python 3.11.7 | NumPy 2.4.6 | SciPy 1.17.1 | Matplotlib 3.11.2",
       "Late-window squared-field ratios: {'wall': np.float64(1.0000000000000104), 'lossy': np.float64(0.10308107557771648), 'pml': np.float64(1.0304947210987933e-14)}",
       "R=0.040838, analytic R=0.040000; T amplitude estimate=0.963334; T flux=0.959164",
       "PML refinement: [np.float64(3.1978058370689562e-12), np.float64(1.0304947210987933e-14), np.float64(3.3419150612414285e-16)]\nCourant 0.9 max field after 200 steps 0.5004779805935318\nCourant 1.02 max field after 200 steps 1.4736907905262167e+23",
@@ -145,12 +146,12 @@
     "id": "E10",
     "code_cells": 7,
     "png_outputs": 5,
-    "elapsed_seconds": 6.61,
+    "elapsed_seconds": 5.47,
     "clean_kernel": true,
     "optional_sections_executed": true,
     "assertions": "passed",
     "stdout": [
-      "Python 3.12.13 | NumPy 2.4.3 | SciPy 1.16.3 | Matplotlib 3.11.2",
+      "Python 3.11.7 | NumPy 2.4.6 | SciPy 1.17.1 | Matplotlib 3.11.2",
       "Best all-pixel relative gradient error: 6.404749963832904e-10",
       "Seeded final losses: [np.float64(0.0050164429845955), np.float64(0.005577984683982654), np.float64(0.005613133323143912)]",
       "Sparse Helmholtz gradient relative error: 5.020800334884438e-10\nError if conjugation is accidentally omitted: 1.8129195953770494",

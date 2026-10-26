@@ -17,3 +17,5 @@
 .frequency-stats dd{margin-left:auto}
 @media(max-width:740px){nav{flex-wrap:wrap;justify-content:flex-start;gap:12px 20px}.comparison{grid-template-columns:1fr}.comparison article+article{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:22px}}
 @media(max-width:560px){.controls{grid-template-columns:1fr;gap:24px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}.metrics>div:last-child{grid-column:1/-1}.stripes{grid-template-columns:1fr}.plot-heading{align-items:flex-start}}
+
+.lab-guidance{margin:24px 0 30px;max-width:900px}.lab-guidance h3{font-size:1.125rem}.lab-guidance ol{padding-left:24px}.lab-guidance li{margin:10px 0;color:var(--muted)}

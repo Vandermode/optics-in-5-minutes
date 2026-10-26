@@ -50,9 +50,9 @@
 <p>平面波的横向分布特别简单，即 e<sup>ikₓx</sup>。沿 x 方向每单位距离，其相位增加 kₓ 弧度。傅里叶变换告诉我们每种分布包含多少。系数是复振幅，因此重建光场时必须保留它们的相位。</p>
 <div class="equation">k = 2π/λ   ·   kₓ = 2πfₓ   ·   kₓ² + k_z² = k²</div>
 <p>最后一个关系来自将平面波代入标量亥姆霍兹方程。它把横向频率与纵向传播常数联系起来。对于传播分量，sin θ = kₓ/k，因此空间频率图也对应着传播方向的分布。</p>
-<h3>学完后，你能够</h3><ol><li>将傅里叶系数解释为平面波振幅。</li><li>预测波长、孔径宽度和距离如何改变衍射。</li><li>区分物理上的倏逝衰减与数值上的混叠、周期回绕。</li></ol><div class="callout"><p class="eyebrow">调整参数之前，先做预测</p><p>固定波长。如果把狭缝宽度减半，远处中央亮带会变窄还是变宽？先解释，再调整参数。</p></div></div></section>
+<h3>学完后，你能够</h3><ol><li>将傅里叶系数解释为平面波振幅。</li><li>预测波长、孔径宽度和距离如何改变衍射。</li><li>区分物理上的倏逝衰减与数值上的混叠、周期回绕。</li></ol></div></section>
 <section id="lab" class="section"><div class="section-heading"><div><p class="section-label">02 / 检验预测</p><h2>每次只改一个量。<br>观察它带来的变化。</h2></div><p>所有光场和曲线均由所述模型计算得到。检验预测时，请固定其余参数。</p></div>
-
+<div class="callout"><p class="eyebrow">调整参数之前，先做预测</p><p>固定波长。如果把狭缝宽度减半，远处中央亮带会变窄还是变宽？先解释，再调整参数。</p></div><div id="lab-guide" class="reading" style="margin:24px 0"><div class="section-label">实验步骤</div><div><ol><li>从 z = 0 开始，确认输出重现输入狭缝。然后逐步增加 z，同时观察强度图和复光场图。</li><li>在相同传播距离下比较 2 μm 和 1 μm 的狭缝。更窄的开口需要更宽的横向频谱，这些分量的干涉会扩展到更远处。</li><li>选择窄狭缝预设，在较长传播距离下比较零填充窗口与原始窗口。只改变填充方式：它改变的是数值边界，而不是物理狭缝。</li></ol></div></div>
 <noscript><p class="callout">请启用 JavaScript 以运行实验。说明文字和可下载的 Python 实验仍可使用。</p></noscript>
 <div class="lab-layout"><aside class="controls" aria-label="实验参数"><div class="control"><label for="wavelength">波长<output id="wavelength-value" for="wavelength"></output></label><input id="wavelength" type="range" min="400" max="700" step="10" value="550" aria-describedby="wavelength-help"><p id="wavelength-help"></p></div><div class="control"><label for="width">狭缝宽度<output id="width-value" for="width"></output></label><input id="width" type="range" min="0.3" max="6" step="0.1" value="2" aria-describedby="width-help"><p id="width-help"></p></div><div class="control"><label for="distance">传播距离<output id="distance-value" for="distance"></output></label><input id="distance" type="range" min="0" max="60" step="0.5" value="8" aria-describedby="distance-help"><p id="distance-help"></p></div><div class="control"><label for="padding">FFT 窗口</label><select id="padding"><option value="double" selected>零填充至双倍宽度</option><option value="none">原始周期窗口</option></select><p id="padding-help"></p></div><div class="control"><label for="method">传播模型</label><select id="method"><option value="asm" selected>精确标量角谱法</option><option value="fresnel">近轴菲涅耳近似</option></select><p id="method-help"></p></div>
 <div class="control-buttons"><button id="run" class="button" type="button">运行</button><button id="cancel" class="button secondary" type="button" disabled>停止</button><button id="reset" class="button secondary" type="button">重置</button><button id="copy-link" class="button secondary" type="button">复制实验链接</button></div>
@@ -60,7 +60,7 @@
 <div class="visuals"><div id="plots" class="plots"></div><div id="metrics" class="metrics" aria-live="polite"></div><p id="run-note" class="run-note"></p>
 <div class="presets" aria-label="示例实验"><button type="button" data-preset="0">在孔径平面</button><button type="button" data-preset="1">窄狭缝</button><button type="button" data-preset="2">检查周期回绕</button><button type="button" id="download-plot">保存第一幅图为 PNG ↓</button></div><a id="plot-download" hidden>下载生成的 PNG ↓</a></div></div>
 <p class="model-note"><strong>模型：</strong> 均匀自由空间中的标量单色传播。狭缝用一维光场表示，在省略的方向上保持不变。模型不包含矢量偏振、材料界面散射、探测器平均或噪声。FFT 窗口具有周期性。</p>
-<div class="reading" style="margin:35px 0"><div class="section-label">实验步骤</div><div><ol><li>从 z = 0 开始，确认输出重现输入狭缝。然后逐步增加 z，同时观察强度图和复光场图。</li><li>在相同传播距离下比较 2 μm 和 1 μm 的狭缝。更窄的开口需要更宽的横向频谱，这些分量的干涉会扩展到更远处。</li><li>选择窄狭缝预设，在较长传播距离下比较零填充窗口与原始窗口。只改变填充方式：它改变的是数值边界，而不是物理狭缝。</li></ol></div></div></section>
+</section>
 <section id="explain" class="section reading"><div class="section-label">03 / 理清逻辑</div><div><h2>传播变成了乘法。</h2>
 <p>在均匀空间中，各平面波分量独立演化。向前传播 z，相当于将每个系数乘以 H = e<sup>ik_zz</sup>。各个方向积累不同的相位，因此总光场会改变形状，尽管每一个平面波本身都保持原来的形状。</p>
 <div class="equation">U(x,z) = F<sup>−1</sup>{ F[U(x,0)] · e<sup>iz√(k²−kₓ²)</sup> }</div>
@@ -75,7 +75,7 @@
 <p>独立运行的 Python 实验会逐步构建模型、绘制结果，并用独立预测检验计算。实验使用 NumPy、SciPy 和 Matplotlib，在 CPU 上运行，无需克隆仓库、使用 GPU 或下载外部数据集。</p>
 <div class="actions"><a class="button" href="https://colab.research.google.com/github/Vandermode/optics-in-5-minutes-course/blob/main/teaching/e01-angular-spectrum/e01_angular_spectrum.ipynb" target="_blank" rel="noopener">在 Colab 中打开 ↗</a><a class="button secondary" href="e01_angular_spectrum.ipynb" download>下载 Notebook ↓</a><a href="figures.zip" download>已保存的图表 ↓</a></div><p class="meta">在 Colab 中登录 Google 账号，选择“代码执行程序 → 全部运行”（Runtime → Run all）。将副本保存到云端硬盘以保留修改。如果 Colab 的输出区域无法加载，可查看 Notebook 已保存的输出或下载 PNG 图表。</p>
 <h3>简短实验报告</h3><ol><li><strong>比较两种宽度。</strong> 先预测远场角宽度之比，再测量第一暗纹或中央亮带的宽度。</li><li><strong>区分数值误差。</strong> 独立改变零填充与采样间距，说明哪个能减小周期回绕，哪个能提高奈奎斯特频率。</li><li><strong>检验一个本征函数。</strong> 传播一个与傅里叶网格对齐的平面波，并与解析相位因子比较。</li></ol><details><summary>对照你的推理</summary><div class="answer"><h3>比较两种宽度</h3><p>狭缝宽度减半，理想远场的角尺度加倍；有限距离下的图案不一定严格遵循远场估计。</p><h3>区分数值误差</h3><p>零填充拉开周期副本之间的距离；更小的像素能够表示更高的空间频率。两者都不能代替收敛性检查。</p><h3>检验一个本征函数</h3><p>与网格对齐的平面波保持横向形状不变。它的系数乘以 e^(i k_z z)；当 k_z 为实数时，范数保持不变。</p></div></details>
-<details><summary>可选深入拓展</summary><div class="answer"><p>构建二维传播器，在同一网格上比较精确传递函数与近轴近似，再用更小的像素和更大的零填充重复计算。</p><p>Notebook 中已明确标出拓展部分。请先完成核心实验及其检验。</p></div></details>
+<details class="optional-extension"><summary>可选深入拓展</summary><div class="answer"><p>构建二维传播器，在同一网格上比较精确传递函数与近轴近似，再用更小的像素和更大的零填充重复计算。</p><p>Notebook 中已明确标出拓展部分。请先完成核心实验及其检验。</p></div></details>
 <p><a href="INSTRUCTOR_NOTES.md">教师说明与评分标准 ↗</a> · <a href="README.md">模型、配置与复现说明 ↗</a></p></div></section>
 <section id="sources" class="section reading"><div class="section-label">模型与参考资料</div><div><h2>了解模型忽略了什么。</h2><p>均匀自由空间中的标量单色传播。狭缝用一维光场表示，在省略的方向上保持不变。模型不包含矢量偏振、材料界面散射、探测器平均或噪声。FFT 窗口具有周期性。</p>
 <p><strong>配套短片：</strong> <a href="#video">观看上方 E01 短片</a> (5:07).</p>

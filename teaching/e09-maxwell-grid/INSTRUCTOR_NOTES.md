@@ -74,6 +74,8 @@ Create a stable coarse run and an unstable fine run, then explain why each is un
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
 
+
+
 ## Common misconceptions
 
 - A 1D vacuum run uses S = 0.9. The same value on an equal-grid 2D vacuum Yee grid is… The bounds are 1 in 1D and 1/√2 in equal-grid 2D.

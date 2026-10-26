@@ -74,6 +74,8 @@ Re-trace the chosen lens with denser pupil sampling and an intermediate field. R
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
 
+
+
 ## Common misconceptions
 
 - Two prescriptions have the same effective focal length. Their finite-aperture spots… Paraxial power constrains the small-angle response. It does not fix all higher-order ray deviations or the back focal distance.

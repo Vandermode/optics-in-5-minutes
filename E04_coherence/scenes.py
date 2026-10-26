@@ -416,7 +416,7 @@ class Ch1Arrows(Chapter):
         eq[10].set_color(YELLOW)
         cross_box = SurroundingRectangle(eq[10], buff=0.08, color=YELLOW, stroke_width=2)
         cross_l = Tex("interference", font_size=28, color=YELLOW).next_to(cross_box, DOWN, buff=0.1)
-        avg_l = Tex("averages to 0", font_size=28, color=GREY_A).next_to(cross_box, DOWN, buff=0.1)
+        avg_l = Tex("average $\\approx 0$", font_size=28, color=GREY_A).next_to(cross_box, DOWN, buff=0.1)
         xb_, yb_, sb = -1.55, -2.3, 0.5
 
         def bar():
@@ -506,7 +506,7 @@ class Ch1Arrows(Chapter):
         self.play(sig.animate.set_value(1.2), run_time=1.7, rate_func=linear)
         self.play(sig.animate.set_value(3.5), run_time=2.2, rate_func=linear)
 
-        # ---------------- c7: on average the cross term vanishes
+        # ---------------- c7: intensity addition requires a vanishing averaged cross term
         flat_l = MathTex("|a_1|^2", "+", "|a_2|^2", font_size=32).move_to([4.75, ys0 + sy * 2 + 0.42, 0])
         flat_l[0].set_color(C_A1)
         flat_l[2].set_color(C_A2)
@@ -1625,7 +1625,7 @@ class Ch7Recap(Chapter):
         self.show_tag()
         noise = load("jitter.npz")["noise"]
         nz = lambda t: float(noise[int(round(t * 60)) % len(noise)])
-        cs = [np.array([-3.4, 0.9, 0]), np.array([3.4, 0.9, 0])]
+        cs = [np.array([-3.4, 0.3, 0]), np.array([3.4, 0.3, 0])]
         op = ValueTracker(0.0)
         dphi = 0.9
 
@@ -1643,16 +1643,17 @@ class Ch7Recap(Chapter):
         fl = stripe_rgba(2 + 0 * xs, 4.0, H=40)
         m1, f1 = self.static_image(fr, 4.6, cs[0] + 2.05 * DOWN, 0.7)
         m2, f2 = self.static_image(fl, 4.6, cs[1] + 2.05 * DOWN, 0.7)
-        t1 = Tex("phases in step: fields add", font_size=34).move_to(cs[0] + 2.0 * UP)
-        t2 = Tex("phases wander: intensities add", font_size=34).move_to(cs[1] + 2.0 * UP)
-        e1 = MathTex("|a_1+a_2|^2", font_size=34).move_to(cs[0] + 2.85 * DOWN)
-        e2 = MathTex("|a_1|^2+|a_2|^2", font_size=34).move_to(cs[1] + 2.85 * DOWN)
+        rule = Tex("Fields always add", font_size=38).move_to([0, 3.05, 0])
+        t1 = Tex("cross term survives", font_size=30).move_to(cs[0] + 2.05 * UP)
+        t2 = Tex("cross term averages to zero", font_size=30).move_to(cs[1] + 2.05 * UP)
+        e1 = MathTex(r"\langle|a_1+a_2|^2\rangle", font_size=34).move_to(cs[0] + 2.85 * DOWN)
+        e2 = MathTex(r"\langle|a_1|^2\rangle+\langle|a_2|^2\rangle", font_size=34).move_to(cs[1] + 2.85 * DOWN)
         self.add(arrows, m1, m2)
         self.at(S("r1"))
-        self.play(op.animate.set_value(1.0), run_time=0.6)
-        self.at(W("r1", "fields") - 0.2)
+        self.play(op.animate.set_value(1.0), FadeIn(rule), run_time=0.6)
+        self.at(W("r1", "exposure") - 0.2)
         self.play(FadeIn(t1), f1.animate.set_value(1.0), FadeIn(e1), run_time=0.8)
-        self.at(W("r1", "wander") - 0.4)
+        self.at(W("r1", "vanishes") - 0.4)
         self.play(FadeIn(t2), f2.animate.set_value(1.0), FadeIn(e2), run_time=0.8)
 
         # ---------------- r2: partially coherent = a sum of coherent patterns
@@ -1668,7 +1669,7 @@ class Ch7Recap(Chapter):
         eqrow = VGroup(*parts).arrange(RIGHT, buff=0.3).move_to([0, -0.2, 0])
         r2t = Tex("partially coherent light $=$ a sum of coherent patterns", font_size=36).move_to([0, 1.3, 0])
         self.at(S("r2"))
-        self.play(op.animate.set_value(0.0), f1.animate.set_value(0.0), f2.animate.set_value(0.0), FadeOut(VGroup(t1, t2, e1, e2)), run_time=0.5)
+        self.play(op.animate.set_value(0.0), f1.animate.set_value(0.0), f2.animate.set_value(0.0), FadeOut(VGroup(rule, t1, t2, e1, e2)), run_time=0.5)
         for m_ in (m1, m2):
             m_.clear_updaters()
         self.remove(arrows, m1, m2)

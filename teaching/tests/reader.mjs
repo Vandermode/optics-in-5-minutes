@@ -1,4 +1,5 @@
 import {isolateNativeMedia} from './native-media-fixture.mjs';
+import {useCourseTransport} from './course-transport.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -10,10 +11,15 @@ const catalog = JSON.parse(fs.readFileSync(new URL('course.json', root)));
 const out = new URL('.qa/browser/reader/', root);
 fs.mkdirSync(out, {recursive: true});
 const browser = await chromium.launch({headless: true});
-const errors = [], results = [];
+const errors = [], results = [], requestFailures = [];
+let activeCase = '';
 try {
   for (const width of [1440, 1280, 1024, 768, 390, 320]) {
     const context = await browser.newContext({viewport: {width, height: 1000}, reducedMotion: 'reduce'});
+    await useCourseTransport(context, base);
+    context.on('requestfailed', request => {
+      if (request.failure()?.errorText !== 'net::ERR_ABORTED') requestFailures.push({case: activeCase, url: request.url(), error: request.failure()?.errorText});
+    });
     await context.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, contentType: 'text/html', body: ''}));
     await isolateNativeMedia(context);
     const page = await context.newPage();
@@ -21,6 +27,7 @@ try {
     page.on('console', message => {if (message.type() === 'error') errors.push(message.text());});
     for (const entry of catalog) {
       const label = `${entry.id} at ${width}px`;
+      activeCase = label;
       const response = await page.goto(new URL(entry.slug + '/', base).href);
       assert.equal(response.status(), 200, label);
       await page.locator('.reader-ready').waitFor();
@@ -132,9 +139,12 @@ try {
       results.push({episode: entry.id, width, terms: used.length, navigation: 'passed', explanation: 'passed', layout: 'passed'});
       console.log(`PASS reader ${label}: ${used.length} terms, navigation, panel, focus, layout`);
     }
+    await context.unrouteAll({behavior: 'wait'});
     await context.close();
   }
   const compact = await browser.newContext({viewport: {width: 390, height: 560}, reducedMotion: 'reduce'});
+  await useCourseTransport(compact, base);
+  activeCase = 'Compact reader';
   await compact.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({status: 200, body: ''}));
   await isolateNativeMedia(compact);
   const compactPage = await compact.newPage();
@@ -151,14 +161,21 @@ try {
   await compactPage.locator('#chapter-toggle').click();
   await compactPage.locator('.chapter-sidebar a[href="#sources"]').click();
   await compactPage.waitForFunction(() => document.querySelector('.chapter-sections a[aria-current]')?.hash === '#sources');
+  await compact.unrouteAll({behavior: 'wait'});
   await compact.close();
   const fallback = await browser.newContext({javaScriptEnabled: false, viewport: {width: 390, height: 900}});
+  await useCourseTransport(fallback, base);
+  activeCase = 'No-JavaScript reader';
   const page = await fallback.newPage();
   await page.goto(new URL('e03-diffraction/#idea', base).href);
   assert.equal(await page.locator('#idea').isVisible(), true, 'No-JS prose fallback');
   assert.equal(await page.locator('.reader-ready').count(), 0, 'No-JS layout is unchanged');
+  await fallback.unrouteAll({behavior: 'wait'});
   await fallback.close();
   assert.deepEqual(errors, [], 'Reader browser errors');
   fs.writeFileSync(new URL('report.json', out), JSON.stringify({tested_url: base, results, external_video_playback: 'not covered; iframe isolated', console_errors: errors}, null, 2) + '\n');
   console.log(`PASS reading tools in all ${catalog.length} chapters at six viewport widths.`);
+} catch (error) {
+  fs.writeFileSync(new URL('failure.json', out), JSON.stringify({activeCase, message: error.message, errors, requestFailures, results}, null, 2) + '\n');
+  throw error;
 } finally { await browser.close(); }

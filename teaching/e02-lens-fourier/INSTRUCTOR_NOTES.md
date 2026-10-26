@@ -75,6 +75,8 @@ Compare a weak phase object before and after a central π/2 phase shift.
 
 Grade reasoning and evidence, not an attractive plot alone. Results may vary with a deliberately changed seed or model; require the learner to record it.
 
+
+
 ## Common misconceptions
 
 - At fixed illumination direction, doubling f makes the focal displacement… The paraxial relation x_f = f sin θ scales linearly with focal length.
@@ -87,4 +89,4 @@ Grade reasoning and evidence, not an attractive plot alone. Results may vary wit
 
 Coherent monochromatic scalar illumination, ideal paraxial lenses, and thin Fourier masks. The focal-spot panel uses a Gaussian entrance field. The 4f panel is a periodic sampled field; no aberrations, finite detector pixels, or noise are included.
 
-Optional extension: Compute front-to-back focal-plane propagation with Fresnel operators, inspect residual quadratic phase, and compare the physical output coordinates with FFT-bin labels.
+Optional extension: Compare U → L → P_f with the complete U → P_f → L → P_f path using direct Fresnel integrals. Test intensity, coordinate-dependent phase, and complex-field error on one physical output grid, then refine both sampling and window size.

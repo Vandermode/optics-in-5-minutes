@@ -36,6 +36,8 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 - Verify that gradient with central finite differences.
 - Explain why adjoints are not generally inverse propagation and why gradients do not guarantee global optimality.
 
+
+
 ## Use the lesson
 
 Watch the [E10 film](https://www.youtube.com/watch?v=x9Ys3GWC1Q0) (5:15), embedded near the top of the lesson.

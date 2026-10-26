@@ -119,8 +119,8 @@
   {
    "id": "g8",
    "ch": 2,
-   "text": "Below one wavelength, only the zeroth order survives, and the grating acts like a uniform film with an in-between index. That's where metasurfaces live.",
-   "say": "Below one wavelength, only the zeroth order survives, and the grating acts like a uniform film, with an in-between index. That's where metasurfaces live."
+   "text": "At normal incidence into air, a period below the air wavelength leaves only the transmitted zero order. Internal resonances can remain, so treating the grating as a uniform film needs a separate check.",
+   "say": "At normal incidence into air, a period below the air wavelength leaves only the transmitted zero order. Internal resonances can remain, so treating the grating as a uniform film needs a separate check."
   },
   {
    "id": "b1",
