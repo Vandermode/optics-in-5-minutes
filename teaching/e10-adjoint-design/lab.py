@@ -76,8 +76,14 @@ pupil=amplitude*np.exp(1j*phi);field=F(pupil)
 assert abs(np.sum(abs(field)**2)-np.sum(amplitude**2))<1e-9
 assert abs(gradient.sum())<1e-12 # a global phase cannot change intensity
 fig,ax=plt.subplots(1,3,figsize=(12,3.6))
-for a,img,title,cmap in zip(ax,[phi,abs(field)**2,target],["Initial phase","Forward intensity","Target intensity"],["twilight","magma","magma"]):
-    a.imshow(img,cmap=cmap);a.set(title=title,xlabel="Sample")
+ax[0].imshow(phi,cmap="twilight",vmin=-np.pi,vmax=np.pi)
+ax[0].set(title="Initial phase",xlabel="Sample")
+# One intensity scale for the target and every output, including the optimized result.
+intensity_max=target.max()
+for a,img,title in zip(ax[1:],[abs(field)**2,target],["Forward intensity","Target intensity"]):
+    image=a.imshow(img,cmap="magma",vmin=0,vmax=intensity_max)
+    a.set(title=title,xlabel="Sample")
+    fig.colorbar(image,ax=a,fraction=.046,pad=.04,label="Intensity")
 show(fig,"01-forward-model")
 # %% [markdown]
 # ## 2 · Verify the entire gradient independently
@@ -127,7 +133,9 @@ for seed,history in zip([42,8,19],histories):ax[0].semilogy(history,label=f"Seed
 ax[0].set(xlabel="Accepted iteration",ylabel="Normalized intensity loss");ax[0].legend()
 best=solutions[0]
 ax[1].imshow(best,cmap="twilight",vmin=-np.pi,vmax=np.pi);ax[1].set(title="Optimized phase")
-ax[2].imshow(abs(F(amplitude*np.exp(1j*best)))**2,cmap="magma",vmin=0,vmax=target.max());ax[2].set(title="Output · target colour scale")
+image=ax[2].imshow(abs(F(amplitude*np.exp(1j*best)))**2,cmap="magma",vmin=0,vmax=intensity_max)
+ax[2].set(title="Output · target colour scale")
+fig.colorbar(image,ax=ax[2],fraction=.046,pad=.04,label="Intensity")
 show(fig,"03-adjoint-optimization")
 print("Seeded final losses:",[h[-1] for h in histories])
 # %% [markdown]

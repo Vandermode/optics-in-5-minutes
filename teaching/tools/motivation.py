@@ -133,6 +133,8 @@ MOTIVATIONS = {
 
 
 MOTIVATIONS.update(GEOMETRIC_MOTIVATIONS)
+from differentiable_course import MOTIVATIONS as DIFFERENTIABLE_MOTIVATIONS
+MOTIVATIONS.update(DIFFERENTIABLE_MOTIVATIONS)
 
 
 def motivation_html(episode, *, original_e03=False):

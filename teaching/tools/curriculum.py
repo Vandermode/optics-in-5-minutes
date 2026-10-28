@@ -130,6 +130,7 @@ dict(id="E04",local_preview=True,slug="e04-coherence",title="Coherence and what 
 <p>Temporal coherence compares field samples separated in time. In a stationary source, different frequencies contribute different phase rotations when one interferometer arm is delayed by τ. The normalized field correlation is the Fourier transform of the power spectrum. For a Gaussian frequency distribution of standard deviation σν, its magnitude is exp[−(2πσντ)²/2]. A spectral filter narrows that distribution and lengthens the delay range over which interference survives.</p>
 <p>Spatial coherence compares field samples at different positions. Each source point can illuminate both slits and interfere with itself. Independent source points contribute intensities to the camera. Their illumination angles shift the fringes, so an extended source averages shifted copies. For the small-angle, uniform angular strip used here, γ = sinc(Θd/λ), where Θ is its full angular width and sinc(x) = sin(πx)/(πx).</p>
 <p>A pinhole selects angles and usually discards flux; it does not narrow the optical spectrum. A spectral filter selects frequencies; it does not automatically make an extended source spatially coherent. The negative lobes of sinc shift the fringes by π. They are not negative intensities, and the first zero is not a permanent hard cutoff.</p>
+<p>For uniform phase jitter from −a to +a, the averaged phase factor is sin(a)/a, with a in radians. At a = π, all phases are equally represented and the cross term vanishes. Beyond π, wrapping the wider interval around the phase circle weights some phases more heavily, so visibility can return. This revival comes from the chosen distribution, not from a longer exposure itself.</p>
 <h3>Why random phase can make visible speckle.</h3>
 <p>A stationary rough surface imposes irregular spatial phases. Under stable coherent illumination, those contributions still interfere consistently during an exposure, producing fixed bright and dark grains. Spatial randomness alone does not wash them out. Contrast decreases when the measurement combines different sufficiently independent patterns, polarizations, wavelengths, or unresolved grains.</p>
 <p>For resolved, fully developed, single-polarization speckle, contrast C = σI/⟨I⟩ is approximately one. Averaging N independent equal-weight patterns gives C ≈ 1/√N. Repeating one pattern provides no such benefit. A finite image and correlated samples make a measured contrast fluctuate around that ideal prediction.</p>
@@ -286,7 +287,7 @@ dict(id="E08",slug="e08-trapping-light",title="Waveguides, modes, and resonators
 <p>Write a mode as E(x,z) = ψ(x)e<sup>iβz</sup>. The transverse shape ψ stays fixed while propagation adds a phase. Substituting this form into the scalar wave equation produces an eigenvalue problem.</p>
 <div class="equation">[d²/dx² + k₀²n²(x)]ψ = β²ψ &nbsp; · &nbsp; n_clad &lt; β/k₀ &lt; n_core</div>
 <p>The ratio β/k₀ is the effective index. The inequalities identify guided modes in this lossless slab. A mode’s tail is part of its field, not an error to trim away. Near cutoff, the tail can extend far into the cladding, so a small simulation window changes the answer.</p>
-<p>Any suitable input can be expanded into supported modes. Their individual shapes do not change, but their relative phases do. Interference between them can move the total intensity from one part of the guide to another. This is the guided-wave version of changing basis before propagation.</p>""",
+<p>The guided part of an input can be expanded in the supported guided modes; a general launch can also excite radiation modes. In the guided subspace, individual mode shapes stay fixed while their relative phases change. Their interference can move intensity between parts of the guide. This is the guided-wave version of changing basis before propagation.</p>""",
      steps=["Vary slab thickness and count supported modes. Request a higher mode, then shrink the guide until that mode no longer exists.",
             "Inspect the two-guide model. Predict the complete-transfer length from κ before reading the metric.",
             "Set ring r equal to a, then vary only r. Explain why the through-port dip can become shallower even when the resonator still stores light."],
@@ -364,7 +365,7 @@ dict(id="E10",local_preview=True,slug="e10-adjoint-design",title="Designing ligh
                slider("step","Maximum phase step",.1,1.2,.1,"rad",1,help="Backtracking reduces this value until the proposed step decreases the objective.")],
      presets=[preset("Two-spot design",target="two",seed=42),preset("A different start",seed=17),
               preset("Design a ring",target="ring"),preset("Conservative steps",step=.2)],
-     prediction="A mask has 4,096 adjustable phase pixels and one scalar loss. How many perturbed simulations would a central finite-difference gradient require? What calculation could share work across all pixels?",
+     prediction="The 64 × 64 phase array has 4,096 entries, but only the 2,601 illuminated pixels affect this loss. How many forward evaluations would a central finite-difference gradient need if it perturbed only those active pixels? What calculation could share work across them?",
      intro="""<p>Forward modeling answers what a device does. Design asks which parameters make it do something useful. Here the parameters are the phase delays of a fixed-amplitude pupil. A unitary Fourier transform produces the output field, and its intensity is compared with a target.</p>
 <p>This core experiment combines the Fourier model from E02 with the phase mask from E06. It deliberately uses a simpler forward model than E09: we differentiate a Fourier pupil calculation, not the Yee time updates. The adjoint principle can be applied to Maxwell solvers too, but that requires their own parameters, boundary treatment, and derivative checks.</p>
 <div id="model-bridge" class="model-comparison" role="region" aria-label="Comparison of the E09 and E10 core models" tabindex="0"><table><caption>Identify the forward model before differentiating it.</caption><thead><tr><th scope="col">Question</th><th scope="col">E09 · Maxwell on a grid</th><th scope="col">E10 · Core phase-mask design</th></tr></thead><tbody>
@@ -374,7 +375,7 @@ dict(id="E10",local_preview=True,slug="e10-adjoint-design",title="Designing ligh
 <tr><th scope="row">What is checked?</th><td>Grid, time-step, duration, and boundary convergence.</td><td>Phase derivatives against finite differences, then the optimized response.</td></tr>
 </tbody></table></div>
 <div class="equation">u = a e<sup>iφ</sup> &nbsp; · &nbsp; v = Fu &nbsp; · &nbsp; J = ½ Σ(|v|² − T)² / ΣT²</div>
-<p>The aperture a and target T are normalized once so their total powers agree. The loss is an intensity mismatch, not an amplitude mismatch. A central finite difference would perturb each φ separately in both directions, costing roughly twice as many forward evaluations as there are parameters.</p>
+<p>The aperture a and target T are normalized once so their total powers agree. The loss is an intensity mismatch, not an amplitude mismatch. A central finite difference perturbs each active φ separately in both directions: 2 × 2,601 = 5,202 forward evaluations here. Entries outside the illuminated pupil have exactly zero phase sensitivity.</p>
 <p>Reverse differentiation shares the effect of the final error. First compute the output field v and residual r = |v|² − T. Weight that field by the residual and propagate it through the Hermitian adjoint F†. One overlap with the input field then gives every real phase derivative.</p>
 <div class="equation">b = F†[rv / ΣT²] &nbsp; · &nbsp; ∂J/∂φ = 2 Im(u* b)</div>
 <p>The complex conjugate and the factor of two are essential. The notebook derives this expression from dJ = 2 Re(q†dv), then compares it with numerical perturbations. A visually plausible sensitivity map is not a gradient check.</p>""",
@@ -404,3 +405,6 @@ dict(id="E10",local_preview=True,slug="e10-adjoint-design",title="Designing ligh
 
 from geometric_course import MODULES as GEOMETRIC_MODULES
 MODULES.extend(GEOMETRIC_MODULES)
+
+from differentiable_course import MODULES as DIFFERENTIABLE_MODULES
+MODULES.extend(DIFFERENTIABLE_MODULES)

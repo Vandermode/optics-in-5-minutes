@@ -1960,7 +1960,19 @@
     "What is propagated?": "传播什么量？",
     "Which parameters enter?": "哪些参数进入模型？",
     "Order counting gives allowed directions. Reflection, absorption, and internal resonances still depend on the structure; a uniform-film approximation needs separate justification.": "级次数量给出允许的方向。反射、吸收和内部共振仍取决于具体结构；均匀薄膜近似需要另行论证。",
-    "The Nyquist frequency, 1/(2Δx), bounds the spatial frequencies the grid can represent. A rapidly varying quadratic phase can be undersampled even when its intensity looks smooth.": "奈奎斯特频率 1/(2Δx) 限定了网格能够表示的空间频率范围。即使强度看起来平滑，快速变化的二次相位仍可能采样不足。"
+    "The Nyquist frequency, 1/(2Δx), bounds the spatial frequencies the grid can represent. A rapidly varying quadratic phase can be undersampled even when its intensity looks smooth.": "奈奎斯特频率 1/(2Δx) 限定了网格能够表示的空间频率范围。即使强度看起来平滑，快速变化的二次相位仍可能采样不足。",
+    "The guided part of an input can be expanded in the supported guided modes; a general launch can also excite radiation modes. In the guided subspace, individual mode shapes stay fixed while their relative phases change. Their interference can move intensity between parts of the guide. This is the guided-wave version of changing basis before propagation.": "输入中的受导部分可以在所支持的导模中展开；一般入射还可能激发辐射模。在导模子空间内，各模式形状不变，但相对相位改变。它们的干涉可以让强度在波导不同部位之间转移。这是在传播前更换基底的导波版本。",
+    "The 64 × 64 phase array has 4,096 entries, but only the 2,601 illuminated pixels affect this loss. How many forward evaluations would a central finite-difference gradient need if it perturbed only those active pixels? What calculation could share work across them?": "64 × 64 相位数组有 4,096 个元素，但只有 2,601 个受照明像素会影响损失。若只扰动这些有效像素，中心有限差分梯度需要多少次前向计算？什么计算可以在这些像素间共享工作？",
+    "For uniform phase jitter from −a to +a, the averaged phase factor is sin(a)/a, with a in radians. At a = π, all phases are equally represented and the cross term vanishes. Beyond π, wrapping the wider interval around the phase circle weights some phases more heavily, so visibility can return. This revival comes from the chosen distribution, not from a longer exposure itself.": "相位在 −a 到 +a 之间均匀变化时，平均相位因子为 sin(a)/a，其中 a 用弧度表示。a = π 时，所有相位出现的机会相同，交叉项消失。超过 π 后，把更宽的区间折回相位圆，会让某些相位出现得更多，因此可见度可能回升。这来自选定的分布，而不是曝光时间变长本身。",
+    "Requested mode is below cutoff": "所选模式已截止",
+    "Requested TE mode {index} is not guided at this thickness. Only {count} guided modes exist, indexed from 0. Increase the thickness or select a lower index; no replacement mode is drawn.": "在此厚度下，所选 TE 模式 {index} 已不再是导模。此时只有 {count} 个导模，编号从 0 开始。请增加厚度或选择更低的编号；图中不会用另一模式代替。",
+    "Interference sets the through-port dip": "干涉决定直通端口的凹口",
+    "Through power / input power": "直通功率 / 输入功率",
+    "The fixed 0–1 power scale keeps the transmission dip visible. At resonance it reaches zero when r = a.": "固定的 0–1 功率刻度使透射凹口保持清晰可见。共振时，r = a 会使直通功率降为零。",
+    "Repeated round trips build circulating power": "多次往返积累环内功率",
+    "This separate power scale can exceed one: energy circulates for multiple round trips. It does not represent net output power or gain.": "这幅图采用独立功率刻度，数值可以超过一：能量会在环内多次循环。这不代表净输出功率或增益。",
+    "Circulating power / input power": "环内功率 / 输入功率",
+    "The aperture a and target T are normalized once so their total powers agree. The loss is an intensity mismatch, not an amplitude mismatch. A central finite difference perturbs each active φ separately in both directions: 2 × 2,601 = 5,202 forward evaluations here. Entries outside the illuminated pupil have exactly zero phase sensitivity.": "孔径振幅 a 与目标 T 只归一化一次，使总功率一致。损失比较的是强度，不是振幅。中心有限差分分别向两个方向扰动每个有效 φ：这里需要 2 × 2,601 = 5,202 次前向计算。受照明瞳面外的数组元素，其相位灵敏度严格为零。"
   },
   "termAliases": {
     "phase": [

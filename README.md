@@ -1,6 +1,6 @@
 # Optics in 5 Minutes
 
-**Teaching materials:** [Interactive course: twelve lessons, standalone CPU notebooks, and instructor packs](teaching/README.md).
+**Teaching materials:** [Interactive course: thirteen lessons, standalone CPU notebooks, and instructor packs](teaching/README.md).
 
 Narrated 3Blue1Brown-style explainers of the big ideas in computational optics and photonics. Each is about five
 minutes, 1920×1080 at 60 fps, made with Manim CE and Kokoro-82M narration, with subtitles both burned in and as a
@@ -36,6 +36,8 @@ candidates for Season 2.
 | E12 | [`E12_lens_design`](E12_lens_design/) | 5:08 | Bend a singlet at fixed focal power, choose a common image plane and audit a stated multi-field merit. |
 
 These episodes connect to the existing concept map without changing the original ten-episode season.
+
+The teaching course also includes [E13 · Differentiable optics](teaching/e13-differentiable-optics/README.md): a bilingual interactive chapter and standalone CPU lab connecting a physical image model, reverse derivatives, gradient checks and design updates. This chapter has no companion film.
 
 ## Setup (once per machine)
 

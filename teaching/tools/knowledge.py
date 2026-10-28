@@ -9,6 +9,9 @@ REGIONS = [tr("Rays, waves & representations", "光线、波与表征"), "Measur
            "Structures & devices", "Computation & design"]
 
 CONCEPTS = [
+    dict(id="differentiable", label=tr("Differentiable optics", "可微光学"), region=3,
+         description=tr("Connect an optical prediction to a task loss, check its derivatives, and update optical or digital design parameters.", "将光学预测连接到任务损失，检验导数，再更新光学或数字设计参数。"),
+         foundations=["derivatives", "complex-matrices", "fourier"], episodes=["E13", "E10", "E12"]),
     dict(id="field", label="Complex field & phase", region=0,
          description="Keep amplitude and phase together to describe what light does before a detector measures intensity.",
          foundations=["complex"], episodes=["E01", "E02", "E04", "E05", "E06", "E08", "E10"]),
@@ -57,12 +60,16 @@ EPISODE_FOCUS = {
     "E01": "propagation", "E02": "fourier", "E03": "imaging",
     "E04": "coherence", "E05": "recovery", "E06": "phase",
     "E07": "periodic", "E08": "modes", "E09": "maxwell", "E10": "adjoint",
-    "E11": "rays", "E12": "lensdesign",
+    "E11": "rays", "E12": "lensdesign", "E13": "differentiable",
 }
 
 # "basis" is directional conceptual support, never an episode completion rule.
 # "related" identifies a shared method, application, or comparison.
 RELATIONS = [
+    ("adjoint", "differentiable", "basis", tr("An adjoint supplies sensitivities that can be chained to physical design parameters.", "伴随计算提供可继续传递到物理设计参数的灵敏度。")),
+    ("lensdesign", "differentiable", "basis", tr("The design objective determines which derivative is useful.", "设计目标决定需要计算哪种导数。")),
+    ("phase", "differentiable", "related", tr("A parameterized phase pupil provides a small, testable differentiable model.", "参数化相位瞳提供一个可检验的小型可微模型。")),
+    ("imaging", "differentiable", "related", tr("End-to-end design evaluates the result after optical formation and reconstruction.", "端到端设计评价光学成像与重建之后的结果。")),
     ("field", "propagation", "basis", "Propagating components accumulate phase."),
     ("fourier", "propagation", "basis", "The angular spectrum decomposes a field into plane waves."),
     ("field", "coherence", "basis", "Field addition produces interference cross terms."),

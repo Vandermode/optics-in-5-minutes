@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {transform,fft2,propagate1,intensity,sum,sinc} from '../shared/math.js';
+import {compute as propagationCompute} from '../e01-angular-spectrum/model.js';
+import {compute as lensCompute} from '../e02-lens-fourier/model.js';
 import {coherence,compute as coherenceCompute} from '../e04-coherence/model.js';
 import {reconstruction,compute as hologramCompute} from '../e05-phase-problem/model.js';
 import {lensFields} from '../e06-flat-optics/model.js';
@@ -28,6 +30,17 @@ for(const m of [2,14]){
 const n=16,field=Float64Array.from({length:n*n},(_,i)=>Math.sin(.31*i)),zero=new Float64Array(n*n),twice=fft2(...Object.values(fft2(field,zero,n)),n);
 for(let y=0;y<n;y++)for(let x=0;x<n;x++)close(twice.re[y*n+x]/(n*n),field[((n-y)%n)*n+(n-x)%n],1e-13,'4f inversion');
 close(sinc(1/2)**2,4/Math.PI**2,1e-14,'Two-level blaze efficiency');
+
+// At z=0 every propagation slice must remain the input aperture.
+const zeroDistance=propagationCompute({wavelength:550,width:3,distance:0,method:'exact',padding:'double'});
+const propagationImage=zeroDistance.plots.find(p=>p.kind==='image');
+for(let row=0;row<propagationImage.height;row++)
+  arrayClose(propagationImage.values.slice(row*propagationImage.width,(row+1)*propagationImage.width),zeroDistance.plots[0].series[0].y,1e-12,'Zero-distance propagation image');
+// Comparing input/output brightness requires the same intensity colour scale.
+for(const object of ['amplitude','phase'])for(const mask of ['none','low','high','phase']) {
+  const plots=lensCompute({object,mask,cutoff:.1,wavelength:550,focal:100,tilt:1}).plots;
+  assert.deepEqual(plots[1].range,plots[3].range,'4f input/output share an intensity scale');assertions++;
+}
 
 const coherent={phase:0,jitter:0,bandwidth:5,delay:0,angle:0,baseline:30,balance:1,patterns:1,realizations:'independent'};
 close(coherence(coherent).gamma,1,1e-14,'Perfect correlation');

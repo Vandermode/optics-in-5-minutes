@@ -6,6 +6,7 @@ import {knowledge} from './knowledge-data.js';
 export const conceptTerms = {
   rays: ['rayTracing', 'snell', 'refractiveIndex', 'paraxial', 'sphericalAberration', 'spotDiagram', 'rmsSpot', 'lensPrescription', 'apertureStop'],
   lensdesign: ['lensPrescription', 'lensBending', 'meritFunction', 'rmsSpot', 'designConstraints', 'rayTracing', 'spotDiagram', 'apertureStop', 'inverseDesign', 'objective'],
+  differentiable: ['differentiableOptics', 'endToEnd', 'reverseMode', 'implicitDifferentiation', 'automaticDifferentiation', 'adjointMethod', 'adjoint', 'gradient', 'finiteDifference', 'objective', 'unitary', 'lineSearch', 'pupil', 'phase', 'quantization'],
   field: ['complexField', 'amplitude', 'phase', 'monochromatic'],
   fourier: ['fourier', 'spatialFrequency', 'planeWave', 'fft', 'fourF', 'convolution', 'unitary', 'spatialFiltering'],
   propagation: ['angularSpectrum', 'planeWave', 'helmholtz', 'evanescent', 'fresnel', 'monochromatic', 'snell', 'refractiveIndex'],
@@ -23,6 +24,11 @@ export const conceptTerms = {
 // Directly connected terms are curated separately from category membership.
 // Sharing a broad concept alone does not make every pair a useful next step.
 export const termRelations = [
+  ['differentiableOptics', 'gradient'], ['differentiableOptics', 'objective'], ['differentiableOptics', 'automaticDifferentiation'],
+  ['differentiableOptics', 'adjointMethod'], ['differentiableOptics', 'endToEnd'], ['differentiableOptics', 'implicitDifferentiation'],
+  ['endToEnd', 'objective'], ['endToEnd', 'deconvolution'], ['endToEnd', 'psf'], ['endToEnd', 'designConstraints'],
+  ['reverseMode', 'automaticDifferentiation'], ['reverseMode', 'adjoint'], ['reverseMode', 'gradient'], ['reverseMode', 'finiteDifference'],
+  ['implicitDifferentiation', 'rayTracing'], ['implicitDifferentiation', 'gradient'], ['implicitDifferentiation', 'adjointMethod'],
   ['rayTracing', 'snell'], ['rayTracing', 'lensPrescription'], ['rayTracing', 'paraxial'], ['rayTracing', 'apertureStop'],
   ['rayTracing', 'spotDiagram'], ['paraxial', 'sphericalAberration'], ['paraxial', 'fresnel'],
   ['sphericalAberration', 'spotDiagram'], ['sphericalAberration', 'lensBending'], ['spotDiagram', 'rmsSpot'], ['spotDiagram', 'psf'],
@@ -120,6 +126,6 @@ export function termURL(id, episode, language, concept = preferredConcept(id, ep
   const url = new URL(`../${episodes[episode].slug}/${language === 'zh' ? 'index.zh.html' : 'index.html'}`, import.meta.url);
   url.searchParams.set('concept', concept);
   url.searchParams.set('term', id);
-  url.hash = Object.hasOwn(lessonTerms[episode] || {}, id) ? 'idea' : 'video-guide';
+  url.hash = Object.hasOwn(lessonTerms[episode] || {}, id) || episodes[episode].hasVideo === false ? 'idea' : 'video-guide';
   return url;
 }

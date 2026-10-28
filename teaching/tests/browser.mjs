@@ -6,7 +6,7 @@ import fs from 'node:fs';
 const root=new URL('../',import.meta.url),base=process.env.COURSE_URL||'http://127.0.0.1:8787/';
 const catalog=JSON.parse(fs.readFileSync(new URL('course.json',root))),out=new URL('.qa/browser/',root);
 const videos=JSON.parse(fs.readFileSync(new URL('videos.json',root)));
-const nativeMedia=new Set(catalog.flatMap(entry=>[videos[entry.id].file,videos[entry.id].captions].filter(Boolean).map(path=>new URL(path,new URL(entry.slug+'/',base)).href)));
+const nativeMedia=new Set(catalog.flatMap(entry=>[videos[entry.id]?.file,videos[entry.id]?.captions].filter(Boolean).map(path=>new URL(path,new URL(entry.slug+'/',base)).href)));
 fs.mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({headless:true});
 const report=[],links=new Set(),errors=[],requestFailures=[],httpErrors=[];

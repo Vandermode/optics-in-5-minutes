@@ -6,6 +6,7 @@
     "description": "Follow a slit field into space by changing the representation: separate its directions, advance their phases, and add them back.",
     "prerequisites": [],
     "notebook": "e01_angular_spectrum.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Plane waves",
       "Angular spectrum",
@@ -30,6 +31,7 @@
       "E01"
     ],
     "notebook": "e02_lens_fourier.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Fourier transform",
       "4f system",
@@ -53,6 +55,7 @@
       "E02"
     ],
     "notebook": "e03_diffraction_limit.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Point spread function",
       "Numerical aperture",
@@ -78,6 +81,7 @@
       "E03"
     ],
     "notebook": "e04_coherence.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Temporal coherence",
       "Spatial coherence",
@@ -104,6 +108,7 @@
       "E04"
     ],
     "notebook": "e05_phase_problem.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Interference",
       "Off-axis holography",
@@ -127,6 +132,7 @@
       "E02"
     ],
     "notebook": "e06_flat_optics.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Phase wrapping",
       "Diffractive optics",
@@ -152,6 +158,7 @@
       "E06"
     ],
     "notebook": "e07_periodic_structures.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Diffraction orders",
       "Bloch waves",
@@ -177,6 +184,7 @@
       "E07"
     ],
     "notebook": "e08_trapping_light.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Waveguide modes",
       "Evanescent coupling",
@@ -202,6 +210,7 @@
       "E07"
     ],
     "notebook": "e09_maxwell_grid.ipynb",
+    "hasVideo": true,
     "keywords": [
       "FDTD",
       "Yee grid",
@@ -227,6 +236,7 @@
       "E06"
     ],
     "notebook": "e10_adjoint_design.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Inverse design",
       "Adjoint method",
@@ -251,6 +261,7 @@
       "E03"
     ],
     "notebook": "e11_ray_tracing.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Ray tracing",
       "Snell’s law",
@@ -276,6 +287,7 @@
       "E03"
     ],
     "notebook": "e12_lens_design.ipynb",
+    "hasVideo": true,
     "keywords": [
       "Lens prescription",
       "Lens bending",
@@ -289,6 +301,33 @@
       "Merit function": "meritFunction",
       "RMS spot radius": "rmsSpot",
       "Design constraints": "designConstraints"
+    }
+  },
+  {
+    "id": "E13",
+    "slug": "e13-differentiable-optics",
+    "title": "Differentiable optics: from images to design updates",
+    "description": "Connect optical parameters to a measured intensity and a scalar loss. Check the gradient, improve a phase element, and see how the same chain reaches lens design and computational imaging.",
+    "prerequisites": [
+      "E02",
+      "E10",
+      "E12"
+    ],
+    "notebook": "e13_differentiable_optics.ipynb",
+    "hasVideo": false,
+    "keywords": [
+      "Differentiable optics",
+      "Automatic differentiation",
+      "Gradients",
+      "End-to-end design",
+      "Adjoint method"
+    ],
+    "keywordTerms": {
+      "Differentiable optics": "differentiableOptics",
+      "Automatic differentiation": "automaticDifferentiation",
+      "Gradients": "gradient",
+      "End-to-end design": "endToEnd",
+      "Adjoint method": "adjointMethod"
     }
   }
 ]

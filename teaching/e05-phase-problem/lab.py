@@ -23,9 +23,15 @@ def hologram_recover(U,carrier=32,radius=8):
 camera,recovered=hologram_recover(U)
 error=np.linalg.norm(recovered-U)/np.linalg.norm(U)
 assert error<1e-12
-fig,ax=plt.subplots(1,3,figsize=(12,3.6))
-for a,img,title in zip(ax,[camera,np.angle(U),np.angle(recovered)],["Recorded intensity","Known phase","Recovered phase"]):
-    a.imshow(img,cmap="twilight" if "phase" in title else "magma");a.set(title=title,xlabel="Pixel",ylabel="Pixel")
+fig,ax=plt.subplots(1,3,figsize=(12,3.6),layout="constrained")
+camera_image=ax[0].imshow(camera,cmap="magma")
+ax[0].set(title="Recorded intensity",xlabel="Pixel",ylabel="Pixel")
+fig.colorbar(camera_image,ax=ax[0],label="Intensity (a.u.)")
+phase_limit=.2*np.ceil(max(np.max(abs(np.angle(U))),np.max(abs(np.angle(recovered))))/.2)
+for a,img,title in zip(ax[1:],[np.angle(U),np.angle(recovered)],["Known phase","Recovered phase"]):
+    phase_image=a.imshow(img,cmap="RdBu_r",vmin=-phase_limit,vmax=phase_limit)
+    a.set(title=title,xlabel="Pixel",ylabel="Pixel")
+fig.colorbar(phase_image,ax=ax[1:],label="Phase (rad) · shared scale",ticks=[-phase_limit,0,phase_limit])
 show(fig,"01-holographic-recovery")
 print("Relative complex-field error with isolated sideband:",error)
 for c,r in [(12,8),(32,3),(60,8)]:

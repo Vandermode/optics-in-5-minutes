@@ -6,7 +6,7 @@ import fs from 'node:fs';
 
 const root = new URL('../', import.meta.url);
 const base = process.env.COURSE_URL || 'http://127.0.0.1:8787/';
-const catalog = JSON.parse(fs.readFileSync(new URL('course.json', root)));
+const catalog = JSON.parse(fs.readFileSync(new URL('course.json', root))).filter(entry=>entry.hasVideo !== false);
 const videos = JSON.parse(fs.readFileSync(new URL('videos.json', root)));
 const out = new URL('.qa/browser/video-guides/', root);
 fs.mkdirSync(out, {recursive: true});

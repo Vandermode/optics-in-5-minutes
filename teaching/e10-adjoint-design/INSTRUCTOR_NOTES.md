@@ -38,7 +38,7 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 
 ## Suggested 45–50-minute sequence
 
-1. Predict (3 minutes): A mask has 4,096 adjustable phase pixels and one scalar loss. How many perturbed simulations would a central finite-difference gradient require? What calculation could share work across all pixels?
+1. Predict (3 minutes): The 64 × 64 phase array has 4,096 entries, but only the 2,601 illuminated pixels affect this loss. How many forward evaluations would a central finite-difference gradient need if it perturbed only those active pixels? What calculation could share work across them?
 2. Explore (8 minutes): Run the two-spot design. Compare target and output with their common intensity scale, and follow the accepted-step loss curve. Change only the initialization seed. Compare final losses and phase masks; different solutions can have similar performance. Increase the maximum phase step. Watch backtracking add forward evaluations when needed, rather than assuming every larger step improves the design.
 3. Explain (6 minutes): use the equation and measurement or boundary assumptions to connect the observed changes.
 4. Check (3 minutes): ask the three page questions before showing feedback; have learners justify an answer.
