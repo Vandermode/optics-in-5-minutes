@@ -13,7 +13,7 @@ fs.mkdirSync(out, {recursive: true});
 const browser = await chromium.launch({headless: true});
 const errors = [], results = [], requestFailures = [];
 let activeCase = '';
-const bridgeCounts = {E01:3,E02:3,E03:3,E04:5,E05:3,E06:3,E07:3,E08:4,E09:4,E10:4,E11:3,E12:3};
+const bridgeCounts = {E01:3,E02:3,E03:3,E04:5,E05:3,E06:3,E07:3,E08:4,E09:4,E10:4,E11:3,E12:3,E13:4};
 const endpoint = (entry, language) => new URL(`${entry.slug}/index${language === 'zh' ? '.zh' : ''}.html`, base).href;
 
 async function context(options) {
@@ -45,7 +45,7 @@ try {
       await page.locator('.reader-ready').waitFor();
       const guide = page.locator('#video-guide');
       const steps = guide.locator('.video-flow > li');
-      assert.equal(await steps.count(), entry.id === 'E03' ? 7 : 8, label);
+      assert.equal(await steps.count(), ({E03:7,E13:9})[entry.id] ?? 8, label);
       assert.equal(await guide.locator('.video-bridge').count(), bridgeCounts[entry.id], label);
       assert.equal(await page.locator('.chapter-sections a[href="#video-guide"]').count(), 1);
       const times = await steps.locator('[data-video-seek]').evaluateAll(nodes => nodes.map(n => Number(n.dataset.videoSeek)));

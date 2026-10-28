@@ -1,0 +1,400 @@
+1
+00:00:00,900 --> 00:00:03,005
+Turn these two phase controls.
+
+2
+00:00:03,045 --> 00:00:05,129
+The light at the pupil stays equally bright,
+
+3
+00:00:05,169 --> 00:00:07,591
+but the focal pattern moves and spreads.
+
+4
+00:00:07,661 --> 00:00:10,300
+The aperture and total power have not changed.
+
+5
+00:00:10,370 --> 00:00:13,996
+Which control should we change to make this pattern match the target?
+
+6
+00:00:14,866 --> 00:00:16,009
+Predict the image forwards,
+
+7
+00:00:16,049 --> 00:00:18,946
+then carry its error backwards to the design.
+
+8
+00:00:19,766 --> 00:00:22,849
+Here is our one-dimensional pupil, the illuminated opening.
+
+9
+00:00:22,889 --> 00:00:26,969
+We change only its phase, keeping the amplitude fixed.
+
+10
+00:00:27,039 --> 00:00:29,005
+The phase contains a linear term for
+
+11
+00:00:29,045 --> 00:00:31,477
+tilt and a quadratic term for defocus.
+
+12
+00:00:31,517 --> 00:00:34,330
+Both coefficients are measured in radians.
+
+13
+00:00:34,400 --> 00:00:37,451
+Watch a phase ramp move the focal pattern sideways.
+
+14
+00:00:37,521 --> 00:00:40,132
+Add quadratic phase at the same detector plane,
+
+15
+00:00:40,172 --> 00:00:44,001
+and the pattern broadens. Interference redistributes the light.
+
+16
+00:00:44,071 --> 00:00:47,497
+Multiply the fixed amplitude by a complex phase factor,
+
+17
+00:00:47,537 --> 00:00:51,163
+rotating the field without changing its magnitude.
+
+18
+00:00:51,203 --> 00:00:53,413
+A unitary Fourier transform propagates
+
+19
+00:00:53,453 --> 00:00:56,112
+it while preserving total sampled power.
+
+20
+00:00:56,182 --> 00:00:58,353
+The detector reads squared field magnitude.
+
+21
+00:00:58,393 --> 00:01:03,381
+Across the full detector grid, these normalized intensities add to one.
+
+22
+00:01:04,201 --> 00:01:07,830
+Choose the focused pattern with zero tilt and defocus as our target.
+
+23
+00:01:07,870 --> 00:01:12,819
+Start with tilt and defocus coefficients of one point five and two.
+
+24
+00:01:12,889 --> 00:01:15,943
+Subtract the target intensity at every detector sample.
+
+25
+00:01:15,983 --> 00:01:18,612
+These differences are the residuals,
+
+26
+00:01:18,652 --> 00:01:21,129
+including the pattern's faint outer structure.
+
+27
+00:01:21,198 --> 00:01:23,075
+Square and sum the residuals,
+
+28
+00:01:23,115 --> 00:01:25,781
+then divide by twice the target's squared norm.
+
+29
+00:01:25,821 --> 00:01:28,839
+This dimensionless loss measures the mismatch.
+
+30
+00:01:28,909 --> 00:01:31,197
+Keep that target and normalization fixed.
+
+31
+00:01:31,237 --> 00:01:34,680
+Zero loss means matching this sampled intensity,
+
+32
+00:01:34,720 --> 00:01:37,744
+not necessarily recovering a unique phase.
+
+33
+00:01:38,564 --> 00:01:41,680
+Now ask how a tiny parameter change affects the loss.
+
+34
+00:01:41,720 --> 00:01:45,540
+Follow the same calculation backwards using the chain rule.
+
+35
+00:01:45,610 --> 00:01:48,763
+A positive residual marks a sample that is too bright.
+
+36
+00:01:48,803 --> 00:01:52,077
+A negative residual marks one that is too dim.
+
+37
+00:01:52,147 --> 00:01:55,088
+Divide each residual by the target's squared norm,
+
+38
+00:01:55,128 --> 00:01:57,394
+and multiply by the focal field.
+
+39
+00:01:57,434 --> 00:02:00,397
+This starts the reverse intensity calculation.
+
+40
+00:02:00,467 --> 00:02:03,568
+Apply the conjugate transpose of the Fourier transform.
+
+41
+00:02:03,608 --> 00:02:07,872
+This gathers every detector sample's influence back at the pupil.
+
+42
+00:02:07,942 --> 00:02:10,888
+This backward field represents mathematical sensitivity.
+
+43
+00:02:10,928 --> 00:02:15,119
+No physical light travels backwards in this calculation.
+
+44
+00:02:15,189 --> 00:02:18,993
+At the pupil, a small phase change rotates the complex field.
+
+45
+00:02:19,033 --> 00:02:23,091
+That converts field sensitivity into real phase sensitivity.
+
+46
+00:02:23,161 --> 00:02:25,651
+Weight this sensitivity by position for tilt,
+
+47
+00:02:25,691 --> 00:02:27,743
+and squared position for defocus.
+
+48
+00:02:27,783 --> 00:02:30,851
+Sum across the pupil to obtain both derivatives,
+
+49
+00:02:30,891 --> 00:02:33,376
+the components of our design gradient.
+
+50
+00:02:34,196 --> 00:02:36,154
+Check those derivatives before using them.
+
+51
+00:02:36,194 --> 00:02:40,871
+Nudge one coefficient forwards and backwards by the same small amount.
+
+52
+00:02:40,941 --> 00:02:44,505
+Recompute both losses and divide their difference by the separation.
+
+53
+00:02:44,545 --> 00:02:49,023
+This central finite difference estimates the same local slope.
+
+54
+00:02:49,093 --> 00:02:53,390
+Try several perturbation sizes. Large nudges miss the local slope;
+
+55
+00:02:53,430 --> 00:02:56,903
+extremely small ones expose floating-point rounding.
+
+56
+00:02:56,973 --> 00:03:00,442
+Here both parameter derivatives agree over a useful range.
+
+57
+00:03:00,482 --> 00:03:03,878
+They are evaluated at the identical starting design.
+
+58
+00:03:04,748 --> 00:03:06,395
+That checks the implemented derivative.
+
+59
+00:03:06,435 --> 00:03:11,309
+It does not establish that the optical model captures a real device.
+
+60
+00:03:12,129 --> 00:03:14,964
+Move opposite the gradient to seek a lower loss.
+
+61
+00:03:15,004 --> 00:03:17,475
+The step length controls how far we move.
+
+62
+00:03:17,545 --> 00:03:21,477
+Surprisingly, the first step increases defocus while reducing the loss.
+
+63
+00:03:21,517 --> 00:03:25,878
+The coefficients act together; shrinking each one is not the rule.
+
+64
+00:03:25,948 --> 00:03:29,965
+Recompute the loss after each trial. Shorten an unsuccessful step,
+
+65
+00:03:30,005 --> 00:03:32,757
+and accept it only when the loss decreases.
+
+66
+00:03:32,827 --> 00:03:35,865
+Watch forty updates bring this pattern close to the target,
+
+67
+00:03:35,905 --> 00:03:38,537
+with the same aperture and power throughout.
+
+68
+00:03:39,407 --> 00:03:43,528
+Start both coefficients at three instead. The loss stalls above zero,
+
+69
+00:03:43,568 --> 00:03:46,180
+although we know a zero-loss design exists.
+
+70
+00:03:46,250 --> 00:03:48,386
+A correct gradient gives local information,
+
+71
+00:03:48,426 --> 00:03:51,011
+not a guarantee of the best design.
+
+72
+00:03:51,831 --> 00:03:55,305
+Differentiable optics means an optical model has usable
+
+73
+00:03:55,345 --> 00:03:59,121
+derivatives with respect to its chosen design variables.
+
+74
+00:03:59,191 --> 00:04:01,452
+Automatic differentiation applies derivative
+
+75
+00:04:01,492 --> 00:04:03,463
+rules through a computation graph.
+
+76
+00:04:03,503 --> 00:04:07,473
+Here, we wrote the reverse calculation explicitly.
+
+77
+00:04:07,543 --> 00:04:09,685
+Adjoint methods efficiently carry a
+
+78
+00:04:09,725 --> 00:04:12,263
+scalar objective's sensitivity backwards.
+
+79
+00:04:12,303 --> 00:04:14,915
+An automatic-differentiation system can
+
+80
+00:04:14,955 --> 00:04:17,338
+include an optical solver's adjoint.
+
+81
+00:04:17,408 --> 00:04:19,849
+For curved lenses, the chain must include
+
+82
+00:04:19,889 --> 00:04:22,285
+ray intersections and Snell refraction.
+
+83
+00:04:22,325 --> 00:04:24,229
+Away from grazing incidence,
+
+84
+00:04:24,269 --> 00:04:27,374
+local derivatives follow one intersection branch.
+
+85
+00:04:27,444 --> 00:04:31,512
+Clipping or switching ray paths can break a smooth local derivative.
+
+86
+00:04:31,582 --> 00:04:33,651
+For joint optical and digital design,
+
+87
+00:04:33,691 --> 00:04:35,677
+place the loss after reconstruction.
+
+88
+00:04:35,717 --> 00:04:40,511
+Differentiate through both stages to update both sets of parameters.
+
+89
+00:04:40,581 --> 00:04:42,355
+These are extensions of the chain.
+
+90
+00:04:42,395 --> 00:04:47,196
+Our computed example optimizes only a phase element's intensity pattern.
+
+91
+00:04:48,016 --> 00:04:49,743
+Predict fields and measurements forwards.
+
+92
+00:04:49,783 --> 00:04:52,536
+Carry a precisely defined loss backwards
+
+93
+00:04:52,576 --> 00:04:54,644
+to the parameters you can change.
+
+94
+00:04:54,714 --> 00:04:58,079
+Check the derivative, take a step, and measure the loss again.
+
+95
+00:04:58,149 --> 00:05:00,014
+This model uses one wavelength and
+
+96
+00:05:00,054 --> 00:05:02,976
+ignores polarization. Test what it omits:
+
+97
+00:05:03,016 --> 00:05:05,356
+sensor noise, fabrication limits,
+
+98
+00:05:05,396 --> 00:05:08,269
+and performance beyond the optimized samples.
+
+99
+00:05:08,339 --> 00:05:11,657
+Differentiable optics connects image error to design changes.
+
+100
+00:05:11,697 --> 00:05:15,313
+A useful gradient still needs a useful model.
+

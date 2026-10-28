@@ -3,10 +3,13 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {useCourseTransport} from './course-transport.mjs';
+import {isolateNativeMedia} from './native-media-fixture.mjs';
 
 const root=new URL('../',import.meta.url),base=process.env.COURSE_URL||'http://127.0.0.1:8787/';
 const entry=JSON.parse(fs.readFileSync(new URL('course.json',root))).find(e=>e.id==='E13');
+const film=JSON.parse(fs.readFileSync(new URL('videos.json',root))).E13;
 assert.ok(entry,'E13 is part of the course catalog');
+assert.ok(entry.hasVideo&&film?.file&&film?.captions,'E13 has a local film and captions');
 const out=new URL('.qa/browser/differentiable/',root);
 fs.mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({headless:true}),errors=[],requestFailures=[],cases=[];
@@ -30,6 +33,7 @@ try {
     const context=await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce'});
     context.setDefaultTimeout(30000);
     await useCourseTransport(context,base);
+    await isolateNativeMedia(context);
     context.on('requestfailed',request=>{if(request.failure()?.errorText!=='net::ERR_ABORTED')requestFailures.push({case:activeCase,url:request.url(),error:request.failure()?.errorText});});
     const page=await context.newPage();
     page.on('pageerror',error=>errors.push({case:activeCase,message:error.message}));
@@ -41,7 +45,11 @@ try {
     assert.equal(await page.locator('#metrics .metric').count(),5,activeCase+' five computed measurements');
     assert.ok(await page.locator('#plots canvas').evaluateAll(nodes=>nodes.every(n=>n.width>0&&n.height>0)),activeCase+' nonempty plot canvases');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),activeCase+' no page overflow');
-    assert.equal(await page.locator('video,iframe,a[href="#video"],#video').count(),0,activeCase+' lesson-only chapter has no nonexistent film or film link');
+    assert.equal(await page.locator('#video video').count(),1,activeCase+' native film player');
+    assert.equal(await page.locator('#video video').getAttribute('src'),film.file,activeCase+' current local film route');
+    assert.equal(await page.locator('#video track[kind="captions"]').getAttribute('src'),film.captions,activeCase+' English caption route');
+    assert.equal(await page.locator('#video-guide .video-flow > li').count(),9,activeCase+' chronological film guide');
+    assert.equal(await page.locator('#video iframe').count(),0,activeCase+' local film does not depend on an external player');
     const explanation=await page.locator('main').innerText();
     for(const term of (language==='zh'?['可微光学','自动微分','伴随法','端到端','有限差分']:['Differentiable optics','Automatic differentiation','adjoint','End-to-end','finite difference']))
       assert.ok(explanation.includes(term),activeCase+' explains '+term);

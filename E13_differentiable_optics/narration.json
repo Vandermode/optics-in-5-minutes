@@ -1,0 +1,271 @@
+{
+  "voice": "af_heart",
+  "speed": 1.08,
+  "gap_s": 0.32,
+  "chapter_pause_s": 0.75,
+  "lead_in_s": 0.9,
+  "tail_s": 2.6,
+  "segments": [
+    {
+      "id": "h1",
+      "ch": 0,
+      "text": "Turn these two phase controls. The light at the pupil stays equally bright, but the focal pattern moves and spreads.",
+      "say": "Turn these two phase controls. The light at the pupil stays equally bright, but the focal pattern moves and spreads."
+    },
+    {
+      "id": "h2",
+      "ch": 0,
+      "text": "The aperture and total power have not changed.",
+      "say": "The aperture and total power have not changed."
+    },
+    {
+      "id": "h3",
+      "ch": 0,
+      "text": "Which control should we change to make this pattern match the target?",
+      "say": "Which control should we change to make this pattern match the target?",
+      "pause_after": 0.8
+    },
+    {
+      "id": "h4",
+      "ch": 0,
+      "text": "Predict the image forwards, then carry its error backwards to the design.",
+      "say": "Predict the image forwards, then carry its error backwards to the design."
+    },
+    {
+      "id": "f1",
+      "ch": 1,
+      "text": "Here is our one-dimensional pupil, the illuminated opening. We change only its phase, keeping the amplitude fixed.",
+      "say": "Here is our one-dimensional pupil, the illuminated opening. We change only its phase, keeping the amplitude fixed."
+    },
+    {
+      "id": "f2",
+      "ch": 1,
+      "text": "The phase contains a linear term for tilt and a quadratic term for defocus. Both coefficients are measured in radians.",
+      "say": "The phase contains a linear term for tilt and a quadratic term for defocus. Both coefficients are measured in radians."
+    },
+    {
+      "id": "f3",
+      "ch": 1,
+      "text": "Watch a phase ramp move the focal pattern sideways.",
+      "say": "Watch a phase ramp move the focal pattern sideways."
+    },
+    {
+      "id": "f4",
+      "ch": 1,
+      "text": "Add quadratic phase at the same detector plane, and the pattern broadens. Interference redistributes the light.",
+      "say": "Add quadratic phase at the same detector plane, and the pattern broadens. Interference redistributes the light."
+    },
+    {
+      "id": "f5",
+      "ch": 1,
+      "text": "Multiply the fixed amplitude by a complex phase factor, rotating the field without changing its magnitude. A unitary Fourier transform propagates it while preserving total sampled power.",
+      "say": "Multiply the fixed amplitude by a complex phase factor, rotating the field without changing its magnitude. A unitary Fourier transform propagates it while preserving total sampled power."
+    },
+    {
+      "id": "f6",
+      "ch": 1,
+      "text": "The detector reads squared field magnitude. Across the full detector grid, these normalized intensities add to one.",
+      "say": "The detector reads squared field magnitude. Across the full detector grid, these normalized intensities add to one."
+    },
+    {
+      "id": "l1",
+      "ch": 2,
+      "text": "Choose the focused pattern with zero tilt and defocus as our target. Start with tilt and defocus coefficients of one point five and two.",
+      "say": "Choose the focused pattern with zero tilt and defocus as our target. Start with tilt and defocus coefficients of one point five and two."
+    },
+    {
+      "id": "l2",
+      "ch": 2,
+      "text": "Subtract the target intensity at every detector sample. These differences are the residuals, including the pattern's faint outer structure.",
+      "say": "Subtract the target intensity at every detector sample. These differences are the residuals, including the pattern's faint outer structure."
+    },
+    {
+      "id": "l3",
+      "ch": 2,
+      "text": "Square and sum the residuals, then divide by twice the target's squared norm. This dimensionless loss measures the mismatch.",
+      "say": "Square and sum the residuals, then divide by twice the target's squared norm. This dimensionless loss measures the mismatch."
+    },
+    {
+      "id": "l4",
+      "ch": 2,
+      "text": "Keep that target and normalization fixed. Zero loss means matching this sampled intensity, not necessarily recovering a unique phase.",
+      "say": "Keep that target and normalization fixed. Zero loss means matching this sampled intensity, not necessarily recovering a unique phase."
+    },
+    {
+      "id": "b1",
+      "ch": 3,
+      "text": "Now ask how a tiny parameter change affects the loss. Follow the same calculation backwards using the chain rule.",
+      "say": "Now ask how a tiny parameter change affects the loss. Follow the same calculation backwards using the chain rule."
+    },
+    {
+      "id": "b2",
+      "ch": 3,
+      "text": "A positive residual marks a sample that is too bright. A negative residual marks one that is too dim.",
+      "say": "A positive residual marks a sample that is too bright. A negative residual marks one that is too dim."
+    },
+    {
+      "id": "b3",
+      "ch": 3,
+      "text": "Divide each residual by the target's squared norm, and multiply by the focal field. This starts the reverse intensity calculation.",
+      "say": "Divide each residual by the target's squared norm, and multiply by the focal field. This starts the reverse intensity calculation."
+    },
+    {
+      "id": "b4",
+      "ch": 3,
+      "text": "Apply the conjugate transpose of the Fourier transform. This gathers every detector sample's influence back at the pupil.",
+      "say": "Apply the conjugate transpose of the Fourier transform. This gathers every detector sample's influence back at the pupil."
+    },
+    {
+      "id": "b5",
+      "ch": 3,
+      "text": "This backward field represents mathematical sensitivity. No physical light travels backwards in this calculation.",
+      "say": "This backward field represents mathematical sensitivity. No physical light travels backwards in this calculation."
+    },
+    {
+      "id": "b6",
+      "ch": 3,
+      "text": "At the pupil, a small phase change rotates the complex field. That converts field sensitivity into real phase sensitivity.",
+      "say": "At the pupil, a small phase change rotates the complex field. That converts field sensitivity into real phase sensitivity."
+    },
+    {
+      "id": "b7",
+      "ch": 3,
+      "text": "Weight this sensitivity by position for tilt, and squared position for defocus. Sum across the pupil to obtain both derivatives, the components of our design gradient.",
+      "say": "Weight this sensitivity by position for tilt, and squared position for defocus. Sum across the pupil to obtain both derivatives, the components of our design gradient."
+    },
+    {
+      "id": "c1",
+      "ch": 4,
+      "text": "Check those derivatives before using them. Nudge one coefficient forwards and backwards by the same small amount.",
+      "say": "Check those derivatives before using them. Nudge one coefficient forwards and backwards by the same small amount."
+    },
+    {
+      "id": "c2",
+      "ch": 4,
+      "text": "Recompute both losses and divide their difference by the separation. This central finite difference estimates the same local slope.",
+      "say": "Recompute both losses and divide their difference by the separation. This central finite difference estimates the same local slope."
+    },
+    {
+      "id": "c3",
+      "ch": 4,
+      "text": "Try several perturbation sizes. Large nudges miss the local slope; extremely small ones expose floating-point rounding.",
+      "say": "Try several perturbation sizes. Large nudges miss the local slope; extremely small ones expose floating-point rounding."
+    },
+    {
+      "id": "c4",
+      "ch": 4,
+      "text": "Here both parameter derivatives agree over a useful range. They are evaluated at the identical starting design.",
+      "say": "Here both parameter derivatives agree over a useful range. They are evaluated at the identical starting design.",
+      "pause_after": 0.8
+    },
+    {
+      "id": "c5",
+      "ch": 4,
+      "text": "That checks the implemented derivative. It does not establish that the optical model captures a real device.",
+      "say": "That checks the implemented derivative. It does not establish that the optical model captures a real device."
+    },
+    {
+      "id": "u1",
+      "ch": 5,
+      "text": "Move opposite the gradient to seek a lower loss. The step length controls how far we move.",
+      "say": "Move opposite the gradient to seek a lower loss. The step length controls how far we move."
+    },
+    {
+      "id": "u2",
+      "ch": 5,
+      "text": "Surprisingly, the first step increases defocus while reducing the loss. The coefficients act together; shrinking each one is not the rule.",
+      "say": "Surprisingly, the first step increases defocus while reducing the loss. The coefficients act together; shrinking each one is not the rule."
+    },
+    {
+      "id": "u3",
+      "ch": 5,
+      "text": "Recompute the loss after each trial. Shorten an unsuccessful step, and accept it only when the loss decreases.",
+      "say": "Recompute the loss after each trial. Shorten an unsuccessful step, and accept it only when the loss decreases."
+    },
+    {
+      "id": "u4",
+      "ch": 5,
+      "text": "Watch forty updates bring this pattern close to the target, with the same aperture and power throughout.",
+      "say": "Watch forty updates bring this pattern close to the target, with the same aperture and power throughout.",
+      "pause_after": 0.8
+    },
+    {
+      "id": "u5",
+      "ch": 5,
+      "text": "Start both coefficients at three instead. The loss stalls above zero, although we know a zero-loss design exists.",
+      "say": "Start both coefficients at three instead. The loss stalls above zero, although we know a zero-loss design exists."
+    },
+    {
+      "id": "u6",
+      "ch": 5,
+      "text": "A correct gradient gives local information, not a guarantee of the best design.",
+      "say": "A correct gradient gives local information, not a guarantee of the best design."
+    },
+    {
+      "id": "x1",
+      "ch": 6,
+      "text": "Differentiable optics means an optical model has usable derivatives with respect to its chosen design variables.",
+      "say": "Differentiable optics means an optical model has usable derivatives with respect to its chosen design variables."
+    },
+    {
+      "id": "x2",
+      "ch": 6,
+      "text": "Automatic differentiation applies derivative rules through a computation graph. Here, we wrote the reverse calculation explicitly.",
+      "say": "Automatic differentiation applies derivative rules through a computation graph. Here, we wrote the reverse calculation explicitly."
+    },
+    {
+      "id": "x3",
+      "ch": 6,
+      "text": "Adjoint methods efficiently carry a scalar objective's sensitivity backwards. An automatic-differentiation system can include an optical solver's adjoint.",
+      "say": "Adjoint methods efficiently carry a scalar objective's sensitivity backwards. An automatic differentiation system can include an optical solver's adjoint."
+    },
+    {
+      "id": "x4",
+      "ch": 6,
+      "text": "For curved lenses, the chain must include ray intersections and Snell refraction. Away from grazing incidence, local derivatives follow one intersection branch.",
+      "say": "For curved lenses, the chain must include ray intersections and Snell refraction. Away from grazing incidence, local derivatives follow one intersection branch."
+    },
+    {
+      "id": "x5",
+      "ch": 6,
+      "text": "Clipping or switching ray paths can break a smooth local derivative.",
+      "say": "Clipping or switching ray paths can break a smooth local derivative."
+    },
+    {
+      "id": "x6",
+      "ch": 6,
+      "text": "For joint optical and digital design, place the loss after reconstruction. Differentiate through both stages to update both sets of parameters.",
+      "say": "For joint optical and digital design, place the loss after reconstruction. Differentiate through both stages to update both sets of parameters."
+    },
+    {
+      "id": "x7",
+      "ch": 6,
+      "text": "These are extensions of the chain. Our computed example optimizes only a phase element's intensity pattern.",
+      "say": "These are extensions of the chain. Our computed example optimizes only a phase element's intensity pattern."
+    },
+    {
+      "id": "r1",
+      "ch": 7,
+      "text": "Predict fields and measurements forwards. Carry a precisely defined loss backwards to the parameters you can change.",
+      "say": "Predict fields and measurements forwards. Carry a precisely defined loss backwards to the parameters you can change."
+    },
+    {
+      "id": "r2",
+      "ch": 7,
+      "text": "Check the derivative, take a step, and measure the loss again.",
+      "say": "Check the derivative, take a step, and measure the loss again."
+    },
+    {
+      "id": "r3",
+      "ch": 7,
+      "text": "This model uses one wavelength and ignores polarization. Test what it omits: sensor noise, fabrication limits, and performance beyond the optimized samples.",
+      "say": "This model uses one wavelength and ignores polarization. Test what it omits: sensor noise, fabrication limits, and performance beyond the optimized samples."
+    },
+    {
+      "id": "r4",
+      "ch": 7,
+      "text": "Differentiable optics connects image error to design changes. A useful gradient still needs a useful model.",
+      "say": "Differentiable optics connects image error to design changes. A useful gradient still needs a useful model."
+    }
+  ]
+}
