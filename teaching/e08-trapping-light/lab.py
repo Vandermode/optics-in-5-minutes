@@ -5,6 +5,9 @@
 # A guided slab mode has $n_\mathrm{clad}<n_\mathrm{eff}=\beta/k_0<n_\mathrm{core}$.
 # Discretize the second derivative and solve the real symmetric eigenproblem.
 # The computational boundary is a distant zero-field wall: widen the domain to test it.
+# Normalize each scalar electric-field profile to $\int |u|^2 dx=1$ (unit L2 norm).
+# This is not SI power normalization: a forward TE mode has longitudinal power
+# proportional to $\beta\int |u|^2 dx$ at fixed frequency and permeability.
 # **Predict:** which modes disappear as the core becomes thinner?
 # %%
 from scipy.linalg import eigh_tridiagonal
@@ -36,7 +39,7 @@ fig,ax=plt.subplots(1,2,figsize=(11,4))
 ax[0].plot(x,index);ax[0].set(xlabel="x (μm)",ylabel="Refractive index")
 for j in range(len(values)):
     ax[1].plot(x,modes[:,j],label=f"Mode {j}, neff={neff[j]:.5f}")
-ax[1].set(xlim=(-10,10),xlabel="x (μm)",ylabel="Power-normalized amplitude");ax[1].legend(fontsize=9)
+ax[1].set(xlim=(-10,10),xlabel="x (μm)",ylabel="L2-normalized field amplitude");ax[1].legend(fontsize=9)
 show(fig,"01-slab-modes")
 print("Relative matrix residual:",res,"Fundamental neff error:",abs(neff[0]-analytic))
 # %% [markdown]
@@ -46,6 +49,11 @@ print("Relative matrix residual:",res,"Fundamental neff error:",abs(neff[0]-anal
 # A suitable sum localizes the initial field in one guide. Their relative phase changes
 # with z, moving power between guides. $\kappa=|\beta_+-\beta_-|/2$ and
 # the complete-transfer length is $\pi/(2\kappa)$ in the two-mode approximation.
+# Here the plotted fraction integrates $|E|^2$ over the left half-space, divided by
+# its total integral. It illustrates mode beating; it is not an exact Poynting-flux
+# measurement. The modes have different β values, so actual TE power requires the
+# corresponding magnetic field as well. Their overlapping tails also mean this
+# half-space fraction need not reach exactly zero or one like the ideal guide amplitudes.
 # %%
 separation=5.;guide_width=2.
 double_index=np.where((abs(x-separation/2)<guide_width/2)|(abs(x+separation/2)<guide_width/2),ncore,nclad)
@@ -62,9 +70,9 @@ left=np.sum(abs(field[x<0])**2,axis=0)*dx
 fig,ax=plt.subplots(1,2,figsize=(11,4))
 ax[0].imshow(abs(field)**2,origin="lower",aspect="auto",extent=[z[0],z[-1],x[0],x[-1]],cmap="magma")
 ax[0].set(ylim=(-8,8),xlabel="z (μm)",ylabel="x (μm)")
-ax[1].plot(z,left,label="Integrated left-half power")
+ax[1].plot(z,left,label="Left-half scalar intensity fraction")
 ax[1].plot(z,np.cos(kappa*z)**2,"--",label="Ideal cos²(κz)")
-ax[1].set(xlabel="z (μm)",ylabel="Fraction of input power");ax[1].legend(fontsize=9)
+ax[1].set(xlabel="z (μm)",ylabel="Fraction of total ∫|E|² dx");ax[1].legend(fontsize=9)
 show(fig,"02-supermode-beating")
 print("Computed κ:",kappa,"μm⁻¹; transfer length:",transfer,"μm")
 # %% [markdown]

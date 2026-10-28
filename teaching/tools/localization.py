@@ -9,6 +9,7 @@ import re
 from video_logic import translations as video_logic_translations
 from geometric_course import TRANSLATIONS as GEOMETRIC_TRANSLATIONS
 from geometric_terms import ALIASES as GEOMETRIC_ALIASES
+from differentiable_terms import ALIASES as DIFFERENTIABLE_ALIASES
 
 SKIP_TAGS = {"script", "style", "pre", "code"}
 SKIP_CLASSES = {"equation", "inline-equation"}
@@ -152,7 +153,7 @@ def collect_page_strings(root, catalog):
 
 def build_languages(root, catalog):
     data = json.loads((root / 'tools/locales/zh.json').read_text())
-    phrases, aliases = data['phrases'], {**data['termAliases'], **GEOMETRIC_ALIASES}
+    phrases, aliases = data['phrases'], {**data['termAliases'], **GEOMETRIC_ALIASES, **DIFFERENTIABLE_ALIASES}
     # Video text is authored as EN/ZH pairs so the two reasoning guides stay together.
     phrases = {**phrases, **GEOMETRIC_TRANSLATIONS, **video_logic_translations()}
     pages = page_paths(catalog)

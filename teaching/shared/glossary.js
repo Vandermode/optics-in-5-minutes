@@ -1,4 +1,5 @@
 import {geometricTerms, geometricLessonTerms} from './geometric-glossary.js';
+import {differentiableTerms, differentiableLessonTerms} from './differentiable-glossary.js';
 // Definitions use the same scalar models and conventions as the lesson text.
 // Each chapter supplies its own explanation of why a shared term matters there.
 const term = (name, aliases, definition, formula = '', notation = '', episodes = []) =>
@@ -6,6 +7,7 @@ const term = (name, aliases, definition, formula = '', notation = '', episodes =
 
 export const terms = {
   ...geometricTerms,
+  ...differentiableTerms,
   phase: term('Optical phase', ['phase', 'phases', 'relative phase'],
     'The position within an oscillation cycle, expressed as an angle. Interference depends on phase differences between fields; a common constant phase shift does not change their intensity.'),
   amplitude: term('Field amplitude', ['amplitude', 'amplitudes'],
@@ -130,7 +132,7 @@ export const terms = {
     'exp[i(φ + 2πm)] = exp(iφ)', 'm is any integer. Equal phase modulo 2π at one wavelength does not imply broadband equivalence.'),
   kinoform: term('Kinoform', ['kinoform', 'kinoform zones'],
     'A phase-only diffractive element whose profile uses wrapped phase to produce a desired wavefront, often with much less material height than an unwrapped refractive profile.'),
-  quantization: term('Phase quantization', ['quantization', 'quantized', 'N-level staircase', 'finite set of heights'],
+  quantization: term('Phase quantization', ['quantization', 'quantized', 'quantize', 'hard phase rounding', 'N-level staircase', 'finite set of heights'],
     'Approximating a continuous phase or surface profile with a finite set of levels. The resulting phase errors can redirect power into unwanted diffraction orders.'),
   dispersion: term('Material dispersion', ['material dispersion', 'dispersive', 'nondispersive'],
     'The dependence of a material’s refractive index on frequency or wavelength. A nondispersive model holds the index constant, even though interference and diffraction can still depend on wavelength.'),
@@ -238,6 +240,7 @@ export const terms = {
 
 export const lessonTerms = {
   ...geometricLessonTerms,
+  ...differentiableLessonTerms,
   E01: {
     phase: 'Each plane-wave coefficient acquires a phase that depends on its direction and propagation distance.',
     amplitude: 'The slit field is decomposed into complex amplitudes, not a list of intensities.',

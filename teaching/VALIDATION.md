@@ -1,5 +1,25 @@
 # Verification record · Optics teaching course
 
+## Course audit and differentiable optics · 2026-10-28
+
+The review followed each lesson from its opening question through the model, controls, explanation, concept checks and standalone lab. E03, E06, E07, E09, E11 and E12 required no additional scientific correction in this pass; the preceding film/core-lab fixes remain intact.
+
+| Lesson | Clarification or correction |
+| --- | --- |
+| E01 | A zero-distance setting now shows zero propagation in every heatmap row; it no longer silently displays a 1 μm interval. |
+| E02 | Input and output intensity images share one colour range for each object type, including the phase-object case. |
+| E04 | Explain the sin(a)/a phase average and why visibility can return beyond a π-radian half-range: the wrapped phase distribution changes, rather than longer exposure restoring coherence. |
+| E05 | Known and recovered phase share one symmetric radian colour scale. Intensity has its own labelled scale. |
+| E08 | A requested mode disappears at cutoff instead of being replaced by another mode. Guided-mode expansion is explicitly restricted to the guided subspace. The lab distinguishes L2 normalization and scalar intensity integrals from β-weighted TE power flux. Through-port and circulating powers use separate plots so the critical-coupling dip remains visible. |
+| E10 | Distinguish 4,096 array entries from 2,601 illuminated phase variables and explain the resulting 5,202 central-difference evaluations. Notebook target, initial and optimized intensities share a scale. |
+| E13 | Add parameter → pupil phase → field → intensity → loss → gradient → update, with the residual-to-field sensitivity step written explicitly. Separate differentiable optics, automatic differentiation and adjoint methods. Connect to ray intersections and end-to-end optical/digital design with their assumptions stated. |
+
+E13 uses a fixed-power 1D aperture with phase φ(x)=ax+bx² and a unitary Fourier operator. Its reachable target has a specified tilt and zero defocus. The objective is L=Σ(I−I★)²/(2ΣI★²), with the target and denominator fixed throughout a run. Default parameters (a,b)=(1.5,2) give L=0.2605818922 initially and 4.55734749×10⁻⁵ after 40 accepted updates. The initial reverse gradient [0.2188956249, −0.0417820030] agrees with central differences at h=10⁻⁵ rad to 9.61×10⁻¹² maximum absolute error. The initially negative defocus derivative is explained rather than hidden. Starting at (3,3) stalls near 0.298667 even though a zero-loss reference is known; this demonstrates a local optimization limit, not a global-optimality claim.
+
+All thirteen notebooks ran in fresh CPU kernels in empty working directories, including every optional section: 84 code cells and 54 embedded PNG figures. The execution environment was Python 3.11.7, NumPy 2.4.6, SciPy 1.17.1 and Matplotlib 3.11.2. E13 has four saved figures and a downloadable archive. Its tests compare JavaScript with an independent NumPy FFT fixture, an analytic uniform-aperture response, forward tangents and finite differences; they also check power, constant-phase invariance, grid refinement, accepted descent and the limitations of hard phase quantization. The numerical suites pass, including 1,720 E13 comparisons and regression checks for zero propagation, common intensity scales and mode cutoff.
+
+The new chapter is bilingual and integrated into the course catalog, concept map, search and term explanations. It includes the interactive model, concept checks, CPU notebook, saved figures and instructor rubric. It has no companion film; catalog metadata omits film controls and routes its term links to the lesson. Existing films are unchanged in this pass. Local notebook execution does not claim authenticated Colab execution or physical device validation.
+
 ## Teaching-logic corrections · 2026-10-26
 
 The six corrections align the films, required work, numerical evidence, and experiment order. Revised materials remain a local review version.

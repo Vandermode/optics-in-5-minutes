@@ -1,1 +1,11 @@
-{"private":true,"type":"module","scripts":{"test":"node tests/check-course.mjs && node tests/check-spectrum.mjs && node tests/check-search.mjs && node tests/check-ray-optics.mjs","test:browser":"node tests/browser.mjs && node tests/reader.mjs && node tests/languages.mjs && node tests/knowledge.mjs && node tests/episode-knowledge.mjs && node tests/term-network.mjs && node tests/keyword-concepts.mjs && node tests/concept-search.mjs && node tests/video-guides.mjs && node tests/geometric-optics.mjs && node tests/course-logic.mjs"},"devDependencies":{"@playwright/test":"1.51.1"}}
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/check-course.mjs && node tests/check-spectrum.mjs && node tests/check-search.mjs && node tests/check-ray-optics.mjs && node tests/check-mode-cutoff.mjs && node tests/check-differentiable-optics.mjs",
+    "test:browser": "node tests/browser.mjs && node tests/reader.mjs && node tests/languages.mjs && node tests/knowledge.mjs && node tests/episode-knowledge.mjs && node tests/term-network.mjs && node tests/keyword-concepts.mjs && node tests/concept-search.mjs && node tests/video-guides.mjs && node tests/geometric-optics.mjs && node tests/course-logic.mjs && node tests/differentiable-optics.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.51.1"
+  }
+}

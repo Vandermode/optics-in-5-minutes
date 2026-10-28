@@ -40,7 +40,8 @@ export function draw(canvas,p) {
   c.lineWidth=1;c.textAlign='right';
   for(const y of yTicks){c.strokeStyle='#e3e4df';c.beginPath();c.moveTo(box.x,Y(y));c.lineTo(box.x+box.w,Y(y));c.stroke();c.fillStyle='#52616a';c.fillText(number(y),box.x-8,Y(y)+4);}
   const tickCount=box.w<280?3:5;
-  c.textAlign='center';for(let i=0;i<tickCount;i++){const x=xmin+(xmax-xmin)*i/(tickCount-1);c.fillText(number(x),X(x),box.y+box.h+22);}
+  const xTicks=p.xTicks||Array.from({length:tickCount},(_,i)=>({value:xmin+(xmax-xmin)*i/(tickCount-1)}));
+  c.textAlign='center';for(const tick of xTicks)c.fillText(tick.label?t(tick.label):number(tick.value),X(tick.value),box.y+box.h+22);
   xLines.forEach((text,i)=>c.fillText(text,w/2,h-18-(xLines.length-1-i)*18));
   c.save();c.translate(16,box.y+box.h/2);c.rotate(-Math.PI/2);c.fillText(t(p.yLabel||''),0,0);c.restore();
   c.save();c.beginPath();c.rect(box.x,box.y,box.w,box.h);c.clip();

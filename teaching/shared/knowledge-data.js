@@ -2,6 +2,22 @@
 export const knowledge = {
   "concepts": [
     {
+      "id": "differentiable",
+      "label": "Differentiable optics",
+      "region": 3,
+      "description": "Connect an optical prediction to a task loss, check its derivatives, and update optical or digital design parameters.",
+      "foundations": [
+        "derivatives",
+        "complex-matrices",
+        "fourier"
+      ],
+      "episodes": [
+        "E13",
+        "E10",
+        "E12"
+      ]
+    },
+    {
       "id": "field",
       "label": "Complex field & phase",
       "region": 0,
@@ -223,6 +239,7 @@ export const knowledge = {
       "description": "Follow a slit field into space by changing the representation: separate its directions, advance their phases, and add them back.",
       "prerequisites": [],
       "notebook": "e01_angular_spectrum.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Plane waves",
         "Angular spectrum",
@@ -247,6 +264,7 @@ export const knowledge = {
         "E01"
       ],
       "notebook": "e02_lens_fourier.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Fourier transform",
         "4f system",
@@ -270,6 +288,7 @@ export const knowledge = {
         "E02"
       ],
       "notebook": "e03_diffraction_limit.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Point spread function",
         "Numerical aperture",
@@ -295,6 +314,7 @@ export const knowledge = {
         "E03"
       ],
       "notebook": "e04_coherence.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Temporal coherence",
         "Spatial coherence",
@@ -321,6 +341,7 @@ export const knowledge = {
         "E04"
       ],
       "notebook": "e05_phase_problem.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Interference",
         "Off-axis holography",
@@ -344,6 +365,7 @@ export const knowledge = {
         "E02"
       ],
       "notebook": "e06_flat_optics.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Phase wrapping",
         "Diffractive optics",
@@ -369,6 +391,7 @@ export const knowledge = {
         "E06"
       ],
       "notebook": "e07_periodic_structures.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Diffraction orders",
         "Bloch waves",
@@ -394,6 +417,7 @@ export const knowledge = {
         "E07"
       ],
       "notebook": "e08_trapping_light.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Waveguide modes",
         "Evanescent coupling",
@@ -419,6 +443,7 @@ export const knowledge = {
         "E07"
       ],
       "notebook": "e09_maxwell_grid.ipynb",
+      "hasVideo": true,
       "keywords": [
         "FDTD",
         "Yee grid",
@@ -444,6 +469,7 @@ export const knowledge = {
         "E06"
       ],
       "notebook": "e10_adjoint_design.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Inverse design",
         "Adjoint method",
@@ -468,6 +494,7 @@ export const knowledge = {
         "E03"
       ],
       "notebook": "e11_ray_tracing.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Ray tracing",
         "Snell’s law",
@@ -493,6 +520,7 @@ export const knowledge = {
         "E03"
       ],
       "notebook": "e12_lens_design.ipynb",
+      "hasVideo": true,
       "keywords": [
         "Lens prescription",
         "Lens bending",
@@ -506,6 +534,33 @@ export const knowledge = {
         "Merit function": "meritFunction",
         "RMS spot radius": "rmsSpot",
         "Design constraints": "designConstraints"
+      }
+    },
+    {
+      "id": "E13",
+      "slug": "e13-differentiable-optics",
+      "title": "Differentiable optics: from images to design updates",
+      "description": "Connect optical parameters to a measured intensity and a scalar loss. Check the gradient, improve a phase element, and see how the same chain reaches lens design and computational imaging.",
+      "prerequisites": [
+        "E02",
+        "E10",
+        "E12"
+      ],
+      "notebook": "e13_differentiable_optics.ipynb",
+      "hasVideo": false,
+      "keywords": [
+        "Differentiable optics",
+        "Automatic differentiation",
+        "Gradients",
+        "End-to-end design",
+        "Adjoint method"
+      ],
+      "keywordTerms": {
+        "Differentiable optics": "differentiableOptics",
+        "Automatic differentiation": "automaticDifferentiation",
+        "Gradients": "gradient",
+        "End-to-end design": "endToEnd",
+        "Adjoint method": "adjointMethod"
       }
     }
   ],
@@ -521,6 +576,7 @@ export const knowledge = {
     "E09": "maxwell",
     "E10": "adjoint",
     "E11": "rays",
-    "E12": "lensdesign"
+    "E12": "lensdesign",
+    "E13": "differentiable"
   }
 };

@@ -12,6 +12,7 @@ from localization import build_languages
 from knowledge import knowledge_map_html, episode_concepts_html, write_knowledge_data
 from video_logic import video_logic_html
 from geometric_terms import write as write_geometric_terms
+from differentiable_terms import write as write_differentiable_terms
 from build_ray_labs import build as build_ray_labs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,8 +32,10 @@ EPISODE_KEYWORDS = {
     "E10": ["Inverse design", "Adjoint method", "Gradients", "Automatic differentiation", "Fabrication constraints"],
     "E11": ["Ray tracing", "Snell’s law", "Paraxial approximation", "Spherical aberration", "Geometric spot diagram"],
     "E12": ["Lens prescription", "Lens bending", "Merit function", "RMS spot radius", "Design constraints"],
+    "E13": ["Differentiable optics", "Automatic differentiation", "Gradients", "End-to-end design", "Adjoint method"],
 }
 KEYWORD_TERMS = {
+    "Differentiable optics": "differentiableOptics", "End-to-end design": "endToEnd",
     "Plane waves": "planeWave", "Angular spectrum": "angularSpectrum", "Spatial frequency": "spatialFrequency", "FFT": "fft", "Evanescent waves": "evanescent",
     "Fourier transform": "fourier", "4f system": "fourF", "Spatial filtering": "spatialFiltering", "Phase contrast": "phaseContrast",
     "Point spread function": "psf", "Numerical aperture": "na", "Optical transfer function": "otf", "Diffraction limit": "diffractionLimit", "Deconvolution": "deconvolution",
@@ -53,6 +56,7 @@ CATALOG.append(dict(id="E03",slug="e03-diffraction",title="The diffraction limit
                     prerequisites=["E01","E02"],notebook="e03_diffraction_limit.ipynb"))
 CATALOG.sort(key=lambda m:m["id"])
 for entry in CATALOG:
+    entry["hasVideo"] = entry["id"] in VIDEOS
     entry["keywords"] = EPISODE_KEYWORDS[entry["id"]]
     entry["keywordTerms"] = {keyword: KEYWORD_TERMS[keyword] for keyword in entry["keywords"]}
 BY_ID = {m["id"]:m for m in CATALOG}
@@ -64,19 +68,19 @@ def links(items):
     return "".join(f'<li><a href="{esc(url)}" target="_blank" rel="noopener">{esc(label)} ↗</a></li>' for label,url in items)
 
 def video_href(episode):
-    video = VIDEOS[episode]
-    return 'https://www.youtube.com/watch?v=' + video['youtubeId'] if video.get('youtubeId') else video['file']
+    video = VIDEOS.get(episode, {})
+    return 'https://www.youtube.com/watch?v=' + video['youtubeId'] if video.get('youtubeId') else video.get('file', '')
 
 
 def notebook_actions(m, notebook):
     download = f'<a class="button secondary" href="{notebook}" download>Download notebook ↓</a><a href="figures.zip" download>Saved figures ↓</a>'
-    if m.get('local_preview') or not VIDEOS[m['id']].get('youtubeId'):
+    if m.get('local_preview') or not VIDEOS.get(m['id'], {}).get('youtubeId'):
         return f'<div class="actions">{download}</div><p class="meta">Download the notebook and open it in Jupyter, or upload it to Colab using File → Upload notebook. Then select Runtime → Run all.</p>'
     return f'<div class="actions"><a class="button" href="{COLAB}/{m["slug"]}/{notebook}" target="_blank" rel="noopener">Open in Colab ↗</a>{download}</div><p class="meta">In Colab, sign in with a Google account and select Runtime → Run all. Save a copy in Drive to retain edits. Saved notebook outputs and downloadable PNG figures provide a fallback if Colab’s output frame cannot load.</p>'
 
 
 def public_source_link(m):
-    if m.get('local_preview') or not VIDEOS[m['id']].get('youtubeId'):
+    if m.get('local_preview') or not VIDEOS.get(m['id'], {}).get('youtubeId'):
         return ''
     return f'<li><a href="{PUBLIC}/tree/main/teaching/{m["slug"]}" target="_blank" rel="noopener">Lesson and notebook source ↗</a></li>'
 
@@ -100,6 +104,8 @@ def optional_work(m, markdown=False):
 
 
 def video_section(m):
+    if m["id"] not in VIDEOS:
+        return ""
     video = VIDEOS[m["id"]]
     video_id = video.get("youtubeId")
     if video_id and not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
@@ -129,6 +135,8 @@ def control(c, defaults):
 
 def page(m):
     notebook=BY_ID[m["id"]]["notebook"]
+    film_action = '<a href="#video">Watch the film ↓</a>' if m['id'] in VIDEOS else ''
+    film_source = f'<p><strong>Video companion:</strong> <a href="#video">watch the {m["id"]} film above</a> ({esc(VIDEOS[m["id"]]["duration"])}).</p>' if m['id'] in VIDEOS else ''
     requirements=", ".join(f'<a href="../{BY_ID[id]["slug"]}/">{id}</a>' for id in m["prerequisites"]) or "Start here"
     earlier = "Useful earlier lessons: " + requirements if m["prerequisites"] else "This is the first lesson in the course."
     goals="".join("<li>"+esc(x)+"</li>" for x in m["goals"])
@@ -154,7 +162,7 @@ def page(m):
 <header class="topbar"><a class="brand" href="../">OPTICS<span>IN 5 MINUTES</span></a>
 <nav aria-label="Lesson navigation"><a href="../">All episodes</a><a href="#knowledge-map">Concept map</a><a href="#idea">The idea</a><a href="#lab">Experiment</a><a href="#notebook">Notebook ↗</a></nav></header>
 <main id="main"><section id="overview" class="hero"><div><p class="eyebrow">{m["id"]} / AN INTERACTIVE OPTICS LESSON</p>
-<h1>{m["headline"]}</h1><p class="lede">{esc(m["deck"])}</p><div class="actions"><a class="button" href="#lab">Try the experiment ↓</a><a href="#video">Watch the film ↓</a></div>
+<h1>{m["headline"]}</h1><p class="lede">{esc(m["deck"])}</p><div class="actions"><a class="button" href="#lab">Try the experiment ↓</a>{film_action}</div>
 <p class="meta">12–15-minute lesson · 25–30-minute Python lab<br><a href="#preparation">Prerequisites & recommended learning resources ↓</a></p></div>
 <figure><img src="assets/hero.png" width="1000" height="700" alt="Computed illustration from this lesson’s numerical model."><figcaption>COMPUTED FROM THE LESSON MODEL</figcaption></figure></section>
     {episode_concepts_html(m["id"])}
@@ -183,7 +191,7 @@ def page(m):
 <details class="optional-extension"><summary>Optional deeper extension</summary><div class="answer"><p>{esc(m["extension"])}</p><p>The notebook marks the extension clearly. Complete the core experiment and its checks first.</p>{optional_work(m)}</div></details>
 <p><a href="INSTRUCTOR_NOTES.md">Instructor notes and assessment rubric ↗</a> · <a href="README.md">Model, setup, and reproducibility ↗</a></p></div></section>
 <section id="sources" class="section reading"><div class="section-label">MODEL & SOURCES</div><div><h2>Know what the model leaves out.</h2><p>{esc(m["limits"])}</p>
-<p><strong>Video companion:</strong> <a href="#video">watch the {m["id"]} film above</a> ({esc(VIDEOS[m["id"]]["duration"])}).</p>
+{film_source}
 <ul class="resource-list">{links(m["refs"])}{public_source_link(m)}</ul>
 <p class="meta">Calculations and concept checks run locally in your browser. Quiz answers are not uploaded or stored.</p></div></section>
 {knowledge_map_html(CATALOG, m["id"])}</main><footer>OPTICS IN 5 MINUTES · {m["id"]} / {esc(m["title"]).upper()} · <a href="#main">Back to top ↑</a></footer></div>
@@ -278,6 +286,7 @@ display(FileLink(str(archive)))
 def docs(m):
     path=ROOT/m["slug"]
     title=f'{m["id"]} · {m["title"]}'
+    film_note = f'Watch the [{m["id"]} film]({video_href(m["id"] )}) ({VIDEOS[m["id"]]["duration"]}), embedded near the top of the lesson.' if m['id'] in VIDEOS else 'This chapter includes an interactive lesson and a CPU notebook; no companion film is supplied.'
     goals="\n".join("- "+g for g in m["goals"])
     exercises="\n\n".join(f"### {title}\n\n{task}\n\n**Worked reasoning:** {answer}" for title,task,answer in m["exercises"])
     refs="\n".join(f"- [{title}]({url})" for title,url in m["refs"])
@@ -297,7 +306,7 @@ def docs(m):
 
 ## Use the lesson
 
-Watch the [{m["id"]} film]({video_href(m['id'])}) ({VIDEOS[m["id"]]["duration"]}), embedded near the top of the lesson.
+{film_note}
 
 Serve the complete teaching/ directory over HTTP. The lesson uses shared local assets and native JavaScript modules. Open this episode's folder in the browser. Its standalone notebook also works directly in Colab or Jupyter; it does not import repository code or require a GPU.
 
@@ -370,13 +379,15 @@ def build_home():
     cards=""
     for m in CATALOG:
         hero="assets/airy-hero.png" if m["id"]=="E03" else "assets/hero.png"
-        keywords="".join(f'<li><a class="course-keyword" href="{m["slug"]}/index.html?term={m["keywordTerms"][keyword]}#video-guide" data-open-term="{m["keywordTerms"][keyword]}">{esc(keyword)}</a></li>' for keyword in m["keywords"])
-        cards+=f'<article class="episode-card" data-episode-card="{m["id"]}"><a class="course-card" href="{m["slug"]}/"><img src="{m["slug"]}/{hero}" width="1000" height="700" alt="Computed {esc(m["title"])} illustration." loading="lazy"><span class="eyebrow">{m["id"]} / FILM + LESSON + PYTHON LAB</span><h3>{esc(m["title"])}</h3><p>{esc(m["description"])}</p></a><div class="course-keywords"><span class="course-keywords-label" id="{m["id"].lower()}-keywords">Key concepts</span><ul aria-labelledby="{m["id"].lower()}-keywords">{keywords}</ul></div></article>'
+        anchor = "video-guide" if m["hasVideo"] else "idea"
+        media_label = "FILM + LESSON + PYTHON LAB" if m["hasVideo"] else "LESSON + PYTHON LAB"
+        keywords="".join(f'<li><a class="course-keyword" href="{m["slug"]}/index.html?term={m["keywordTerms"][keyword]}#{anchor}" data-open-term="{m["keywordTerms"][keyword]}">{esc(keyword)}</a></li>' for keyword in m["keywords"])
+        cards+=f'<article class="episode-card" data-episode-card="{m["id"]}"><a class="course-card" href="{m["slug"]}/"><img src="{m["slug"]}/{hero}" width="1000" height="700" alt="Computed {esc(m["title"])} illustration." loading="lazy"><span class="eyebrow">{m["id"]} / {media_label}</span><h3>{esc(m["title"])}</h3><p>{esc(m["description"])}</p></a><div class="course-keywords"><span class="course-keywords-label" id="{m["id"].lower()}-keywords">Key concepts</span><ul aria-labelledby="{m["id"].lower()}-keywords">{keywords}</ul></div></article>'
     compatibility="""const oldKeys=['na','wavelength','separation','zoom','frequency','rings'];const u=new URL(location.href);if(oldKeys.some(k=>u.searchParams.has(k))||['#idea','#lab','#frequency-space','#notebook','#check','#title','#main'].includes(u.hash))location.replace('./e03-diffraction/'+u.search+u.hash);"""
     (ROOT/"index.html").write_text(f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Optics in 5 Minutes · The interactive course</title>
-<meta name="description" content="Explore a connected map of optical concepts and choose from twelve interactive lessons with independent Python labs.">
+<meta name="description" content="Explore a connected map of optical concepts and choose from thirteen interactive lessons with independent Python labs.">
 <meta name="theme-color" content="#f5f3ed"><link rel="icon" href="e03-diffraction/assets/favicon.svg">
 <link rel="stylesheet" href="shared/course.css"><link rel="stylesheet" href="shared/knowledge.css"><link rel="stylesheet" href="shared/reader.css">
 <script>{compatibility}</script><script type="module" src="shared/home-terms.js"></script><script type="module" src="shared/knowledge.js"></script></head>
@@ -386,12 +397,12 @@ def build_home():
 <main id="course-main"><section class="home-intro"><div><p class="eyebrow">CONNECTED IDEAS / OPEN LEARNING PATHS</p>
 <h1>Follow an idea.<br><em>Find the connections.</em></h1></div><div>
 <p class="lede">Explore optics through the concepts that connect it. Start with a question, find a related lesson, and test the ideas yourself.</p>
-<p class="meta">Five-minute films · Browser experiments · CPU notebooks<br>Twelve self-contained lessons, with optional deeper extensions</p></div></section>
+<p class="meta">Five-minute films · Browser experiments · CPU notebooks<br>Thirteen self-contained lessons, with optional deeper extensions</p></div></section>
 {knowledge_map_html(CATALOG)}
-<section id="course" class="section"><div class="section-heading"><div><p class="section-label">THE EPISODE INDEX</p><h2>Twelve episodes. Many ways in.</h2></div>
+<section id="course" class="section"><div class="section-heading"><div><p class="section-label">THE EPISODE INDEX</p><h2>Thirteen chapters. Many ways in.</h2></div>
 <p>Episode numbers identify the material. Choose by concept or interest, and review the foundations each lesson uses.</p></div><div class="catalog">{cards}</div></section>
 <section id="approach" class="section reading"><div class="section-label">A COURSE YOU CAN TEST</div><div><h2>A picture, a prediction, a calculation.</h2>
-<p>Each lesson opens with an optical problem and why solving it matters. Check the prerequisites, watch the five-minute film, then use controls that change the actual model and connect the result to a few equations. The Python lab then rebuilds the calculation, tests it independently, and asks you to explain what the model leaves out.</p>
+<p>Each lesson opens with an optical problem and why solving it matters. Check the prerequisites, watch the companion film where available, then use controls that change the actual model and connect the result to a few equations. The Python lab then rebuilds the calculation, tests it independently, and asks you to explain what the model leaves out.</p>
 <p>Allow 12–15 minutes for a lesson and 25–30 minutes for its core lab. Use the concept map to choose a starting point, then follow connections as questions arise. Review unfamiliar foundations using each lesson's preparation links. The modules work without the companion films.</p>
 <p>Run notebooks in Colab or local Jupyter. They use NumPy, SciPy, and Matplotlib on CPU, with saved figures and no external datasets. Instructor notes provide a 45–50-minute classroom sequence and assessment rubric.</p></div></section>
 {home_preparation_html()}</main><footer>OPTICS IN 5 MINUTES · <a href="{PUBLIC}">Public source and teaching materials ↗</a> · Calculations run locally in your browser.</footer></div></body></html>''')
@@ -399,6 +410,7 @@ def build_home():
 def main():
     build_ray_labs()
     write_geometric_terms(ROOT)
+    write_differentiable_terms(ROOT)
     fonts=ROOT/"shared/fonts";fonts.mkdir(parents=True,exist_ok=True)
     for name in ["Lato-Regular.ttf","Lato-Bold.ttf","LICENSE-Lato.txt"]:
         shutil.copy2(ROOT/"e03-diffraction/assets"/name,fonts/name)
