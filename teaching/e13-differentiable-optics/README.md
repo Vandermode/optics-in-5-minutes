@@ -39,7 +39,7 @@ Use these focused refreshers if an idea is unfamiliar; you do not need to comple
 
 ## Use the lesson
 
-This chapter includes an interactive lesson and a CPU notebook; no companion film is supplied.
+Watch the [E13 film](../media/e13-differentiable-optics.mp4) (5:18), embedded near the top of the lesson.
 
 Serve the complete teaching/ directory over HTTP. The lesson uses shared local assets and native JavaScript modules. Open this episode's folder in the browser. Its standalone notebook also works directly in Colab or Jupyter; it does not import repository code or require a GPU.
 

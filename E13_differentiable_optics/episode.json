@@ -1,0 +1,14 @@
+{
+  "slug": "e13_differentiable_optics",
+  "title": "Differentiable Optics: From Images to Design",
+  "chapters": [
+    "Ch0Hook",
+    "Ch1Forward",
+    "Ch2Loss",
+    "Ch3Backward",
+    "Ch4Check",
+    "Ch5Update",
+    "Ch6Beyond",
+    "Ch7Recap"
+  ]
+}

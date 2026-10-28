@@ -1,0 +1,112 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Lato,42,&H00F2F2F2,&H00F2F2F2,&H00000000,&H96000000,0,0,0,0,100,100,0.3,0,1,2.2,1.2,2,80,80,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.90,0:00:03.00,Default,,0,0,0,,{\fad(120,120)}Turn these two phase controls.
+Dialogue: 0,0:00:03.04,0:00:05.12,Default,,0,0,0,,{\fad(120,120)}The light at the pupil stays equally bright,
+Dialogue: 0,0:00:05.16,0:00:07.59,Default,,0,0,0,,{\fad(120,120)}but the focal pattern moves and spreads.
+Dialogue: 0,0:00:07.66,0:00:10.30,Default,,0,0,0,,{\fad(120,120)}The aperture and total power have not changed.
+Dialogue: 0,0:00:10.37,0:00:13.99,Default,,0,0,0,,{\fad(120,120)}Which control should we change to make this pattern match the target?
+Dialogue: 0,0:00:14.86,0:00:16.00,Default,,0,0,0,,{\fad(120,120)}Predict the image forwards,
+Dialogue: 0,0:00:16.04,0:00:18.94,Default,,0,0,0,,{\fad(120,120)}then carry its error backwards to the design.
+Dialogue: 0,0:00:19.76,0:00:22.84,Default,,0,0,0,,{\fad(120,120)}Here is our one-dimensional pupil, the illuminated opening.
+Dialogue: 0,0:00:22.88,0:00:26.96,Default,,0,0,0,,{\fad(120,120)}We change only its phase, keeping the amplitude fixed.
+Dialogue: 0,0:00:27.03,0:00:29.00,Default,,0,0,0,,{\fad(120,120)}The phase contains a linear term for
+Dialogue: 0,0:00:29.04,0:00:31.47,Default,,0,0,0,,{\fad(120,120)}tilt and a quadratic term for defocus.
+Dialogue: 0,0:00:31.51,0:00:34.33,Default,,0,0,0,,{\fad(120,120)}Both coefficients are measured in radians.
+Dialogue: 0,0:00:34.40,0:00:37.45,Default,,0,0,0,,{\fad(120,120)}Watch a phase ramp move the focal pattern sideways.
+Dialogue: 0,0:00:37.52,0:00:40.13,Default,,0,0,0,,{\fad(120,120)}Add quadratic phase at the same detector plane,
+Dialogue: 0,0:00:40.17,0:00:44.00,Default,,0,0,0,,{\fad(120,120)}and the pattern broadens. Interference redistributes the light.
+Dialogue: 0,0:00:44.07,0:00:47.49,Default,,0,0,0,,{\fad(120,120)}Multiply the fixed amplitude by a complex phase factor,
+Dialogue: 0,0:00:47.53,0:00:51.16,Default,,0,0,0,,{\fad(120,120)}rotating the field without changing its magnitude.
+Dialogue: 0,0:00:51.20,0:00:53.41,Default,,0,0,0,,{\fad(120,120)}A unitary Fourier transform propagates
+Dialogue: 0,0:00:53.45,0:00:56.11,Default,,0,0,0,,{\fad(120,120)}it while preserving total sampled power.
+Dialogue: 0,0:00:56.18,0:00:58.35,Default,,0,0,0,,{\fad(120,120)}The detector reads squared field magnitude.
+Dialogue: 0,0:00:58.39,0:01:03.38,Default,,0,0,0,,{\fad(120,120)}Across the full detector grid, these normalized intensities add to one.
+Dialogue: 0,0:01:04.20,0:01:07.83,Default,,0,0,0,,{\fad(120,120)}Choose the focused pattern with zero tilt and defocus as our target.
+Dialogue: 0,0:01:07.87,0:01:12.81,Default,,0,0,0,,{\fad(120,120)}Start with tilt and defocus coefficients of one point five and two.
+Dialogue: 0,0:01:12.88,0:01:15.94,Default,,0,0,0,,{\fad(120,120)}Subtract the target intensity at every detector sample.
+Dialogue: 0,0:01:15.98,0:01:18.61,Default,,0,0,0,,{\fad(120,120)}These differences are the residuals,
+Dialogue: 0,0:01:18.65,0:01:21.12,Default,,0,0,0,,{\fad(120,120)}including the pattern's faint outer structure.
+Dialogue: 0,0:01:21.19,0:01:23.07,Default,,0,0,0,,{\fad(120,120)}Square and sum the residuals,
+Dialogue: 0,0:01:23.11,0:01:25.78,Default,,0,0,0,,{\fad(120,120)}then divide by twice the target's squared norm.
+Dialogue: 0,0:01:25.82,0:01:28.83,Default,,0,0,0,,{\fad(120,120)}This dimensionless loss measures the mismatch.
+Dialogue: 0,0:01:28.90,0:01:31.19,Default,,0,0,0,,{\fad(120,120)}Keep that target and normalization fixed.
+Dialogue: 0,0:01:31.23,0:01:34.68,Default,,0,0,0,,{\fad(120,120)}Zero loss means matching this sampled intensity,
+Dialogue: 0,0:01:34.72,0:01:37.74,Default,,0,0,0,,{\fad(120,120)}not necessarily recovering a unique phase.
+Dialogue: 0,0:01:38.56,0:01:41.68,Default,,0,0,0,,{\fad(120,120)}Now ask how a tiny parameter change affects the loss.
+Dialogue: 0,0:01:41.72,0:01:45.54,Default,,0,0,0,,{\fad(120,120)}Follow the same calculation backwards using the chain rule.
+Dialogue: 0,0:01:45.61,0:01:48.76,Default,,0,0,0,,{\fad(120,120)}A positive residual marks a sample that is too bright.
+Dialogue: 0,0:01:48.80,0:01:52.07,Default,,0,0,0,,{\fad(120,120)}A negative residual marks one that is too dim.
+Dialogue: 0,0:01:52.14,0:01:55.08,Default,,0,0,0,,{\fad(120,120)}Divide each residual by the target's squared norm,
+Dialogue: 0,0:01:55.12,0:01:57.39,Default,,0,0,0,,{\fad(120,120)}and multiply by the focal field.
+Dialogue: 0,0:01:57.43,0:02:00.39,Default,,0,0,0,,{\fad(120,120)}This starts the reverse intensity calculation.
+Dialogue: 0,0:02:00.46,0:02:03.56,Default,,0,0,0,,{\fad(120,120)}Apply the conjugate transpose of the Fourier transform.
+Dialogue: 0,0:02:03.60,0:02:07.87,Default,,0,0,0,,{\fad(120,120)}This gathers every detector sample's influence back at the pupil.
+Dialogue: 0,0:02:07.94,0:02:10.88,Default,,0,0,0,,{\fad(120,120)}This backward field represents mathematical sensitivity.
+Dialogue: 0,0:02:10.92,0:02:15.11,Default,,0,0,0,,{\fad(120,120)}No physical light travels backwards in this calculation.
+Dialogue: 0,0:02:15.18,0:02:18.99,Default,,0,0,0,,{\fad(120,120)}At the pupil, a small phase change rotates the complex field.
+Dialogue: 0,0:02:19.03,0:02:23.09,Default,,0,0,0,,{\fad(120,120)}That converts field sensitivity into real phase sensitivity.
+Dialogue: 0,0:02:23.16,0:02:25.65,Default,,0,0,0,,{\fad(120,120)}Weight this sensitivity by position for tilt,
+Dialogue: 0,0:02:25.69,0:02:27.74,Default,,0,0,0,,{\fad(120,120)}and squared position for defocus.
+Dialogue: 0,0:02:27.78,0:02:30.85,Default,,0,0,0,,{\fad(120,120)}Sum across the pupil to obtain both derivatives,
+Dialogue: 0,0:02:30.89,0:02:33.37,Default,,0,0,0,,{\fad(120,120)}the components of our design gradient.
+Dialogue: 0,0:02:34.19,0:02:36.15,Default,,0,0,0,,{\fad(120,120)}Check those derivatives before using them.
+Dialogue: 0,0:02:36.19,0:02:40.87,Default,,0,0,0,,{\fad(120,120)}Nudge one coefficient forwards and backwards by the same small amount.
+Dialogue: 0,0:02:40.94,0:02:44.50,Default,,0,0,0,,{\fad(120,120)}Recompute both losses and divide their difference by the separation.
+Dialogue: 0,0:02:44.54,0:02:49.02,Default,,0,0,0,,{\fad(120,120)}This central finite difference estimates the same local slope.
+Dialogue: 0,0:02:49.09,0:02:53.39,Default,,0,0,0,,{\fad(120,120)}Try several perturbation sizes. Large nudges miss the local slope;
+Dialogue: 0,0:02:53.43,0:02:56.90,Default,,0,0,0,,{\fad(120,120)}extremely small ones expose floating-point rounding.
+Dialogue: 0,0:02:56.97,0:03:00.44,Default,,0,0,0,,{\fad(120,120)}Here both parameter derivatives agree over a useful range.
+Dialogue: 0,0:03:00.48,0:03:03.87,Default,,0,0,0,,{\fad(120,120)}They are evaluated at the identical starting design.
+Dialogue: 0,0:03:04.74,0:03:06.39,Default,,0,0,0,,{\fad(120,120)}That checks the implemented derivative.
+Dialogue: 0,0:03:06.43,0:03:11.30,Default,,0,0,0,,{\fad(120,120)}It does not establish that the optical model captures a real device.
+Dialogue: 0,0:03:12.12,0:03:14.96,Default,,0,0,0,,{\fad(120,120)}Move opposite the gradient to seek a lower loss.
+Dialogue: 0,0:03:15.00,0:03:17.47,Default,,0,0,0,,{\fad(120,120)}The step length controls how far we move.
+Dialogue: 0,0:03:17.54,0:03:21.47,Default,,0,0,0,,{\fad(120,120)}Surprisingly, the first step increases defocus while reducing the loss.
+Dialogue: 0,0:03:21.51,0:03:25.87,Default,,0,0,0,,{\fad(120,120)}The coefficients act together; shrinking each one is not the rule.
+Dialogue: 0,0:03:25.94,0:03:29.96,Default,,0,0,0,,{\fad(120,120)}Recompute the loss after each trial. Shorten an unsuccessful step,
+Dialogue: 0,0:03:30.00,0:03:32.75,Default,,0,0,0,,{\fad(120,120)}and accept it only when the loss decreases.
+Dialogue: 0,0:03:32.82,0:03:35.86,Default,,0,0,0,,{\fad(120,120)}Watch forty updates bring this pattern close to the target,
+Dialogue: 0,0:03:35.90,0:03:38.53,Default,,0,0,0,,{\fad(120,120)}with the same aperture and power throughout.
+Dialogue: 0,0:03:39.40,0:03:43.52,Default,,0,0,0,,{\fad(120,120)}Start both coefficients at three instead. The loss stalls above zero,
+Dialogue: 0,0:03:43.56,0:03:46.18,Default,,0,0,0,,{\fad(120,120)}although we know a zero-loss design exists.
+Dialogue: 0,0:03:46.25,0:03:48.38,Default,,0,0,0,,{\fad(120,120)}A correct gradient gives local information,
+Dialogue: 0,0:03:48.42,0:03:51.01,Default,,0,0,0,,{\fad(120,120)}not a guarantee of the best design.
+Dialogue: 0,0:03:51.83,0:03:55.30,Default,,0,0,0,,{\fad(120,120)}Differentiable optics means an optical model has usable
+Dialogue: 0,0:03:55.34,0:03:59.12,Default,,0,0,0,,{\fad(120,120)}derivatives with respect to its chosen design variables.
+Dialogue: 0,0:03:59.19,0:04:01.45,Default,,0,0,0,,{\fad(120,120)}Automatic differentiation applies derivative
+Dialogue: 0,0:04:01.49,0:04:03.46,Default,,0,0,0,,{\fad(120,120)}rules through a computation graph.
+Dialogue: 0,0:04:03.50,0:04:07.47,Default,,0,0,0,,{\fad(120,120)}Here, we wrote the reverse calculation explicitly.
+Dialogue: 0,0:04:07.54,0:04:09.68,Default,,0,0,0,,{\fad(120,120)}Adjoint methods efficiently carry a
+Dialogue: 0,0:04:09.72,0:04:12.26,Default,,0,0,0,,{\fad(120,120)}scalar objective's sensitivity backwards.
+Dialogue: 0,0:04:12.30,0:04:14.91,Default,,0,0,0,,{\fad(120,120)}An automatic-differentiation system can
+Dialogue: 0,0:04:14.95,0:04:17.33,Default,,0,0,0,,{\fad(120,120)}include an optical solver's adjoint.
+Dialogue: 0,0:04:17.40,0:04:19.84,Default,,0,0,0,,{\fad(120,120)}For curved lenses, the chain must include
+Dialogue: 0,0:04:19.88,0:04:22.28,Default,,0,0,0,,{\fad(120,120)}ray intersections and Snell refraction.
+Dialogue: 0,0:04:22.32,0:04:24.22,Default,,0,0,0,,{\fad(120,120)}Away from grazing incidence,
+Dialogue: 0,0:04:24.26,0:04:27.37,Default,,0,0,0,,{\fad(120,120)}local derivatives follow one intersection branch.
+Dialogue: 0,0:04:27.44,0:04:31.51,Default,,0,0,0,,{\fad(120,120)}Clipping or switching ray paths can break a smooth local derivative.
+Dialogue: 0,0:04:31.58,0:04:33.65,Default,,0,0,0,,{\fad(120,120)}For joint optical and digital design,
+Dialogue: 0,0:04:33.69,0:04:35.67,Default,,0,0,0,,{\fad(120,120)}place the loss after reconstruction.
+Dialogue: 0,0:04:35.71,0:04:40.51,Default,,0,0,0,,{\fad(120,120)}Differentiate through both stages to update both sets of parameters.
+Dialogue: 0,0:04:40.58,0:04:42.35,Default,,0,0,0,,{\fad(120,120)}These are extensions of the chain.
+Dialogue: 0,0:04:42.39,0:04:47.19,Default,,0,0,0,,{\fad(120,120)}Our computed example optimizes only a phase element's intensity pattern.
+Dialogue: 0,0:04:48.01,0:04:49.74,Default,,0,0,0,,{\fad(120,120)}Predict fields and measurements forwards.
+Dialogue: 0,0:04:49.78,0:04:52.53,Default,,0,0,0,,{\fad(120,120)}Carry a precisely defined loss backwards
+Dialogue: 0,0:04:52.57,0:04:54.64,Default,,0,0,0,,{\fad(120,120)}to the parameters you can change.
+Dialogue: 0,0:04:54.71,0:04:58.07,Default,,0,0,0,,{\fad(120,120)}Check the derivative, take a step, and measure the loss again.
+Dialogue: 0,0:04:58.14,0:05:00.01,Default,,0,0,0,,{\fad(120,120)}This model uses one wavelength and
+Dialogue: 0,0:05:00.05,0:05:02.97,Default,,0,0,0,,{\fad(120,120)}ignores polarization. Test what it omits:
+Dialogue: 0,0:05:03.01,0:05:05.35,Default,,0,0,0,,{\fad(120,120)}sensor noise, fabrication limits,
+Dialogue: 0,0:05:05.39,0:05:08.26,Default,,0,0,0,,{\fad(120,120)}and performance beyond the optimized samples.
+Dialogue: 0,0:05:08.33,0:05:11.65,Default,,0,0,0,,{\fad(120,120)}Differentiable optics connects image error to design changes.
+Dialogue: 0,0:05:11.69,0:05:15.31,Default,,0,0,0,,{\fad(120,120)}A useful gradient still needs a useful model.

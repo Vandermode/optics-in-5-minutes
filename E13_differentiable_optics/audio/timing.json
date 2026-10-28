@@ -1,0 +1,306 @@
+{
+ "total": 317.663,
+ "segments": [
+  {
+   "id": "h1",
+   "ch": 0,
+   "text": "Turn these two phase controls. The light at the pupil stays equally bright, but the focal pattern moves and spreads.",
+   "start": 0.9,
+   "end": 7.341
+  },
+  {
+   "id": "h2",
+   "ch": 0,
+   "text": "The aperture and total power have not changed.",
+   "start": 7.661,
+   "end": 10.05
+  },
+  {
+   "id": "h3",
+   "ch": 0,
+   "text": "Which control should we change to make this pattern match the target?",
+   "start": 10.37,
+   "end": 13.746
+  },
+  {
+   "id": "h4",
+   "ch": 0,
+   "text": "Predict the image forwards, then carry its error backwards to the design.",
+   "start": 14.866,
+   "end": 18.696
+  },
+  {
+   "id": "f1",
+   "ch": 1,
+   "text": "Here is our one-dimensional pupil, the illuminated opening. We change only its phase, keeping the amplitude fixed.",
+   "start": 19.766,
+   "end": 26.719
+  },
+  {
+   "id": "f2",
+   "ch": 1,
+   "text": "The phase contains a linear term for tilt and a quadratic term for defocus. Both coefficients are measured in radians.",
+   "start": 27.039,
+   "end": 34.08
+  },
+  {
+   "id": "f3",
+   "ch": 1,
+   "text": "Watch a phase ramp move the focal pattern sideways.",
+   "start": 34.4,
+   "end": 37.201
+  },
+  {
+   "id": "f4",
+   "ch": 1,
+   "text": "Add quadratic phase at the same detector plane, and the pattern broadens. Interference redistributes the light.",
+   "start": 37.521,
+   "end": 43.751
+  },
+  {
+   "id": "f5",
+   "ch": 1,
+   "text": "Multiply the fixed amplitude by a complex phase factor, rotating the field without changing its magnitude. A unitary Fourier transform propagates it while preserving total sampled power.",
+   "start": 44.071,
+   "end": 55.862
+  },
+  {
+   "id": "f6",
+   "ch": 1,
+   "text": "The detector reads squared field magnitude. Across the full detector grid, these normalized intensities add to one.",
+   "start": 56.182,
+   "end": 63.131
+  },
+  {
+   "id": "l1",
+   "ch": 2,
+   "text": "Choose the focused pattern with zero tilt and defocus as our target. Start with tilt and defocus coefficients of one point five and two.",
+   "start": 64.201,
+   "end": 72.569
+  },
+  {
+   "id": "l2",
+   "ch": 2,
+   "text": "Subtract the target intensity at every detector sample. These differences are the residuals, including the pattern's faint outer structure.",
+   "start": 72.889,
+   "end": 80.879
+  },
+  {
+   "id": "l3",
+   "ch": 2,
+   "text": "Square and sum the residuals, then divide by twice the target's squared norm. This dimensionless loss measures the mismatch.",
+   "start": 81.198,
+   "end": 88.589
+  },
+  {
+   "id": "l4",
+   "ch": 2,
+   "text": "Keep that target and normalization fixed. Zero loss means matching this sampled intensity, not necessarily recovering a unique phase.",
+   "start": 88.909,
+   "end": 97.494
+  },
+  {
+   "id": "b1",
+   "ch": 3,
+   "text": "Now ask how a tiny parameter change affects the loss. Follow the same calculation backwards using the chain rule.",
+   "start": 98.564,
+   "end": 105.29
+  },
+  {
+   "id": "b2",
+   "ch": 3,
+   "text": "A positive residual marks a sample that is too bright. A negative residual marks one that is too dim.",
+   "start": 105.61,
+   "end": 111.827
+  },
+  {
+   "id": "b3",
+   "ch": 3,
+   "text": "Divide each residual by the target's squared norm, and multiply by the focal field. This starts the reverse intensity calculation.",
+   "start": 112.147,
+   "end": 120.147
+  },
+  {
+   "id": "b4",
+   "ch": 3,
+   "text": "Apply the conjugate transpose of the Fourier transform. This gathers every detector sample's influence back at the pupil.",
+   "start": 120.467,
+   "end": 127.622
+  },
+  {
+   "id": "b5",
+   "ch": 3,
+   "text": "This backward field represents mathematical sensitivity. No physical light travels backwards in this calculation.",
+   "start": 127.942,
+   "end": 134.869
+  },
+  {
+   "id": "b6",
+   "ch": 3,
+   "text": "At the pupil, a small phase change rotates the complex field. That converts field sensitivity into real phase sensitivity.",
+   "start": 135.189,
+   "end": 142.841
+  },
+  {
+   "id": "b7",
+   "ch": 3,
+   "text": "Weight this sensitivity by position for tilt, and squared position for defocus. Sum across the pupil to obtain both derivatives, the components of our design gradient.",
+   "start": 143.161,
+   "end": 153.126
+  },
+  {
+   "id": "c1",
+   "ch": 4,
+   "text": "Check those derivatives before using them. Nudge one coefficient forwards and backwards by the same small amount.",
+   "start": 154.196,
+   "end": 160.621
+  },
+  {
+   "id": "c2",
+   "ch": 4,
+   "text": "Recompute both losses and divide their difference by the separation. This central finite difference estimates the same local slope.",
+   "start": 160.941,
+   "end": 168.773
+  },
+  {
+   "id": "c3",
+   "ch": 4,
+   "text": "Try several perturbation sizes. Large nudges miss the local slope; extremely small ones expose floating-point rounding.",
+   "start": 169.093,
+   "end": 176.653
+  },
+  {
+   "id": "c4",
+   "ch": 4,
+   "text": "Here both parameter derivatives agree over a useful range. They are evaluated at the identical starting design.",
+   "start": 176.973,
+   "end": 183.628
+  },
+  {
+   "id": "c5",
+   "ch": 4,
+   "text": "That checks the implemented derivative. It does not establish that the optical model captures a real device.",
+   "start": 184.748,
+   "end": 191.059
+  },
+  {
+   "id": "u1",
+   "ch": 5,
+   "text": "Move opposite the gradient to seek a lower loss. The step length controls how far we move.",
+   "start": 192.129,
+   "end": 197.225
+  },
+  {
+   "id": "u2",
+   "ch": 5,
+   "text": "Surprisingly, the first step increases defocus while reducing the loss. The coefficients act together; shrinking each one is not the rule.",
+   "start": 197.545,
+   "end": 205.628
+  },
+  {
+   "id": "u3",
+   "ch": 5,
+   "text": "Recompute the loss after each trial. Shorten an unsuccessful step, and accept it only when the loss decreases.",
+   "start": 205.948,
+   "end": 212.507
+  },
+  {
+   "id": "u4",
+   "ch": 5,
+   "text": "Watch forty updates bring this pattern close to the target, with the same aperture and power throughout.",
+   "start": 212.827,
+   "end": 218.287
+  },
+  {
+   "id": "u5",
+   "ch": 5,
+   "text": "Start both coefficients at three instead. The loss stalls above zero, although we know a zero-loss design exists.",
+   "start": 219.407,
+   "end": 225.93
+  },
+  {
+   "id": "u6",
+   "ch": 5,
+   "text": "A correct gradient gives local information, not a guarantee of the best design.",
+   "start": 226.25,
+   "end": 230.761
+  },
+  {
+   "id": "x1",
+   "ch": 6,
+   "text": "Differentiable optics means an optical model has usable derivatives with respect to its chosen design variables.",
+   "start": 231.831,
+   "end": 238.871
+  },
+  {
+   "id": "x2",
+   "ch": 6,
+   "text": "Automatic differentiation applies derivative rules through a computation graph. Here, we wrote the reverse calculation explicitly.",
+   "start": 239.191,
+   "end": 247.223
+  },
+  {
+   "id": "x3",
+   "ch": 6,
+   "text": "Adjoint methods efficiently carry a scalar objective's sensitivity backwards. An automatic-differentiation system can include an optical solver's adjoint.",
+   "start": 247.543,
+   "end": 257.088
+  },
+  {
+   "id": "x4",
+   "ch": 6,
+   "text": "For curved lenses, the chain must include ray intersections and Snell refraction. Away from grazing incidence, local derivatives follow one intersection branch.",
+   "start": 257.408,
+   "end": 267.124
+  },
+  {
+   "id": "x5",
+   "ch": 6,
+   "text": "Clipping or switching ray paths can break a smooth local derivative.",
+   "start": 267.444,
+   "end": 271.262
+  },
+  {
+   "id": "x6",
+   "ch": 6,
+   "text": "For joint optical and digital design, place the loss after reconstruction. Differentiate through both stages to update both sets of parameters.",
+   "start": 271.582,
+   "end": 280.261
+  },
+  {
+   "id": "x7",
+   "ch": 6,
+   "text": "These are extensions of the chain. Our computed example optimizes only a phase element's intensity pattern.",
+   "start": 280.581,
+   "end": 286.946
+  },
+  {
+   "id": "r1",
+   "ch": 7,
+   "text": "Predict fields and measurements forwards. Carry a precisely defined loss backwards to the parameters you can change.",
+   "start": 288.016,
+   "end": 294.394
+  },
+  {
+   "id": "r2",
+   "ch": 7,
+   "text": "Check the derivative, take a step, and measure the loss again.",
+   "start": 294.714,
+   "end": 297.829
+  },
+  {
+   "id": "r3",
+   "ch": 7,
+   "text": "This model uses one wavelength and ignores polarization. Test what it omits: sensor noise, fabrication limits, and performance beyond the optimized samples.",
+   "start": 298.149,
+   "end": 308.019
+  },
+  {
+   "id": "r4",
+   "ch": 7,
+   "text": "Differentiable optics connects image error to design changes. A useful gradient still needs a useful model.",
+   "start": 308.339,
+   "end": 315.063
+  }
+ ]
+}

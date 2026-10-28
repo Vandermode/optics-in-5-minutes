@@ -28,16 +28,17 @@ computed and which are schematic.
 The total running time is about 52 minutes. `OUTLINE.md` explains why these ten ideas were chosen, and lists the
 candidates for Season 2.
 
-## Geometric optics and lens design
+## Geometric optics and differentiable design
 
 | # | Folder | Length | The idea |
 |---|---|---|---|
 | E11 | [`E11_ray_tracing`](E11_ray_tracing/) | 5:02 | Intersect real surfaces and apply Snell’s law; compare paraxial focus, geometric aberration and diffraction. |
 | E12 | [`E12_lens_design`](E12_lens_design/) | 5:08 | Bend a singlet at fixed focal power, choose a common image plane and audit a stated multi-field merit. |
+| E13 | [`E13_differentiable_optics`](E13_differentiable_optics/) | 5:18 | Carry intensity error back to phase controls, verify the gradient and compare two local design runs. |
 
 These episodes connect to the existing concept map without changing the original ten-episode season.
 
-The teaching course also includes [E13 · Differentiable optics](teaching/e13-differentiable-optics/README.md): a bilingual interactive chapter and standalone CPU lab connecting a physical image model, reverse derivatives, gradient checks and design updates. This chapter has no companion film.
+[E13 · Differentiable optics](teaching/e13-differentiable-optics/README.md) pairs its film with a bilingual interactive chapter, a playback guide and a standalone CPU lab. The plotted data match the browser and notebook experiments.
 
 ## Setup (once per machine)
 

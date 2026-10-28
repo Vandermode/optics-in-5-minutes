@@ -547,7 +547,7 @@ export const knowledge = {
         "E12"
       ],
       "notebook": "e13_differentiable_optics.ipynb",
-      "hasVideo": false,
+      "hasVideo": true,
       "keywords": [
         "Differentiable optics",
         "Automatic differentiation",

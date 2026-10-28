@@ -70,12 +70,15 @@ PREPARATION = {'E13': dict(skills=[dict(topic='derivatives', need=tr('Apply the 
 # Composed page strings also need complete translations.
 for m in MODULES:
     title=m['title']; zh=TRANSLATIONS[title]
-    for suffix, translated in [('AN INTERACTIVE OPTICS LESSON', '互动光学课程'), ('LESSON + PYTHON LAB', '课程 + PYTHON 实验'), ('WHY LEARN THIS?', '为什么学这一课？')]:
+    for suffix, translated in [('AN INTERACTIVE OPTICS LESSON', '互动光学课程'), ('LESSON + PYTHON LAB', '课程 + PYTHON 实验'), ('FILM + LESSON + PYTHON LAB', '影片 + 课程 + PYTHON 实验'), ('THE FIVE-MINUTE FILM', '五分钟影片'), ('WHY LEARN THIS?', '为什么学这一课？')]:
         tr(f"E13 / {suffix}", f"E13 / {translated}")
     tr('BEFORE E13 / PREREQUISITES', '学习 E13 之前 / 预备知识')
     tr(f'E13 · {title} · Optics in 5 Minutes', f'E13 · {zh} · 五分钟光学')
     tr(f'OPTICS IN 5 MINUTES · E13 / {title.upper()} ·', f'五分钟光学 · E13 / {zh} ·')
     tr(f'Computed {title} illustration.', f'{zh}的计算示意图。')
+    tr('watch the E13 film above', '观看上方 E13 影片')
+    tr(f'5:18 · E13 · {title}', f'5:18 · E13 · {zh}')
+    tr('Differentiable Optics: From Images to Design | Optics in 5 Minutes', '可微光学：从图像到设计 | 五分钟光学')
     for i,q in enumerate(m['quiz'],1): tr(f"{i}. {q['prompt']}", f"{i}. {TRANSLATIONS[q['prompt']]}")
     for skill in PREPARATION['E13']['skills']: tr('Used here: '+skill['use'], '本课用途：'+TRANSLATIONS[skill['use']])
     for label,_ in m['refs']: tr(label+' ↗', TRANSLATIONS[label]+' ↗')
