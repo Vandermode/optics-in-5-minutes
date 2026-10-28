@@ -195,9 +195,11 @@ try {
   for (const lang of ['en', 'zh']) {
     const {ctx, page} = await context(1440);
     await page.goto(home(lang)); await ready(page);
-    const opened = ctx.waitForEvent('page');
-    await page.locator('.course-keyword[data-open-term="adjointMethod"]').click({modifiers: ['Control']});
-    const tab = await opened; await ready(tab, true);
+    const [tab] = await Promise.all([
+      ctx.waitForEvent('page'),
+      page.locator('[data-episode-card="E10"] .course-keyword[data-open-term="adjointMethod"]').click({modifiers: ['Control']}),
+    ]);
+    await ready(tab, true);
     assert.equal(await tab.locator('body').getAttribute('data-episode'), 'E10');
     assert.equal(await tab.locator('#term-panel').getAttribute('data-term'), 'adjointMethod');
     assert.equal(await page.locator('#term-panel').isVisible(), false);
@@ -206,7 +208,7 @@ try {
     const staticPage = await context(390, false);
     await staticPage.page.goto(home(lang));
     assert.equal(await staticPage.page.locator('.course-keyword').count(), bindings.length);
-    await staticPage.page.locator('.course-keyword[data-open-term="adjointMethod"]').click();
+    await staticPage.page.locator('[data-episode-card="E10"] .course-keyword[data-open-term="adjointMethod"]').click();
     assert.equal(await staticPage.page.locator('body').getAttribute('data-episode'), 'E10');
     assert.equal(await staticPage.page.locator('html').getAttribute('lang'), lang === 'zh' ? 'zh-CN' : 'en');
     assert.equal(await staticPage.page.locator('#video-guide').isVisible(), true);

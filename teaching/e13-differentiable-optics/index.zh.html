@@ -34,7 +34,7 @@
 <p class="prep-new"><strong>本课将展开：</strong> 连接参数化光学、反向导数、梯度检验与设计更新；无需深度学习框架。</p>
 <a class="prep-all" href="../preparation/index.zh.html">浏览全部预备知识与学习资源 →</a>
 </section>
-    
+
 <section id="idea" class="section reading"><div class="section-label">01 / 建立直觉</div><div><h2>先观察什么？</h2><p>E12 定义什么样的镜头更好，E10 用伴随法一次求出许多灵敏度。可微光学将两者连接起来：把光学预测写成一系列运算，再将损失的灵敏度传回实际可调的物理参数。</p><div class="equation">θ = (a, b) → φ(x) → u(x) → v(q) → I(q) → L</div><p>这里 x 是归一化瞳坐标，q 表示采样的焦面空间频率，a、b 是以弧度计的实数相位系数，u 是瞳面场，v 是焦面场，I 是强度。孔径与入射功率保持固定。目标 I★ 是同一孔径在指定倾斜 a★、零离焦时的聚焦图样。</p><div class="equation">φ(x) = ax + bx²;   u = A exp(iφ);   v = F u;   I = |v|²</div><p>F 是酉离散傅里叶变换。瞳振幅 A 固定，并归一化为 ΣA² = 1，因此 ΣI = 1。相机测量场模的平方，并不直接测量相位；但传播中的干涉会让强度依赖相位。</p>
 <h3>学完后，你能够</h3><ol><li>追踪实数设计参数如何通过复数光场影响实数损失。</li><li>先用有限差分检验反向梯度，再用它更新设计。</li><li>区分可微光学、自动微分、伴随法和端到端联合设计。</li></ol></div></section>
 <section id="lab" class="section"><div class="section-heading"><div><p class="section-label">02 / 检验预测</p><h2>每次只改一个量。<br>观察它带来的变化。</h2></div><p>所有光场和曲线均由所述模型计算得到。检验预测时，请固定其余参数。</p></div>

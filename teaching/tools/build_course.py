@@ -168,7 +168,7 @@ def page(m):
     {episode_concepts_html(m["id"])}
     {motivation_html(m["id"])}
     {preparation_html(m["id"], earlier)}
-    {video_section(m)}
+{('    ' + video_section(m)) if m['id'] in VIDEOS else ''}
 <section id="idea" class="section reading"><div class="section-label">01 / BUILD AN INTUITION</div><div><h2>What to notice first.</h2>{m["intro"]}
 <h3>By the end, you can</h3><ol>{goals}</ol></div></section>
 <section id="lab" class="section"><div class="section-heading"><div><p class="section-label">02 / TEST YOUR PREDICTION</p><h2>Change one thing.<br>Follow what changes.</h2></div><p>All plotted fields and curves are calculated from the stated model. Keep the other controls fixed while testing a prediction.</p></div>
